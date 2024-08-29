@@ -1,44 +1,61 @@
 {
-	"name": "ant-plus",
-	"version": "0.1.25",
-	"description": "A node module for ANT+",
-	"main": "ant-plus.js",
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"prepare": "tsc"
-	},
-	"keywords": [
-		"ANT",
-		"ANT+"
-	],
-	"author": {
-		"name": "Alessandro Vergani",
-		"email": "alessandro.vergani@gmail.com"
-	},
-	"license": "MIT",
-	"engines": {
-		"node": ">=6.0.0"
-	},
-	"dependencies": {
-		"usb": "^1.6.0"
-	},
-	"devDependencies": {
-		"typescript": "^3.6.4",
-		"@types/node": "^6.0.0",
-		"@types/usb": "^1.5.1"
-	},
-	"files": [
-		"ant-plus.js",
-		"src/",
-		"build/"
-	],
-	"directories": {
-		"example": "./sample",
-		"lib": "./src"
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/loghorn/ant-plus.git"
-	},
-	"bugs": "https://github.com/Loghorn/ant-plus/issues"
+    "name": "ant-plus-next",
+    "version": "0.2.0",
+    "description": "A node module for ANT+",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "module": "dist/index.js",
+    "type": "module",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "clean": "rimraf dist",
+        "lint": "eslint .",
+        "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css,md}\"",
+        "build": "npm run clean && tsc && tsc-alias"
+    },
+    "keywords": [
+        "ANT",
+        "ANT+"
+    ],
+    "author": {
+        "name": "Benjamin Stefan",
+        "email": "contact@benjamin-stefan.eu"
+    },
+    "license": "MIT",
+    "engines": {
+        "node": ">=16.0.0"
+    },
+    "dependencies": {
+        "usb": "^2.13.0"
+    },
+    "devDependencies": {
+        "@eslint/js": "^9.9.1",
+        "@types/node": "^20.8.7",
+        "clean-webpack-plugin": "^4.0.0",
+        "eslint": "^9.9.1",
+        "eslint-config-prettier": "^9.1.0",
+        "eslint-plugin-prettier": "^5.2.1",
+        "globals": "^15.9.0",
+        "prettier": "^3.3.3",
+        "rimraf": "^6.0.1",
+        "tsc-alias": "^1.8.10",
+        "typescript": "^5.5.4",
+        "webpack": "^5.94.0",
+        "webpack-cli": "^5.1.4"
+    },
+    "files": [
+        "dist/"
+    ],
+    "directories": {
+        "example": "./sample",
+        "lib": "./src"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Benjamin-Stefan/ant-plus-next.git"
+    },
+    "bugs": {
+        "url": "https://github.com/Benjamin-Stefan/ant-plus-next/issues"
+    },
+    "homepage": "https://github.com/Benjamin-Stefan/ant-plus-next#readme"
 }

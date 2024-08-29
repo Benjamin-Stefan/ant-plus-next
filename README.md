@@ -1,235 +1,154 @@
-# ant-plus
+# ant-plus-next
 
-A node.js module for ANT+
+A modern Node.js module for working with ANT+ USB sticks and sensors.
+
+## Table of Contents
+
+- [About the Project](#about-the-project)
+- [Prerequisites](#prerequisites)
+  - [Linux](#linux)
+  - [Windows](#windows)
+  - [macOS](#macos)
+- [Installation](#installation)
+- [Getting Started](#getting-started)
+  - [Create USB Stick Instance](#create-usb-stick-instance)
+  - [Create Sensors](#create-sensors)
+  - [Attach Events](#attach-events)
+  - [Open USB Stick](#open-usb-stick)
+  - [Scanning for Sensors](#scanning-for-sensors)
+- [Important Notes](#important-notes)
+- [API Documentation](#api-documentation)
+  - [Stick Objects](#stick-objects)
+  - [Sensor Methods](#sensor-methods)
+  - [Events](#events)
+- [License and Acknowledgements](#license-and-acknowledgements)
+
+## About the Project
+
+This module provides a user-friendly API to communicate with ANT+ USB sticks and sensors. It is compatible with various operating systems and offers a straightforward way to capture heart rate, speed, cadence, power measurements, and more.
 
 ## Prerequisites
 
-Libusb is included as a submodule. On Linux, you'll need libudev to build libusb. On Ubuntu/Debian: `sudo apt-get install build-essential libudev-dev`
+### Linux
 
-### Windows
+Make sure `libusb` is installed. You can install `libusb` and other required packages using:
 
-Use [Zadig](http://sourceforge.net/projects/libwdi/files/zadig/) to install the WinUSB driver for your USB device. Otherwise you will get `LIBUSB_ERROR_NOT_SUPPORTED` when attempting to open devices.
+```sh
+sudo apt-get install build-essential libudev-dev
+```
+
+### WIndows
+
+Use [Zadig](http://sourceforge.net/projects/libwdi/files/zadig/) to install the WinUSB driver for your USB device. Otherwise, you will get `LIBUSB_ERROR_NOT_SUPPORTED` when attempting to open devices.
 
 ### macOS
 
-On macOS (tested on High Sierra and Mojave), installing `ant-plus` will also
-install the required `libusb`.
+When installing `ant-plus-next`, the required `libusb` will also be installed. Ensure that Garmin Express is not running, as it will attach to the ANT+ stick and prevent this module from accessing it.
 
-Make sure that Garmin Express is not running,
-because it will attach to the ANT+ stick and prevent `ant-plus` from doing so.
+## Installation
 
-## Install
-
+Install the module via npm:
 ```sh
-npm install ant-plus
+npm install ant-plus-next
 ```
 
-## usage
+## Getting Started
 
+### Create USB Stick Instance
+
+Create a new instance for the USB stick:
 ```javascript
-var Ant = require('ant-plus');
+const Ant = require('ant-plus-next');
+const stick = new Ant.GarminStick3();
 ```
 
-#### Create USB stick
+### Create Sensors
 
+Create a sensor, such as a heart rate sensor:
 ```javascript
-var stick = new Ant.GarminStick3;
+const Ant = require('ant-plus-next');
+const stick = new Ant.GarminStick3();
 ```
 
-#### Create sensors
+### Attach Events
+
+React to incoming sensor data:
 
 ```javascript
-var sensor = new Ant.HeartRateSensor(stick);
-```
-
-#### Attach events
-
-```javascript
-sensor.on('hbData', function (data) {
-    console.log(data.DeviceID, data.ComputedHeartRate);
+heartRateSensor.on('hbData', (data) => {
+    console.log(`Device ID: ${data.DeviceID}, Heart Rate: ${data.ComputedHeartRate}`);
 });
 
-stick.on('startup', function () {
-    sensor.attach(0, 0);
+stick.on('startup', () => {
+    heartRateSensor.attach(0, 0);
 });
 ```
 
-#### Open stick
+### Open USB Stick
 
+Attempt to open the USB stick:
 ```javascript
 if (!stick.open()) {
-    console.log('Stick not found!');
+    console.error('Stick not found!');
 }
 ```
 
-### scanning
+### Scanning for Sensors
 
+Scan for available sensors:
 ```javascript
-sensor.on('hbData', function (data) {
-    console.log(data.DeviceID, data.ComputedHeartRate);
+heartRateSensor.on('hbData', (data) => {
+    console.log(`Device ID: ${data.DeviceID}, Heart Rate: ${data.ComputedHeartRate}`);
 });
 
-stick.on('startup', function () {
-    sensor.scan();
-);
+stick.on('startup', () => {
+    heartRateSensor.scan();
+});
 
 if (!stick.open()) {
-    console.log('Stick not found!');
+    console.error('Stick not found!');
 }
 ```
 
-## Important notes
+## Important Notes
 
-* never attach a sensor before receiving the startup event
-* never attach a new sensor before receiving the attached or detached event of the previous sensor
-* never detach a sensor before receiving the attached or detached event of the previous sensor
+- Never attach a sensor before receiving the startup event.
+- Never attach a new sensor before receiving the attached or detached event of the previous sensor.
+- Never detach a sensor before receiving the attached or detached event of the previous sensor.
 
-## Objects
+## API Documentation
+### Stick Objects
+#### GarminStick2 and GarminStick3
 
-### GarminStick2 and GarminStick3
+- **maxChannels**: The maximum number of channels this stick supports; valid only after the startup event is fired.
 
-GarminStick2 is the driver for ANT+ sticks with a USB product ID of `0x1008`.
-As well as the old Garmin USB2 ANT+ stick, this works with many of the common off-brand clones.
+#### Methods:
 
-GarminStick3 is the driver for the mini Garmin ANT+ stick
-which has a USB product ID of `0x1009`.
+- `is_present()`: Checks if the stick is present.
+- `open()`: Attempts to open the stick.
+- `close()`: Closes the stick.
 
-#### properties
+#### Events:
 
-##### maxChannels
+- `startup`: Fired when the stick is properly initialized.
+- `shutdown`: Fired when the stick is properly closed.
 
-The maximum number of channels that this stick supports; valid only after startup event fired.
+#### Sensor Methods
 
-#### methods
+- `attach(channel, deviceId)`: Attaches the sensor using the specified channel and deviceId (use 0 to connect to the first device found).
+- `detach()`: Detaches the sensor.
 
-##### is_present()
+#### Events
 
-Checks if the stick is present. Returns true if it is, false otherwise.
+- `attached`: Fired after the sensor is correctly attached.
+- `detached`: Fired after the sensor is correctly detached.
 
-##### open()
+For more details on events and methods, refer to the full API documentation.
 
-Tries to open the stick. Returns false on failure.
+## License and Acknowledgements
 
-##### openAsync(callback)
+This project is licensed under the MIT License.
 
-Tries to open the stick, waiting for it if not available right now. Returns a cancellation token with a method `cancel` you can use to stop waiting.
-`callback` is a function accepting a single `Error` parameter and it will be called when the stick is open (with the parameter undefined) or in case of failure (with the parameter set to the error).
+Parts of the code are based on the original project [ant-plus](https://github.com/Loghorn/ant-plus) by Alessandro Vergani (© 2015). The original project was also licensed under the MIT License.
 
-##### close()
-
-Closes the stick.
-
-#### events
-
-##### startup
-
-Fired after the stick is correctly initialized.
-
-##### shutdown
-
-Fired after the stick is correctly closed.
-
-### Common to all Sensors
-
-#### methods
-
-##### attach(channel, deviceId)
-
-Attaches the sensors, using the specified channel and deviceId (use 0 to connect to the first device found).
-
-##### detach()
-
-Detaches the sensor.
-
-#### events
-
-##### attached
-
-Fired after the sensor is correctly attached.
-
-##### detached
-
-Fired after the sensor is correctly detached.
-
-### Common to all Scanners
-
-#### methods
-
-##### scan()
-
-Attaches the sensors and starts scanning for data from every devices in range.
-
-##### detach()
-
-Detaches the sensor.
-
-#### events
-
-##### attached
-
-Fired after the sensor is correctly attached.
-
-##### detached
-
-Fired after the sensor is correctly detached.
-
-### HeartRate
-
-#### events
-
-##### hbData
-
-Fired when new heartbeat data is received.
-
-### SpeedCadence
-
-#### methods
-
-#### setWheelCircumference(circumferenceInMeters)
-
-Calibrates the speed sensor. Defaults to a wheel with diameter of 70cm (= 2.199).
-
-#### events
-
-##### speedData
-
-Fired when a new wheel speed is calculated.
-
-##### cadenceData
-
-Fired when a new pedal cadence is calculated.
-
-### StrideSpeedDistance
-
-#### events
-
-##### ssdData
-
-Fired when new data been calculated.
-
-### BicyclePower
-
-#### events
-
-##### powerData
-
-Fired when new power has been calculated.
-
-### FitnessEquipment
-
-#### events
-
-##### fitnessData
-
-Fired when new data is received.
-
-### Environment
-
-#### events
-
-##### envData
-
-Fired when data is received.
-
-The `state.EventCount` value can be used to tell when a new measurement has been made by the sensor -
-it's value will have been incremented.
+Thanks to the original developers and all contributors!

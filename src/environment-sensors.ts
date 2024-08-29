@@ -28,72 +28,68 @@
  * Spec sheet: https://www.thisisant.com/resources/environment/
  */
 
-import { AntPlusSensor, AntPlusScanner, Messages } from './ant';
+import { AntPlusSensor, AntPlusScanner, Messages } from "./ant.js";
 
 class EnvironmentSensorState {
-	constructor(deviceId: number) {
-		this.DeviceID = deviceId;
-	}
+    constructor(deviceId: number) {
+        this.DeviceID = deviceId;
+    }
 
-	DeviceID: number;
-	EventCount: number;
-	Temperature: number;
+    DeviceID: number;
+    EventCount: number;
+    Temperature: number;
 }
 
 class EnvironmentScanState extends EnvironmentSensorState {
-	Rssi: number;
-	Threshold: number;
+    Rssi: number;
+    Threshold: number;
 }
 
 export class EnvironmentSensor extends AntPlusSensor {
-	static deviceType = 25;
+    static deviceType = 25;
 
-	public attach(channel, deviceID) {
-		super.attach(channel, 'receive', deviceID, EnvironmentSensor.deviceType, 0, 255, 8192);
-		this.state = new EnvironmentSensorState(deviceID);
-	}
+    public attach(channel, deviceID) {
+        super.attach(channel, "receive", deviceID, EnvironmentSensor.deviceType, 0, 255, 8192);
+        this.state = new EnvironmentSensorState(deviceID);
+    }
 
-	private state: EnvironmentSensorState;
+    private state: EnvironmentSensorState;
 
-	protected updateState(deviceId, data) {
-		this.state.DeviceID = deviceId;
-		updateState(this, this.state, data);
-	}
+    protected updateState(deviceId, data) {
+        this.state.DeviceID = deviceId;
+        updateState(this, this.state, data);
+    }
 }
 
 export class EnvironmentScanner extends AntPlusScanner {
-	protected deviceType() {
-		return EnvironmentSensor.deviceType;
-	}
+    protected deviceType() {
+        return EnvironmentSensor.deviceType;
+    }
 
-	private states: { [id: number]: EnvironmentScanState } = {};
+    private states: { [id: number]: EnvironmentScanState } = {};
 
-	protected createStateIfNew(deviceId) {
-		if (!this.states[deviceId]) {
-			this.states[deviceId] = new EnvironmentScanState(deviceId);
-		}
-	}
+    protected createStateIfNew(deviceId) {
+        if (!this.states[deviceId]) {
+            this.states[deviceId] = new EnvironmentScanState(deviceId);
+        }
+    }
 
-	protected updateRssiAndThreshold(deviceId, rssi, threshold) {
-		this.states[deviceId].Rssi = rssi;
-		this.states[deviceId].Threshold = threshold;
-	}
+    protected updateRssiAndThreshold(deviceId, rssi, threshold) {
+        this.states[deviceId].Rssi = rssi;
+        this.states[deviceId].Threshold = threshold;
+    }
 
-	protected updateState(deviceId, data) {
-		updateState(this, this.states[deviceId], data);
-	}
+    protected updateState(deviceId, data) {
+        updateState(this, this.states[deviceId], data);
+    }
 }
 
-function updateState(
-	sensor: EnvironmentSensor | EnvironmentScanner,
-	state: EnvironmentSensorState | EnvironmentScanState,
-	data: Buffer) {
-
-	const page = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA);
-	if (page === 1) {
-		state.EventCount = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 2);
-		state.Temperature = data.readUInt16LE(Messages.BUFFER_INDEX_MSG_DATA + 6) / 100;
-	}
-	sensor.emit('envdata', state);
-	sensor.emit('envData', state);
+function updateState(sensor: EnvironmentSensor | EnvironmentScanner, state: EnvironmentSensorState | EnvironmentScanState, data: Buffer) {
+    const page = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA);
+    if (page === 1) {
+        state.EventCount = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 2);
+        state.Temperature = data.readUInt16LE(Messages.BUFFER_INDEX_MSG_DATA + 6) / 100;
+    }
+    sensor.emit("envdata", state);
+    sensor.emit("envData", state);
 }

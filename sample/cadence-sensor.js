@@ -1,24 +1,24 @@
-'use strict';
+"use strict";
 
-const Ant = require('../ant-plus');
+import * as Ant from "../dist/ant-plus-next.js";
+
 const stick = new Ant.GarminStick2();
 const speedCadenceSensor = new Ant.SpeedCadenceSensor(stick);
-speedCadenceSensor.setWheelCircumference(2.120); //Wheel circumference in meters
+speedCadenceSensor.setWheelCircumference(2.12); //Wheel circumference in meters
 
-speedCadenceSensor.on('speedData', data => {
-  console.log(`speed: ${data.CalculatedSpeed}`);
+speedCadenceSensor.on("speedData", data => {
+    console.log(`speed: ${data.CalculatedSpeed}`);
 });
 
-speedCadenceSensor.on('cadenceData', data => {
-  console.log(`cadence: ${data.CalculatedCadence}`);
+speedCadenceSensor.on("cadenceData", data => {
+    console.log(`cadence: ${data.CalculatedCadence}`);
 });
 
-
-stick.on('startup', function () {
-	console.log('startup');
-	speedCadenceSensor.attach(0, 0);
+stick.on("startup", function () {
+    console.log("startup");
+    speedCadenceSensor.attach(0, 0);
 });
 
 if (!stick.open()) {
-	console.log('Stick not found!');
+    console.log("Stick not found!");
 }
