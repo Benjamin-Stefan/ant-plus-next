@@ -11,6 +11,6 @@
         "skipLibCheck": true, // Überspringt die Typprüfung in .d.ts-Dateien von Bibliotheken
         "sourceMap": true // Erzeugt Source Maps für das Debuggen
     },
-    "include": ["src", "webpack.config.js", "eslint.config.mjs", "sample"],
+    "include": ["src", "webpack.config.js", "eslint.config.mjs", "example"],
     "exclude": ["node_modules", "dist"]
 }
