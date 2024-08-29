@@ -1,0 +1,44 @@
+{
+	"name": "ant-plus",
+	"version": "0.1.25",
+	"description": "A node module for ANT+",
+	"main": "ant-plus.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"prepare": "tsc"
+	},
+	"keywords": [
+		"ANT",
+		"ANT+"
+	],
+	"author": {
+		"name": "Alessandro Vergani",
+		"email": "alessandro.vergani@gmail.com"
+	},
+	"license": "MIT",
+	"engines": {
+		"node": ">=6.0.0"
+	},
+	"dependencies": {
+		"usb": "^1.6.0"
+	},
+	"devDependencies": {
+		"typescript": "^3.6.4",
+		"@types/node": "^6.0.0",
+		"@types/usb": "^1.5.1"
+	},
+	"files": [
+		"ant-plus.js",
+		"src/",
+		"build/"
+	],
+	"directories": {
+		"example": "./sample",
+		"lib": "./src"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/loghorn/ant-plus.git"
+	},
+	"bugs": "https://github.com/Loghorn/ant-plus/issues"
+}
