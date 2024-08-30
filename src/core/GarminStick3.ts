@@ -1,5 +1,5 @@
 import { DebugOptions } from "../types/debugOptions.js";
-import { USBDriver } from "./USBDriver.js";
+import { USBDriver } from "./usbDriver.js";
 
 export class GarminStick3 extends USBDriver {
     constructor(debugOptions: DebugOptions = {}) {

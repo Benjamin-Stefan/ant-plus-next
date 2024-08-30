@@ -3,10 +3,10 @@
  * Spec sheet: https://www.thisisant.com/resources/bicycle-power/
  */
 
-import { BicyclePowerScanner } from "./BicyclePowerScanner.js";
-import { BicyclePowerScanState } from "./BicyclePowerScanState.js";
-import { BicyclePowerSensor } from "./BicyclePowerSensor.js";
-import { BicyclePowerSensorState } from "./BicyclePowerSensorState.js";
+import { BicyclePowerScanner } from "./bicyclePowerScanner.js";
+import { BicyclePowerScanState } from "./bicyclePowerScanState.js";
+import { BicyclePowerSensor } from "./bicyclePowerSensor.js";
+import { BicyclePowerSensorState } from "./bicyclePowerSensorState.js";
 import { Messages } from "../../utils/messages.js";
 
 export function updateState(sensor: BicyclePowerSensor | BicyclePowerScanner, state: BicyclePowerSensorState | BicyclePowerScanState, data: Buffer) {

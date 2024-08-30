@@ -7,7 +7,7 @@ const stick = new Ant.GarminStick2();
 const fitnessEquipmentSensor = new Ant.FitnessEquipmentSensor(stick);
 
 fitnessEquipmentSensor.on("fitnessData", data => {
-    console.log(`id: ${data.DeviceID}`);
+    console.log(`id: ${data.DeviceId}`);
     console.dir(data);
 });
 

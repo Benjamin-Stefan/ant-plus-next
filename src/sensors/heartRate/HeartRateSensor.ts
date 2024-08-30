@@ -1,12 +1,13 @@
-import { Page, PageState, updateState } from "./HeartRateUtils.js";
-import { HeartRateSensorState } from "./HeartRateSensorState.js";
-import { AntPlusSensor } from "../AntPlusSensor.js";
+import { Page, PageState, updateState } from "./heartRateUtils.js";
+import { HeartRateSensorState } from "./heartRateSensorState.js";
+import { AntPlusSensor } from "../antPlusSensor.js";
 
 export class HeartRateSensor extends AntPlusSensor {
     static deviceType = 120;
 
     public attach(channel: number, deviceId: number) {
         super.attachSensor(channel, "receive", deviceId, HeartRateSensor.deviceType, 0, 255, 8070);
+        this.state = new HeartRateSensorState(deviceId);
     }
 
     private state!: HeartRateSensorState;

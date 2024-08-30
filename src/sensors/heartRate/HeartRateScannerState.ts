@@ -1,4 +1,4 @@
-import { HeartRateSensorState } from "./HeartRateSensorState.js";
+import { HeartRateSensorState } from "./heartRateSensorState.js";
 
 export class HeartRateScannerState extends HeartRateSensorState {
     Rssi: number | undefined;

@@ -1,7 +1,7 @@
-import { updateState } from "./MuscleOxygenUtils.js";
-import { MuscleOxygenSensorState } from "./MuscleOxygenSensorState.js";
-import { AntPlusSensor } from "../AntPlusSensor.js";
-import { SendCallback } from "../../types/SendCallback.js";
+import { updateState } from "./muscleOxygenUtils.js";
+import { MuscleOxygenSensorState } from "./muscleOxygenSensorState.js";
+import { AntPlusSensor } from "../antPlusSensor.js";
+import { SendCallback } from "../../types/sendCallback.js";
 import { Messages } from "../../utils/messages.js";
 
 export class MuscleOxygenSensor extends AntPlusSensor {

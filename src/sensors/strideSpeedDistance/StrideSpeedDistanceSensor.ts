@@ -1,6 +1,6 @@
-import { AntPlusSensor } from "../AntPlusSensor.js";
-import { updateState } from "./StrideSpeedDistanceUtils.js";
-import { StrideSpeedDistanceSensorState } from "./StrideSpeedDistanceSensorState.js";
+import { AntPlusSensor } from "../antPlusSensor.js";
+import { updateState } from "./strideSpeedDistanceUtils.js";
+import { StrideSpeedDistanceSensorState } from "./strideSpeedDistanceSensorState.js";
 
 export class StrideSpeedDistanceSensor extends AntPlusSensor {
     static deviceType = 124;

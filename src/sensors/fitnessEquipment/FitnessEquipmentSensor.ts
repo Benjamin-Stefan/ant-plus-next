@@ -1,7 +1,7 @@
-import { updateState } from "./FitnessEquipmentUtils.js";
-import { FitnessEquipmentSensorState } from "./FitnessEquipmentSensorState.js";
-import { AntPlusSensor } from "../AntPlusSensor.js";
-import { SendCallback } from "../../types/SendCallback.js";
+import { updateState } from "./fitnessEquipmentUtils.js";
+import { FitnessEquipmentSensorState } from "./fitnessEquipmentSensorState.js";
+import { AntPlusSensor } from "../antPlusSensor.js";
+import { SendCallback } from "../../types/sendCallback.js";
 import { Messages } from "../../utils/messages.js";
 
 export class FitnessEquipmentSensor extends AntPlusSensor {

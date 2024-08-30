@@ -3,10 +3,10 @@
  * Spec sheet: https://www.thisisant.com/resources/environment/
  */
 
-import { EnvironmentScanner } from "./EnvironmentScanner.js";
-import { EnvironmentScanState } from "./EnvironmentScanState.js";
-import { EnvironmentSensor } from "./EnvironmentSensor.js";
-import { EnvironmentSensorState } from "./EnvironmentSensorState.js";
+import { EnvironmentScanner } from "./environmentScanner.js";
+import { EnvironmentScanState } from "./environmentScanState.js";
+import { EnvironmentSensor } from "./environmentSensor.js";
+import { EnvironmentSensorState } from "./environmentSensorState.js";
 import { Messages } from "../../utils/messages.js";
 
 export function updateState(sensor: EnvironmentSensor | EnvironmentScanner, state: EnvironmentSensorState | EnvironmentScanState, data: Buffer) {

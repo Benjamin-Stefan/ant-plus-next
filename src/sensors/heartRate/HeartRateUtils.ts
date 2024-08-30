@@ -3,10 +3,10 @@
  * Spec sheet: https://www.thisisant.com/resources/heart-rate-monitor/
  */
 
-import { HeartRateScanner } from "./HeartRateScanner.js";
-import { HeartRateScannerState } from "./HeartRateScannerState.js";
-import { HeartRateSensor } from "./HeartRateSensor.js";
-import { HeartRateSensorState } from "./HeartRateSensorState.js";
+import { HeartRateScanner } from "./heartRateScanner.js";
+import { HeartRateScannerState } from "./heartRateScannerState.js";
+import { HeartRateSensor } from "./heartRateSensor.js";
+import { HeartRateSensorState } from "./heartRateSensorState.js";
 import { Messages } from "../../utils/messages.js";
 
 export enum PageState {

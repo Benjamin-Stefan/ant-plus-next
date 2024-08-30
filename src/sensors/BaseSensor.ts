@@ -1,6 +1,6 @@
 import EventEmitter from "events";
-import { USBDriver } from "../core/USBDriver.js";
-import { SendCallback } from "../types/SendCallback.js";
+import { USBDriver } from "../core/usbDriver.js";
+import { SendCallback } from "../types/sendCallback.js";
 import { Constants } from "../types/constants.js";
 import { Messages } from "../utils/messages.js";
 import { Status } from "../types/status.js";

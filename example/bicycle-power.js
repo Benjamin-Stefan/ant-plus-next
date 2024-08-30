@@ -6,7 +6,7 @@ let stick = new Ant.GarminStick2();
 let bicyclePowerSensor = new Ant.BicyclePowerSensor(stick);
 
 bicyclePowerSensor.on("powerData", data => {
-    console.log(`id: ${data.DeviceID}, cadence: ${data.Cadence}, power: ${data.Power}`);
+    console.log(`id: ${data.DeviceId}, cadence: ${data.Cadence}, power: ${data.Power}`);
 });
 
 stick.on("startup", function () {

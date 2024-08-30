@@ -6,7 +6,7 @@ let stick = new Ant.GarminStick2();
 let muscleOxygenSensor = new Ant.MuscleOxygenSensor(stick);
 
 muscleOxygenSensor.on("oxygenData", data => {
-    console.log(`id: ${data.DeviceID}`);
+    console.log(`id: ${data.DeviceId}`);
     console.dir(data);
 
     if (data.UTCTimeRequired) {

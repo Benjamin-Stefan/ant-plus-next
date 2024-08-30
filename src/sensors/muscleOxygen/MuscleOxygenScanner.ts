@@ -1,7 +1,7 @@
-import { updateState } from "./MuscleOxygenUtils.js";
-import { MuscleOxygenScanState } from "./MuscleOxygenScanState.js";
-import { MuscleOxygenSensor } from "./MuscleOxygenSensor.js";
-import { AntPlusScanner } from "../AntPlusScanner.js";
+import { updateState } from "./muscleOxygenUtils.js";
+import { MuscleOxygenScanState } from "./muscleOxygenScanState.js";
+import { MuscleOxygenSensor } from "./muscleOxygenSensor.js";
+import { AntPlusScanner } from "../antPlusScanner.js";
 
 export class MuscleOxygenScanner extends AntPlusScanner {
     protected deviceType() {

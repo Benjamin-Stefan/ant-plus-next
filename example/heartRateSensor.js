@@ -20,9 +20,9 @@ var sensor1 = new Ant.HeartRateSensor(stick);
 var dev_id = 0;
 
 sensor1.on("hbdata", function (data) {
-    console.log(stickid, "sensor 1: ", data.DeviceID, data.ComputedHeartRate, data);
-    if (data.DeviceID !== 0 && dev_id === 0) {
-        dev_id = data.DeviceID;
+    console.log(stickid, "sensor 1: ", data.DeviceId, data.ComputedHeartRate, data);
+    if (data.DeviceId !== 0 && dev_id === 0) {
+        dev_id = data.DeviceId;
         console.log(stickid, "detaching...");
         sensor1.detach();
         sensor1.once("detached", function () {

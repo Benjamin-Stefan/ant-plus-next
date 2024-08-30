@@ -1,7 +1,7 @@
-import { Page, PageState, updateState } from "./HeartRateUtils.js";
-import { HeartRateScannerState } from "./HeartRateScannerState.js";
-import { HeartRateSensor } from "./HeartRateSensor.js";
-import { AntPlusScanner } from "../AntPlusScanner.js";
+import { Page, PageState, updateState } from "./heartRateUtils.js";
+import { HeartRateScannerState } from "./heartRateScannerState.js";
+import { HeartRateSensor } from "./heartRateSensor.js";
+import { AntPlusScanner } from "../antPlusScanner.js";
 
 export class HeartRateScanner extends AntPlusScanner {
     protected deviceType() {

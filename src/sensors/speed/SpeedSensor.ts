@@ -1,6 +1,6 @@
-import { AntPlusSensor } from "../AntPlusSensor.js";
-import { updateState } from "./SpeedUtils.js";
-import { SpeedSensorState } from "./SpeedSensorState.js";
+import { AntPlusSensor } from "../antPlusSensor.js";
+import { updateState } from "./speedUtils.js";
+import { SpeedSensorState } from "./speedSensorState.js";
 
 export class SpeedSensor extends AntPlusSensor {
     static deviceType = 0x7b;

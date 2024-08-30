@@ -1,6 +1,6 @@
-import { updateState } from "./BicyclePowerUtils.js";
-import { BicyclePowerSensorState } from "./BicyclePowerSensorState.js";
-import { AntPlusSensor } from "../AntPlusSensor.js";
+import { updateState } from "./bicyclePowerUtils.js";
+import { BicyclePowerSensorState } from "./bicyclePowerSensorState.js";
+import { AntPlusSensor } from "../antPlusSensor.js";
 
 export class BicyclePowerSensor extends AntPlusSensor {
     static deviceType = 0x0b;

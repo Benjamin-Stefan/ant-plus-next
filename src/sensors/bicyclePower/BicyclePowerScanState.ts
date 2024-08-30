@@ -1,4 +1,4 @@
-import { BicyclePowerSensorState } from "./BicyclePowerSensorState.js";
+import { BicyclePowerSensorState } from "./bicyclePowerSensorState.js";
 
 export class BicyclePowerScanState extends BicyclePowerSensorState {
     Rssi: number | undefined;

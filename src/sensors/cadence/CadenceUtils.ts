@@ -3,10 +3,10 @@
  * Spec sheet: https://www.thisisant.com/resources/bicycle-speed-and-cadence/
  */
 
-import { CadenceScanner } from "./CadenceScanner.js";
-import { CadenceScanState } from "./CadenceScanState.js";
-import { CadenceSensor } from "./CadenceSensor.js";
-import { CadenceSensorState } from "./CadenceSensorState.js";
+import { CadenceScanner } from "./cadenceScanner.js";
+import { CadenceScanState } from "./cadenceScanState.js";
+import { CadenceSensor } from "./cadenceSensor.js";
+import { CadenceSensorState } from "./cadenceSensorState.js";
 import { Messages } from "../../utils/messages.js";
 
 const TOGGLE_MASK = 0x80;

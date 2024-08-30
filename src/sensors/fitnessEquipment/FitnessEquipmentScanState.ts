@@ -1,4 +1,4 @@
-import { FitnessEquipmentSensorState } from "./FitnessEquipmentSensorState.js";
+import { FitnessEquipmentSensorState } from "./fitnessEquipmentSensorState.js";
 
 export class FitnessEquipmentScanState extends FitnessEquipmentSensorState {
     Rssi: number | undefined;

@@ -1,4 +1,4 @@
-import { BaseSensor } from "./BaseSensor.js";
+import { BaseSensor } from "./baseSensor.js";
 
 export abstract class AntPlusBaseSensor extends BaseSensor {
     protected scan(type: string) {

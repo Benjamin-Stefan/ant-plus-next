@@ -1,7 +1,7 @@
-import { AntPlusScanner } from "../AntPlusScanner.js";
-import { updateState } from "./SpeedCadenceUtils.js";
-import { SpeedCadenceScanState } from "./SpeedCadenceScanState.js";
-import { SpeedCadenceSensor } from "./SpeedCadenceSensor.js";
+import { AntPlusScanner } from "../antPlusScanner.js";
+import { updateState } from "./speedCadenceUtils.js";
+import { SpeedCadenceScanState } from "./speedCadenceScanState.js";
+import { SpeedCadenceSensor } from "./speedCadenceSensor.js";
 
 export class SpeedCadenceScanner extends AntPlusScanner {
     protected deviceType() {

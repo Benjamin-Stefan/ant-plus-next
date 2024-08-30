@@ -1,7 +1,7 @@
-import { updateState } from "./BicyclePowerUtils.js";
-import { BicyclePowerScanState } from "./BicyclePowerScanState.js";
-import { BicyclePowerSensor } from "./BicyclePowerSensor.js";
-import { AntPlusScanner } from "../AntPlusScanner.js";
+import { updateState } from "./bicyclePowerUtils.js";
+import { BicyclePowerScanState } from "./bicyclePowerScanState.js";
+import { BicyclePowerSensor } from "./bicyclePowerSensor.js";
+import { AntPlusScanner } from "../antPlusScanner.js";
 
 export class BicyclePowerScanner extends AntPlusScanner {
     protected deviceType() {

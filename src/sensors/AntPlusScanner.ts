@@ -1,7 +1,7 @@
-import { AntPlusBaseSensor } from "./AntPlusBaseSensor.js";
+import { AntPlusBaseSensor } from "./antPlusBaseSensor.js";
 import { Constants } from "../types/constants.js";
 import { Messages } from "../utils/messages.js";
-import { USBDriver } from "../core/USBDriver.js";
+import { USBDriver } from "../core/usbDriver.js";
 
 export abstract class AntPlusScanner extends AntPlusBaseSensor {
     protected abstract deviceType(): number;

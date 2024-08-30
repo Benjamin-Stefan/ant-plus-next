@@ -3,10 +3,10 @@
  * Spec sheet: https://www.thisisant.com/resources/stride-based-speed-and-distance-monitor/
  */
 
-import { StrideSpeedDistanceScanner } from "./StrideSpeedDistanceScanner.js";
-import { StrideSpeedDistanceScanState } from "./StrideSpeedDistanceScanState.js";
-import { StrideSpeedDistanceSensor } from "./StrideSpeedDistanceSensor.js";
-import { StrideSpeedDistanceSensorState } from "./StrideSpeedDistanceSensorState.js";
+import { StrideSpeedDistanceScanner } from "./strideSpeedDistanceScanner.js";
+import { StrideSpeedDistanceScanState } from "./strideSpeedDistanceScanState.js";
+import { StrideSpeedDistanceSensor } from "./strideSpeedDistanceSensor.js";
+import { StrideSpeedDistanceSensorState } from "./strideSpeedDistanceSensorState.js";
 import { Messages } from "../../utils/messages.js";
 
 export function updateState(sensor: StrideSpeedDistanceSensor | StrideSpeedDistanceScanner, state: StrideSpeedDistanceSensorState | StrideSpeedDistanceScanState, data: Buffer) {

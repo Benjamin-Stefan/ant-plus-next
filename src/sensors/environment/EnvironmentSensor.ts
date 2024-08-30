@@ -1,6 +1,6 @@
-import { updateState } from "./EnvironmentUtils.js";
-import { EnvironmentSensorState } from "./EnvironmentSensorState.js";
-import { AntPlusSensor } from "../AntPlusSensor.js";
+import { updateState } from "./environmentUtils.js";
+import { EnvironmentSensorState } from "./environmentSensorState.js";
+import { AntPlusSensor } from "../antPlusSensor.js";
 
 export class EnvironmentSensor extends AntPlusSensor {
     static deviceType = 25;

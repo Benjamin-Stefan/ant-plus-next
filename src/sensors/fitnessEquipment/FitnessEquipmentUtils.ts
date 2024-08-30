@@ -4,10 +4,10 @@
  */
 
 import { Messages } from "../../utils/messages.js";
-import { FitnessEquipmentSensorState } from "./FitnessEquipmentSensorState.js";
-import { FitnessEquipmentScanState } from "./FitnessEquipmentScanState.js";
-import { FitnessEquipmentSensor } from "./FitnessEquipmentSensor.js";
-import { FitnessEquipmentScanner } from "./FitnessEquipmentScanner.js";
+import { FitnessEquipmentSensorState } from "./fitnessEquipmentSensorState.js";
+import { FitnessEquipmentScanState } from "./fitnessEquipmentScanState.js";
+import { FitnessEquipmentSensor } from "./fitnessEquipmentSensor.js";
+import { FitnessEquipmentScanner } from "./fitnessEquipmentScanner.js";
 
 function resetState(state: FitnessEquipmentSensorState | FitnessEquipmentScanState) {
     delete state.ElapsedTime;

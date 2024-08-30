@@ -1,4 +1,4 @@
-import { SpeedSensorState } from "./SpeedSensorState.js";
+import { SpeedSensorState } from "./speedSensorState.js";
 
 export class SpeedScanState extends SpeedSensorState {
     Rssi: number | undefined;

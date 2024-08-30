@@ -1,7 +1,7 @@
-import { updateState } from "./FitnessEquipmentUtils.js";
-import { FitnessEquipmentScanState } from "./FitnessEquipmentScanState.js";
-import { FitnessEquipmentSensor } from "./FitnessEquipmentSensor.js";
-import { AntPlusScanner } from "../AntPlusScanner.js";
+import { updateState } from "./fitnessEquipmentUtils.js";
+import { FitnessEquipmentScanState } from "./fitnessEquipmentScanState.js";
+import { FitnessEquipmentSensor } from "./fitnessEquipmentSensor.js";
+import { AntPlusScanner } from "../antPlusScanner.js";
 
 export class FitnessEquipmentScanner extends AntPlusScanner {
     protected deviceType() {

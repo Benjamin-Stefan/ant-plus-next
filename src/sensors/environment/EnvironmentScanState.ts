@@ -1,4 +1,4 @@
-import { EnvironmentSensorState } from "./EnvironmentSensorState.js";
+import { EnvironmentSensorState } from "./environmentSensorState.js";
 
 export class EnvironmentScanState extends EnvironmentSensorState {
     Rssi: number | undefined;

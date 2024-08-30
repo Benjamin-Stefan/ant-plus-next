@@ -4,10 +4,10 @@
  */
 
 import { Messages } from "../../utils/messages.js";
-import { MuscleOxygenSensorState } from "./MuscleOxygenSensorState.js";
-import { MuscleOxygenScanState } from "./MuscleOxygenScanState.js";
-import { MuscleOxygenSensor } from "./MuscleOxygenSensor.js";
-import { MuscleOxygenScanner } from "./MuscleOxygenScanner.js";
+import { MuscleOxygenSensorState } from "./muscleOxygenSensorState.js";
+import { MuscleOxygenScanState } from "./muscleOxygenScanState.js";
+import { MuscleOxygenSensor } from "./muscleOxygenSensor.js";
+import { MuscleOxygenScanner } from "./muscleOxygenScanner.js";
 
 export function updateState(sensor: MuscleOxygenSensor | MuscleOxygenScanner, state: MuscleOxygenSensorState | MuscleOxygenScanState, data: Buffer) {
     const oldEventCount = state._EventCount || 0;

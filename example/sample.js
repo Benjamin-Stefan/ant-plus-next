@@ -6,9 +6,9 @@ async function openStick(stick, stickid) {
     var dev_id = 0;
 
     sensor1.on("hbdata", function (data) {
-        console.log(stickid, "sensor 1: ", data.DeviceID, data.ComputedHeartRate, data);
-        if (data.DeviceID !== 0 && dev_id === 0) {
-            dev_id = data.DeviceID;
+        console.log(stickid, "sensor 1: ", data.DeviceId, data.ComputedHeartRate, data);
+        if (data.DeviceId !== 0 && dev_id === 0) {
+            dev_id = data.DeviceId;
             console.log(stickid, "detaching...");
             sensor1.detach();
             sensor1.once("detached", function () {
@@ -27,7 +27,7 @@ async function openStick(stick, stickid) {
     var sensor2 = new Ant.StrideSpeedDistanceSensor(stick);
 
     sensor2.on("ssddata", function (data) {
-        console.log(stickid, "sensor 2: ", data.DeviceID, data);
+        console.log(stickid, "sensor 2: ", data.DeviceId, data);
     });
 
     sensor2.on("attached", function () {
@@ -40,7 +40,7 @@ async function openStick(stick, stickid) {
     var scanner = new Ant.HeartRateScanner(stick);
 
     scanner.on("hbdata", function (data) {
-        console.log(stickid, "scanner: ", data.DeviceID, data.ComputedHeartRate, data.Rssi, data);
+        console.log(stickid, "scanner: ", data.DeviceId, data.ComputedHeartRate, data.Rssi, data);
     });
 
     scanner.on("attached", function () {

@@ -1,6 +1,6 @@
-import { AntPlusSensor } from "../AntPlusSensor.js";
-import { updateState } from "./SpeedCadenceUtils.js";
-import { SpeedCadenceSensorState } from "./SpeedCadenceSensorState.js";
+import { AntPlusSensor } from "../antPlusSensor.js";
+import { updateState } from "./speedCadenceUtils.js";
+import { SpeedCadenceSensorState } from "./speedCadenceSensorState.js";
 
 export class SpeedCadenceSensor extends AntPlusSensor {
     static deviceType = 0x79;

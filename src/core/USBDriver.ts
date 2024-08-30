@@ -2,7 +2,7 @@ import { EventEmitter } from "events";
 import * as usb from "usb";
 import { Constants } from "../types/constants.js";
 import { Messages } from "../utils/messages.js";
-import { BaseSensor } from "../sensors/BaseSensor.js";
+import { BaseSensor } from "../sensors/baseSensor.js";
 import { DebugOptions } from "../types/debugOptions.js";
 
 export class USBDriver extends EventEmitter {

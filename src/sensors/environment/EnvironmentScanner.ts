@@ -1,7 +1,7 @@
-import { updateState } from "./EnvironmentUtils.js";
-import { EnvironmentScanState } from "./EnvironmentScanState.js";
-import { EnvironmentSensor } from "./EnvironmentSensor.js";
-import { AntPlusScanner } from "../AntPlusScanner.js";
+import { updateState } from "./environmentUtils.js";
+import { EnvironmentScanState } from "./environmentScanState.js";
+import { EnvironmentSensor } from "./environmentSensor.js";
+import { AntPlusScanner } from "../antPlusScanner.js";
 
 export class EnvironmentScanner extends AntPlusScanner {
     protected deviceType() {

@@ -1,7 +1,7 @@
-import { AntPlusScanner } from "../AntPlusScanner.js";
-import { updateState } from "./StrideSpeedDistanceUtils.js";
-import { StrideSpeedDistanceScanState } from "./StrideSpeedDistanceScanState.js";
-import { StrideSpeedDistanceSensor } from "./StrideSpeedDistanceSensor.js";
+import { AntPlusScanner } from "../antPlusScanner.js";
+import { updateState } from "./strideSpeedDistanceUtils.js";
+import { StrideSpeedDistanceScanState } from "./strideSpeedDistanceScanState.js";
+import { StrideSpeedDistanceSensor } from "./strideSpeedDistanceSensor.js";
 
 export class StrideSpeedDistanceScanner extends AntPlusScanner {
     protected deviceType() {

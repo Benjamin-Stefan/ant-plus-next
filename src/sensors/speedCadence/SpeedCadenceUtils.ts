@@ -3,10 +3,10 @@
  * Spec sheet: https://www.thisisant.com/resources/bicycle-speed-and-cadence/
  */
 
-import { SpeedCadenceScanner } from "./SpeedCadenceScanner.js";
-import { SpeedCadenceScanState } from "./SpeedCadenceScanState.js";
-import { SpeedCadenceSensor } from "./SpeedCadenceSensor.js";
-import { SpeedCadenceSensorState } from "./SpeedCadenceSensorState.js";
+import { SpeedCadenceScanner } from "./speedCadenceScanner.js";
+import { SpeedCadenceScanState } from "./speedCadenceScanState.js";
+import { SpeedCadenceSensor } from "./speedCadenceSensor.js";
+import { SpeedCadenceSensorState } from "./speedCadenceSensorState.js";
 import { Messages } from "../../utils/messages.js";
 
 export function updateState(sensor: SpeedCadenceSensor | SpeedCadenceScanner, state: SpeedCadenceSensorState | SpeedCadenceScanState, data: Buffer) {
