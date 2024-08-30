@@ -1,7 +1,7 @@
 {
     "name": "ant-plus-next",
     "version": "0.2.0",
-    "description": "A node module for ANT+",
+    "description": "A modern Node.js module for working with ANT+ USB sticks and sensors.",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "module": "dist/index.js",
