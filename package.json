@@ -9,7 +9,7 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "clean": "rimraf dist",
-        "lint": "eslint .",
+        "lint": "eslint src",
         "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css,md}\"",
         "build": "npm run clean && tsc && tsc-alias"
     },
@@ -31,6 +31,8 @@
     "devDependencies": {
         "@eslint/js": "^9.9.1",
         "@types/node": "^20.8.7",
+        "@typescript-eslint/eslint-plugin": "^8.3.0",
+        "@typescript-eslint/parser": "^8.3.0",
         "clean-webpack-plugin": "^4.0.0",
         "eslint": "^9.9.1",
         "eslint-config-prettier": "^9.1.0",

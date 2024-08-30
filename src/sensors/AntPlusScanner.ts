@@ -1,13 +1,14 @@
 import { AntPlusBaseSensor } from "./AntPlusBaseSensor.js";
 import { Constants } from "../types/constants.js";
 import { Messages } from "../utils/messages.js";
+import { USBDriver } from "../core/USBDriver.js";
 
 export abstract class AntPlusScanner extends AntPlusBaseSensor {
     protected abstract deviceType(): number;
     protected abstract createStateIfNew(deviceId: number): void;
     protected abstract updateRssiAndThreshold(deviceId: number, rssi: number, threshold: number): void;
 
-    constructor(stick) {
+    constructor(stick: USBDriver) {
         super(stick);
         this.decodeDataCbk = this.decodeData.bind(this);
     }
@@ -17,11 +18,11 @@ export abstract class AntPlusScanner extends AntPlusBaseSensor {
     }
 
     protected attach() {
-        throw "attach unsupported";
+        throw new Error("attach unsupported");
     }
 
     protected send() {
-        throw "send unsupported";
+        throw new Error("send unsupported");
     }
 
     private decodeData(data: Buffer) {

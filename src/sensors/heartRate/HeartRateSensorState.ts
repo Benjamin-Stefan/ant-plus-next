@@ -1,12 +1,12 @@
 export class HeartRateSensorState {
     constructor(deviceId: number) {
-        this.DeviceID = deviceId;
+        this.DeviceId = deviceId;
     }
 
-    DeviceID: number;
-    BeatTime: number;
-    BeatCount: number;
-    ComputedHeartRate: number;
+    DeviceId: number;
+    BeatTime: number | undefined;
+    BeatCount: number | undefined;
+    ComputedHeartRate: number | undefined;
     OperatingTime?: number;
     ManId?: number;
     SerialNumber?: number;

@@ -27,7 +27,7 @@ export function updateState(sensor: SpeedSensor | SpeedScanner, state: SpeedSens
             //decode the Manufacturer ID
             state.ManId = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 1);
             //decode the 4 byte serial number
-            state.SerialNumber = state.DeviceID;
+            state.SerialNumber = state.DeviceId;
             state.SerialNumber |= data.readUInt16LE(Messages.BUFFER_INDEX_MSG_DATA + 2) << 16;
             state.SerialNumber >>>= 0;
             break;
@@ -73,8 +73,8 @@ export function updateState(sensor: SpeedSensor | SpeedScanner, state: SpeedSens
     }
 
     //get old state for calculating cumulative values
-    const oldSpeedTime = state.SpeedEventTime;
-    const oldSpeedCount = state.CumulativeSpeedRevolutionCount;
+    const oldSpeedTime = state.SpeedEventTime ?? 0;
+    const oldSpeedCount = state.CumulativeSpeedRevolutionCount ?? 0;
 
     let speedEventTime = data.readUInt16LE(Messages.BUFFER_INDEX_MSG_DATA + 4);
     let speedRevolutionCount = data.readUInt16LE(Messages.BUFFER_INDEX_MSG_DATA + 6);

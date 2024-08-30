@@ -1,14 +1,14 @@
 export class SpeedCadenceSensorState {
-    constructor(deviceID: number) {
-        this.DeviceID = deviceID;
+    constructor(deviceId: number) {
+        this.DeviceId = deviceId;
     }
 
-    DeviceID: number;
-    CadenceEventTime: number;
-    CumulativeCadenceRevolutionCount: number;
-    SpeedEventTime: number;
-    CumulativeSpeedRevolutionCount: number;
-    CalculatedCadence: number;
-    CalculatedDistance: number;
-    CalculatedSpeed: number;
+    DeviceId: number;
+    CadenceEventTime: number | undefined;
+    CumulativeCadenceRevolutionCount: number | undefined;
+    SpeedEventTime: number | undefined;
+    CumulativeSpeedRevolutionCount: number | undefined;
+    CalculatedCadence: number | undefined;
+    CalculatedDistance: number | undefined;
+    CalculatedSpeed: number | undefined;
 }

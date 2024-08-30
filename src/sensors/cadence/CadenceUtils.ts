@@ -27,7 +27,7 @@ export function updateState(sensor: CadenceSensor | CadenceScanner, state: Caden
             //decode the Manufacturer ID
             state.ManId = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 1);
             //decode the 4 byte serial number
-            state.SerialNumber = state.DeviceID;
+            state.SerialNumber = state.DeviceId;
             state.SerialNumber |= data.readUInt16LE(Messages.BUFFER_INDEX_MSG_DATA + 2) << 16;
             state.SerialNumber >>>= 0;
             break;
@@ -73,8 +73,8 @@ export function updateState(sensor: CadenceSensor | CadenceScanner, state: Caden
     }
 
     //get old state for calculating cumulative values
-    const oldCadenceTime = state.CadenceEventTime;
-    const oldCadenceCount = state.CumulativeCadenceRevolutionCount;
+    const oldCadenceTime = state.CadenceEventTime ?? 0;
+    const oldCadenceCount = state.CumulativeCadenceRevolutionCount ?? 0;
 
     let cadenceTime = data.readUInt16LE(Messages.BUFFER_INDEX_MSG_DATA + 4);
     let cadenceCount = data.readUInt16LE(Messages.BUFFER_INDEX_MSG_DATA + 6);

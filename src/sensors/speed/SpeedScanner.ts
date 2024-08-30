@@ -16,18 +16,18 @@ export class SpeedScanner extends AntPlusScanner {
 
     private states: { [id: number]: SpeedScanState } = {};
 
-    protected createStateIfNew(deviceId) {
+    protected createStateIfNew(deviceId: number) {
         if (!this.states[deviceId]) {
             this.states[deviceId] = new SpeedScanState(deviceId);
         }
     }
 
-    protected updateRssiAndThreshold(deviceId, rssi, threshold) {
+    protected updateRssiAndThreshold(deviceId: number, rssi: number, threshold: number) {
         this.states[deviceId].Rssi = rssi;
         this.states[deviceId].Threshold = threshold;
     }
 
-    protected updateState(deviceId, data) {
+    protected updateState(deviceId: number, data: Buffer) {
         updateState(this, this.states[deviceId], data);
     }
 }

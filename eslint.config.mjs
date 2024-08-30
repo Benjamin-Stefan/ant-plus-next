@@ -1,29 +1,33 @@
-import globals from "globals";
-import js from "@eslint/js";
-import tseslint from "@typescript-eslint/eslint-plugin";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 import tsParser from "@typescript-eslint/parser";
+import tseslint from "@typescript-eslint/eslint-plugin";
+import prettier from "eslint-plugin-prettier";
+import eslintConfigPrettier from "eslint-config-prettier";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export default [
-  {
-    files: ["**/*.{js,mjs,cjs,ts,tsx}"],
-    languageOptions: {
-      parser: tsParser,
-      parserOptions: {
-        ecmaVersion: "latest",
-        sourceType: "module",
-        project: './tsconfig.json',
-      },
-      globals: {
-        ...globals.browser,
-        ...globals.node,
-      },
+    {
+        files: ["src/**/*.{js,mjs,cjs,ts,tsx}"],
+        languageOptions: {
+            parser: tsParser,
+            parserOptions: {
+                ecmaVersion: "latest",
+                sourceType: "module",
+                project: path.join(__dirname, "tsconfig.json"), // Stellt sicher, dass die korrekte tsconfig.json verwendet wird
+                tsconfigRootDir: __dirname,
+            },
+        },
+        plugins: {
+            "@typescript-eslint": tseslint,
+            prettier,
+        },
+        rules: {
+            ...tseslint.configs["recommended-type-checked"].rules,
+            ...eslintConfigPrettier.rules,
+            "prettier/prettier": "error", // Prettier-Fehler als ESLint-Fehler behandeln
+        },
     },
-    plugins: {
-      '@typescript-eslint': tseslint,
-    },
-    rules: {
-      ...js.configs.recommended.rules,
-      ...tseslint.configs.recommended.rules,
-    },
-  },
 ];

@@ -11,10 +11,10 @@ import { Messages } from "../../utils/messages.js";
 
 export function updateState(sensor: SpeedCadenceSensor | SpeedCadenceScanner, state: SpeedCadenceSensorState | SpeedCadenceScanState, data: Buffer) {
     //get old state for calculating cumulative values
-    const oldCadenceTime = state.CadenceEventTime;
-    const oldCadenceCount = state.CumulativeCadenceRevolutionCount;
-    const oldSpeedTime = state.SpeedEventTime;
-    const oldSpeedCount = state.CumulativeSpeedRevolutionCount;
+    const oldCadenceTime = state.CadenceEventTime ?? 0;
+    const oldCadenceCount = state.CumulativeCadenceRevolutionCount ?? 0;
+    const oldSpeedTime = state.SpeedEventTime ?? 0;
+    const oldSpeedCount = state.CumulativeSpeedRevolutionCount ?? 0;
 
     let cadenceTime = data.readUInt16LE(Messages.BUFFER_INDEX_MSG_DATA);
     let cadenceCount = data.readUInt16LE(Messages.BUFFER_INDEX_MSG_DATA + 2);

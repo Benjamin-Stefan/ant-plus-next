@@ -1,13 +1,13 @@
 export class SpeedSensorState {
-    constructor(deviceID: number) {
-        this.DeviceID = deviceID;
+    constructor(deviceId: number) {
+        this.DeviceId = deviceId;
     }
 
-    DeviceID: number;
-    SpeedEventTime: number;
-    CumulativeSpeedRevolutionCount: number;
-    CalculatedDistance: number;
-    CalculatedSpeed: number;
+    DeviceId: number;
+    SpeedEventTime: number | undefined;
+    CumulativeSpeedRevolutionCount: number | undefined;
+    CalculatedDistance: number | undefined;
+    CalculatedSpeed: number | undefined;
 
     OperatingTime?: number;
     ManId?: number;

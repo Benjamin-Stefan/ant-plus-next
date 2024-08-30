@@ -1,9 +1,9 @@
 export class BicyclePowerSensorState {
-    constructor(deviceID: number) {
-        this.DeviceID = deviceID;
+    constructor(deviceId: number) {
+        this.DeviceId = deviceId;
     }
 
-    DeviceID: number;
+    DeviceId: number;
     PedalPower?: number;
     RightPedalPower?: number;
     LeftPedalPower?: number;

@@ -1,19 +1,19 @@
 export class StrideSpeedDistanceSensorState {
     constructor(deviceId: number) {
-        this.DeviceID = deviceId;
+        this.DeviceId = deviceId;
     }
 
-    DeviceID: number;
-    TimeFractional: number;
-    TimeInteger: number;
-    DistanceInteger: number;
-    DistanceFractional: number;
-    SpeedInteger: number;
-    SpeedFractional: number;
-    StrideCount: number;
-    UpdateLatency: number;
-    CadenceInteger: number;
-    CadenceFractional: number;
-    Status: number;
-    Calories: number;
+    DeviceId: number;
+    TimeFractional: number | undefined;
+    TimeInteger: number | undefined;
+    DistanceInteger: number | undefined;
+    DistanceFractional: number | undefined;
+    SpeedInteger: number | undefined;
+    SpeedFractional: number | undefined;
+    StrideCount: number | undefined;
+    UpdateLatency: number | undefined;
+    CadenceInteger: number | undefined;
+    CadenceFractional: number | undefined;
+    Status: number | undefined;
+    Calories: number | undefined;
 }

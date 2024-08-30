@@ -667,6 +667,7 @@ export function updateState(sensor: FitnessEquipmentSensor | FitnessEquipmentSca
             const tot = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 2);
             const chState = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 3);
             const devId = data.readUInt16LE(Messages.BUFFER_INDEX_MSG_DATA + 4);
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             const trType = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 6);
             const devType = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 7);
 

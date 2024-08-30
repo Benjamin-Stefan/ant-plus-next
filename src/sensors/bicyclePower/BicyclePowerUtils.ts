@@ -13,8 +13,8 @@ export function updateState(sensor: BicyclePowerSensor | BicyclePowerScanner, st
     const page = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA);
     switch (page) {
         case 0x01: {
-            const calID = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 1);
-            if (calID === 0x10) {
+            const calId = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 1);
+            if (calId === 0x10) {
                 const calParam = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 2);
                 if (calParam === 0x01) {
                     state.offset = data.readUInt16LE(Messages.BUFFER_INDEX_MSG_DATA + 6);
@@ -50,9 +50,9 @@ export function updateState(sensor: BicyclePowerSensor | BicyclePowerScanner, st
             break;
         }
         case 0x20: {
-            const oldEventCount = state.EventCount;
-            const oldTimeStamp = state.TimeStamp;
-            const oldTorqueTicksStamp = state.TorqueTicksStamp;
+            const oldEventCount = state.EventCount ?? 0;
+            const oldTimeStamp = state.TimeStamp ?? 0;
+            const oldTorqueTicksStamp = state.TorqueTicksStamp ?? 0;
 
             let eventCount = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 1);
             const slope = data.readUInt16LE(Messages.BUFFER_INDEX_MSG_DATA + 3);

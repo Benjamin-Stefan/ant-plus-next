@@ -1,11 +1,11 @@
 export class MuscleOxygenSensorState {
-    constructor(deviceID: number) {
-        this.DeviceID = deviceID;
+    constructor(deviceId: number) {
+        this.DeviceId = deviceId;
     }
 
     _EventCount?: number;
 
-    DeviceID: number;
+    DeviceId: number;
 
     UTCTimeRequired?: boolean;
     SupportANTFS?: boolean;

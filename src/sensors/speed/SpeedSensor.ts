@@ -11,15 +11,15 @@ export class SpeedSensor extends AntPlusSensor {
         this.wheelCircumference = wheelCircumference;
     }
 
-    public attach(channel, deviceID): void {
-        super.attach(channel, "receive", deviceID, SpeedSensor.deviceType, 0, 255, 8086);
-        this.state = new SpeedSensorState(deviceID);
+    public attach(channel: number, deviceId: number) {
+        super.attachSensor(channel, "receive", deviceId, SpeedSensor.deviceType, 0, 255, 8086);
+        this.state = new SpeedSensorState(deviceId);
     }
 
-    private state: SpeedSensorState;
+    private state!: SpeedSensorState;
 
-    protected updateState(deviceId, data) {
-        this.state.DeviceID = deviceId;
+    protected updateState(deviceId: number, data: Buffer) {
+        this.state.DeviceId = deviceId;
         updateState(this, this.state, data);
     }
 }

@@ -12,7 +12,7 @@ export class HeartRateScanner extends AntPlusScanner {
 
     private pages: { [id: number]: Page } = {};
 
-    protected createStateIfNew(deviceId) {
+    protected createStateIfNew(deviceId: number) {
         if (!this.states[deviceId]) {
             this.states[deviceId] = new HeartRateScannerState(deviceId);
         }
@@ -22,12 +22,12 @@ export class HeartRateScanner extends AntPlusScanner {
         }
     }
 
-    protected updateRssiAndThreshold(deviceId, rssi, threshold) {
+    protected updateRssiAndThreshold(deviceId: number, rssi: number, threshold: number) {
         this.states[deviceId].Rssi = rssi;
         this.states[deviceId].Threshold = threshold;
     }
 
-    protected updateState(deviceId, data) {
+    protected updateState(deviceId: number, data: Buffer) {
         updateState(this, this.states[deviceId], this.pages[deviceId], data);
     }
 }

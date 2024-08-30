@@ -13,10 +13,10 @@ export class Messages {
         return this.buildMessage(payload, Constants.MESSAGE_SYSTEM_RESET);
     }
 
-    static requestMessage(channel: number, messageID: number): Buffer {
+    static requestMessage(channel: number, messageId: number): Buffer {
         let payload: number[] = [];
         payload = payload.concat(this.intToLEHexArray(channel));
-        payload.push(messageID);
+        payload.push(messageId);
         return this.buildMessage(payload, Constants.MESSAGE_CHANNEL_REQUEST);
     }
 
@@ -50,16 +50,16 @@ export class Messages {
         } else if (type === "transmit_shared") {
             payload.push(Constants.CHANNEL_TYPE_SHARED_TRANSMIT);
         } else {
-            throw "type not allowed";
+            throw new Error("type not allowed");
         }
         payload.push(Constants.DEFAULT_NETWORK_NUMBER);
         return this.buildMessage(payload, Constants.MESSAGE_CHANNEL_ASSIGN);
     }
 
-    static setDevice(channel: number, deviceID: number, deviceType: number, transmissionType: number): Buffer {
+    static setDevice(channel: number, deviceId: number, deviceType: number, transmissionType: number): Buffer {
         let payload: number[] = [];
         payload = payload.concat(this.intToLEHexArray(channel));
-        payload = payload.concat(this.intToLEHexArray(deviceID, 2));
+        payload = payload.concat(this.intToLEHexArray(deviceId, 2));
         payload = payload.concat(this.intToLEHexArray(deviceType));
         payload = payload.concat(this.intToLEHexArray(transmissionType));
         return this.buildMessage(payload, Constants.MESSAGE_CHANNEL_ID);
@@ -135,16 +135,17 @@ export class Messages {
         return this.buildMessage(payload, Constants.MESSAGE_CHANNEL_BROADCAST_DATA);
     }
 
-    static buildMessage(payload: number[] = [], msgID = 0x00): Buffer {
-        const m: number[] = [];
-        m.push(Constants.MESSAGE_TX_SYNC);
-        m.push(payload.length);
-        m.push(msgID);
+    static buildMessage(payload: number[] = [], messageId = 0x00): Buffer {
+        const message: number[] = [];
+        message.push(Constants.MESSAGE_TX_SYNC);
+        message.push(payload.length);
+        message.push(messageId);
         payload.forEach(byte => {
-            m.push(byte);
+            message.push(byte);
         });
-        m.push(this.getChecksum(m));
-        return Buffer.from(m);
+        message.push(this.getChecksum(message));
+
+        return Buffer.from(message);
     }
 
     static intToLEHexArray(int: number, numBytes = 1): number[] {
@@ -156,6 +157,7 @@ export class Messages {
             a.push(b[i]);
             i--;
         }
+
         return a;
     }
 
@@ -165,15 +167,16 @@ export class Messages {
         while (hex.length < numDigits) {
             hex = "0" + hex;
         }
-        // console.log(hex);
+
         return hex;
     }
 
-    static getChecksum(message: any[]): number {
+    static getChecksum(message: number[]): number {
         let checksum = 0;
         message.forEach(byte => {
             checksum = (checksum ^ byte) % 0xff;
         });
+
         return checksum;
     }
 }

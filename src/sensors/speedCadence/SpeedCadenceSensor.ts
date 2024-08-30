@@ -11,15 +11,15 @@ export class SpeedCadenceSensor extends AntPlusSensor {
         this.wheelCircumference = wheelCircumference;
     }
 
-    public attach(channel, deviceID): void {
-        super.attach(channel, "receive", deviceID, SpeedCadenceSensor.deviceType, 0, 255, 8086);
-        this.state = new SpeedCadenceSensorState(deviceID);
+    public attach(channel: number, deviceId: number) {
+        super.attachSensor(channel, "receive", deviceId, SpeedCadenceSensor.deviceType, 0, 255, 8086);
+        this.state = new SpeedCadenceSensorState(deviceId);
     }
 
-    private state: SpeedCadenceSensorState;
+    private state!: SpeedCadenceSensorState;
 
-    protected updateState(deviceId, data) {
-        this.state.DeviceID = deviceId;
+    protected updateState(deviceId: number, data: Buffer) {
+        this.state.DeviceId = deviceId;
         updateState(this, this.state, data);
     }
 }

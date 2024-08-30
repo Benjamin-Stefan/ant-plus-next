@@ -2,18 +2,17 @@ import { EventEmitter } from "events";
 import * as usb from "usb";
 import { Constants } from "../types/constants.js";
 import { Messages } from "../utils/messages.js";
-import { ICancellationToken } from "../types/cancellationToken.js";
-import { CancellationTokenListener } from "../utils/cancellationTokenListener.js";
 import { BaseSensor } from "../sensors/BaseSensor.js";
+import { DebugOptions } from "../types/debugOptions.js";
 
 export class USBDriver extends EventEmitter {
     private static deviceInUse: usb.Device[] = [];
-    private device: usb.Device;
-    private iface: usb.Interface;
+    private device: usb.Device | undefined;
+    private iface: usb.Interface | undefined;
     private detachedKernelDriver = false;
-    private inEp: usb.InEndpoint & EventEmitter;
-    private outEp: usb.OutEndpoint & EventEmitter;
-    private leftover: Buffer;
+    private inEndpoint: (usb.InEndpoint & EventEmitter) | undefined;
+    private outEndpoint: (usb.OutEndpoint & EventEmitter) | undefined;
+    private leftover: Buffer | undefined;
     private usedChannels: number = 0;
     private attachedSensors: BaseSensor[] = [];
 
@@ -23,14 +22,14 @@ export class USBDriver extends EventEmitter {
     constructor(
         private idVendor: number,
         private idProduct: number,
-        dbgLevel = 0
+        debugOptions: DebugOptions = {}
     ) {
         super();
         this.setMaxListeners(50);
-        usb.usb.setDebugLevel(dbgLevel);
+        usb.usb.setDebugLevel(debugOptions.usbDebugLevel || 0);
     }
 
-    private getDevices() {
+    private getDevices(): usb.usb.Device[] {
         const allDevices = usb.getDeviceList();
 
         return allDevices.filter(d => d.deviceDescriptor.idVendor === this.idVendor && d.deviceDescriptor.idProduct === this.idProduct).filter(d => USBDriver.deviceInUse.indexOf(d) === -1);
@@ -42,36 +41,53 @@ export class USBDriver extends EventEmitter {
 
     public open(): boolean {
         const devices = this.getDevices();
+
         while (devices.length) {
             try {
-                this.device = devices.shift();
+                const device = devices.shift();
+                if (!device) {
+                    continue;
+                }
+
+                this.device = device;
                 this.device.open();
-                this.iface = this.device.interfaces[0];
+                this.iface = this.device.interfaces![0];
+
                 try {
-                    if (this.iface.isKernelDriverActive()) {
+                    if (this.iface && this.iface.isKernelDriverActive()) {
                         this.detachedKernelDriver = true;
                         this.iface.detachKernelDriver();
                     }
                 } catch {
                     // Ignore kernel driver errors;
                 }
+
                 this.iface.claim();
                 break;
             } catch {
                 // Ignore the error and try with the next device, if present
-                this.device.close();
+                if (this.device) {
+                    this.device.close();
+                }
+
                 this.device = undefined;
                 this.iface = undefined;
             }
         }
+
         if (!this.device) {
             return false;
         }
+
         USBDriver.deviceInUse.push(this.device);
 
-        this.inEp = this.iface.endpoints[0] as usb.InEndpoint;
+        if (!this.iface) {
+            throw new Error("Interface not initialized.");
+        }
 
-        this.inEp.on("data", (data: Buffer) => {
+        this.inEndpoint = this.iface.endpoints[0] as usb.InEndpoint;
+
+        this.inEndpoint.on("data", (data: Buffer) => {
             if (!data.length) {
                 return;
             }
@@ -82,7 +98,7 @@ export class USBDriver extends EventEmitter {
             }
 
             if (data.readUInt8(0) !== 0xa4) {
-                throw "SYNC missing";
+                throw new Error("SYNC missing");
             }
 
             const len = data.length;
@@ -104,84 +120,102 @@ export class USBDriver extends EventEmitter {
             }
         });
 
-        this.inEp.on("error", (err: any) => {
-            //console.log('ERROR RECV: ', err);
+        this.inEndpoint.on("error", (err: Error) => {
+            console.error("ERROR RECV: ", err);
         });
 
-        this.inEp.on("end", () => {
-            //console.log('STOP RECV');
+        this.inEndpoint.on("end", () => {
+            //console.info("STOP RECV");
         });
 
-        this.inEp.startPoll();
+        this.inEndpoint.startPoll();
 
-        this.outEp = this.iface.endpoints[1] as usb.OutEndpoint;
+        this.outEndpoint = this.iface.endpoints[1] as usb.OutEndpoint;
 
         this.reset();
 
         return true;
     }
 
-    public openAsync(cb: (err: Error) => void): ICancellationToken {
-        let ct: CancellationTokenListener;
-        const doOpen = () => {
-            try {
-                const result = this.open();
-                if (result) {
-                    ct._completed = true;
-                    try {
-                        cb(undefined);
-                    } catch {
-                        // ignore errors
+    public async openAsync(signal: AbortSignal): Promise<void> {
+        const controller = new AbortController();
+        signal.addEventListener("abort", () => controller.abort());
+
+        const doOpen = (): Promise<void> => {
+            return new Promise((resolve, reject) => {
+                try {
+                    const result = this.open();
+                    if (result) {
+                        resolve();
+                    } else {
+                        reject(new Error("Open failed"));
                     }
-                } else {
-                    return false;
+                } catch (err) {
+                    reject(err instanceof Error ? err : new Error("Unknown error"));
                 }
-            } catch (err) {
-                cb(err);
-            }
-            return true;
+            });
         };
-        const fn = d => {
+
+        const fn = (d: usb.Device) => {
             if (!d || (d.deviceDescriptor.idVendor === this.idVendor && d.deviceDescriptor.idProduct === this.idProduct)) {
-                if (doOpen()) {
-                    usb.usb.removeListener("attach", fn);
-                }
+                doOpen()
+                    .then(() => {
+                        usb.usb.removeListener("attach", fn);
+                    })
+                    .catch(err => {
+                        if (!controller.signal.aborted) {
+                            console.error(err); // handle errors
+                        }
+                    });
             }
         };
+
         usb.usb.on("attach", fn);
         if (this.is_present()) {
-            setImmediate(() => usb.usb.emit("attach", this.device));
+            setImmediate(() => usb.usb.emit("attach", this.device!));
         }
-        return (ct = new CancellationTokenListener(fn, cb));
+
+        await new Promise<void>((resolve, reject) => {
+            controller.signal.addEventListener("abort", () => {
+                usb.usb.removeListener("attach", fn);
+                reject(new Error("Operation canceled"));
+            });
+        });
     }
 
     public close() {
         this.detach_all();
-        this.inEp.stopPoll(() => {
-            this.iface.release(true, () => {
-                if (this.detachedKernelDriver) {
-                    this.detachedKernelDriver = false;
-                    try {
-                        this.iface.attachKernelDriver();
-                    } catch {
-                        // Ignore kernel driver errors;
-                    }
+        if (this.inEndpoint) {
+            this.inEndpoint.stopPoll(() => {
+                if (this.iface) {
+                    this.iface.release(true, () => {
+                        if (this.detachedKernelDriver) {
+                            this.detachedKernelDriver = false;
+                            try {
+                                this.iface?.attachKernelDriver();
+                            } catch {
+                                // Ignore kernel driver errors;
+                            }
+                        }
+                        this.iface = undefined;
+                        if (this.device) {
+                            this.device.reset(() => {
+                                this.device?.close();
+                                this.emit("shutdown");
+                                const devIdx = USBDriver.deviceInUse.indexOf(this.device!);
+                                if (devIdx >= 0) {
+                                    USBDriver.deviceInUse.splice(devIdx, 1);
+                                }
+                                if (usb.usb.listenerCount("attach")) {
+                                    usb.usb.emit("attach", this.device!);
+                                }
+                                this.device = undefined;
+                            });
+                        }
+                    });
                 }
-                this.iface = undefined;
-                this.device.reset(() => {
-                    this.device.close();
-                    this.emit("shutdown");
-                    const devIdx = USBDriver.deviceInUse.indexOf(this.device);
-                    if (devIdx >= 0) {
-                        USBDriver.deviceInUse.splice(devIdx, 1);
-                    }
-                    if (usb.usb.listenerCount("attach")) {
-                        usb.usb.emit("attach", this.device);
-                    }
-                    this.device = undefined;
-                });
             });
-        });
+        }
     }
 
     public reset() {
@@ -203,14 +237,18 @@ export class USBDriver extends EventEmitter {
             if (this.usedChannels !== 0) {
                 return false;
             }
+
             this.usedChannels = -1;
         } else {
             if (this.maxChannels <= this.usedChannels) {
                 return false;
             }
+
             ++this.usedChannels;
         }
+
         this.attachedSensors.push(sensor);
+
         return true;
     }
 
@@ -219,12 +257,15 @@ export class USBDriver extends EventEmitter {
         if (idx < 0) {
             return false;
         }
+
         if (this.usedChannels < 0) {
             this.usedChannels = 0;
         } else {
             --this.usedChannels;
         }
+
         this.attachedSensors.splice(idx, 1);
+
         return true;
     }
 
@@ -234,24 +275,26 @@ export class USBDriver extends EventEmitter {
     }
 
     public write(data: Buffer) {
-        //console.log('DATA SEND: ', data);
-        this.outEp.transfer(data, error => {
-            if (error) {
-                //console.log('ERROR SEND: ', error);
-            }
-        });
+        if (this.outEndpoint) {
+            //console.debug("DATA SEND: ", data);
+            this.outEndpoint.transfer(data, error => {
+                if (error) {
+                    console.error("ERROR SEND: ", error);
+                }
+            });
+        }
     }
 
     public read(data: Buffer) {
-        //console.log('DATA RECV: ', data);
-        const messageID = data.readUInt8(2);
-        if (messageID === Constants.MESSAGE_STARTUP) {
+        //console.debug("DATA RECV: ", data);
+        const messageId = data.readUInt8(2);
+        if (messageId === Constants.MESSAGE_STARTUP) {
             this.write(Messages.requestMessage(0, Constants.MESSAGE_CAPABILITIES));
-        } else if (messageID === Constants.MESSAGE_CAPABILITIES) {
+        } else if (messageId === Constants.MESSAGE_CAPABILITIES) {
             this.maxChannels = data.readUInt8(3);
             this.canScan = (data.readUInt8(7) & 0x06) === 0x06;
             this.write(Messages.setNetworkKey());
-        } else if (messageID === Constants.MESSAGE_CHANNEL_EVENT && data.readUInt8(4) === Constants.MESSAGE_NETWORK_KEY) {
+        } else if (messageId === Constants.MESSAGE_CHANNEL_EVENT && data.readUInt8(4) === Constants.MESSAGE_NETWORK_KEY) {
             this.emit("startup", data);
         } else {
             this.emit("read", data);

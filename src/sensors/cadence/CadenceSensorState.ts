@@ -1,12 +1,12 @@
 export class CadenceSensorState {
-    constructor(deviceID: number) {
-        this.DeviceID = deviceID;
+    constructor(deviceId: number) {
+        this.DeviceId = deviceId;
     }
 
-    DeviceID: number;
-    CadenceEventTime: number;
-    CumulativeCadenceRevolutionCount: number;
-    CalculatedCadence: number;
+    DeviceId: number;
+    CadenceEventTime: number | undefined;
+    CumulativeCadenceRevolutionCount: number | undefined;
+    CalculatedCadence: number | undefined;
 
     OperatingTime?: number;
     ManId?: number;

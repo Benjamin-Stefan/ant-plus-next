@@ -1,12 +1,14 @@
+import { PairedDevice } from "../../types/pairedDevice";
+
 export class FitnessEquipmentSensorState {
-    constructor(deviceID: number) {
-        this.DeviceID = deviceID;
+    constructor(deviceId: number) {
+        this.DeviceId = deviceId;
     }
 
     _EventCount0x19?: number;
     _EventCount0x1A?: number;
 
-    DeviceID: number;
+    DeviceId: number;
     Temperature?: number;
     ZeroOffset?: number;
     SpinDownTime?: number;
@@ -52,5 +54,5 @@ export class FitnessEquipmentSensorState {
     SwVersion?: number;
     SerialNumber?: number;
 
-    PairedDevices: any[] = [];
+    PairedDevices: PairedDevice[] = [];
 }

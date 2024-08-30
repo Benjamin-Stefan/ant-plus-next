@@ -5,12 +5,11 @@ import { AntPlusSensor } from "../AntPlusSensor.js";
 export class HeartRateSensor extends AntPlusSensor {
     static deviceType = 120;
 
-    public attach(channel, deviceID) {
-        super.attach(channel, "receive", deviceID, HeartRateSensor.deviceType, 0, 255, 8070);
-        this.state = new HeartRateSensorState(deviceID);
+    public attach(channel: number, deviceId: number) {
+        super.attachSensor(channel, "receive", deviceId, HeartRateSensor.deviceType, 0, 255, 8070);
     }
 
-    private state: HeartRateSensorState;
+    private state!: HeartRateSensorState;
 
     private page: Page = {
         oldPage: -1,
@@ -18,7 +17,7 @@ export class HeartRateSensor extends AntPlusSensor {
     };
 
     protected updateState(deviceId: number, data: Buffer) {
-        this.state.DeviceID = deviceId;
+        this.state.DeviceId = deviceId;
         updateState(this, this.state, this.page, data);
     }
 }

@@ -5,15 +5,15 @@ import { StrideSpeedDistanceSensorState } from "./StrideSpeedDistanceSensorState
 export class StrideSpeedDistanceSensor extends AntPlusSensor {
     static deviceType = 124;
 
-    public attach(channel, deviceID) {
-        super.attach(channel, "receive", deviceID, StrideSpeedDistanceSensor.deviceType, 0, 255, 8134);
-        this.state = new StrideSpeedDistanceSensorState(deviceID);
+    public attach(channel: number, deviceId: number) {
+        super.attachSensor(channel, "receive", deviceId, StrideSpeedDistanceSensor.deviceType, 0, 255, 8134);
+        this.state = new StrideSpeedDistanceSensorState(deviceId);
     }
 
-    private state: StrideSpeedDistanceSensorState;
+    private state!: StrideSpeedDistanceSensorState;
 
-    protected updateState(deviceId, data) {
-        this.state.DeviceID = deviceId;
+    protected updateState(deviceId: number, data: Buffer) {
+        this.state.DeviceId = deviceId;
         updateState(this, this.state, data);
     }
 }

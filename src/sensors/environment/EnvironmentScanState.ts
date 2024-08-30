@@ -1,6 +1,6 @@
 import { EnvironmentSensorState } from "./EnvironmentSensorState.js";
 
 export class EnvironmentScanState extends EnvironmentSensorState {
-    Rssi: number;
-    Threshold: number;
+    Rssi: number | undefined;
+    Threshold: number | undefined;
 }

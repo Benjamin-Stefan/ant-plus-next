@@ -1,15 +1,15 @@
 {
     "compilerOptions": {
-        "target": "ES6", // Oder "ES2017", "ES2020" etc., abhängig von der gewünschten ECMAScript-Version
-        "module": "ESNext", // Modultyp auf ESNext oder ES6 setzen
-        "moduleResolution": "node", // Modulauflösung auf Node
-        "outDir": "./dist", // Ausgabeordner für die kompilierte JS-Dateien
-        "declaration": true, // Generiert Typdefinitionsdateien (.d.ts)
-        "strict": true, // Aktiviert strikte Typisierung
-        "esModuleInterop": true, // Ermöglicht den Import von CommonJS-Modulen
-        "forceConsistentCasingInFileNames": true, // Erzwingt konsistente Groß- und Kleinschreibung in Importen
-        "skipLibCheck": true, // Überspringt die Typprüfung in .d.ts-Dateien von Bibliotheken
-        "sourceMap": true // Erzeugt Source Maps für das Debuggen
+        "target": "ES6",
+        "module": "ESNext",
+        "moduleResolution": "node",
+        "outDir": "./dist",
+        "declaration": true,
+        "strict": true,
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "skipLibCheck": true,
+        "sourceMap": true
     },
     "include": ["src", "webpack.config.js", "eslint.config.mjs", "example"],
     "exclude": ["node_modules", "dist"]
