@@ -53,6 +53,11 @@ Install the module via npm:
 npm install ant-plus-next
 ```
 
+## Migration from ant-plus
+
+-   change variable `DeviceID` to `DeviceId`
+-   change method `attach` to `attachSensor` on `BaseSensor`, `AntPlusBaseSensor`, `AntPlusScanner`, `AntPlusSensor`
+
 ## Getting Started
 
 ### Create USB Stick Instance
@@ -131,7 +136,7 @@ if (!stick.open()) {
 
 #### Methods:
 
--   `is_present()`: Checks if the stick is present.
+-   `isPresent()`: Checks if the stick is present.
 -   `open()`: Attempts to open the stick.
 -   `close()`: Closes the stick.
 
