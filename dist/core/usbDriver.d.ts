@@ -17,7 +17,7 @@ export declare class USBDriver extends EventEmitter {
     canScan: boolean;
     constructor(idVendor: number, idProduct: number, debugOptions?: DebugOptions);
     private getDevices;
-    is_present(): boolean;
+    isPresent(): boolean;
     open(): boolean;
     openAsync(signal: AbortSignal): Promise<void>;
     close(): void;

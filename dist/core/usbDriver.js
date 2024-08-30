@@ -28,7 +28,7 @@ export class USBDriver extends EventEmitter {
         const allDevices = usb.getDeviceList();
         return allDevices.filter(d => d.deviceDescriptor.idVendor === this.idVendor && d.deviceDescriptor.idProduct === this.idProduct).filter(d => USBDriver.deviceInUse.indexOf(d) === -1);
     }
-    is_present() {
+    isPresent() {
         return this.getDevices().length > 0;
     }
     open() {
@@ -145,7 +145,7 @@ export class USBDriver extends EventEmitter {
                 }
             };
             usb.usb.on("attach", fn);
-            if (this.is_present()) {
+            if (this.isPresent()) {
                 setImmediate(() => usb.usb.emit("attach", this.device));
             }
             yield new Promise((resolve, reject) => {
