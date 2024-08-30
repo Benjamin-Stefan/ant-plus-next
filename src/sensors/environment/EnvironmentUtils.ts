@@ -13,7 +13,7 @@ export function updateState(sensor: EnvironmentSensor | EnvironmentScanner, stat
     const page = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA);
     if (page === 1) {
         state.EventCount = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 2);
-        state.Temperature = data.readUInt16LE(Messages.BUFFER_INDEX_MSG_DATA + 6) / 100;
+        state.Temperature = data.readInt16LE(Messages.BUFFER_INDEX_MSG_DATA + 6) / 100;
     }
     sensor.emit("envdata", state);
     sensor.emit("envData", state);

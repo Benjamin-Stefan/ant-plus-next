@@ -144,6 +144,8 @@ export abstract class BaseSensor extends EventEmitter {
                             }
                             return true;
                         }
+                        case Constants.EVENT_CHANNEL_COLLISION:
+                            return true; // collision is not an error on multi-channel networks
                         default:
                             break;
                     }

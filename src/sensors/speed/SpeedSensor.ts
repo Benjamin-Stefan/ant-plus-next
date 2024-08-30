@@ -12,7 +12,7 @@ export class SpeedSensor extends AntPlusSensor {
     }
 
     public attach(channel: number, deviceId: number) {
-        super.attachSensor(channel, "receive", deviceId, SpeedSensor.deviceType, 0, 255, 8086);
+        super.attachSensor(channel, "receive", deviceId, SpeedSensor.deviceType, 0, 255, 8118);
         this.state = new SpeedSensorState(deviceId);
     }
 
