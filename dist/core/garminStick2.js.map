@@ -1,0 +1,1 @@
+{"version":3,"file":"garminStick2.js","sourceRoot":"","sources":["../../src/core/garminStick2.ts"],"names":[],"mappings":"AACA,OAAO,EAAE,SAAS,EAAE,MAAM,gBAAgB,CAAC;AAE3C,MAAM,OAAO,YAAa,SAAQ,SAAS;IACvC,YAAY,eAA6B,EAAE;QACvC,KAAK,CAAC,MAAM,EAAE,MAAM,EAAE,YAAY,CAAC,CAAC;IACxC,CAAC;CACJ"}

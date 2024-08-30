@@ -1,0 +1,31 @@
+import { EventEmitter } from "events";
+import { BaseSensor } from "../sensors/baseSensor.js";
+import { DebugOptions } from "../types/debugOptions.js";
+export declare class USBDriver extends EventEmitter {
+    private idVendor;
+    private idProduct;
+    private static deviceInUse;
+    private device;
+    private iface;
+    private detachedKernelDriver;
+    private inEndpoint;
+    private outEndpoint;
+    private leftover;
+    private usedChannels;
+    private attachedSensors;
+    maxChannels: number;
+    canScan: boolean;
+    constructor(idVendor: number, idProduct: number, debugOptions?: DebugOptions);
+    private getDevices;
+    is_present(): boolean;
+    open(): boolean;
+    openAsync(signal: AbortSignal): Promise<void>;
+    close(): void;
+    reset(): void;
+    isScanning(): boolean;
+    attach(sensor: BaseSensor, forScan: boolean): boolean;
+    detach(sensor: BaseSensor): boolean;
+    detach_all(): void;
+    write(data: Buffer): void;
+    read(data: Buffer): void;
+}
