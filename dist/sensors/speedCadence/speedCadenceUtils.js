@@ -1,11 +1,22 @@
-/*
- * ANT+ profile: https://www.thisisant.com/developer/ant-plus/device-profiles/#523_tab
- * Spec sheet: https://www.thisisant.com/resources/bicycle-speed-and-cadence/
- */
 import { Messages } from "../../utils/messages.js";
+/**
+ * Updates the state of a Speed and Cadence sensor or scanner based on the incoming data.
+ * Calculates the cadence and speed based on the revolution counts and event times provided in the data buffer.
+ *
+ * @param {SpeedCadenceSensor | SpeedCadenceScanner} sensor - The sensor or scanner instance emitting the data.
+ * @param {SpeedCadenceSensorState | SpeedCadenceScanState} state - The current state of the sensor or scanner.
+ * @param {Buffer} data - The raw data buffer received from the sensor.
+ * @returns {void}
+ *
+ * @example
+ * const sensor = new SpeedCadenceSensor();
+ * const state = new SpeedCadenceSensorState(12345);
+ * const dataBuffer = getDataFromSensor(); // Assume this function gets data from a sensor
+ * updateState(sensor, state, dataBuffer);
+ */
 export function updateState(sensor, state, data) {
     var _a, _b, _c, _d;
-    //get old state for calculating cumulative values
+    // Get old state for calculating cumulative values
     const oldCadenceTime = (_a = state.CadenceEventTime) !== null && _a !== void 0 ? _a : 0;
     const oldCadenceCount = (_b = state.CumulativeCadenceRevolutionCount) !== null && _b !== void 0 ? _b : 0;
     const oldSpeedTime = (_c = state.SpeedEventTime) !== null && _c !== void 0 ? _c : 0;
@@ -18,11 +29,11 @@ export function updateState(sensor, state, data) {
         state.CadenceEventTime = cadenceTime;
         state.CumulativeCadenceRevolutionCount = cadenceCount;
         if (oldCadenceTime > cadenceTime) {
-            //Hit rollover value
+            // Hit rollover value
             cadenceTime += 1024 * 64;
         }
         if (oldCadenceCount > cadenceCount) {
-            //Hit rollover value
+            // Hit rollover value
             cadenceCount += 1024 * 64;
         }
         const cadence = (60 * (cadenceCount - oldCadenceCount) * 1024) / (cadenceTime - oldCadenceTime);
@@ -35,16 +46,16 @@ export function updateState(sensor, state, data) {
         state.SpeedEventTime = speedEventTime;
         state.CumulativeSpeedRevolutionCount = speedRevolutionCount;
         if (oldSpeedTime > speedEventTime) {
-            //Hit rollover value
+            // Hit rollover value
             speedEventTime += 1024 * 64;
         }
         if (oldSpeedCount > speedRevolutionCount) {
-            //Hit rollover value
+            // Hit rollover value
             speedRevolutionCount += 1024 * 64;
         }
         const distance = sensor.wheelCircumference * (speedRevolutionCount - oldSpeedCount);
         state.CalculatedDistance = distance;
-        //speed in m/sec
+        // Calculate speed in m/sec
         const speed = (distance * 1024) / (speedEventTime - oldSpeedTime);
         if (!isNaN(speed)) {
             state.CalculatedSpeed = speed;

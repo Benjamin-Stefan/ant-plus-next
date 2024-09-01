@@ -1,1 +1,1 @@
-{"version":3,"file":"strideSpeedDistanceScanState.js","sourceRoot":"","sources":["../../../src/sensors/strideSpeedDistance/strideSpeedDistanceScanState.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,8BAA8B,EAAE,MAAM,qCAAqC,CAAC;AAErF,MAAM,OAAO,4BAA6B,SAAQ,8BAA8B;CAG/E"}
+{"version":3,"file":"strideSpeedDistanceScanState.js","sourceRoot":"","sources":["../../../src/sensors/strideSpeedDistance/strideSpeedDistanceScanState.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,8BAA8B,EAAE,MAAM,qCAAqC,CAAC;AAErF;;;;GAIG;AACH,MAAM,OAAO,4BAA6B,SAAQ,8BAA8B;CAY/E"}

@@ -11,6 +11,6 @@
         "skipLibCheck": true,
         "sourceMap": true
     },
-    "include": ["src", "webpack.config.js", "eslint.config.mjs", "example"],
+    "include": ["src/**/*"],
     "exclude": ["node_modules", "dist"]
 }

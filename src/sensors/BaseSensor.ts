@@ -5,6 +5,10 @@ import { Constants } from "../types/constants.js";
 import { Messages } from "../utils/messages.js";
 import { Status } from "../types/status.js";
 
+/**
+ * Abstract base class for sensors that communicates over a USB connection.
+ * Extends EventEmitter to handle various events related to sensor data and status.
+ */
 export abstract class BaseSensor extends EventEmitter {
     channel: number | undefined;
     deviceId!: number;
@@ -15,13 +19,33 @@ export abstract class BaseSensor extends EventEmitter {
     protected decodeDataCbk: ((data: Buffer) => void) | undefined;
     protected statusCbk: ((status: Status) => boolean) | undefined;
 
+    /**
+     * Abstract method to update the state of the sensor.
+     * Must be implemented by subclasses.
+     *
+     * @param {number} deviceId - The device ID to update.
+     * @param {Buffer} data - The data buffer containing the state information.
+     */
     protected abstract updateState(deviceId: number, data: Buffer): void;
 
+    /**
+     * Creates an instance of BaseSensor.
+     *
+     * @param {USBDriver} stick - The USB driver used for communication with the sensor.
+     */
     constructor(private stick: USBDriver) {
         super();
         stick.on("read", this.handleEventMessages.bind(this));
     }
 
+    /**
+     * Starts scanning for devices of the specified type at a given frequency.
+     *
+     * @param {string} type - The type of device to scan for.
+     * @param {number} frequency - The frequency at which to scan.
+     *
+     * @throws Will throw an error if already attached or if the stick cannot scan.
+     */
     protected scan(type: string, frequency: number) {
         if (this.channel !== undefined) {
             throw new Error("already attached");
@@ -36,6 +60,7 @@ export abstract class BaseSensor extends EventEmitter {
         const onStatus = (status: Status) => {
             switch (status.msg) {
                 case Constants.MESSAGE_RF:
+                    // Handle various message statuses
                     switch (status.code) {
                         case Constants.EVENT_CHANNEL_CLOSED:
                         case Constants.EVENT_RX_FAIL_GO_TO_SEARCH:
@@ -112,6 +137,20 @@ export abstract class BaseSensor extends EventEmitter {
         }
     }
 
+    /**
+     * Attaches the sensor to a specific channel with the given parameters.
+     *
+     * @param {number} channel - The channel number to attach to.
+     * @param {string} type - The type of device.
+     * @param {number} deviceId - The device ID.
+     * @param {number} deviceType - The type of the device.
+     * @param {number} transmissionType - The transmission type.
+     * @param {number} timeout - The timeout value for the channel.
+     * @param {number} period - The period for communication.
+     * @param {number} frequency - The frequency for communication.
+     *
+     * @throws Will throw an error if already attached or if unable to attach.
+     */
     protected attachSensor(channel: number, type: string, deviceId: number, deviceType: number, transmissionType: number, timeout: number, period: number, frequency: number) {
         if (this.channel !== undefined) {
             throw new Error("already attached");
@@ -126,6 +165,7 @@ export abstract class BaseSensor extends EventEmitter {
         const onStatus = (status: Status) => {
             switch (status.msg) {
                 case Constants.MESSAGE_RF:
+                    // Handle various message statuses
                     switch (status.code) {
                         case Constants.EVENT_CHANNEL_CLOSED:
                         case Constants.EVENT_RX_FAIL_GO_TO_SEARCH:
@@ -145,7 +185,7 @@ export abstract class BaseSensor extends EventEmitter {
                             return true;
                         }
                         case Constants.EVENT_CHANNEL_COLLISION:
-                            return true; // collision is not an error on multi-channel networks
+                            return true;
                         default:
                             break;
                     }
@@ -191,6 +231,11 @@ export abstract class BaseSensor extends EventEmitter {
         this.write(Messages.assignChannel(channel, type));
     }
 
+    /**
+     * Detaches the sensor from its assigned channel and stops communication.
+     *
+     * @throws Will throw an error if there is an issue detaching.
+     */
     public detach() {
         if (this.channel === undefined) {
             return;
@@ -201,10 +246,21 @@ export abstract class BaseSensor extends EventEmitter {
         }
     }
 
+    /**
+     * Sends data to the USB device.
+     *
+     * @param {Buffer} data - The data buffer to send.
+     */
     protected write(data: Buffer) {
         this.stick.write(data);
     }
 
+    /**
+     * Handles incoming event messages from the USB device.
+     *
+     * @private
+     * @param {Buffer} data - The data buffer containing the event message.
+     */
     private handleEventMessages(data: Buffer) {
         const messageId = data.readUInt8(Messages.BUFFER_INDEX_MSG_TYPE);
         const channel = data.readUInt8(Messages.BUFFER_INDEX_CHANNEL_NUM);
@@ -230,6 +286,12 @@ export abstract class BaseSensor extends EventEmitter {
         }
     }
 
+    /**
+     * Sends data and optionally a callback to handle the result of the send operation.
+     *
+     * @param {Buffer} data - The data buffer to send.
+     * @param {SendCallback} [cbk] - Optional callback to handle the send result.
+     */
     protected send(data: Buffer, cbk?: SendCallback) {
         this.messageQueue.push({ msg: data, cbk });
         if (this.messageQueue.length === 1) {

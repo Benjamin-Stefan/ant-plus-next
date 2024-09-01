@@ -1,8 +1,20 @@
-/*
- * ANT+ profile: https://www.thisisant.com/developer/ant-plus/device-profiles/#521_tab
- * Spec sheet: https://www.thisisant.com/resources/bicycle-power/
- */
 import { Messages } from "../../utils/messages.js";
+/**
+ * Updates the state of a Bicycle Power sensor or scanner based on incoming data.
+ * Processes various types of data pages to update the sensor state, including calibration data,
+ * pedal power, cadence, and torque calculations.
+ *
+ * @param {BicyclePowerSensor | BicyclePowerScanner} sensor - The sensor or scanner to update.
+ * @param {BicyclePowerSensorState | BicyclePowerScanState} state - The state object representing the current state of the sensor.
+ * @param {Buffer} data - The raw data buffer received from the sensor.
+ * @returns {void}
+ *
+ * @example
+ * const sensor = new BicyclePowerSensor();
+ * const state = new BicyclePowerSensorState(12345);
+ * const dataBuffer = getDataFromSensor(); // Assume this function gets data from a sensor
+ * updateState(sensor, state, dataBuffer);
+ */
 export function updateState(sensor, state, data) {
     var _a, _b, _c;
     const page = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA);
@@ -58,24 +70,24 @@ export function updateState(sensor, state, data) {
             if (timeStamp !== oldTimeStamp && eventCount !== oldEventCount) {
                 state.EventCount = eventCount;
                 if (oldEventCount > eventCount) {
-                    //Hit rollover value
+                    // Hit rollover value
                     eventCount += 255;
                 }
                 state.TimeStamp = timeStamp;
                 if (oldTimeStamp > timeStamp) {
-                    //Hit rollover value
+                    // Hit rollover value
                     timeStamp += 65400;
                 }
                 state.Slope = slope;
                 state.TorqueTicksStamp = torqueTicksStamp;
                 if (oldTorqueTicksStamp > torqueTicksStamp) {
-                    //Hit rollover value
+                    // Hit rollover value
                     torqueTicksStamp += 65535;
                 }
                 const elapsedTime = (timeStamp - oldTimeStamp) * 0.0005;
                 const torqueTicks = torqueTicksStamp - oldTorqueTicksStamp;
-                const cadencePeriod = elapsedTime / (eventCount - oldEventCount); // s
-                const cadence = Math.round(60 / cadencePeriod); // rpm
+                const cadencePeriod = elapsedTime / (eventCount - oldEventCount); // seconds
+                const cadence = Math.round(60 / cadencePeriod); // RPM
                 state.CalculatedCadence = cadence;
                 const torqueFrequency = 1 / (elapsedTime / torqueTicks) - state.offset; // Hz
                 const torque = torqueFrequency / (slope / 10); // Nm

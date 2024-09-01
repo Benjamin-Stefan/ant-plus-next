@@ -1,18 +1,29 @@
-/*
- * ANT+ profile: https://www.thisisant.com/developer/ant-plus/device-profiles/#521_tab
- * Spec sheet: https://www.thisisant.com/resources/bicycle-power/
- */
-
 import { Messages } from "../../utils/messages.js";
 import { MuscleOxygenSensorState } from "./muscleOxygenSensorState.js";
 import { MuscleOxygenScanState } from "./muscleOxygenScanState.js";
 import { MuscleOxygenSensor } from "./muscleOxygenSensor.js";
 import { MuscleOxygenScanner } from "./muscleOxygenScanner.js";
 
+/**
+ * Updates the state of a Muscle Oxygen sensor or scanner based on the incoming data.
+ * Decodes various pages of data to update the state, including event counts, sensor capabilities,
+ * measurement intervals, total hemoglobin concentration, and battery status.
+ *
+ * @param {MuscleOxygenSensor | MuscleOxygenScanner} sensor - The sensor or scanner instance emitting the data.
+ * @param {MuscleOxygenSensorState | MuscleOxygenScanState} state - The current state of the sensor or scanner.
+ * @param {Buffer} data - The raw data buffer received from the sensor.
+ * @returns {void}
+ *
+ * @example
+ * const sensor = new MuscleOxygenSensor();
+ * const state = new MuscleOxygenSensorState(12345);
+ * const dataBuffer = getDataFromSensor(); // Assume this function gets data from a sensor
+ * updateState(sensor, state, dataBuffer);
+ */
 export function updateState(sensor: MuscleOxygenSensor | MuscleOxygenScanner, state: MuscleOxygenSensorState | MuscleOxygenScanState, data: Buffer) {
     const oldEventCount = state._EventCount || 0;
-
     const page = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA);
+
     switch (page) {
         case 0x01: {
             let eventCount = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 1);
@@ -25,13 +36,12 @@ export function updateState(sensor: MuscleOxygenSensor | MuscleOxygenScanner, st
             if (eventCount !== oldEventCount) {
                 state._EventCount = eventCount;
                 if (oldEventCount > eventCount) {
-                    //Hit rollover value
+                    // Hit rollover value
                     eventCount += 255;
                 }
             }
 
             state.UTCTimeRequired = (notifications & 0x01) === 0x01;
-
             state.SupportANTFS = (capabilities & 0x01) === 0x01;
 
             switch ((capabilities >> 1) & 0x7) {
@@ -110,6 +120,7 @@ export function updateState(sensor: MuscleOxygenSensor | MuscleOxygenScanner, st
             break;
         }
         case 0x52: {
+            // Read battery information
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
             const batteryId = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 2);
             const operatingTime = data.readUInt32LE(Messages.BUFFER_INDEX_MSG_DATA + 3) & 0xffffff;

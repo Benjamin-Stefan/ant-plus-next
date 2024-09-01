@@ -1,8 +1,10 @@
-/*
- * ANT+ profile: https://www.thisisant.com/developer/ant-plus/device-profiles/#521_tab
- * Spec sheet: https://www.thisisant.com/resources/bicycle-power/
- */
 import { Messages } from "../../utils/messages.js";
+/**
+ * Resets the state of the fitness equipment sensor by deleting all relevant properties.
+ *
+ * @param {FitnessEquipmentSensorState | FitnessEquipmentScanState} state - The state object of the fitness equipment sensor to reset.
+ * @returns {void}
+ */
 function resetState(state) {
     delete state.ElapsedTime;
     delete state.Distance;
@@ -32,6 +34,17 @@ function resetState(state) {
     delete state.WheelPeriod;
     delete state.Torque;
 }
+/**
+ * Updates the state of the fitness equipment sensor or scanner based on the received data.
+ *
+ * @param {FitnessEquipmentSensor | FitnessEquipmentScanner} sensor - The sensor or scanner instance to update.
+ * @param {FitnessEquipmentSensorState | FitnessEquipmentScanState} state - The current state of the sensor or scanner.
+ * @param {Buffer} data - The raw data buffer received from the fitness equipment.
+ * @returns {void}
+ *
+ * @example
+ * updateState(sensor, state, data);
+ */
 export function updateState(sensor, state, data) {
     const page = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA);
     switch (page) {
@@ -110,7 +123,7 @@ export function updateState(sensor, state, data) {
             const oldElapsedTime = (state.ElapsedTime || 0) % 64;
             if (elapsedTime !== oldElapsedTime) {
                 if (oldElapsedTime > elapsedTime) {
-                    //Hit rollover value
+                    // Hit rollover value
                     elapsedTime += 64;
                 }
             }
@@ -119,7 +132,7 @@ export function updateState(sensor, state, data) {
                 const oldDistance = (state.Distance || 0) % 256;
                 if (distance !== oldDistance) {
                     if (oldDistance > distance) {
-                        //Hit rollover value
+                        // Hit rollover value
                         distance += 256;
                     }
                 }

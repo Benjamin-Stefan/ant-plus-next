@@ -10,6 +10,7 @@ A modern Node.js module for working with ANT+ USB sticks and sensors.
     -   [Windows](#windows)
     -   [macOS](#macos)
 -   [Installation](#installation)
+-   [Migration from ant-plus](#migration-from-ant-plus)
 -   [Getting Started](#getting-started)
     -   [Create USB Stick Instance](#create-usb-stick-instance)
     -   [Create Sensors](#create-sensors)
@@ -19,8 +20,24 @@ A modern Node.js module for working with ANT+ USB sticks and sensors.
 -   [Important Notes](#important-notes)
 -   [API Documentation](#api-documentation)
     -   [Stick Objects](#stick-objects)
-    -   [Sensor Methods](#sensor-methods)
-    -   [Events](#events)
+        -   [GarminStick2 and GarminStick3](#garminstick2-and-garminstick3)
+        -   [Properties](#properties)
+        -   [Methods](#methods)
+        -   [Events](#events)
+    -   [Common to All Sensors](#common-to-all-sensors)
+        -   [Methods](#methods-1)
+        -   [Events](#events-1)
+    -   [Common to All Scanners](#common-to-all-scanners)
+        -   [Methods](#methods-2)
+        -   [Events](#events-2)
+    -   [Specific Sensors](#specific-sensors)
+        -   [HeartRate Sensor](#heartrate-sensor)
+        -   [SpeedCadence Sensor](#speedcadence-sensor)
+        -   [StrideSpeedDistance Sensor](#stridespeeddistance-sensor)
+        -   [BicyclePower Sensor](#bicyclepower-sensor)
+        -   [FitnessEquipment Sensor](#fitnessequipment-sensor)
+        -   [Environment Sensor](#environment-sensor)
+-   [Examples](#examples)
 -   [License and Acknowledgements](#license-and-acknowledgements)
 
 ## About the Project
@@ -55,8 +72,9 @@ npm install ant-plus-next
 
 ## Migration from ant-plus
 
--   change variable `DeviceID` to `DeviceId`
--   change method `attach` to `attachSensor` on `BaseSensor`, `AntPlusBaseSensor`, `AntPlusScanner`, `AntPlusSensor`
+-   Change variable `DeviceID` to `DeviceId`
+-   Change method `attach` to `attachSensor` on `BaseSensor`, `AntPlusBaseSensor`, `AntPlusScanner`, `AntPlusSensor`
+-   Change Contructor of `GarminStick2` and `GarminStick2` from `constructor(dbgLevel = 0)` to `debugOptions: DebugOptions = {}`
 
 ## Getting Started
 
@@ -132,30 +150,156 @@ if (!stick.open()) {
 
 #### GarminStick2 and GarminStick3
 
--   **maxChannels**: The maximum number of channels this stick supports; valid only after the startup event is fired.
+`GarminStick2` is the driver for ANT+ sticks with a USB product ID of `0x1008`.  
+As well as the old Garmin USB2 ANT+ stick, this works with many of the common off-brand clones.
 
-#### Methods:
+`GarminStick3` is the driver for the mini Garmin ANT+ stick, which has a USB product ID of `0x1009`.
 
--   `isPresent()`: Checks if the stick is present.
--   `open()`: Attempts to open the stick.
--   `close()`: Closes the stick.
+##### Properties
 
-#### Events:
+-   **maxChannels**: The maximum number of channels that this stick supports; valid only after the `startup` event is fired.
 
--   `startup`: Fired when the stick is properly initialized.
--   `shutdown`: Fired when the stick is properly closed.
+##### Methods
 
-#### Sensor Methods
+-   **isPresent()**:  
+    Checks if the stick is present.  
+    **Returns:** `true` if it is, `false` otherwise.
 
--   `attach(channel, deviceId)`: Attaches the sensor using the specified channel and deviceId (use 0 to connect to the first device found).
--   `detach()`: Detaches the sensor.
+-   **open()**:  
+    Tries to open the stick.  
+    **Returns:** `false` on failure.
 
-#### Events
+-   **openAsync(callback)**:  
+    Tries to open the stick, waiting for it if not available right now.  
+    **Returns:** A cancellation token with a method `cancel()` to stop waiting.  
+    **Parameters:**
 
--   `attached`: Fired after the sensor is correctly attached.
--   `detached`: Fired after the sensor is correctly detached.
+    -   `callback`: A function accepting a single `Error` parameter. Called when the stick is open (with the parameter `undefined`) or in case of failure (with the parameter set to the error).
 
-For more details on events and methods, refer to the full API documentation.
+-   **close()**:  
+    Closes the stick.
+
+##### Events
+
+-   **startup**:  
+    Fired after the stick is correctly initialized.
+
+-   **shutdown**:  
+    Fired after the stick is properly closed.
+
+### Common to All Sensors
+
+##### Methods
+
+-   **attach(channel, deviceId)**:  
+    Attaches the sensor using the specified `channel` and `deviceId` (use `0` to connect to the first device found).
+
+-   **detach()**:  
+    Detaches the sensor.
+
+##### Events
+
+-   **attached**:  
+    Fired after the sensor is correctly attached.
+
+-   **detached**:  
+    Fired after the sensor is correctly detached.
+
+### Common to All Scanners
+
+##### Methods
+
+-   **scan()**:  
+    Attaches the sensors and starts scanning for data from every device in range.
+
+-   **detach()**:  
+    Detaches the sensor.
+
+##### Events
+
+-   **attached**:  
+    Fired after the sensor is correctly attached.
+
+-   **detached**:  
+    Fired after the sensor is correctly detached.
+
+### Specific Sensors
+
+#### HeartRate Sensor
+
+##### Events
+
+-   **hbData**:  
+    Fired when new heartbeat data is received.
+
+#### SpeedCadence Sensor
+
+##### Methods
+
+-   **setWheelCircumference(circumferenceInMeters)**:  
+    Calibrates the speed sensor.  
+    **Defaults to:** a wheel with a diameter of 70 cm (2.199 meters).
+
+##### Events
+
+-   **speedData**:  
+    Fired when a new wheel speed is calculated.
+
+-   **cadenceData**:  
+    Fired when a new pedal cadence is calculated.
+
+#### StrideSpeedDistance Sensor
+
+##### Events
+
+-   **ssdData**:  
+    Fired when new stride, speed, or distance data has been calculated.
+
+#### BicyclePower Sensor
+
+##### Events
+
+-   **powerData**:  
+    Fired when new power data has been calculated.
+
+#### FitnessEquipment Sensor
+
+##### Events
+
+-   **fitnessData**:  
+    Fired when new data is received from the fitness equipment.
+
+#### Environment Sensor
+
+##### Events
+
+-   **envData**:  
+    Fired when new environmental data is received.  
+    The `state.EventCount` value can be used to determine when a new measurement has been made by the sensor - its value will have been incremented.
+
+## Examples
+
+Refer to the [examples](/examples) folder for more comprehensive examples of using `ant-plus-next`.
+
+### Example: Heart Rate Sensor
+
+```javascript
+const Ant = require("ant-plus-next");
+const stick = new Ant.GarminStick3();
+const heartRateSensor = new Ant.HeartRateSensor(stick);
+
+heartRateSensor.on("hbData", data => {
+    console.log(`Device Id: ${data.DeviceId}, Heart Rate: ${data.ComputedHeartRate}`);
+});
+
+stick.on("startup", () => {
+    heartRateSensor.attachSensor(0, 0);
+});
+
+if (!stick.open()) {
+    console.error("Stick not found!");
+}
+```
 
 ## License and Acknowledgements
 

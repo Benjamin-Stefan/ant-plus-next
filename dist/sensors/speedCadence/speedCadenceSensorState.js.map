@@ -1,1 +1,1 @@
-{"version":3,"file":"speedCadenceSensorState.js","sourceRoot":"","sources":["../../../src/sensors/speedCadence/speedCadenceSensorState.ts"],"names":[],"mappings":"AAAA,MAAM,OAAO,uBAAuB;IAChC,YAAY,QAAgB;QACxB,IAAI,CAAC,QAAQ,GAAG,QAAQ,CAAC;IAC7B,CAAC;CAUJ"}
+{"version":3,"file":"speedCadenceSensorState.js","sourceRoot":"","sources":["../../../src/sensors/speedCadence/speedCadenceSensorState.ts"],"names":[],"mappings":"AAAA;;;;GAIG;AACH,MAAM,OAAO,uBAAuB;IAChC;;;;;;OAMG;IACH,YAAY,QAAgB;QACxB,IAAI,CAAC,QAAQ,GAAG,QAAQ,CAAC;IAC7B,CAAC;CAiDJ"}

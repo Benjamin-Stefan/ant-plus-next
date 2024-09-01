@@ -1,8 +1,19 @@
-/*
- * ANT+ profile: https://www.thisisant.com/developer/ant-plus/device-profiles/#528_tab
- * Spec sheet: https://www.thisisant.com/resources/stride-based-speed-and-distance-monitor/
- */
 import { Messages } from "../../utils/messages.js";
+/**
+ * Updates the state of a Stride-Based Speed and Distance Monitor (SDM) sensor or scanner
+ * based on the data received from the sensor.
+ *
+ * @param {StrideSpeedDistanceSensor | StrideSpeedDistanceScanner} sensor - The sensor or scanner instance emitting the data.
+ * @param {StrideSpeedDistanceSensorState | StrideSpeedDistanceScanState} state - The current state of the sensor or scanner.
+ * @param {Buffer} data - The raw data buffer received from the sensor.
+ * @returns {void}
+ *
+ * @example
+ * const sensor = new StrideSpeedDistanceSensor();
+ * const state = new StrideSpeedDistanceSensorState(12345);
+ * const dataBuffer = getDataFromSensor(); // Assume this function gets data from a sensor
+ * updateState(sensor, state, dataBuffer);
+ */
 export function updateState(sensor, state, data) {
     const page = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA);
     if (page === 1) {

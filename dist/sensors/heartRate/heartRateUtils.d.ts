@@ -11,4 +11,22 @@ export type Page = {
     oldPage: number;
     pageState: PageState;
 };
+/**
+ * Updates the state of a Heart Rate sensor or scanner based on incoming data.
+ * Decodes various pages of data to update the state, including operating time, manufacturer details,
+ * battery status, heart rate data, and more.
+ *
+ * @param {HeartRateSensor | HeartRateScanner} sensor - The sensor or scanner instance emitting the data.
+ * @param {HeartRateSensorState | HeartRateScannerState} state - The current state of the sensor or scanner.
+ * @param {Page} page - The page information containing the current and old page number.
+ * @param {Buffer} data - The raw data buffer received from the sensor.
+ * @returns {void}
+ *
+ * @example
+ * const sensor = new HeartRateSensor();
+ * const state = new HeartRateSensorState(12345);
+ * const page = { oldPage: 0, pageState: PageState.INIT_PAGE };
+ * const dataBuffer = getDataFromSensor(); // Assume this function gets data from a sensor
+ * updateState(sensor, state, page, dataBuffer);
+ */
 export declare function updateState(sensor: HeartRateSensor | HeartRateScanner, state: HeartRateSensorState | HeartRateScannerState, page: Page, data: Buffer): void;

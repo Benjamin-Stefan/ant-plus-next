@@ -1,24 +1,74 @@
+/*
+ * ANT+ profile: https://www.thisisant.com/developer/ant-plus/device-profiles/#521_tab
+ * Spec sheet: https://www.thisisant.com/resources/bicycle-power/
+ */
+
 import { updateState } from "./fitnessEquipmentUtils.js";
 import { FitnessEquipmentSensorState } from "./fitnessEquipmentSensorState.js";
 import { AntPlusSensor } from "../antPlusSensor.js";
 import { SendCallback } from "../../types/sendCallback.js";
 import { Messages } from "../../utils/messages.js";
 
+/**
+ * Represents a Fitness Equipment sensor.
+ * This class extends the AntPlusSensor class to handle specific data related to fitness equipment.
+ */
 export class FitnessEquipmentSensor extends AntPlusSensor {
-    static deviceType = 0x11;
+    /**
+     * The device type code for Fitness Equipment sensors.
+     * @type {number}
+     * @readonly
+     */
+    static deviceType: number = 0x11;
 
+    /**
+     * The current state of the Fitness Equipment sensor.
+     * @private
+     * @type {FitnessEquipmentSensorState}
+     */
     private state!: FitnessEquipmentSensorState;
 
-    public attach(channel: number, deviceId: number) {
+    /**
+     * Attaches the sensor to a specified ANT+ channel and initializes its state.
+     *
+     * @public
+     * @param {number} channel - The ANT+ channel number used for communication with the sensor.
+     * @param {number} deviceId - The unique identifier of the sensor device.
+     * @returns {void}
+     *
+     * @example
+     * const sensor = new FitnessEquipmentSensor();
+     * sensor.attach(1, 12345); // Attaches to channel 1 with device ID 12345
+     */
+    public attach(channel: number, deviceId: number): void {
         super.attachSensor(channel, "receive", deviceId, FitnessEquipmentSensor.deviceType, 0, 255, 8192);
         this.state = new FitnessEquipmentSensorState(deviceId);
     }
 
+    /**
+     * Updates the state of the sensor based on incoming data.
+     *
+     * @protected
+     * @param {number} deviceId - The unique identifier of the sensor device.
+     * @param {Buffer} data - The raw data buffer received from the sensor.
+     * @returns {void}
+     */
     protected updateState(deviceId: number, data: Buffer): void {
         this.state.DeviceId = deviceId;
         updateState(this, this.state, data);
     }
 
+    /**
+     * Sends user configuration data to the sensor internally.
+     *
+     * @private
+     * @param {number} [userWeight] - The user's weight in kilograms.
+     * @param {number} [bikeWeight] - The weight of the bike in kilograms.
+     * @param {number} [wheelDiameter] - The diameter of the wheel in meters.
+     * @param {number} [gearRatio] - The gear ratio.
+     * @param {SendCallback} [cbk] - Optional callback function to handle the send response.
+     * @returns {void}
+     */
     private setUserConfigurationInternal(userWeight?: number, bikeWeight?: number, wheelDiameter?: number, gearRatio?: number, cbk?: SendCallback): void {
         const m = userWeight == null ? 0xffff : Math.max(0, Math.min(65534, Math.round(userWeight * 100)));
         const df = wheelDiameter == null ? 0xff : Math.round(wheelDiameter * 10) % 10;
@@ -30,6 +80,20 @@ export class FitnessEquipmentSensor extends AntPlusSensor {
         this.send(msg, cbk);
     }
 
+    /**
+     * Sets the user configuration for the sensor.
+     *
+     * @public
+     * @param {number|SendCallback} [userWeightOrCallback] - The user's weight in kilograms or a callback function.
+     * @param {number} [bikeWeight] - The weight of the bike in kilograms.
+     * @param {number} [wheelDiameter] - The diameter of the wheel in meters.
+     * @param {number} [gearRatio] - The gear ratio.
+     * @param {SendCallback} [cbk] - Optional callback function to handle the send response.
+     * @returns {void}
+     *
+     * @example
+     * sensor.setUserConfiguration(70, 10, 0.7, 3.5, callbackFunction);
+     */
     public setUserConfiguration(userWeightOrCallback?: number | SendCallback, bikeWeight?: number, wheelDiameter?: number, gearRatio?: number, cbk?: SendCallback): void {
         if (typeof userWeightOrCallback === "function") {
             this.setUserConfigurationInternal(undefined, undefined, undefined, undefined, userWeightOrCallback);
@@ -44,6 +108,17 @@ export class FitnessEquipmentSensor extends AntPlusSensor {
         }
     }
 
+    /**
+     * Sets the basic resistance level on the fitness equipment.
+     *
+     * @public
+     * @param {number} resistance - The resistance level to set (0 to 100).
+     * @param {SendCallback} [cbk] - Optional callback function to handle the send response.
+     * @returns {void}
+     *
+     * @example
+     * sensor.setBasicResistance(50, callbackFunction);
+     */
     public setBasicResistance(resistance: number, cbk?: SendCallback): void {
         const res = Math.max(0, Math.min(200, Math.round(resistance * 2)));
         const payload = [0x30, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, res & 0xff];
@@ -51,6 +126,17 @@ export class FitnessEquipmentSensor extends AntPlusSensor {
         this.send(msg, cbk);
     }
 
+    /**
+     * Sets the target power level on the fitness equipment.
+     *
+     * @public
+     * @param {number} power - The target power level in watts.
+     * @param {SendCallback} [cbk] - Optional callback function to handle the send response.
+     * @returns {void}
+     *
+     * @example
+     * sensor.setTargetPower(250, callbackFunction);
+     */
     public setTargetPower(power: number, cbk?: SendCallback): void {
         const p = Math.max(0, Math.min(4000, Math.round(power * 4)));
         const payload = [0x31, 0xff, 0xff, 0xff, 0xff, 0xff, p & 0xff, (p >> 8) & 0xff];
@@ -58,6 +144,16 @@ export class FitnessEquipmentSensor extends AntPlusSensor {
         this.send(msg, cbk);
     }
 
+    /**
+     * Sends wind resistance data to the sensor internally.
+     *
+     * @private
+     * @param {number} [windCoeff] - The wind resistance coefficient.
+     * @param {number} [windSpeed] - The wind speed in km/h.
+     * @param {number} [draftFactor] - The drafting factor (0 to 1).
+     * @param {SendCallback} [cbk] - Optional callback function to handle the send response.
+     * @returns {void}
+     */
     private setWindResistanceInternal(windCoeff?: number, windSpeed?: number, draftFactor?: number, cbk?: SendCallback): void {
         const wc = windCoeff == null ? 0xff : Math.max(0, Math.min(186, Math.round(windCoeff * 100)));
         const ws = windSpeed == null ? 0xff : Math.max(0, Math.min(254, Math.round(windSpeed + 127)));
@@ -67,6 +163,19 @@ export class FitnessEquipmentSensor extends AntPlusSensor {
         this.send(msg, cbk);
     }
 
+    /**
+     * Sets the wind resistance on the fitness equipment.
+     *
+     * @public
+     * @param {number|SendCallback} [windCoeffOrCallback] - The wind resistance coefficient or a callback function.
+     * @param {number} [windSpeed] - The wind speed in km/h.
+     * @param {number} [draftFactor] - The drafting factor (0 to 1).
+     * @param {SendCallback} [cbk] - Optional callback function to handle the send response.
+     * @returns {void}
+     *
+     * @example
+     * sensor.setWindResistance(0.5, 20, 0.1, callbackFunction);
+     */
     public setWindResistance(windCoeffOrCallback?: number | SendCallback, windSpeed?: number, draftFactor?: number, cbk?: SendCallback): void {
         if (typeof windCoeffOrCallback === "function") {
             this.setWindResistanceInternal(undefined, undefined, undefined, windCoeffOrCallback);
@@ -79,6 +188,15 @@ export class FitnessEquipmentSensor extends AntPlusSensor {
         }
     }
 
+    /**
+     * Sends track resistance data to the sensor internally.
+     *
+     * @private
+     * @param {number} [slope] - The track slope percentage.
+     * @param {number} [rollingResistanceCoeff] - The rolling resistance coefficient.
+     * @param {SendCallback} [cbk] - Optional callback function to handle the send response.
+     * @returns {void}
+     */
     private setTrackResistanceInternal(slope?: number, rollingResistanceCoeff?: number, cbk?: SendCallback): void {
         const s = slope == null ? 0xffff : Math.max(0, Math.min(40000, Math.round((slope + 200) * 100)));
         const rr = rollingResistanceCoeff == null ? 0xff : Math.max(0, Math.min(254, Math.round(rollingResistanceCoeff * 20000)));
@@ -87,6 +205,18 @@ export class FitnessEquipmentSensor extends AntPlusSensor {
         this.send(msg, cbk);
     }
 
+    /**
+     * Sets the track resistance on the fitness equipment.
+     *
+     * @public
+     * @param {number|SendCallback} [slopeOrCallback] - The track slope percentage or a callback function.
+     * @param {number} [rollingResistanceCoeff] - The rolling resistance coefficient.
+     * @param {SendCallback} [cbk] - Optional callback function to handle the send response.
+     * @returns {void}
+     *
+     * @example
+     * sensor.setTrackResistance(5, 0.005, callbackFunction);
+     */
     public setTrackResistance(slopeOrCallback?: number | SendCallback, rollingResistanceCoeff?: number, cbk?: SendCallback): void {
         if (typeof slopeOrCallback === "function") {
             this.setTrackResistanceInternal(undefined, undefined, slopeOrCallback);

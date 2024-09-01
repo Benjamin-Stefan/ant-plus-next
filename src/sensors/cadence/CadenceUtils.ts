@@ -1,8 +1,3 @@
-/*
- * ANT+ profile: https://www.thisisant.com/developer/ant-plus/device-profiles/#523_tab
- * Spec sheet: https://www.thisisant.com/resources/bicycle-speed-and-cadence/
- */
-
 import { CadenceScanner } from "./cadenceScanner.js";
 import { CadenceScanState } from "./cadenceScanState.js";
 import { CadenceSensor } from "./cadenceSensor.js";
@@ -11,28 +6,45 @@ import { Messages } from "../../utils/messages.js";
 
 const TOGGLE_MASK = 0x80;
 
-export function updateState(sensor: CadenceSensor | CadenceScanner, state: CadenceSensorState | CadenceScanState, data: Buffer) {
+/**
+ * Updates the state of a Cadence sensor or scanner based on incoming data.
+ * Decodes the data buffer and updates the sensor state accordingly, including
+ * cumulative values such as operating time, manufacturer details, battery status,
+ * and calculated cadence.
+ *
+ * @param {CadenceSensor | CadenceScanner} sensor - The sensor or scanner instance emitting the data.
+ * @param {CadenceSensorState | CadenceScanState} state - The current state of the sensor or scanner.
+ * @param {Buffer} data - The raw data buffer received from the sensor.
+ * @returns {void}
+ *
+ * @example
+ * const sensor = new CadenceSensor();
+ * const state = new CadenceSensorState(12345);
+ * const dataBuffer = getDataFromSensor(); // Assume this function gets data from a sensor
+ * updateState(sensor, state, dataBuffer); // Updates the state based on the received data.
+ */
+export function updateState(sensor: CadenceSensor | CadenceScanner, state: CadenceSensorState | CadenceScanState, data: Buffer): void {
     const pageNum = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA);
     switch (
-        pageNum & ~TOGGLE_MASK //check the new pages and remove the toggle bit
+        pageNum & ~TOGGLE_MASK // Check the new pages and remove the toggle bit
     ) {
         case 1:
-            //decode the cumulative operating time
+            // Decode the cumulative operating time
             state.OperatingTime = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 1);
             state.OperatingTime |= data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 2) << 8;
             state.OperatingTime |= data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 3) << 16;
             state.OperatingTime *= 2;
             break;
         case 2:
-            //decode the Manufacturer ID
+            // Decode the Manufacturer ID
             state.ManId = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 1);
-            //decode the 4 byte serial number
+            // Decode the 4-byte serial number
             state.SerialNumber = state.DeviceId;
             state.SerialNumber |= data.readUInt16LE(Messages.BUFFER_INDEX_MSG_DATA + 2) << 16;
             state.SerialNumber >>>= 0;
             break;
         case 3:
-            //decode HW version, SW version, and model number
+            // Decode HW version, SW version, and model number
             state.HwVersion = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 1);
             state.SwVersion = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 2);
             state.ModelNum = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 3);
@@ -72,7 +84,7 @@ export function updateState(sensor: CadenceSensor | CadenceScanner, state: Caden
             break;
     }
 
-    //get old state for calculating cumulative values
+    // Get old state for calculating cumulative values
     const oldCadenceTime = state.CadenceEventTime ?? 0;
     const oldCadenceCount = state.CumulativeCadenceRevolutionCount ?? 0;
 
@@ -84,12 +96,12 @@ export function updateState(sensor: CadenceSensor | CadenceScanner, state: Caden
         state.CumulativeCadenceRevolutionCount = cadenceCount;
 
         if (oldCadenceTime > cadenceTime) {
-            //Hit rollover value
+            // Hit rollover value
             cadenceTime += 1024 * 64;
         }
 
         if (oldCadenceCount > cadenceCount) {
-            //Hit rollover value
+            // Hit rollover value
             cadenceCount += 1024 * 64;
         }
 
