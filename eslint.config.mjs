@@ -16,7 +16,7 @@ export default [
             parserOptions: {
                 ecmaVersion: "latest",
                 sourceType: "module",
-                project: path.join(__dirname, "tsconfig.json"),
+                project: path.resolve(__dirname, "tsconfig.json"),
                 tsconfigRootDir: __dirname,
             },
         },
