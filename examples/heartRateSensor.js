@@ -1,4 +1,4 @@
-import * as Ant from "../dist/index.js";
+import * as Ant from "../dist/ant-plus-next.mjs";
 
 const stick = new Ant.GarminStick2(3);
 
@@ -11,7 +11,7 @@ stick.on("shutdown", () => {
     console.log("Stick shutdown detected");
 });
 
-stick.on("unhandled", data => {
+stick.on("unhandled", (data) => {
     console.log("Unhandled event received:", data);
 });
 

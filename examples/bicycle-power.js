@@ -1,11 +1,11 @@
 "use strict";
 
-import * as Ant from "../dist/index.js";
+import * as Ant from "../dist/ant-plus-next.mjs";
 
 let stick = new Ant.GarminStick2();
 let bicyclePowerSensor = new Ant.BicyclePowerSensor(stick);
 
-bicyclePowerSensor.on("powerData", data => {
+bicyclePowerSensor.on("powerData", (data) => {
     console.log(`id: ${data.DeviceId}, cadence: ${data.Cadence}, power: ${data.Power}`);
 });
 

@@ -16,7 +16,7 @@ export default [
             parserOptions: {
                 ecmaVersion: "latest",
                 sourceType: "module",
-                project: path.join(__dirname, "tsconfig.json"), // Stellt sicher, dass die korrekte tsconfig.json verwendet wird
+                project: path.join(__dirname, "tsconfig.json"),
                 tsconfigRootDir: __dirname,
             },
         },
@@ -27,7 +27,7 @@ export default [
         rules: {
             ...tseslint.configs["recommended-type-checked"].rules,
             ...eslintConfigPrettier.rules,
-            "prettier/prettier": "error", // Prettier-Fehler als ESLint-Fehler behandeln
+            "prettier/prettier": "error",
         },
     },
 ];

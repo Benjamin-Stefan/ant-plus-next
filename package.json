@@ -1,18 +1,22 @@
 {
     "name": "ant-plus-next",
     "version": "0.2.0",
+    "private": "true",
     "description": "A modern Node.js module for working with ANT+ USB sticks and sensors.",
-    "main": "dist/index.js",
-    "types": "dist/index.d.ts",
-    "module": "dist/index.js",
+    "main": "./dist/ant-plus-next.cjs",
+    "module": "./dist/ant-plus-next.esm",
     "type": "module",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
         "docs": "typedoc",
-        "clean": "rimraf dist",
         "lint": "eslint src",
         "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css,md}\"",
-        "build": "npm run clean && tsc && tsc-alias"
+        "build": "npm run build:clean && npm run build:bundle",
+        "build:clean": "rimraf dist",
+        "build:bundle": "rollup -c",
+        "test": "npm run test:esm && npm run test:cjs",
+        "test:esm": "node ./tests/test-esm.mjs",
+        "test:cjs": "node ./tests/test-cjs.cjs",
+        "prepare": "npm run build && npm run docs"
     },
     "keywords": [
         "ANT",
@@ -35,11 +39,14 @@
     },
     "devDependencies": {
         "@eslint/js": "^9.9.1",
+        "@rollup/plugin-commonjs": "^26.0.1",
+        "@rollup/plugin-json": "^6.1.0",
+        "@rollup/plugin-node-resolve": "^15.2.3",
+        "@rollup/plugin-typescript": "^11.1.6",
         "@types/jest": "^29.5.12",
         "@types/node": "^20.8.7",
         "@typescript-eslint/eslint-plugin": "^8.3.0",
         "@typescript-eslint/parser": "^8.3.0",
-        "clean-webpack-plugin": "^4.0.0",
         "eslint": "^9.9.1",
         "eslint-config-prettier": "^9.1.0",
         "eslint-plugin-prettier": "^5.2.1",
@@ -47,19 +54,19 @@
         "jest": "^29.7.0",
         "prettier": "^3.3.3",
         "rimraf": "^6.0.1",
+        "rollup": "^2.79.1",
+        "rollup-plugin-terser": "^7.0.2",
         "ts-jest": "^29.2.5",
-        "tsc-alias": "^1.8.10",
         "typedoc": "^0.26.6",
-        "typedoc-plugin-markdown": "^4.2.6",
-        "typescript": "^5.5.4",
-        "webpack": "^5.94.0",
-        "webpack-cli": "^5.1.4"
+        "typescript": "^5.5.4"
     },
     "files": [
-        "dist/"
+        "dist/**/*",
+        "README.md",
+        "LICENSE"
     ],
     "directories": {
-        "example": "./sample",
+        "examples": "./samples",
         "lib": "./src"
     },
     "repository": {

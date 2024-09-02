@@ -1,16 +1,16 @@
 {
     "compilerOptions": {
-        "target": "ES6",
+        "target": "ES2022",
         "module": "ESNext",
-        "moduleResolution": "node",
+        "moduleResolution": "Node",
+        "lib": ["esnext", "dom"],
         "outDir": "./dist",
-        "declaration": true,
-        "strict": true,
         "esModuleInterop": true,
         "forceConsistentCasingInFileNames": true,
-        "skipLibCheck": true,
-        "sourceMap": true
+        "strict": true,
+        "strictNullChecks": true,
+        "skipLibCheck": true
     },
     "include": ["src/**/*"],
-    "exclude": ["node_modules", "dist"]
+    "exclude": ["node_modules"]
 }

@@ -1,16 +1,16 @@
 "use strict";
 
-import * as Ant from "../dist/index.js";
+import * as Ant from "../dist/ant-plus-next.mjs";
 
 const stick = new Ant.GarminStick2();
 const speedCadenceSensor = new Ant.SpeedCadenceSensor(stick);
 speedCadenceSensor.setWheelCircumference(2.12); //Wheel circumference in meters
 
-speedCadenceSensor.on("speedData", data => {
+speedCadenceSensor.on("speedData", (data) => {
     console.log(`speed: ${data.CalculatedSpeed}`);
 });
 
-speedCadenceSensor.on("cadenceData", data => {
+speedCadenceSensor.on("cadenceData", (data) => {
     console.log(`cadence: ${data.CalculatedCadence}`);
 });
 

@@ -1,6 +1,8 @@
 # ant-plus-next
 
-A modern Node.js module for working with ANT+ USB sticks and sensors.
+![License](https://img.shields.io/github/license/Benjamin-Stefan/ant-plus-next)
+
+A modern Node.js module for working with ANT+ USB sticks and sensors, providing a user-friendly API to interact with various ANT+ sensors like heart rate monitors, speed sensors, and more.
 
 ## Table of Contents
 
@@ -12,39 +14,27 @@ A modern Node.js module for working with ANT+ USB sticks and sensors.
 -   [Installation](#installation)
 -   [Migration from ant-plus](#migration-from-ant-plus)
 -   [Getting Started](#getting-started)
-    -   [Create USB Stick Instance](#create-usb-stick-instance)
-    -   [Create Sensors](#create-sensors)
-    -   [Attach Events](#attach-events)
-    -   [Open USB Stick](#open-usb-stick)
-    -   [Scanning for Sensors](#scanning-for-sensors)
+    -   [Step 1: Create USB Stick Instance](#step-1-create-usb-stick-instance)
+    -   [Step 2: Create Sensors](#step-2-create-sensors)
+    -   [Step 3: Attach Events](#step-3-attach-events)
+    -   [Step 4: Open USB Stick](#step-4-open-usb-stick)
+    -   [Step 5: Scanning for Sensors](#step-5-scanning-for-sensors)
 -   [Important Notes](#important-notes)
 -   [API Documentation](#api-documentation)
     -   [Stick Objects](#stick-objects)
-        -   [GarminStick2 and GarminStick3](#garminstick2-and-garminstick3)
-        -   [Properties](#properties)
-        -   [Methods](#methods)
-        -   [Events](#events)
     -   [Common to All Sensors](#common-to-all-sensors)
-        -   [Methods](#methods-1)
-        -   [Events](#events-1)
     -   [Common to All Scanners](#common-to-all-scanners)
-        -   [Methods](#methods-2)
-        -   [Events](#events-2)
     -   [Specific Sensors](#specific-sensors)
-        -   [HeartRate Sensor](#heartrate-sensor)
-        -   [SpeedCadence Sensor](#speedcadence-sensor)
-        -   [StrideSpeedDistance Sensor](#stridespeeddistance-sensor)
-        -   [BicyclePower Sensor](#bicyclepower-sensor)
-        -   [FitnessEquipment Sensor](#fitnessequipment-sensor)
-        -   [Environment Sensor](#environment-sensor)
 -   [Examples](#examples)
 -   [License and Acknowledgements](#license-and-acknowledgements)
 
 ## About the Project
 
-This module provides a user-friendly API to communicate with ANT+ USB sticks and sensors. It is compatible with various operating systems and offers a straightforward way to capture heart rate, speed, cadence, power measurements, and more.
+`ant-plus-next` provides a modern Node.js module for communicating with ANT+ USB sticks and sensors. The module is compatible with Linux, Windows, and macOS, offering an easy way to capture data from heart rate monitors, speed sensors, power meters, and more.
 
 ## Prerequisites
+
+Before installing the module, ensure the following prerequisites are met:
 
 ### Linux
 
@@ -74,34 +64,36 @@ npm install ant-plus-next
 
 -   Change variable `DeviceID` to `DeviceId`
 -   Change method `attach` to `attachSensor` on `BaseSensor`, `AntPlusBaseSensor`, `AntPlusScanner`, `AntPlusSensor`
--   Change Contructor of `GarminStick2` and `GarminStick2` from `constructor(dbgLevel = 0)` to `debugOptions: DebugOptions = {}`
+-   Update the constructor of `GarminStick2` and `GarminStick3` from `constructor(dbgLevel = 0)` to `debugOptions: DebugOptions = {}`.
 
 ## Getting Started
 
-### Create USB Stick Instance
+Follow these steps to set up and use ant-plus-next:
+
+### Step 1: Create USB Stick Instance
 
 Create a new instance for the USB stick:
 
 ```javascript
-const Ant = require("ant-plus-next");
+import * as Ant from "ant-plus-next";
 const stick = new Ant.GarminStick3();
 ```
 
-### Create Sensors
+### Step 2: Create Sensors
 
 Create a sensor, such as a heart rate sensor:
 
 ```javascript
-const Ant = require("ant-plus-next");
+import * as Ant from "ant-plus-next";
 const stick = new Ant.GarminStick3();
 ```
 
-### Attach Events
+### Step 3: Attach Events
 
 React to incoming sensor data:
 
 ```javascript
-heartRateSensor.on("hbData", data => {
+heartRateSensor.on("hbData", (data) => {
     console.log(`Device Id: ${data.DeviceId}, Heart Rate: ${data.ComputedHeartRate}`);
 });
 
@@ -110,7 +102,7 @@ stick.on("startup", () => {
 });
 ```
 
-### Open USB Stick
+### Step 4: Open USB Stick
 
 Attempt to open the USB stick:
 
@@ -120,12 +112,12 @@ if (!stick.open()) {
 }
 ```
 
-### Scanning for Sensors
+### Step 5: Scanning for Sensors
 
 Scan for available sensors:
 
 ```javascript
-heartRateSensor.on("hbData", data => {
+heartRateSensor.on("hbData", (data) => {
     console.log(`Device Id: ${data.DeviceId}, Heart Rate: ${data.ComputedHeartRate}`);
 });
 
@@ -140,9 +132,9 @@ if (!stick.open()) {
 
 ## Important Notes
 
--   Never attach a sensor before receiving the startup event.
--   Never attach a new sensor before receiving the attached or detached event of the previous sensor.
--   Never detach a sensor before receiving the attached or detached event of the previous sensor.
+-   Never attach a sensor before receiving the `startup` event.
+-   Never attach a new sensor before receiving the `attached` or `detached` event of the previous sensor.
+-   Never detach a sensor before receiving the `attached` or `detached` event of the previous sensor.
 
 ## API Documentation
 
@@ -284,11 +276,11 @@ Refer to the [examples](/examples) folder for more comprehensive examples of usi
 ### Example: Heart Rate Sensor
 
 ```javascript
-const Ant = require("ant-plus-next");
+import * as Ant from "ant-plus-next";
 const stick = new Ant.GarminStick3();
 const heartRateSensor = new Ant.HeartRateSensor(stick);
 
-heartRateSensor.on("hbData", data => {
+heartRateSensor.on("hbData", (data) => {
     console.log(`Device Id: ${data.DeviceId}, Heart Rate: ${data.ComputedHeartRate}`);
 });
 
@@ -303,8 +295,10 @@ if (!stick.open()) {
 
 ## License and Acknowledgements
 
-This project is licensed under the MIT License.
+This project is licensed under the [MIT License](./LICENSE).
 
 Parts of the code are based on the original project [ant-plus](https://github.com/Loghorn/ant-plus) by Alessandro Vergani (© 2015). The original project was also licensed under the MIT License.
+
+### Thanks You!
 
 Thanks to the original developers and all contributors!

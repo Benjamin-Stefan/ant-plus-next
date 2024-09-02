@@ -1,4 +1,4 @@
-import EventEmitter from "events";
+import { EventEmitter } from "events";
 import { USBDriver } from "../core/usbDriver.js";
 import { SendCallback } from "../types/sendCallback.js";
 import { Constants } from "../types/constants.js";

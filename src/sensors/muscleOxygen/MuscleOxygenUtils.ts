@@ -120,7 +120,6 @@ export function updateState(sensor: MuscleOxygenSensor | MuscleOxygenScanner, st
             break;
         }
         case 0x52: {
-            // Read battery information
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
             const batteryId = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 2);
             const operatingTime = data.readUInt32LE(Messages.BUFFER_INDEX_MSG_DATA + 3) & 0xffffff;

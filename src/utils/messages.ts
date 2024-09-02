@@ -140,7 +140,7 @@ export class Messages {
         message.push(Constants.MESSAGE_TX_SYNC);
         message.push(payload.length);
         message.push(messageId);
-        payload.forEach(byte => {
+        payload.forEach((byte) => {
             message.push(byte);
         });
         message.push(this.getChecksum(message));
@@ -173,7 +173,7 @@ export class Messages {
 
     static getChecksum(message: number[]): number {
         let checksum = 0;
-        message.forEach(byte => {
+        message.forEach((byte) => {
             checksum = (checksum ^ byte) % 0xff;
         });
 

@@ -49,7 +49,7 @@ export class USBDriver extends EventEmitter {
     private getDevices(): usb.usb.Device[] {
         const allDevices = usb.getDeviceList();
 
-        return allDevices.filter(d => d.deviceDescriptor.idVendor === this.idVendor && d.deviceDescriptor.idProduct === this.idProduct).filter(d => USBDriver.deviceInUse.indexOf(d) === -1);
+        return allDevices.filter((d) => d.deviceDescriptor.idVendor === this.idVendor && d.deviceDescriptor.idProduct === this.idProduct).filter((d) => USBDriver.deviceInUse.indexOf(d) === -1);
     }
 
     /**
@@ -217,7 +217,7 @@ export class USBDriver extends EventEmitter {
                     .then(() => {
                         usb.usb.removeListener("attach", fn);
                     })
-                    .catch(err => {
+                    .catch((err) => {
                         if (!controller.signal.aborted) {
                             console.error(err); // handle errors
                         }
@@ -364,7 +364,7 @@ export class USBDriver extends EventEmitter {
     public write(data: Buffer) {
         if (this.outEndpoint) {
             //console.debug("DATA SEND: ", data);
-            this.outEndpoint.transfer(data, error => {
+            this.outEndpoint.transfer(data, (error) => {
                 if (error) {
                     console.error("ERROR SEND: ", error);
                 }

@@ -6,6 +6,7 @@
     "excludeExternals": true,
     "excludePrivate": true,
     "excludeProtected": true,
+    "excludeTags": ["internal", "deprecated"],
     "tsconfig": "tsconfig.json",
     "readme": "README.md"
 }

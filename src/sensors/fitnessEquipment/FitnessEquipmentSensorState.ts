@@ -1,4 +1,4 @@
-import { PairedDevice } from "../../types/pairedDevice";
+import { PairedDevice } from "../../types/pairedDevice.js";
 
 /**
  * Represents the state of a Fitness Equipment sensor.

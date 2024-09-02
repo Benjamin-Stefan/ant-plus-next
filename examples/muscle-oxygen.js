@@ -1,11 +1,11 @@
 "use strict";
 
-import * as Ant from "../dist/index.js";
+import * as Ant from "../dist/ant-plus-next.mjs";
 
 let stick = new Ant.GarminStick2();
 let muscleOxygenSensor = new Ant.MuscleOxygenSensor(stick);
 
-muscleOxygenSensor.on("oxygenData", data => {
+muscleOxygenSensor.on("oxygenData", (data) => {
     console.log(`id: ${data.DeviceId}`);
     console.dir(data);
 

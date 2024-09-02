@@ -1,4 +1,4 @@
-import * as Ant from "../dist/ant-plus-next.mjs";
+const Ant = require("../dist/ant-plus-next.cjs");
 
 async function openStick(stick, stickid) {
     var sensor1 = new Ant.HeartRateSensor(stick);

@@ -1,11 +1,11 @@
 "use strict";
 
-import * as Ant from "../dist/index.js";
+import * as Ant from "../dist/ant-plus-next.mjs";
 
 const stick = new Ant.GarminStick2();
 
 const hrScanner = new Ant.HeartRateScanner(stick);
-hrScanner.on("hbData", data => {
+hrScanner.on("hbData", (data) => {
     console.log(`id: ${data.DeviceId}`);
     console.dir(data);
 });
@@ -18,35 +18,35 @@ hrScanner.on("attached", () => {
 });
 
 const environmentScanner = new Ant.EnvironmentScanner(stick);
-environmentScanner.on("envData", data => {
+environmentScanner.on("envData", (data) => {
     console.log(`id: ${data.DeviceId}`);
     console.dir(data);
 });
 
 const fitnessEquipmentScanner = new Ant.FitnessEquipmentScanner(stick);
-fitnessEquipmentScanner.on("fitnessData", data => {
+fitnessEquipmentScanner.on("fitnessData", (data) => {
     console.log(`id: ${data.DeviceId}`);
     console.dir(data);
 });
 
 const speedCadenceScanner = new Ant.SpeedCadenceScanner(stick);
-speedCadenceScanner.on("speedData", data => {
+speedCadenceScanner.on("speedData", (data) => {
     console.log(`id: ${data.DeviceId}`);
     console.dir(data);
 });
-speedCadenceScanner.on("cadenceData", data => {
+speedCadenceScanner.on("cadenceData", (data) => {
     console.log(`id: ${data.DeviceId}`);
     console.dir(data);
 });
 
 const speedScanner = new Ant.SpeedScanner(stick);
-speedScanner.on("speedData", data => {
+speedScanner.on("speedData", (data) => {
     console.log(`id: ${data.DeviceId}`);
     console.dir(data);
 });
 
 const cadenceScanner = new Ant.CadenceScanner(stick);
-cadenceScanner.on("cadenceData", data => {
+cadenceScanner.on("cadenceData", (data) => {
     console.log(`id: ${data.DeviceId}`);
     console.dir(data);
 });
