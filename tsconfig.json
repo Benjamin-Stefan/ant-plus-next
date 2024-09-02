@@ -10,9 +10,9 @@
         "strict": true,
         "strictNullChecks": true,
         "skipLibCheck": true,
-        "baseUrl": "./",
+        "baseUrl": "./src",
         "paths": {
-            "@/*": ["src/*"]
+            "@/*": ["*"]
         },
         "types": ["node"]
     },
