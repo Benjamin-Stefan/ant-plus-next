@@ -7,9 +7,12 @@ import terser from "@rollup/plugin-terser";
 const plugins = [
     resolve({
         preferBuiltins: true,
+        extensions: [".js", ".ts"],
     }),
     commonjs(),
-    typescript(),
+    typescript({
+        tsconfig: "./tsconfig.json",
+    }),
     json(),
     terser(),
 ];
