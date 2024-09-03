@@ -1,5 +1,6 @@
 export default {
     branches: ["main"],
+    repositoryUrl: "https://github.com/Benjamin-Stefan/ant-plus-next",
     plugins: [
         ["@semantic-release/changelog", { changelogFile: "CHANGELOG.md" }],
         "@semantic-release/npm",
