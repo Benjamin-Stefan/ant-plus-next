@@ -71,7 +71,8 @@
     "files": [
         "dist/**/*",
         "README.md",
-        "LICENSE"
+        "LICENSE",
+        "package.json"
     ],
     "directories": {
         "examples": "./samples",
