@@ -1,6 +1,6 @@
 {
     "name": "ant-plus-next",
-    "version": "1.0.0",
+    "version": "0.0.0-development",
     "description": "A modern Node.js module for working with ANT+ USB sticks and sensors.",
     "main": "./dist/ant-plus-next.cjs",
     "module": "./dist/ant-plus-next.esm",
