@@ -1,69 +1,94 @@
 # Contributing to ant-plus-next
 
-We love contributions! Thank you for considering contributing to this project.
+Thank you for considering contributing to this project! We welcome all types of contributions, whether it's reporting bugs, suggesting features, writing code, or improving documentation.
+
+## Table of Contents
+
+-   [Code of Conduct](#code-of-conduct)
+-   [Security Policy](#security-policy)
+-   [How to Contribute](#how-to-contribute)
+    -   [Reporting Bugs](#reporting-bugs)
+    -   [Suggesting Features](#suggesting-features)
+    -   [Submitting Code Changes](#submitting-code-changes)
+-   [Development Workflow](#development-workflow)
+    -   [Local Setup](#local-setup)
+    -   [Testing](#testing)
+-   [Pull Request Guidelines](#pull-request-guidelines)
+-   [Getting Help](#getting-help)
+-   [License](#license)
 
 ## Code of Conduct
 
-Please note that this project is governed by a [Code of Conduct](CODE_OF_CONDUCT.md). By participating in this project, you agree to abide by its terms.
+Please read and adhere to our [Code of Conduct](./CODE_OF_CONDUCT.md) to ensure a welcoming and friendly environment for all contributors.
+
+## Security Policy
+
+If you discover a security vulnerability, please review our [Security Policy](./SECURITY.md) for instructions on how to responsibly disclose it.
 
 ## How to Contribute
 
-1. **Fork the repository**: Click on the "Fork" button at the top right of this page.
-2. **Clone your fork**: `git clone https://github.com/your-username/ant-plus-next.git`
-3. **Create a new branch**: `git checkout -b feature/new-feature`
-    - Use descriptive branch names, such as `feature/add-new-sensor` or `fix/bug-123`.
-4. **Make your changes**: Add your new feature or fix a bug.
-5. **Commit your changes**: Follow [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) format, e.g., `git commit -m 'feat: add new feature'`.
-6. **Push to your branch**: `git push origin feature/new-feature`
-7. **Submit a Pull Request (PR)**: Go to the original repository and open a Pull Request. Please provide a detailed description of your changes.
+### Reporting Bugs
 
-## Automated Checks
+If you find a bug, please open an [issue](https://github.com/Benjamin-Stefan/ant-plus-next/issues) and provide as much detail as possible:
 
-### Git Hooks
+-   Steps to reproduce the bug
+-   Expected and actual behavior
+-   Environment details (e.g., OS, Node.js version, ANT+ dongle model)
 
-This project uses Git hooks via [Husky](https://typicode.github.io/husky/#/) to run checks automatically:
+Make sure to search existing issues first to avoid duplicates.
 
--   **Pre-commit Hook**: Runs `eslint` and `prettier` to check for code quality and formatting issues before each commit. Please ensure these checks pass before committing.
--   **Pre-push Hook**: Runs the test suite to verify that all tests pass before pushing code to the remote repository.
+### Suggesting Features
 
-To install these hooks locally, run:
+To suggest a new feature or improvement, open an [issue](https://github.com/Benjamin-Stefan/ant-plus-next/issues) and describe:
 
-```bash
-npm run prepare
-```
+-   The problem you're facing or the enhancement you'd like to see
+-   Any possible solutions or ideas for how to implement it
 
-## Continuous Integration (CI)
+### Submitting Code Changes
 
-This repository uses [GitHub Actions](https://docs.github.com/en/actions) for continuous integration:
+1. **Fork the repository**: Click the "Fork" button at the top right.
+2. **Clone your fork**: `git clone https://github.com/benjamin-stefan/ant-plus-next.git`
+3. **Create a new branch**: `git checkout -b feature/my-new-feature`
+    - Use descriptive branch names like `feature/add-new-sensor` or `fix/bug-123`.
+4. **Make your changes**: Add your code or documentation.
+5. **Follow the commit guidelines**: Use the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) format, e.g., `git commit -m 'feat: add new feature'`.
+6. **Push your changes**: `git push origin feature/my-new-feature`
+7. **Open a Pull Request**: Go to the original repository and submit a Pull Request (PR) with a detailed description of your changes.
 
--   **CI Workflow**: Automatically runs tests, lints the code, and builds the project for each pull request. Make sure your changes pass these checks before requesting a review.
--   **Release Workflow**: Automatically publishes a new version to npm when a new version is tagged in the main branch.
+## Development Workflow
 
-## Coding Style
+### Local Setup
 
--   Please adhere to the coding style and conventions outlined in the `.eslintrc` and `.prettierrc` files.
--   Run `npm run lint` before committing to ensure your code follows the style guide.
+1. Clone the repository: `git clone https://github.com/Benjamin-Stefan/ant-plus-next.git`
+2. Install dependencies: `npm install`
+3. Install Git hooks: `npm run prepare` (required for Husky pre-commit and pre-push checks)
 
-## Testing
+### Testing
 
--   Ensure all tests pass before submitting a PR by running `npm test`.
--   If you add new functionality, please add corresponding tests.
+-   Run all tests: `npm test`
 
-## Pull Request Process
+Ensure that all tests pass before submitting a PR.
 
--   Ensure your PR includes a comprehensive description of the changes.
--   Reference any related issues in the PR description.
--   Each PR must be approved by at least one maintainer.
--   PRs are reviewed on a regular basis. Expect a response within a few days.
--   After review, please make any requested changes before the PR can be merged.
+## Pull Request Guidelines
+
+-   **Description**: Provide a clear and concise description of the changes.
+-   **Reference Issues**: Link any related issues in the PR description (e.g., "Fixes #123").
+-   **Checklist**:
+    -   Code adheres to the style guidelines (`npm run lint`).
+    -   All tests pass.
+    -   Documentation has been updated if necessary.
+    -   Changes are backward compatible.
 
 ## Getting Help
 
 If you need help or have questions, feel free to:
 
--   Open a discussion in the [Discussions tab](https://github.com/Benjamin-Stefan/ant-plus-next/discussions).
--   Create an issue using the [issue template](https://github.com/Benjamin-Stefan/ant-plus-next/issues).
+-   Open an issue using the appropriate [issue template](https://github.com/Benjamin-Stefan/ant-plus-next/issues).
 
 ## License
 
 By contributing, you agree that your contributions will be licensed under the same license as the project ([MIT License](./LICENSE)).
+
+## Thank You!
+
+Your contributions make this project better for everyone. Thank you!
