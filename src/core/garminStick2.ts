@@ -1,10 +1,10 @@
 import { DebugOptions } from "../types/debugOptions.js";
-import { USBDriver } from "./usbDriver.js";
+import { NodeUSBDriver } from "./driver/index.js";
 
 /**
  * Class representing a Garmin Stick 2 USB driver, which extends the base USBDriver class.
  */
-export class GarminStick2 extends USBDriver {
+export class GarminStick2 extends NodeUSBDriver {
     /**
      * Creates an instance of GarminStick2.
      *

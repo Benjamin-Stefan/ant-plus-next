@@ -1,9 +1,9 @@
 import { EventEmitter } from "events";
-import { USBDriver } from "../core/usbDriver.js";
 import { SendCallback } from "../types/sendCallback.js";
 import { Constants } from "../types/constants.js";
 import { Messages } from "../utils/messages.js";
 import { Status } from "../types/status.js";
+import { USBDriverBase } from "@/types/usbDriverBase.js";
 
 /**
  * Abstract base class for sensors that communicates over a USB connection.
@@ -16,8 +16,8 @@ export abstract class BaseSensor extends EventEmitter {
 
     private messageQueue: { msg: Buffer; cbk?: SendCallback }[] = [];
 
-    protected decodeDataCbk: ((data: Buffer) => void) | undefined;
-    protected statusCbk: ((status: Status) => boolean) | undefined;
+    protected decodeDataCbk: ((data: Buffer) => Promise<void>) | undefined;
+    protected statusCbk: ((status: Status) => Promise<boolean>) | undefined;
 
     /**
      * Abstract method to update the state of the sensor.
@@ -31,11 +31,15 @@ export abstract class BaseSensor extends EventEmitter {
     /**
      * Creates an instance of BaseSensor.
      *
-     * @param {USBDriver} stick - The USB driver used for communication with the sensor.
+     * @param {USBDriverBase} stick - The USB driver used for communication with the sensor.
      */
-    constructor(private stick: USBDriver) {
+    constructor(private stick: USBDriverBase) {
         super();
-        stick.on("read", this.handleEventMessages.bind(this));
+        stick.on("read", (data: Buffer) => {
+            this.handleEventMessages(data).catch((error) => {
+                console.error(error);
+            });
+        });
     }
 
     /**
@@ -46,7 +50,7 @@ export abstract class BaseSensor extends EventEmitter {
      *
      * @throws Will throw an error if already attached or if the stick cannot scan.
      */
-    protected scan(type: string, frequency: number) {
+    protected async scan(type: string, frequency: number): Promise<void> {
         if (this.channel !== undefined) {
             throw new Error("already attached");
         }
@@ -57,14 +61,14 @@ export abstract class BaseSensor extends EventEmitter {
 
         const channel = 0;
 
-        const onStatus = (status: Status) => {
+        const onStatus = async (status: Status) => {
             switch (status.msg) {
                 case Constants.MESSAGE_RF:
                     // Handle various message statuses
                     switch (status.code) {
                         case Constants.EVENT_CHANNEL_CLOSED:
                         case Constants.EVENT_RX_FAIL_GO_TO_SEARCH:
-                            this.write(Messages.unassignChannel(channel));
+                            await this.write(Messages.unassignChannel(channel));
                             return true;
                         case Constants.EVENT_TRANSFER_TX_COMPLETED:
                         case Constants.EVENT_TRANSFER_TX_FAILED:
@@ -75,7 +79,7 @@ export abstract class BaseSensor extends EventEmitter {
                                 mc.cbk(status.code === Constants.EVENT_TRANSFER_TX_COMPLETED);
                             }
                             if (this.messageQueue.length) {
-                                this.write(this.messageQueue[0].msg);
+                                await this.write(this.messageQueue[0].msg);
                             }
                             return true;
                         }
@@ -84,19 +88,19 @@ export abstract class BaseSensor extends EventEmitter {
                     }
                     break;
                 case Constants.MESSAGE_CHANNEL_ASSIGN:
-                    this.write(Messages.setDevice(channel, 0, 0, 0));
+                    await this.write(Messages.setDevice(channel, 0, 0, 0));
                     return true;
                 case Constants.MESSAGE_CHANNEL_ID:
-                    this.write(Messages.setFrequency(channel, frequency));
+                    await this.write(Messages.setFrequency(channel, frequency));
                     return true;
                 case Constants.MESSAGE_CHANNEL_FREQUENCY:
-                    this.write(Messages.setRxExt());
+                    await this.write(Messages.setRxExt());
                     return true;
                 case Constants.MESSAGE_ENABLE_RX_EXT:
-                    this.write(Messages.libConfig(channel, 0xe0));
+                    await this.write(Messages.libConfig(channel, 0xe0));
                     return true;
                 case Constants.MESSAGE_LIB_CONFIG:
-                    this.write(Messages.openRxScan());
+                    await this.write(Messages.openRxScan());
                     return true;
                 case Constants.MESSAGE_CHANNEL_OPEN_RX_SCAN:
                     process.nextTick(() => this.emit("attached"));
@@ -116,7 +120,7 @@ export abstract class BaseSensor extends EventEmitter {
             return false;
         };
 
-        if (this.stick.isScanning()) {
+        if (await this.stick.isScanning()) {
             this.channel = channel;
             this.deviceId = 0;
             this.transmissionType = 0;
@@ -124,14 +128,14 @@ export abstract class BaseSensor extends EventEmitter {
             this.statusCbk = onStatus;
 
             process.nextTick(() => this.emit("attached"));
-        } else if (this.stick.attach(this, true)) {
+        } else if (await this.stick.attach(this, true)) {
             this.channel = channel;
             this.deviceId = 0;
             this.transmissionType = 0;
 
             this.statusCbk = onStatus;
 
-            this.write(Messages.assignChannel(channel, type));
+            await this.write(Messages.assignChannel(channel, type));
         } else {
             throw new Error("cannot attach");
         }
@@ -151,25 +155,28 @@ export abstract class BaseSensor extends EventEmitter {
      *
      * @throws Will throw an error if already attached or if unable to attach.
      */
-    protected attachSensor(channel: number, type: string, deviceId: number, deviceType: number, transmissionType: number, timeout: number, period: number, frequency: number) {
+    protected async attachSensor(channel: number, type: string, deviceId: number, deviceType: number, transmissionType: number, timeout: number, period: number, frequency: number) {
         if (this.channel !== undefined) {
             throw new Error("already attached");
         }
-        if (!this.stick.attach(this, false)) {
+
+        const attached = await this.stick.attach(this, false);
+        if (!attached) {
             throw new Error("cannot attach");
         }
+
         this.channel = channel;
         this.deviceId = deviceId;
         this.transmissionType = transmissionType;
 
-        const onStatus = (status: Status) => {
+        const onStatus = async (status: Status) => {
             switch (status.msg) {
                 case Constants.MESSAGE_RF:
                     // Handle various message statuses
                     switch (status.code) {
                         case Constants.EVENT_CHANNEL_CLOSED:
                         case Constants.EVENT_RX_FAIL_GO_TO_SEARCH:
-                            this.write(Messages.unassignChannel(channel));
+                            await this.write(Messages.unassignChannel(channel));
                             return true;
                         case Constants.EVENT_TRANSFER_TX_COMPLETED:
                         case Constants.EVENT_TRANSFER_TX_FAILED:
@@ -180,7 +187,7 @@ export abstract class BaseSensor extends EventEmitter {
                                 mc.cbk(status.code === Constants.EVENT_TRANSFER_TX_COMPLETED);
                             }
                             if (this.messageQueue.length) {
-                                this.write(this.messageQueue[0].msg);
+                                await this.write(this.messageQueue[0].msg);
                             }
                             return true;
                         }
@@ -191,22 +198,22 @@ export abstract class BaseSensor extends EventEmitter {
                     }
                     break;
                 case Constants.MESSAGE_CHANNEL_ASSIGN:
-                    this.write(Messages.setDevice(channel, deviceId, deviceType, transmissionType));
+                    await this.write(Messages.setDevice(channel, deviceId, deviceType, transmissionType));
                     return true;
                 case Constants.MESSAGE_CHANNEL_ID:
-                    this.write(Messages.searchChannel(channel, timeout));
+                    await this.write(Messages.searchChannel(channel, timeout));
                     return true;
                 case Constants.MESSAGE_CHANNEL_SEARCH_TIMEOUT:
-                    this.write(Messages.setFrequency(channel, frequency));
+                    await this.write(Messages.setFrequency(channel, frequency));
                     return true;
                 case Constants.MESSAGE_CHANNEL_FREQUENCY:
-                    this.write(Messages.setPeriod(channel, period));
+                    await this.write(Messages.setPeriod(channel, period));
                     return true;
                 case Constants.MESSAGE_CHANNEL_PERIOD:
-                    this.write(Messages.libConfig(channel, 0xe0));
+                    await this.write(Messages.libConfig(channel, 0xe0));
                     return true;
                 case Constants.MESSAGE_LIB_CONFIG:
-                    this.write(Messages.openChannel(channel));
+                    await this.write(Messages.openChannel(channel));
                     return true;
                 case Constants.MESSAGE_CHANNEL_OPEN:
                     process.nextTick(() => this.emit("attached"));
@@ -228,7 +235,7 @@ export abstract class BaseSensor extends EventEmitter {
 
         this.statusCbk = onStatus;
 
-        this.write(Messages.assignChannel(channel, type));
+        await this.write(Messages.assignChannel(channel, type));
     }
 
     /**
@@ -236,12 +243,13 @@ export abstract class BaseSensor extends EventEmitter {
      *
      * @throws Will throw an error if there is an issue detaching.
      */
-    public detach() {
+    public async detach() {
         if (this.channel === undefined) {
             return;
         }
-        this.write(Messages.closeChannel(this.channel));
-        if (!this.stick.detach(this)) {
+        await this.write(Messages.closeChannel(this.channel));
+        const detached = await this.stick.detach(this);
+        if (!detached) {
             throw new Error("error detaching");
         }
     }
@@ -251,8 +259,8 @@ export abstract class BaseSensor extends EventEmitter {
      *
      * @param {Buffer} data - The data buffer to send.
      */
-    protected write(data: Buffer) {
-        this.stick.write(data);
+    protected async write(data: Buffer): Promise<void> {
+        await this.stick.write(data);
     }
 
     /**
@@ -261,7 +269,7 @@ export abstract class BaseSensor extends EventEmitter {
      * @private
      * @param {Buffer} data - The data buffer containing the event message.
      */
-    private handleEventMessages(data: Buffer) {
+    private async handleEventMessages(data: Buffer): Promise<void> {
         const messageId = data.readUInt8(Messages.BUFFER_INDEX_MSG_TYPE);
         const channel = data.readUInt8(Messages.BUFFER_INDEX_CHANNEL_NUM);
 
@@ -281,7 +289,7 @@ export abstract class BaseSensor extends EventEmitter {
                     });
                 }
             } else if (this.decodeDataCbk) {
-                this.decodeDataCbk(data);
+                await this.decodeDataCbk(data);
             }
         }
     }
@@ -292,10 +300,10 @@ export abstract class BaseSensor extends EventEmitter {
      * @param {Buffer} data - The data buffer to send.
      * @param {SendCallback} [cbk] - Optional callback to handle the send result.
      */
-    protected send(data: Buffer, cbk?: SendCallback) {
+    protected async send(data: Buffer, cbk?: SendCallback): Promise<void> {
         this.messageQueue.push({ msg: data, cbk });
         if (this.messageQueue.length === 1) {
-            this.write(data);
+            await this.write(data);
         }
     }
 }

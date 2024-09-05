@@ -17,8 +17,8 @@ export abstract class AntPlusBaseSensor extends BaseSensor {
      * const sensor = new AntPlusSensor();
      * sensor.scan('heartRate');
      */
-    protected scan(type: string) {
-        return super.scan(type, 57);
+    protected async scan(type: string): Promise<void> {
+        return await super.scan(type, 57);
     }
 
     /**
@@ -39,7 +39,7 @@ export abstract class AntPlusBaseSensor extends BaseSensor {
      * const sensor = new AntPlusSensor();
      * sensor.attachSensor(1, 'heartRate', 12345, 120, 5, 60, 8070);
      */
-    protected attachSensor(channel: number, type: string, deviceId: number, deviceType: number, transmissionType: number, timeout: number, period: number) {
-        return super.attachSensor(channel, type, deviceId, deviceType, transmissionType, timeout, period, 57);
+    protected async attachSensor(channel: number, type: string, deviceId: number, deviceType: number, transmissionType: number, timeout: number, period: number): Promise<void> {
+        return await super.attachSensor(channel, type, deviceId, deviceType, transmissionType, timeout, period, 57);
     }
 }

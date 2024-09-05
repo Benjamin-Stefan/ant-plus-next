@@ -1,7 +1,7 @@
 import { AntPlusBaseSensor } from "./antPlusBaseSensor.js";
 import { Constants } from "../types/constants.js";
 import { Messages } from "../utils/messages.js";
-import { USBDriver } from "../core/usbDriver.js";
+import { USBDriverBase } from "@/types/usbDriverBase.js";
 
 /**
  * Abstract base class for scanning and decoding data from ANT+ sensors.
@@ -37,9 +37,9 @@ export abstract class AntPlusScanner extends AntPlusBaseSensor {
     /**
      * Constructs an instance of the AntPlusScanner class.
      *
-     * @param {USBDriver} stick - The USB driver instance used for communication with the ANT+ stick.
+     * @param {USBDriverBase} stick - The USB driver instance used for communication with the ANT+ stick.
      */
-    constructor(stick: USBDriver) {
+    constructor(stick: USBDriverBase) {
         super(stick);
         this.decodeDataCbk = this.decodeData.bind(this);
     }
@@ -55,8 +55,8 @@ export abstract class AntPlusScanner extends AntPlusBaseSensor {
      * const scanner = new AntPlusScanner();
      * scanner.scan();
      */
-    public scan() {
-        return super.scan("receive");
+    public async scan(): Promise<void> {
+        return await super.scan("receive");
     }
 
     /**
@@ -75,7 +75,7 @@ export abstract class AntPlusScanner extends AntPlusBaseSensor {
      * @protected
      * @throws {Error} Always throws an error indicating that sending is unsupported.
      */
-    protected send() {
+    protected send(): Promise<void> {
         throw new Error("send unsupported");
     }
 
@@ -91,7 +91,8 @@ export abstract class AntPlusScanner extends AntPlusBaseSensor {
      * const dataBuffer = getDataFromSensor(); // assume this function gets data from a sensor
      * decodeData(dataBuffer);
      */
-    private decodeData(data: Buffer) {
+    // eslint-disable-next-line @typescript-eslint/require-await
+    private async decodeData(data: Buffer): Promise<void> {
         if (data.length <= Messages.BUFFER_INDEX_EXT_MSG_BEGIN + 3 || !(data.readUInt8(Messages.BUFFER_INDEX_EXT_MSG_BEGIN) & 0x80)) {
             console.log("wrong message format", data.toString("hex"));
             return;
