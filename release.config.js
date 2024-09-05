@@ -44,20 +44,34 @@ export default {
 Welcome to the **Changelog** of **ant-plus-next**.  
 Here you will find all the significant changes, new features, and bug fixes for each version.
 
----
-
-### Current Version: {{version}}  
-Released on: {{date}}  
-
 ### Links
 
-- 📂 [Repository]({{repository}})  
+- 📂 [Repository](https://github.com/Benjamin-Stefan/ant-plus-next)  
 - 📄 [Documentation](https://github.com/Benjamin-Stefan/ant-plus-next?tab=readme-ov-file#api-documentation)  
 - 📝 [Issue Tracker](https://github.com/Benjamin-Stefan/ant-plus-next/issues)
 
 ---
+`,
+                    mainTemplate: `
+{{#if version}}
+### Current Version: {{version}}  
+Released on: {{date}}
 
-  `,
+{{/if}}
+
+{{#each commitGroups}}
+### {{title}}
+
+{{#each commits}}
+* {{this.subject}} ([{{this.hash}}]({{../context.repository}}/commit/{{this.hash}}))
+{{/each}}
+
+{{/each}}
+
+{{#if footer}}
+{{footer}}
+{{/if}}
+`,
                 },
             },
         ],
@@ -67,14 +81,14 @@ Released on: {{date}}
                 changelogFile: "CHANGELOG.md",
             },
         ],
-        "@semantic-release/npm",
-        "@semantic-release/github",
-        [
-            "@semantic-release/git",
-            {
-                assets: ["CHANGELOG.md", "package.json", "package-lock.json"],
-                message: "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}",
-            },
-        ],
+        //"@semantic-release/npm",
+        //"@semantic-release/github",
+        // [
+        //     "@semantic-release/git",
+        //     {
+        //         assets: ["CHANGELOG.md", "package.json", "package-lock.json"],
+        //         message: "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}",
+        //     },
+        // ],
     ],
 };
