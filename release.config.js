@@ -53,7 +53,7 @@ Released on: {{date}}
 
 - 📂 [Repository]({{repository}})  
 - 📄 [Documentation](https://github.com/Benjamin-Stefan/ant-plus-next?tab=readme-ov-file#api-documentation)  
-- 📝 [Issue Tracker](https://github.com/Benjamin-Stefan/ant-plus-next/issues
+- 📝 [Issue Tracker](https://github.com/Benjamin-Stefan/ant-plus-next/issues)
 
 ---
 
