@@ -5,6 +5,29 @@ Here you will find all the significant changes, new features, and bug fixes for 
 
 ---
 
+### Current Version: 0.0.2  
+Released on: 2024-09-05  
+
+### Links
+
+- 📂 [Repository](ant-plus-next)  
+- 📄 [Documentation](https://github.com/Benjamin-Stefan/ant-plus-next?tab=readme-ov-file#api-documentation)  
+- 📝 [Issue Tracker](https://github.com/Benjamin-Stefan/ant-plus-next/issues)
+
+---
+
+  
+### 🐛 Bug Fixes
+
+* Correct ESM/mjs file configuration in package.json for npm compatibility ([ed15c25](https://github.com/Benjamin-Stefan/ant-plus-next/commit/ed15c251ae3255b471e6722f61850380751563a3))
+
+# 🚀 ant-plus-next - Changelog
+
+Welcome to the **Changelog** of **ant-plus-next**.  
+Here you will find all the significant changes, new features, and bug fixes for each version.
+
+---
+
 ### Current Version: 0.0.1  
 Released on: 2024-09-05  
 
