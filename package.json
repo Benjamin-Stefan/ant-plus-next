@@ -1,6 +1,6 @@
 {
     "name": "ant-plus-next",
-    "version": "1.0.0",
+    "version": "0.0.0-development",
     "description": "A modern Node.js module for working with ANT+ USB sticks and sensors.",
     "main": "./dist/ant-plus-next.cjs",
     "module": "./dist/ant-plus-next.esm",
@@ -53,6 +53,7 @@
         "@types/node": "^22.5.2",
         "@typescript-eslint/eslint-plugin": "^8.3.0",
         "@typescript-eslint/parser": "^8.3.0",
+        "conventional-changelog-conventionalcommits": "^8.0.0",
         "eslint": "^9.9.1",
         "eslint-config-prettier": "^9.1.0",
         "eslint-plugin-prettier": "^5.2.1",

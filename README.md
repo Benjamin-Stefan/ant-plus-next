@@ -1,5 +1,7 @@
 # ant-plus-next
 
+![npm version](https://img.shields.io/npm/v/ant-plus-next)
+![Build Status](https://img.shields.io/github/actions/workflow/status/Benjamin-Stefan/ant-plus-next/ci.yml?branch=main)
 ![License](https://img.shields.io/github/license/Benjamin-Stefan/ant-plus-next)
 
 A modern Node.js module for working with ANT+ USB sticks and sensors, providing a user-friendly API to interact with various ANT+ sensors like heart rate monitors, speed sensors, and more.

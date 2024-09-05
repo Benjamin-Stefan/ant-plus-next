@@ -1,12 +1,14 @@
 name: Release
 
 on:
-    push:
-        branches:
-            - main
+    workflow_run:
+        workflows: ["CI"]
+        types:
+            - completed
 
 jobs:
     release:
+        if: ${{ github.event.workflow_run.conclusion == 'success' && github.ref == 'refs/heads/main' }}
         runs-on: ubuntu-latest
         permissions:
             issues: write
@@ -14,7 +16,7 @@ jobs:
 
         steps:
             - name: Checkout repository
-              uses: actions/checkout@v3
+              uses: actions/checkout@v4
               with:
                   fetch-depth: 0
 
@@ -28,6 +30,6 @@ jobs:
 
             - name: Run semantic-release
               env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Token for creating GitHub releases
-                  NPM_TOKEN: ${{ secrets.NPM_TOKEN }} # Token for publishing to npm, if needed
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
               run: npm run release
