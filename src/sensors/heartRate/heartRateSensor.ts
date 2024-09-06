@@ -31,8 +31,8 @@ export class HeartRateSensor extends AntPlusSensor {
      * const sensor = new HeartRateSensor();
      * sensor.attach(1, 12345); // Attaches to channel 1 with device ID 12345
      */
-    public attach(channel: number, deviceId: number) {
-        super.attachSensor(channel, "receive", deviceId, HeartRateSensor.deviceType, 0, 255, 8070);
+    public async attach(channel: number, deviceId: number): Promise<void> {
+        await super.attachSensor(channel, "receive", deviceId, HeartRateSensor.deviceType, 0, 255, 8070);
         this.state = new HeartRateSensorState(deviceId);
     }
 

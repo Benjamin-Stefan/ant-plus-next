@@ -31,8 +31,7 @@ export class NodeUSBDriver extends EventEmitter implements USBDriverBase {
     constructor(
         private idVendor: number,
         private idProduct: number,
-        debugOptions: DebugOptions = {},
-        private webUsb: boolean = false
+        debugOptions: DebugOptions = {}
     ) {
         super();
         this.setMaxListeners(50);
@@ -116,6 +115,7 @@ export class NodeUSBDriver extends EventEmitter implements USBDriverBase {
 
     async close(): Promise<void> {
         await this.detachAll();
+
         if (this.inEndpoint) {
             this.inEndpoint.stopPoll(() => {
                 if (this.iface) {
@@ -192,6 +192,7 @@ export class NodeUSBDriver extends EventEmitter implements USBDriverBase {
         if (this.usedChannels < 0) {
             return Promise.resolve(false);
         }
+
         if (forScan) {
             if (this.usedChannels !== 0) {
                 return Promise.resolve(false);

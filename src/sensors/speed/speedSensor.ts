@@ -53,8 +53,8 @@ export class SpeedSensor extends AntPlusSensor {
      * const sensor = new SpeedSensor();
      * sensor.attach(1, 12345); // Attaches to channel 1 with device ID 12345
      */
-    public attach(channel: number, deviceId: number) {
-        super.attachSensor(channel, "receive", deviceId, SpeedSensor.deviceType, 0, 255, 8118);
+    public async attach(channel: number, deviceId: number): Promise<void> {
+        await super.attachSensor(channel, "receive", deviceId, SpeedSensor.deviceType, 0, 255, 8118);
         this.state = new SpeedSensorState(deviceId);
     }
 

@@ -31,8 +31,8 @@ export class EnvironmentSensor extends AntPlusSensor {
      * const sensor = new EnvironmentSensor();
      * sensor.attach(1, 12345); // Attaches to channel 1 with device ID 12345
      */
-    public attach(channel: number, deviceId: number): void {
-        super.attachSensor(channel, "receive", deviceId, EnvironmentSensor.deviceType, 0, 255, 8192);
+    public async attach(channel: number, deviceId: number): Promise<void> {
+        await super.attachSensor(channel, "receive", deviceId, EnvironmentSensor.deviceType, 0, 255, 8192);
         this.state = new EnvironmentSensorState(deviceId);
     }
 

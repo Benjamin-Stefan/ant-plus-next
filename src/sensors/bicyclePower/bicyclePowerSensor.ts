@@ -38,8 +38,8 @@ export class BicyclePowerSensor extends AntPlusSensor {
      * const sensor = new BicyclePowerSensor();
      * sensor.attach(1, 12345); // Attaches to channel 1 with device ID 12345
      */
-    public attach(channel: number, deviceId: number): void {
-        super.attachSensor(channel, "receive", deviceId, BicyclePowerSensor.deviceType, 0, 255, 8182);
+    public async attach(channel: number, deviceId: number): Promise<void> {
+        await super.attachSensor(channel, "receive", deviceId, BicyclePowerSensor.deviceType, 0, 255, 8182);
         this.state = new BicyclePowerSensorState(deviceId);
     }
 

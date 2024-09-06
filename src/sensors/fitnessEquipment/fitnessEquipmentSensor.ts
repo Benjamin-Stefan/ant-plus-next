@@ -40,8 +40,8 @@ export class FitnessEquipmentSensor extends AntPlusSensor {
      * const sensor = new FitnessEquipmentSensor();
      * sensor.attach(1, 12345); // Attaches to channel 1 with device ID 12345
      */
-    public attach(channel: number, deviceId: number): void {
-        super.attachSensor(channel, "receive", deviceId, FitnessEquipmentSensor.deviceType, 0, 255, 8192);
+    public async attach(channel: number, deviceId: number): Promise<void> {
+        await super.attachSensor(channel, "receive", deviceId, FitnessEquipmentSensor.deviceType, 0, 255, 8192);
         this.state = new FitnessEquipmentSensorState(deviceId);
     }
 
@@ -69,7 +69,7 @@ export class FitnessEquipmentSensor extends AntPlusSensor {
      * @param {SendCallback} [cbk] - Optional callback function to handle the send response.
      * @returns {void}
      */
-    private setUserConfigurationInternal(userWeight?: number, bikeWeight?: number, wheelDiameter?: number, gearRatio?: number, cbk?: SendCallback): void {
+    private async setUserConfigurationInternal(userWeight?: number, bikeWeight?: number, wheelDiameter?: number, gearRatio?: number, cbk?: SendCallback): Promise<void> {
         const m = userWeight == null ? 0xffff : Math.max(0, Math.min(65534, Math.round(userWeight * 100)));
         const df = wheelDiameter == null ? 0xff : Math.round(wheelDiameter * 10) % 10;
         const mb = bikeWeight == null ? 0xfff : Math.max(0, Math.min(1000, Math.round(bikeWeight * 20)));
@@ -77,7 +77,7 @@ export class FitnessEquipmentSensor extends AntPlusSensor {
         const gr = gearRatio == null ? 0x00 : Math.max(1, Math.min(255, Math.round(gearRatio / 0.03)));
         const payload = [0x37, m & 0xff, (m >> 8) & 0xff, 0xff, (df & 0xf) | ((mb & 0xf) << 4), (mb >> 4) & 0xf, d & 0xff, gr & 0xff];
         const msg = Messages.acknowledgedData(this.channel!, payload);
-        this.send(msg, cbk);
+        await this.send(msg, cbk);
     }
 
     /**
@@ -94,17 +94,17 @@ export class FitnessEquipmentSensor extends AntPlusSensor {
      * @example
      * sensor.setUserConfiguration(70, 10, 0.7, 3.5, callbackFunction);
      */
-    public setUserConfiguration(userWeightOrCallback?: number | SendCallback, bikeWeight?: number, wheelDiameter?: number, gearRatio?: number, cbk?: SendCallback): void {
+    public async setUserConfiguration(userWeightOrCallback?: number | SendCallback, bikeWeight?: number, wheelDiameter?: number, gearRatio?: number, cbk?: SendCallback): Promise<void> {
         if (typeof userWeightOrCallback === "function") {
-            this.setUserConfigurationInternal(undefined, undefined, undefined, undefined, userWeightOrCallback);
+            await this.setUserConfigurationInternal(undefined, undefined, undefined, undefined, userWeightOrCallback);
         } else if (typeof bikeWeight === "function") {
-            this.setUserConfigurationInternal(userWeightOrCallback, undefined, undefined, undefined, bikeWeight);
+            await this.setUserConfigurationInternal(userWeightOrCallback, undefined, undefined, undefined, bikeWeight);
         } else if (typeof wheelDiameter === "function") {
-            this.setUserConfigurationInternal(userWeightOrCallback, bikeWeight, undefined, undefined, wheelDiameter);
+            await this.setUserConfigurationInternal(userWeightOrCallback, bikeWeight, undefined, undefined, wheelDiameter);
         } else if (typeof gearRatio === "function") {
-            this.setUserConfigurationInternal(userWeightOrCallback, bikeWeight, wheelDiameter, undefined, gearRatio);
+            await this.setUserConfigurationInternal(userWeightOrCallback, bikeWeight, wheelDiameter, undefined, gearRatio);
         } else {
-            this.setUserConfigurationInternal(userWeightOrCallback, bikeWeight, wheelDiameter, gearRatio, cbk);
+            await this.setUserConfigurationInternal(userWeightOrCallback, bikeWeight, wheelDiameter, gearRatio, cbk);
         }
     }
 
@@ -119,11 +119,11 @@ export class FitnessEquipmentSensor extends AntPlusSensor {
      * @example
      * sensor.setBasicResistance(50, callbackFunction);
      */
-    public setBasicResistance(resistance: number, cbk?: SendCallback): void {
+    public async setBasicResistance(resistance: number, cbk?: SendCallback): Promise<void> {
         const res = Math.max(0, Math.min(200, Math.round(resistance * 2)));
         const payload = [0x30, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, res & 0xff];
         const msg = Messages.acknowledgedData(this.channel!, payload);
-        this.send(msg, cbk);
+        await this.send(msg, cbk);
     }
 
     /**
@@ -137,11 +137,11 @@ export class FitnessEquipmentSensor extends AntPlusSensor {
      * @example
      * sensor.setTargetPower(250, callbackFunction);
      */
-    public setTargetPower(power: number, cbk?: SendCallback): void {
+    public async setTargetPower(power: number, cbk?: SendCallback): Promise<void> {
         const p = Math.max(0, Math.min(4000, Math.round(power * 4)));
         const payload = [0x31, 0xff, 0xff, 0xff, 0xff, 0xff, p & 0xff, (p >> 8) & 0xff];
         const msg = Messages.acknowledgedData(this.channel!, payload);
-        this.send(msg, cbk);
+        await this.send(msg, cbk);
     }
 
     /**
@@ -154,13 +154,13 @@ export class FitnessEquipmentSensor extends AntPlusSensor {
      * @param {SendCallback} [cbk] - Optional callback function to handle the send response.
      * @returns {void}
      */
-    private setWindResistanceInternal(windCoeff?: number, windSpeed?: number, draftFactor?: number, cbk?: SendCallback): void {
+    private async setWindResistanceInternal(windCoeff?: number, windSpeed?: number, draftFactor?: number, cbk?: SendCallback): Promise<void> {
         const wc = windCoeff == null ? 0xff : Math.max(0, Math.min(186, Math.round(windCoeff * 100)));
         const ws = windSpeed == null ? 0xff : Math.max(0, Math.min(254, Math.round(windSpeed + 127)));
         const df = draftFactor == null ? 0xff : Math.max(0, Math.min(100, Math.round(draftFactor * 100)));
         const payload = [0x32, 0xff, 0xff, 0xff, 0xff, wc & 0xff, ws & 0xff, df & 0xff];
         const msg = Messages.acknowledgedData(this.channel!, payload);
-        this.send(msg, cbk);
+        await this.send(msg, cbk);
     }
 
     /**
@@ -176,15 +176,15 @@ export class FitnessEquipmentSensor extends AntPlusSensor {
      * @example
      * sensor.setWindResistance(0.5, 20, 0.1, callbackFunction);
      */
-    public setWindResistance(windCoeffOrCallback?: number | SendCallback, windSpeed?: number, draftFactor?: number, cbk?: SendCallback): void {
+    public async setWindResistance(windCoeffOrCallback?: number | SendCallback, windSpeed?: number, draftFactor?: number, cbk?: SendCallback): Promise<void> {
         if (typeof windCoeffOrCallback === "function") {
-            this.setWindResistanceInternal(undefined, undefined, undefined, windCoeffOrCallback);
+            await this.setWindResistanceInternal(undefined, undefined, undefined, windCoeffOrCallback);
         } else if (typeof windSpeed === "function") {
-            this.setWindResistanceInternal(windCoeffOrCallback, undefined, undefined, windSpeed);
+            await this.setWindResistanceInternal(windCoeffOrCallback, undefined, undefined, windSpeed);
         } else if (typeof draftFactor === "function") {
-            this.setWindResistanceInternal(windCoeffOrCallback, windSpeed, undefined, draftFactor);
+            await this.setWindResistanceInternal(windCoeffOrCallback, windSpeed, undefined, draftFactor);
         } else {
-            this.setWindResistanceInternal(windCoeffOrCallback, windSpeed, draftFactor, cbk);
+            await this.setWindResistanceInternal(windCoeffOrCallback, windSpeed, draftFactor, cbk);
         }
     }
 
@@ -197,12 +197,12 @@ export class FitnessEquipmentSensor extends AntPlusSensor {
      * @param {SendCallback} [cbk] - Optional callback function to handle the send response.
      * @returns {void}
      */
-    private setTrackResistanceInternal(slope?: number, rollingResistanceCoeff?: number, cbk?: SendCallback): void {
+    private async setTrackResistanceInternal(slope?: number, rollingResistanceCoeff?: number, cbk?: SendCallback): Promise<void> {
         const s = slope == null ? 0xffff : Math.max(0, Math.min(40000, Math.round((slope + 200) * 100)));
         const rr = rollingResistanceCoeff == null ? 0xff : Math.max(0, Math.min(254, Math.round(rollingResistanceCoeff * 20000)));
         const payload = [0x33, 0xff, 0xff, 0xff, 0xff, s & 0xff, (s >> 8) & 0xff, rr & 0xff];
         const msg = Messages.acknowledgedData(this.channel!, payload);
-        this.send(msg, cbk);
+        await this.send(msg, cbk);
     }
 
     /**
@@ -217,13 +217,13 @@ export class FitnessEquipmentSensor extends AntPlusSensor {
      * @example
      * sensor.setTrackResistance(5, 0.005, callbackFunction);
      */
-    public setTrackResistance(slopeOrCallback?: number | SendCallback, rollingResistanceCoeff?: number, cbk?: SendCallback): void {
+    public async setTrackResistance(slopeOrCallback?: number | SendCallback, rollingResistanceCoeff?: number, cbk?: SendCallback): Promise<void> {
         if (typeof slopeOrCallback === "function") {
-            this.setTrackResistanceInternal(undefined, undefined, slopeOrCallback);
+            await this.setTrackResistanceInternal(undefined, undefined, slopeOrCallback);
         } else if (typeof rollingResistanceCoeff === "function") {
-            this.setTrackResistanceInternal(slopeOrCallback, undefined, rollingResistanceCoeff);
+            await this.setTrackResistanceInternal(slopeOrCallback, undefined, rollingResistanceCoeff);
         } else {
-            this.setTrackResistanceInternal(slopeOrCallback, rollingResistanceCoeff, cbk);
+            await this.setTrackResistanceInternal(slopeOrCallback, rollingResistanceCoeff, cbk);
         }
     }
 }
