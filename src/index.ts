@@ -1,4 +1,4 @@
-export { GarminStick2, GarminStick3 } from "./core/index.js";
+export { GarminStick2, GarminStick3, WebUsbStick } from "./core/index.js";
 export { HeartRateScanner, HeartRateSensor } from "./sensors/heartRate/index.js";
 export { StrideSpeedDistanceScanner, StrideSpeedDistanceSensor } from "./sensors/strideSpeedDistance/index.js";
 export { SpeedCadenceScanner, SpeedCadenceSensor } from "./sensors/speedCadence/index.js";

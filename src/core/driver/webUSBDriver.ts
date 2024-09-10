@@ -11,7 +11,7 @@ export class WebUSBDriver extends EventEmitter implements USBDriverBase {
     private iface: USBInterface | undefined;
     private inEndpoint: USBEndpoint | undefined;
     private outEndpoint: USBEndpoint | undefined;
-    private leftover: DataView | undefined;
+    private leftover: Buffer | undefined;
     private usedChannels: number = 0;
     private attachedSensors: BaseSensor[] = [];
 
@@ -64,7 +64,61 @@ export class WebUSBDriver extends EventEmitter implements USBDriverBase {
 
         await this.reset();
 
-        // TODO polling/data read
+        const readLoop = async () => {
+            if (!this.inEndpoint) {
+                return;
+            }
+            const result = await this.device?.transferIn(this.inEndpoint.endpointNumber, this.inEndpoint.packetSize);
+
+            if (!result || !result.data) {
+                return readLoop();
+            }
+
+            let data = new Uint8Array(result.data.buffer);
+            if (!data.length) {
+                console.log("Keine Daten empfangen.");
+                return readLoop();
+            }
+
+            let buffer = Buffer.from(data);
+
+            let leftover;
+            if (leftover) {
+                buffer = Buffer.concat([leftover, buffer]);
+                leftover = undefined;
+            }
+
+            if (buffer.readUInt8(0) !== 0xa4) {
+                console.error("SYNC fehlt");
+                return readLoop();
+            }
+
+            let beginBlock = 0;
+            const len = data.length;
+
+            while (beginBlock < len) {
+                if (beginBlock + 1 === len) {
+                    this.leftover = buffer.slice(beginBlock);
+                    break;
+                }
+
+                const blockLen = buffer.readUInt8(beginBlock + 1);
+                const endBlock = beginBlock + blockLen + 4;
+
+                if (endBlock > len) {
+                    this.leftover = buffer.slice(beginBlock);
+                    break;
+                }
+
+                const readData = buffer.slice(beginBlock, endBlock);
+                await this.read(readData);
+                beginBlock = endBlock;
+            }
+
+            await readLoop();
+        };
+
+        await readLoop();
 
         return true;
     }
@@ -74,7 +128,15 @@ export class WebUSBDriver extends EventEmitter implements USBDriverBase {
 
         if (this.device) {
             await this.device.close();
-            console.log("WebUSB Device closed.");
+            this.emit("shutdown");
+            const devIdx = WebUSBDriver.deviceInUse.indexOf(this.device);
+
+            if (devIdx >= 0) {
+                WebUSBDriver.deviceInUse.splice(devIdx, 1);
+            }
+
+            this.emit("attach", this.device);
+            this.device = undefined;
         }
     }
 
@@ -95,8 +157,8 @@ export class WebUSBDriver extends EventEmitter implements USBDriverBase {
     }
 
     public async write(data: Buffer): Promise<void> {
-        if (this.device) {
-            console.log("Writing data to WebUSB:", data);
+        if (this.device && this.outEndpoint) {
+            await this.device.transferOut(this.outEndpoint.endpointNumber, data);
         }
     }
 
