@@ -1,9 +1,9 @@
-import { BaseSensor } from "@/sensors/baseSensor";
-import { USBDriverBase } from "@/types/usbDriverBase";
+import { BaseSensor } from "../../sensors/baseSensor";
+import { USBDriverBase } from "../../types/usbDriverBase";
 import EventEmitter from "events";
 import { supportHardware } from "./usbDriverUtils";
-import { Messages } from "@/utils/messages";
-import { Constants } from "@/types/constants";
+import { Messages } from "../../utils/messages";
+import { Constants } from "../../types/constants";
 
 export class WebUSBDriver extends EventEmitter implements USBDriverBase {
     private static deviceInUse: USBDevice[] = [];
@@ -15,12 +15,17 @@ export class WebUSBDriver extends EventEmitter implements USBDriverBase {
     private usedChannels: number = 0;
     private attachedSensors: BaseSensor[] = [];
 
+    private abortController: AbortController;
+    private signal: AbortSignal;
+
     maxChannels: number = 0;
     _canScan: boolean = false;
 
     constructor() {
         super();
         this.setMaxListeners(50);
+        this.abortController = new AbortController();
+        this.signal = this.abortController.signal;
     }
 
     async canScan(): Promise<boolean> {
@@ -34,114 +39,119 @@ export class WebUSBDriver extends EventEmitter implements USBDriverBase {
             }
 
             await this.device.open();
-
             this.iface = this.device.configuration?.interfaces[0];
 
-            if (this.iface) {
-                await this.device.claimInterface(this.iface.interfaceNumber);
+            if (!this.iface) {
+                throw new Error("Keine Interface-Konfiguration gefunden.");
             }
+
+            await this.device.claimInterface(this.iface.interfaceNumber);
+
+            WebUSBDriver.deviceInUse.push(this.device);
+
+            this.inEndpoint = this.iface.alternate.endpoints.find((e) => e.direction === "in");
+            this.outEndpoint = this.iface.alternate.endpoints.find((e) => e.direction === "out");
+
+            if (!this.inEndpoint || !this.outEndpoint) {
+                throw new Error("In- oder Out-Endpunkt nicht gefunden.");
+            }
+
+            await this.reset();
+
+            await this.readLoop();
+
+            return true;
         } catch {
-            if (this.device) {
-                await this.device.close();
-            }
+            await this.close();
 
-            this.device = undefined;
-            this.iface = undefined;
+            return false;
         }
+    }
 
-        if (!this.device) {
-            return Promise.resolve(false);
-        }
+    private async readLoop() {
+        while (!this.signal.aborted) {
+            try {
+                if (!this.inEndpoint) {
+                    return;
+                }
 
-        WebUSBDriver.deviceInUse.push(this.device);
+                const result = await this.device?.transferIn(this.inEndpoint.endpointNumber, this.inEndpoint.packetSize);
+                if (!result || !result.data) {
+                    continue;
+                }
 
-        if (!this.iface) {
-            throw new Error("Interface not initialized.");
-        }
+                let buffer = Buffer.from(new Uint8Array(result.data.buffer));
 
-        this.inEndpoint = this.iface.alternate.endpoints.find((e) => e.direction === "in");
-        this.outEndpoint = this.iface.alternate.endpoints.find((e) => e.direction === "out");
+                if (this.leftover) {
+                    buffer = Buffer.concat([this.leftover, buffer]);
+                    this.leftover = undefined;
+                }
 
-        await this.reset();
+                if (buffer.readUInt8(0) !== 0xa4) {
+                    console.error("SYNC fehlt");
+                    continue;
+                }
 
-        const readLoop = async () => {
-            if (!this.inEndpoint) {
-                return;
-            }
-            const result = await this.device?.transferIn(this.inEndpoint.endpointNumber, this.inEndpoint.packetSize);
+                let beginBlock = 0;
+                const len = buffer.length;
 
-            if (!result || !result.data) {
-                return readLoop();
-            }
+                while (beginBlock < len) {
+                    if (beginBlock + 1 === len) {
+                        this.leftover = buffer.slice(beginBlock);
+                        break;
+                    }
 
-            let data = new Uint8Array(result.data.buffer);
-            if (!data.length) {
-                console.log("Keine Daten empfangen.");
-                return readLoop();
-            }
+                    const blockLen = buffer.readUInt8(beginBlock + 1);
+                    const endBlock = beginBlock + blockLen + 4;
 
-            let buffer = Buffer.from(data);
+                    if (endBlock > len) {
+                        this.leftover = buffer.slice(beginBlock);
+                        break;
+                    }
 
-            let leftover;
-            if (leftover) {
-                buffer = Buffer.concat([leftover, buffer]);
-                leftover = undefined;
-            }
-
-            if (buffer.readUInt8(0) !== 0xa4) {
-                console.error("SYNC fehlt");
-                return readLoop();
-            }
-
-            let beginBlock = 0;
-            const len = data.length;
-
-            while (beginBlock < len) {
-                if (beginBlock + 1 === len) {
-                    this.leftover = buffer.slice(beginBlock);
+                    const readData = buffer.slice(beginBlock, endBlock);
+                    await this.read(readData);
+                    beginBlock = endBlock;
+                }
+            } catch (error) {
+                if (this.signal.aborted) {
                     break;
                 }
 
-                const blockLen = buffer.readUInt8(beginBlock + 1);
-                const endBlock = beginBlock + blockLen + 4;
-
-                if (endBlock > len) {
-                    this.leftover = buffer.slice(beginBlock);
-                    break;
-                }
-
-                const readData = buffer.slice(beginBlock, endBlock);
-                await this.read(readData);
-                beginBlock = endBlock;
+                throw error;
             }
-
-            await readLoop();
-        };
-
-        await readLoop();
-
-        return true;
+        }
     }
 
     public async close(): Promise<void> {
+        this.cancelReadLoop();
         await this.detachAll();
 
         if (this.device) {
-            await this.device.close();
-            this.emit("shutdown");
-            const devIdx = WebUSBDriver.deviceInUse.indexOf(this.device);
+            try {
+                await this.device.close();
+            } catch (error) {
+                console.error("Fehler beim Schließen des Geräts:", error);
+            }
 
+            const devIdx = WebUSBDriver.deviceInUse.indexOf(this.device);
             if (devIdx >= 0) {
                 WebUSBDriver.deviceInUse.splice(devIdx, 1);
             }
 
-            this.emit("attach", this.device);
+            this.emit("shutdown");
             this.device = undefined;
         }
     }
 
+    public cancelReadLoop() {
+        if (!this.signal.aborted) {
+            this.abortController.abort();
+            console.log("Anforderung zum Abbruch der Leseschleife gesendet.");
+        }
+    }
+
     public async read(data: Buffer): Promise<void> {
-        //console.debug("DATA RECV: ", data);
         const messageId = data.readUInt8(2);
         if (messageId === Constants.MESSAGE_STARTUP) {
             await this.write(Messages.requestMessage(0, Constants.MESSAGE_CAPABILITIES));
@@ -174,20 +184,14 @@ export class WebUSBDriver extends EventEmitter implements USBDriverBase {
             return Promise.resolve(false);
         }
 
-        if (forScan) {
-            if (this.usedChannels !== 0) {
-                return Promise.resolve(false);
-            }
-
-            this.usedChannels = -1;
-        } else {
-            if (this.maxChannels <= this.usedChannels) {
-                return Promise.resolve(false);
-            }
-
-            ++this.usedChannels;
+        if (forScan && this.usedChannels !== 0) {
+            return Promise.resolve(false);
+        }
+        if (!forScan && this.maxChannels <= this.usedChannels) {
+            return Promise.resolve(false);
         }
 
+        this.usedChannels = forScan ? -1 : this.usedChannels + 1;
         this.attachedSensors.push(sensor);
 
         return Promise.resolve(true);
@@ -199,12 +203,7 @@ export class WebUSBDriver extends EventEmitter implements USBDriverBase {
             return Promise.resolve(false);
         }
 
-        if (this.usedChannels < 0) {
-            this.usedChannels = 0;
-        } else {
-            --this.usedChannels;
-        }
-
+        this.usedChannels = this.usedChannels < 0 ? 0 : this.usedChannels - 1;
         this.attachedSensors.splice(idx, 1);
 
         return Promise.resolve(true);
@@ -218,14 +217,11 @@ export class WebUSBDriver extends EventEmitter implements USBDriverBase {
         return Promise.resolve(this.usedChannels === -1);
     }
 
-    /**
-     * Detaches all sensors from the USB driver.
-     */
     private async detachAll(): Promise<void> {
-        const copy = this.attachedSensors;
-
-        for (const sensor of copy) {
+        for (const sensor of this.attachedSensors.slice()) {
             await sensor.detach();
         }
+
+        this.attachedSensors = [];
     }
 }

@@ -1,8 +1,8 @@
-import { BaseSensor } from "@/sensors/baseSensor";
-import { Constants } from "@/types/constants";
-import { DebugOptions } from "@/types/debugOptions";
-import { USBDriverBase } from "@/types/usbDriverBase";
-import { Messages } from "@/utils/messages";
+import { BaseSensor } from "../../sensors/baseSensor";
+import { Constants } from "../../types/constants";
+import { DebugOptions } from "../../types/debugOptions";
+import { USBDriverBase } from "../../types/usbDriverBase";
+import { Messages } from "../../utils/messages";
 import EventEmitter from "events";
 import * as usb from "usb";
 

@@ -3,7 +3,7 @@ import { SendCallback } from "../types/sendCallback.js";
 import { Constants } from "../types/constants.js";
 import { Messages } from "../utils/messages.js";
 import { Status } from "../types/status.js";
-import { USBDriverBase } from "@/types/usbDriverBase.js";
+import { USBDriverBase } from "../types/usbDriverBase.js";
 
 /**
  * Abstract base class for sensors that communicates over a USB connection.

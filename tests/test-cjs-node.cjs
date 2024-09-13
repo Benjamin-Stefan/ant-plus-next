@@ -1,4 +1,4 @@
-const { GarminStick2 } = require("../dist/ant-plus-next.cjs");
+const { GarminStick2 } = require("../dist/index.cjs");
 
 console.log("Testing CJS Module");
 const stick = new GarminStick2();

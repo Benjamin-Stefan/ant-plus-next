@@ -1,4 +1,4 @@
-import { GarminStick2 } from "../dist/ant-plus-next.mjs";
+import { GarminStick2 } from "../dist/index.mjs";
 
 console.log("Testing ESM Module");
 const stick = new GarminStick2();

@@ -1,7 +1,7 @@
 import { AntPlusBaseSensor } from "./antPlusBaseSensor.js";
 import { Constants } from "../types/constants.js";
 import { Messages } from "../utils/messages.js";
-import { USBDriverBase } from "@/types/usbDriverBase.js";
+import { USBDriverBase } from "../types/usbDriverBase.js";
 
 /**
  * Abstract base class for managing a specific ANT+ sensor, extending the functionality

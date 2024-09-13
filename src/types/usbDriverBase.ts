@@ -1,4 +1,4 @@
-import { BaseSensor } from "@/sensors/baseSensor";
+import { BaseSensor } from "../sensors/baseSensor";
 import EventEmitter from "events";
 
 export interface USBDriverBase extends EventEmitter {
