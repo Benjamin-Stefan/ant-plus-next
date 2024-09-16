@@ -1,3 +1,15 @@
+### Current Version: 0.1.0  
+Released on: 2024-09-16
+
+
+### 🚀 Features
+
+* Add BatteryStatusBit to sensors (Cadence, HeartRate, MuscleOxygen, Speed) ([#14](https://github.com/Benjamin-Stefan/ant-plus-next/issues/14)) ([81be8afacb791e523ca3f6afbbf4564bfd1d4de2](/commit/81be8afacb791e523ca3f6afbbf4564bfd1d4de2))
+
+### 🐛 Bug Fixes
+
+* Adjust release.config.js to enable publishing to npm and GitHub releases ([583f9ee84b22e61f5e02420d4723e452e2551f8a](/commit/583f9ee84b22e61f5e02420d4723e452e2551f8a))
+
 # 🚀 ant-plus-next - Changelog
 
 Welcome to the **Changelog** of **ant-plus-next**.  
