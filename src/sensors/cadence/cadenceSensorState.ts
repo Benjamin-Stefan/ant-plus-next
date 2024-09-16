@@ -90,6 +90,11 @@ export class CadenceSensorState {
     BatteryStatus?: "New" | "Good" | "Ok" | "Low" | "Critical" | "Invalid";
 
     /**
+     * The battery status bit of the sensor.
+     */
+    BatteryStatusBit?: number;
+
+    /**
      * Indicates whether the sensor is in motion.
      * @type {boolean | undefined}
      */
