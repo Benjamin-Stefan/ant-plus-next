@@ -129,4 +129,9 @@ export class HeartRateSensorState {
      * @type {"New" | "Good" | "Ok" | "Low" | "Critical" | "Invalid" | undefined}
      */
     BatteryStatus?: "New" | "Good" | "Ok" | "Low" | "Critical" | "Invalid";
+
+    /**
+     * The battery status bit of the sensor.
+     */
+    BatteryStatusBit?: number;
 }

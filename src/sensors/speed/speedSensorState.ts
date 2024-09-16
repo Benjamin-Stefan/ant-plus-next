@@ -95,6 +95,11 @@ export class SpeedSensorState {
     BatteryStatus?: "New" | "Good" | "Ok" | "Low" | "Critical" | "Invalid";
 
     /**
+     * The battery status bit of the sensor.
+     */
+    BatteryStatusBit?: number;
+
+    /**
      * Indicates whether the sensor detects motion.
      * @type {boolean | undefined}
      */

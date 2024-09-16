@@ -53,6 +53,7 @@ export function updateState(sensor: SpeedSensor | SpeedScanner, state: SpeedSens
             const batteryStatus = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 3);
             state.BatteryVoltage = (batteryStatus & 0x0f) + batteryFrac / 256;
             const batteryFlags = (batteryStatus & 0x70) >>> 4;
+            state.BatteryStatusBit = batteryFlags;
             switch (batteryFlags) {
                 case 1:
                     state.BatteryStatus = "New";
