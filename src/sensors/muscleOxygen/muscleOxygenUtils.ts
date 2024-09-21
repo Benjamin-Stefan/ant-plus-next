@@ -129,6 +129,7 @@ export function updateState(sensor: MuscleOxygenSensor | MuscleOxygenScanner, st
             state.OperatingTime = operatingTime * ((batteryStatus & 0x80) === 0x80 ? 2 : 16);
             state.BatteryVoltage = (batteryStatus & 0x0f) + batteryFrac / 256;
             const batteryFlags = (batteryStatus & 0x70) >>> 4;
+            state.BatteryStatusBit = batteryFlags;
             switch (batteryFlags) {
                 case 1:
                     state.BatteryStatus = "New";
