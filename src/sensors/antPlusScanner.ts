@@ -83,7 +83,7 @@ export abstract class AntPlusScanner extends AntPlusBaseSensor {
      * Decodes the incoming data from the ANT+ sensors and updates the sensor state.
      *
      * @private
-     * @param {Buffer} data - The raw data buffer received from the ANT+ sensor.
+     * @param {DataView} data - The raw data buffer received from the ANT+ sensor.
      * @returns {void}
      *
      * @example
@@ -92,14 +92,21 @@ export abstract class AntPlusScanner extends AntPlusBaseSensor {
      * decodeData(dataBuffer);
      */
     // eslint-disable-next-line @typescript-eslint/require-await
-    private async decodeData(data: Buffer): Promise<void> {
-        if (data.length <= Messages.BUFFER_INDEX_EXT_MSG_BEGIN + 3 || !(data.readUInt8(Messages.BUFFER_INDEX_EXT_MSG_BEGIN) & 0x80)) {
-            console.log("wrong message format", data.toString("hex"));
+    private async decodeData(data: DataView): Promise<void> {
+        if (data.byteLength <= Messages.BUFFER_INDEX_EXT_MSG_BEGIN + 3 || !(data.getUint8(Messages.BUFFER_INDEX_EXT_MSG_BEGIN) & 0x80)) {
+            const bytesArray = new Uint8Array(data.buffer, data.byteOffset, data.byteLength);
+            console.log(
+                "wrong message format",
+                Array.from(bytesArray)
+                    .map((byte) => byte.toString(16))
+                    .join(" ")
+            );
             return;
         }
 
-        const deviceId = data.readUInt16LE(Messages.BUFFER_INDEX_EXT_MSG_BEGIN + 1);
-        const deviceType = data.readUInt8(Messages.BUFFER_INDEX_EXT_MSG_BEGIN + 3);
+        const deviceId = data.getUint16(Messages.BUFFER_INDEX_EXT_MSG_BEGIN + 1, true);
+        console.log(this.deviceId);
+        const deviceType = data.getUint8(Messages.BUFFER_INDEX_EXT_MSG_BEGIN + 3);
 
         if (deviceType !== this.deviceType()) {
             return;
@@ -107,13 +114,17 @@ export abstract class AntPlusScanner extends AntPlusBaseSensor {
 
         this.createStateIfNew(deviceId);
 
-        if (data.readUInt8(Messages.BUFFER_INDEX_EXT_MSG_BEGIN) & 0x40) {
-            if (data.readUInt8(Messages.BUFFER_INDEX_EXT_MSG_BEGIN + 5) === 0x20) {
-                this.updateRssiAndThreshold(deviceId, data.readInt8(Messages.BUFFER_INDEX_EXT_MSG_BEGIN + 6), data.readInt8(Messages.BUFFER_INDEX_EXT_MSG_BEGIN + 7));
+        // Check if the RSSI and threshold should be updated
+        if (data.getUint8(Messages.BUFFER_INDEX_EXT_MSG_BEGIN) & 0x40) {
+            if (data.getUint8(Messages.BUFFER_INDEX_EXT_MSG_BEGIN + 5) === 0x20) {
+                const rssi = data.getInt8(Messages.BUFFER_INDEX_EXT_MSG_BEGIN + 6);
+                const threshold = data.getInt8(Messages.BUFFER_INDEX_EXT_MSG_BEGIN + 7);
+                this.updateRssiAndThreshold(deviceId, rssi, threshold);
             }
         }
 
-        switch (data.readUInt8(Messages.BUFFER_INDEX_MSG_TYPE)) {
+        // Handle different message types
+        switch (data.getUint8(Messages.BUFFER_INDEX_MSG_TYPE)) {
             case Constants.MESSAGE_CHANNEL_BROADCAST_DATA:
             case Constants.MESSAGE_CHANNEL_ACKNOWLEDGED_DATA:
             case Constants.MESSAGE_CHANNEL_BURST_DATA:

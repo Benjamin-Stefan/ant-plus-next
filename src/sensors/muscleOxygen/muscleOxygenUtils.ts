@@ -11,7 +11,7 @@ import { MuscleOxygenScanner } from "./muscleOxygenScanner.js";
  *
  * @param {MuscleOxygenSensor | MuscleOxygenScanner} sensor - The sensor or scanner instance emitting the data.
  * @param {MuscleOxygenSensorState | MuscleOxygenScanState} state - The current state of the sensor or scanner.
- * @param {Buffer} data - The raw data buffer received from the sensor.
+ * @param {DataView} data - The raw data buffer received from the sensor.
  * @returns {void}
  *
  * @example
@@ -20,18 +20,18 @@ import { MuscleOxygenScanner } from "./muscleOxygenScanner.js";
  * const dataBuffer = getDataFromSensor(); // Assume this function gets data from a sensor
  * updateState(sensor, state, dataBuffer);
  */
-export function updateState(sensor: MuscleOxygenSensor | MuscleOxygenScanner, state: MuscleOxygenSensorState | MuscleOxygenScanState, data: Buffer) {
+export function updateState(sensor: MuscleOxygenSensor | MuscleOxygenScanner, state: MuscleOxygenSensorState | MuscleOxygenScanState, data: DataView) {
     const oldEventCount = state._EventCount || 0;
-    const page = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA);
+    const page = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA);
 
     switch (page) {
         case 0x01: {
-            let eventCount = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 1);
-            const notifications = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 2);
-            const capabilities = data.readUInt16LE(Messages.BUFFER_INDEX_MSG_DATA + 3);
-            const total = data.readUInt16LE(Messages.BUFFER_INDEX_MSG_DATA + 4) & 0xfff;
-            const previous = (data.readUInt16LE(Messages.BUFFER_INDEX_MSG_DATA + 5) >> 4) & 0x3ff;
-            const current = (data.readUInt16LE(Messages.BUFFER_INDEX_MSG_DATA + 6) >> 6) & 0x3ff;
+            let eventCount = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 1);
+            const notifications = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 2);
+            const capabilities = data.getUint16(Messages.BUFFER_INDEX_MSG_DATA + 3, true);
+            const total = data.getUint16(Messages.BUFFER_INDEX_MSG_DATA + 4, true) & 0xfff;
+            const previous = (data.getUint16(Messages.BUFFER_INDEX_MSG_DATA + 5, true) >> 4) & 0x3ff;
+            const current = (data.getUint16(Messages.BUFFER_INDEX_MSG_DATA + 6, true) >> 6) & 0x3ff;
 
             if (eventCount !== oldEventCount) {
                 state._EventCount = eventCount;
@@ -97,15 +97,15 @@ export function updateState(sensor: MuscleOxygenSensor | MuscleOxygenScanner, st
             break;
         }
         case 0x50: {
-            state.HwVersion = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 3);
-            state.ManId = data.readUInt16LE(Messages.BUFFER_INDEX_MSG_DATA + 4);
-            state.ModelNum = data.readUInt16LE(Messages.BUFFER_INDEX_MSG_DATA + 6);
+            state.HwVersion = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 3);
+            state.ManId = data.getUint16(Messages.BUFFER_INDEX_MSG_DATA + 4, true);
+            state.ModelNum = data.getUint16(Messages.BUFFER_INDEX_MSG_DATA + 6, true);
             break;
         }
         case 0x51: {
-            const swRevSup = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 2);
-            const swRevMain = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 3);
-            const serial = data.readInt32LE(Messages.BUFFER_INDEX_MSG_DATA + 4);
+            const swRevSup = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 2);
+            const swRevMain = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 3);
+            const serial = data.getUint32(Messages.BUFFER_INDEX_MSG_DATA + 4, true);
 
             state.SwVersion = swRevMain;
 
@@ -121,10 +121,10 @@ export function updateState(sensor: MuscleOxygenSensor | MuscleOxygenScanner, st
         }
         case 0x52: {
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            const batteryId = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 2);
-            const operatingTime = data.readUInt32LE(Messages.BUFFER_INDEX_MSG_DATA + 3) & 0xffffff;
-            const batteryFrac = data.readInt32LE(Messages.BUFFER_INDEX_MSG_DATA + 6);
-            const batteryStatus = data.readInt32LE(Messages.BUFFER_INDEX_MSG_DATA + 7);
+            const batteryId = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 2);
+            const operatingTime = data.getUint32(Messages.BUFFER_INDEX_MSG_DATA + 3, true) & 0xffffff;
+            const batteryFrac = data.getUint32(Messages.BUFFER_INDEX_MSG_DATA + 6, true);
+            const batteryStatus = data.getUint32(Messages.BUFFER_INDEX_MSG_DATA + 7, true);
 
             state.OperatingTime = operatingTime * ((batteryStatus & 0x80) === 0x80 ? 2 : 16);
             state.BatteryVoltage = (batteryStatus & 0x0f) + batteryFrac / 256;

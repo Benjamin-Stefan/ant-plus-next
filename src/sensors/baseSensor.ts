@@ -4,6 +4,7 @@ import { Constants } from "../types/constants.js";
 import { Messages } from "../utils/messages.js";
 import { Status } from "../types/status.js";
 import { USBDriverBase } from "../types/usbDriverBase.js";
+import { nextTick } from "../utils/customPolyfills.js";
 
 /**
  * Abstract base class for sensors that communicates over a USB connection.
@@ -14,9 +15,9 @@ export abstract class BaseSensor extends EventEmitter {
     deviceId!: number;
     transmissionType!: number;
 
-    private messageQueue: { msg: Buffer; cbk?: SendCallback }[] = [];
+    private messageQueue: { msg: Uint8Array; cbk?: SendCallback }[] = [];
 
-    protected decodeDataCbk: ((data: Buffer) => Promise<void>) | undefined;
+    protected decodeDataCbk: ((data: DataView) => Promise<void>) | undefined;
     protected statusCbk: ((status: Status) => Promise<boolean>) | undefined;
 
     /**
@@ -24,9 +25,9 @@ export abstract class BaseSensor extends EventEmitter {
      * Must be implemented by subclasses.
      *
      * @param {number} deviceId - The device ID to update.
-     * @param {Buffer} data - The data buffer containing the state information.
+     * @param {Uint8Array} data - The data buffer containing the state information.
      */
-    protected abstract updateState(deviceId: number, data: Buffer): void;
+    protected abstract updateState(deviceId: number, data: DataView): void;
 
     /**
      * Creates an instance of BaseSensor.
@@ -35,7 +36,7 @@ export abstract class BaseSensor extends EventEmitter {
      */
     constructor(private stick: USBDriverBase) {
         super();
-        stick.on("read", (data: Buffer) => {
+        stick.on("read", (data: Uint8Array) => {
             this.handleEventMessages(data).catch((error) => {
                 console.error(error);
             });
@@ -103,14 +104,14 @@ export abstract class BaseSensor extends EventEmitter {
                     await this.write(Messages.openRxScan());
                     return true;
                 case Constants.MESSAGE_CHANNEL_OPEN_RX_SCAN:
-                    process.nextTick(() => this.emit("attached"));
+                    nextTick(() => this.emit("attached"));
                     return true;
                 case Constants.MESSAGE_CHANNEL_CLOSE:
                     return true;
                 case Constants.MESSAGE_CHANNEL_UNASSIGN:
                     this.statusCbk = undefined;
                     this.channel = undefined;
-                    process.nextTick(() => this.emit("detached"));
+                    nextTick(() => this.emit("detached"));
                     return true;
                 case Constants.MESSAGE_CHANNEL_ACKNOWLEDGED_DATA:
                     return status.code === Constants.TRANSFER_IN_PROGRESS;
@@ -127,7 +128,7 @@ export abstract class BaseSensor extends EventEmitter {
 
             this.statusCbk = onStatus;
 
-            process.nextTick(() => this.emit("attached"));
+            nextTick(() => this.emit("attached"));
         } else if (await this.stick.attach(this, true)) {
             this.channel = channel;
             this.deviceId = 0;
@@ -216,14 +217,14 @@ export abstract class BaseSensor extends EventEmitter {
                     await this.write(Messages.openChannel(channel));
                     return true;
                 case Constants.MESSAGE_CHANNEL_OPEN:
-                    process.nextTick(() => this.emit("attached"));
+                    nextTick(() => this.emit("attached"));
                     return true;
                 case Constants.MESSAGE_CHANNEL_CLOSE:
                     return true;
                 case Constants.MESSAGE_CHANNEL_UNASSIGN:
                     this.statusCbk = undefined;
                     this.channel = undefined;
-                    process.nextTick(() => this.emit("detached"));
+                    nextTick(() => this.emit("detached"));
                     return true;
                 case Constants.MESSAGE_CHANNEL_ACKNOWLEDGED_DATA:
                     return status.code === Constants.TRANSFER_IN_PROGRESS;
@@ -257,9 +258,9 @@ export abstract class BaseSensor extends EventEmitter {
     /**
      * Sends data to the USB device.
      *
-     * @param {Buffer} data - The data buffer to send.
+     * @param {Uint8Array} data - The data buffer to send.
      */
-    protected async write(data: Buffer): Promise<void> {
+    protected async write(data: Uint8Array): Promise<void> {
         await this.stick.write(data);
     }
 
@@ -267,29 +268,35 @@ export abstract class BaseSensor extends EventEmitter {
      * Handles incoming event messages from the USB device.
      *
      * @private
-     * @param {Buffer} data - The data buffer containing the event message.
+     * @param {Uint8Array} data - The data buffer containing the event message.
      */
-    private async handleEventMessages(data: Buffer): Promise<void> {
-        const messageId = data.readUInt8(Messages.BUFFER_INDEX_MSG_TYPE);
-        const channel = data.readUInt8(Messages.BUFFER_INDEX_CHANNEL_NUM);
+    private async handleEventMessages(data: Uint8Array): Promise<void> {
+        const dataView = new DataView(data.buffer);
+        const messageId = dataView.getUint8(Messages.BUFFER_INDEX_MSG_TYPE);
+        const channel = dataView.getUint8(Messages.BUFFER_INDEX_CHANNEL_NUM);
 
         if (channel === this.channel) {
             if (messageId === Constants.MESSAGE_CHANNEL_EVENT) {
                 const status: Status = {
-                    msg: data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA),
-                    code: data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 1),
+                    msg: dataView.getUint8(Messages.BUFFER_INDEX_MSG_DATA),
+                    code: dataView.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 1),
                 };
 
                 const handled = this.statusCbk && this.statusCbk(status);
                 if (!handled) {
-                    console.log("Unhandled event: " + data.toString("hex"));
+                    console.log(
+                        "Unhandled event: " +
+                            Array.from(data)
+                                .map((byte) => byte.toString(16))
+                                .join(" ")
+                    );
                     this.emit("eventData", {
-                        message: data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA),
-                        code: data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 1),
+                        message: dataView.getUint8(Messages.BUFFER_INDEX_MSG_DATA),
+                        code: dataView.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 1),
                     });
                 }
             } else if (this.decodeDataCbk) {
-                await this.decodeDataCbk(data);
+                await this.decodeDataCbk(dataView);
             }
         }
     }
@@ -297,10 +304,10 @@ export abstract class BaseSensor extends EventEmitter {
     /**
      * Sends data and optionally a callback to handle the result of the send operation.
      *
-     * @param {Buffer} data - The data buffer to send.
+     * @param {Uint8Array} data - The data buffer to send.
      * @param {SendCallback} [cbk] - Optional callback to handle the send result.
      */
-    protected async send(data: Buffer, cbk?: SendCallback): Promise<void> {
+    protected async send(data: Uint8Array, cbk?: SendCallback): Promise<void> {
         this.messageQueue.push({ msg: data, cbk });
         if (this.messageQueue.length === 1) {
             await this.write(data);

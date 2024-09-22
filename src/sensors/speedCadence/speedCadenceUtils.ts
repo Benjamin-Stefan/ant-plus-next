@@ -10,7 +10,7 @@ import { Messages } from "../../utils/messages.js";
  *
  * @param {SpeedCadenceSensor | SpeedCadenceScanner} sensor - The sensor or scanner instance emitting the data.
  * @param {SpeedCadenceSensorState | SpeedCadenceScanState} state - The current state of the sensor or scanner.
- * @param {Buffer} data - The raw data buffer received from the sensor.
+ * @param {DataView} data - The raw data buffer received from the sensor.
  * @returns {void}
  *
  * @example
@@ -19,17 +19,17 @@ import { Messages } from "../../utils/messages.js";
  * const dataBuffer = getDataFromSensor(); // Assume this function gets data from a sensor
  * updateState(sensor, state, dataBuffer);
  */
-export function updateState(sensor: SpeedCadenceSensor | SpeedCadenceScanner, state: SpeedCadenceSensorState | SpeedCadenceScanState, data: Buffer) {
+export function updateState(sensor: SpeedCadenceSensor | SpeedCadenceScanner, state: SpeedCadenceSensorState | SpeedCadenceScanState, data: DataView) {
     // Get old state for calculating cumulative values
     const oldCadenceTime = state.CadenceEventTime ?? 0;
     const oldCadenceCount = state.CumulativeCadenceRevolutionCount ?? 0;
     const oldSpeedTime = state.SpeedEventTime ?? 0;
     const oldSpeedCount = state.CumulativeSpeedRevolutionCount ?? 0;
 
-    let cadenceTime = data.readUInt16LE(Messages.BUFFER_INDEX_MSG_DATA);
-    let cadenceCount = data.readUInt16LE(Messages.BUFFER_INDEX_MSG_DATA + 2);
-    let speedEventTime = data.readUInt16LE(Messages.BUFFER_INDEX_MSG_DATA + 4);
-    let speedRevolutionCount = data.readUInt16LE(Messages.BUFFER_INDEX_MSG_DATA + 6);
+    let cadenceTime = data.getUint16(Messages.BUFFER_INDEX_MSG_DATA, true);
+    let cadenceCount = data.getUint16(Messages.BUFFER_INDEX_MSG_DATA + 2, true);
+    let speedEventTime = data.getUint16(Messages.BUFFER_INDEX_MSG_DATA + 4, true);
+    let speedRevolutionCount = data.getUint16(Messages.BUFFER_INDEX_MSG_DATA + 6, true);
 
     if (cadenceTime !== oldCadenceTime) {
         state.CadenceEventTime = cadenceTime;

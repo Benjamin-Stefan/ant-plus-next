@@ -50,10 +50,10 @@ export class FitnessEquipmentSensor extends AntPlusSensor {
      *
      * @protected
      * @param {number} deviceId - The unique identifier of the sensor device.
-     * @param {Buffer} data - The raw data buffer received from the sensor.
+     * @param {DataView} data - The raw data buffer received from the sensor.
      * @returns {void}
      */
-    protected updateState(deviceId: number, data: Buffer): void {
+    protected updateState(deviceId: number, data: DataView): void {
         this.state.DeviceId = deviceId;
         updateState(this, this.state, data);
     }

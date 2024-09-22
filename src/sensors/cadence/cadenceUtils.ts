@@ -14,44 +14,39 @@ const TOGGLE_MASK = 0x80;
  *
  * @param {CadenceSensor | CadenceScanner} sensor - The sensor or scanner instance emitting the data.
  * @param {CadenceSensorState | CadenceScanState} state - The current state of the sensor or scanner.
- * @param {Buffer} data - The raw data buffer received from the sensor.
+ * @param {DataView} data - The raw data buffer received from the sensor.
  * @returns {void}
- *
- * @example
- * const sensor = new CadenceSensor();
- * const state = new CadenceSensorState(12345);
- * const dataBuffer = getDataFromSensor(); // Assume this function gets data from a sensor
- * updateState(sensor, state, dataBuffer); // Updates the state based on the received data.
  */
-export function updateState(sensor: CadenceSensor | CadenceScanner, state: CadenceSensorState | CadenceScanState, data: Buffer): void {
-    const pageNum = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA);
+export function updateState(sensor: CadenceSensor | CadenceScanner, state: CadenceSensorState | CadenceScanState, data: DataView): void {
+    const pageNum = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA);
+
     switch (
         pageNum & ~TOGGLE_MASK // Check the new pages and remove the toggle bit
     ) {
         case 1:
             // Decode the cumulative operating time
-            state.OperatingTime = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 1);
-            state.OperatingTime |= data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 2) << 8;
-            state.OperatingTime |= data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 3) << 16;
+            state.OperatingTime = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 1);
+            state.OperatingTime |= data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 2) << 8;
+            state.OperatingTime |= data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 3) << 16;
             state.OperatingTime *= 2;
             break;
         case 2:
             // Decode the Manufacturer ID
-            state.ManId = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 1);
+            state.ManId = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 1);
             // Decode the 4-byte serial number
             state.SerialNumber = state.DeviceId;
-            state.SerialNumber |= data.readUInt16LE(Messages.BUFFER_INDEX_MSG_DATA + 2) << 16;
+            state.SerialNumber |= data.getUint16(Messages.BUFFER_INDEX_MSG_DATA + 2, true) << 16;
             state.SerialNumber >>>= 0;
             break;
         case 3:
             // Decode HW version, SW version, and model number
-            state.HwVersion = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 1);
-            state.SwVersion = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 2);
-            state.ModelNum = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 3);
+            state.HwVersion = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 1);
+            state.SwVersion = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 2);
+            state.ModelNum = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 3);
             break;
         case 4: {
-            const batteryFrac = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 2);
-            const batteryStatus = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 3);
+            const batteryFrac = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 2);
+            const batteryStatus = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 3);
             state.BatteryVoltage = (batteryStatus & 0x0f) + batteryFrac / 256;
             const batteryFlags = (batteryStatus & 0x70) >>> 4;
             state.BatteryStatusBit = batteryFlags;
@@ -79,7 +74,7 @@ export function updateState(sensor: CadenceSensor | CadenceScanner, state: Caden
             break;
         }
         case 5:
-            state.Motion = (data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 1) & 0x01) === 0x01;
+            state.Motion = (data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 1) & 0x01) === 0x01;
             break;
         default:
             break;
@@ -89,20 +84,20 @@ export function updateState(sensor: CadenceSensor | CadenceScanner, state: Caden
     const oldCadenceTime = state.CadenceEventTime ?? 0;
     const oldCadenceCount = state.CumulativeCadenceRevolutionCount ?? 0;
 
-    let cadenceTime = data.readUInt16LE(Messages.BUFFER_INDEX_MSG_DATA + 4);
-    let cadenceCount = data.readUInt16LE(Messages.BUFFER_INDEX_MSG_DATA + 6);
+    let cadenceTime = data.getUint16(Messages.BUFFER_INDEX_MSG_DATA + 4, true);
+    let cadenceCount = data.getUint16(Messages.BUFFER_INDEX_MSG_DATA + 6, true);
 
     if (cadenceTime !== oldCadenceTime) {
         state.CadenceEventTime = cadenceTime;
         state.CumulativeCadenceRevolutionCount = cadenceCount;
 
         if (oldCadenceTime > cadenceTime) {
-            // Hit rollover value
+            // Handle rollover
             cadenceTime += 1024 * 64;
         }
 
         if (oldCadenceCount > cadenceCount) {
-            // Hit rollover value
+            // Handle rollover
             cadenceCount += 1024 * 64;
         }
 

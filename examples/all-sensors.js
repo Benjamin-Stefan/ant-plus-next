@@ -2,9 +2,12 @@ import * as Ant from "../dist/index.mjs";
 
 const stick = new Ant.GarminStick2();
 
+const debug = true;
+
 const sensorConfigs = [
     {
         name: "HeartRate",
+        deviceId: 39266,
         instance: new Ant.HeartRateSensor(stick),
         events: [
             {
@@ -15,6 +18,7 @@ const sensorConfigs = [
                         value: data.ComputedHeartRate,
                         formatedValue: data.ComputedHeartRate,
                         message: `Heart Rate -> Id: ${data.DeviceId} - ${data.ComputedHeartRate} BPM`,
+                        debugPrint: JSON.stringify(data),
                     };
                 },
             },
@@ -29,7 +33,7 @@ stick.on("startup", async () => {
         try {
             console.log(`Setting up ${config.name} sensor on channel ${index}...`);
 
-            const sensor = await setupSensor(config);
+            const sensor = setupSensor(config);
             if (sensor) {
                 await attachSensor(sensor, config.name, config.deviceId || 0, index);
             }
@@ -74,9 +78,13 @@ function setupSensor({ instance, logFile, detailsFile, events }) {
     // Register event listeners for each defined event
     events.forEach(({ event, getValue }) => {
         instance.on(event, (data) => {
-            const { message, type } = getValue(data);
+            const { message, type, debugPrint } = getValue(data);
 
-            console.log(`[${type.toUpperCase()}] ${message}`);
+            if (debug) {
+                console.log(`[${type.toUpperCase()}] ${debugPrint}`);
+            } else {
+                console.log(`[${type.toUpperCase()}] ${message}`);
+            }
         });
     });
 

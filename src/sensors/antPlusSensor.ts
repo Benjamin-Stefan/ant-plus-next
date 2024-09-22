@@ -55,7 +55,7 @@ export abstract class AntPlusSensor extends AntPlusBaseSensor {
      * Decodes the incoming data from the ANT+ sensor and updates the sensor state.
      *
      * @private
-     * @param {Buffer} data - The raw data buffer received from the ANT+ sensor.
+     * @param {DataView} data - The raw data buffer received from the ANT+ sensor.
      * @returns {void}
      *
      * @example
@@ -63,19 +63,19 @@ export abstract class AntPlusSensor extends AntPlusBaseSensor {
      * const dataBuffer = getDataFromSensor(); // assume this function gets data from a sensor
      * decodeData(dataBuffer);
      */
-    private async decodeData(data: Buffer): Promise<void> {
-        switch (data.readUInt8(Messages.BUFFER_INDEX_MSG_TYPE)) {
+    private async decodeData(data: DataView): Promise<void> {
+        switch (data.getUint8(Messages.BUFFER_INDEX_MSG_TYPE)) {
             case Constants.MESSAGE_CHANNEL_BROADCAST_DATA:
             case Constants.MESSAGE_CHANNEL_ACKNOWLEDGED_DATA:
             case Constants.MESSAGE_CHANNEL_BURST_DATA:
-                if (this.deviceId === 0 && this.channel) {
+                if (this.deviceId === 0 && this.channel != undefined) {
                     await this.write(Messages.requestMessage(this.channel, Constants.MESSAGE_CHANNEL_ID));
                 }
                 this.updateState(this.deviceId, data);
                 break;
             case Constants.MESSAGE_CHANNEL_ID:
-                this.deviceId = data.readUInt16LE(Messages.BUFFER_INDEX_MSG_DATA);
-                this.transmissionType = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 3);
+                this.deviceId = data.getUint16(Messages.BUFFER_INDEX_MSG_DATA, true);
+                this.transmissionType = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 3);
                 break;
             default:
                 break;
