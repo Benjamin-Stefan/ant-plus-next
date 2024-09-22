@@ -4,11 +4,13 @@ import { DebugOptions } from "../../types/debugOptions";
 import { USBDriverBase } from "../../types/usbDriverBase";
 import { Messages } from "../../utils/messages";
 import EventEmitter from "events";
-import * as usb from "usb";
+import usb, { LibUSBException } from "usb";
 
 /**
  * NodeUSBDriver class handles the connection and communication with USB devices using the node-usb library.
  * It manages device setup, communication, sensor attachment, and data processing.
+ *
+ * This class extends EventEmitter to handle events and implements the USBDriverBase interface.
  *
  * @extends EventEmitter
  * @implements USBDriverBase
@@ -16,6 +18,8 @@ import * as usb from "usb";
 export class NodeUSBDriver extends EventEmitter implements USBDriverBase {
     /**
      * List of USB devices currently in use.
+     * Tracks all connected devices used by this driver.
+     *
      * @type {usb.Device[]}
      * @private
      */
@@ -23,6 +27,8 @@ export class NodeUSBDriver extends EventEmitter implements USBDriverBase {
 
     /**
      * The USB device instance.
+     * Holds a reference to the connected USB device, if any.
+     *
      * @type {usb.Device|undefined}
      * @private
      */
@@ -30,6 +36,8 @@ export class NodeUSBDriver extends EventEmitter implements USBDriverBase {
 
     /**
      * The USB interface of the device.
+     * Used to interact with the endpoints of the connected USB device.
+     *
      * @type {usb.Interface|undefined}
      * @private
      */
@@ -37,6 +45,8 @@ export class NodeUSBDriver extends EventEmitter implements USBDriverBase {
 
     /**
      * Indicates if the kernel driver was detached.
+     * Marks whether the kernel driver was detached during setup for re-attachment upon disconnection.
+     *
      * @type {boolean}
      * @private
      */
@@ -44,6 +54,8 @@ export class NodeUSBDriver extends EventEmitter implements USBDriverBase {
 
     /**
      * The input endpoint for reading data.
+     * Used for receiving data from the USB device.
+     *
      * @type {(usb.InEndpoint & EventEmitter)|undefined}
      * @private
      */
@@ -51,6 +63,8 @@ export class NodeUSBDriver extends EventEmitter implements USBDriverBase {
 
     /**
      * The output endpoint for sending data.
+     * Used for sending data to the USB device.
+     *
      * @type {(usb.OutEndpoint & EventEmitter)|undefined}
      * @private
      */
@@ -58,6 +72,8 @@ export class NodeUSBDriver extends EventEmitter implements USBDriverBase {
 
     /**
      * Stores leftover data from previous reads.
+     * Used to buffer partial data when reading from the USB device.
+     *
      * @type {Uint8Array|undefined}
      * @private
      */
@@ -65,6 +81,8 @@ export class NodeUSBDriver extends EventEmitter implements USBDriverBase {
 
     /**
      * The number of channels currently used.
+     * Tracks how many channels are actively being used.
+     *
      * @type {number}
      * @private
      */
@@ -72,6 +90,8 @@ export class NodeUSBDriver extends EventEmitter implements USBDriverBase {
 
     /**
      * List of attached sensors.
+     * Holds the list of sensors currently connected to the USB driver.
+     *
      * @type {BaseSensor[]}
      * @private
      */
@@ -79,22 +99,39 @@ export class NodeUSBDriver extends EventEmitter implements USBDriverBase {
 
     /**
      * The maximum number of channels available for communication.
+     * Defines the total number of channels the device can handle.
+     *
      * @type {number}
      */
     maxChannels: number = 0;
 
     /**
      * Indicates if the device can scan for channels.
+     * Represents whether the USB device has scanning capabilities.
+     *
      * @type {boolean}
      */
     _canScan: boolean = false;
 
     /**
+     * Defines whether to throw LibUSB exceptions when errors occur during USB communication.
+     * Default value is set to `false`.
+     *
+     * @type {boolean}
+     */
+    throwLibUSBException: boolean = false;
+
+    /**
      * Creates an instance of NodeUSBDriver.
+     * Initializes the driver with vendor ID, product ID, and optional debug options.
      *
      * @param {number} idVendor - The vendor ID of the USB device.
      * @param {number} idProduct - The product ID of the USB device.
      * @param {DebugOptions} [debugOptions={}] - Optional debug options for USB operations.
+     *                                          Includes usbDebugLevel and throwLibUSBException.
+     *
+     * @example
+     * const driver = new NodeUSBDriver(0x1234, 0x5678, { usbDebugLevel: 2, throwLibUSBException: true });
      */
     constructor(
         private idVendor: number,
@@ -102,8 +139,9 @@ export class NodeUSBDriver extends EventEmitter implements USBDriverBase {
         debugOptions: DebugOptions = {}
     ) {
         super();
-        this.setMaxListeners(50);
-        usb.usb.setDebugLevel(debugOptions.usbDebugLevel || 0);
+        this.setMaxListeners(50); // Set maximum number of listeners to 50
+        usb.usb.setDebugLevel(debugOptions.usbDebugLevel || 0); // Set USB debug level
+        this.throwLibUSBException = debugOptions.throwLibUSBException || false; // Set exception throwing option
     }
 
     /**
@@ -119,6 +157,15 @@ export class NodeUSBDriver extends EventEmitter implements USBDriverBase {
      * Opens a connection to the USB device and sets up endpoints for communication.
      *
      * @returns {Promise<boolean>} Resolves with true if the device is successfully opened, otherwise false.
+     * @example
+     * const driver = new NodeUSBDriver(1234, 5678);
+     * driver.open().then((result) => {
+     *   if (result) {
+     *     console.log("Device successfully opened");
+     *   } else {
+     *     console.error("Failed to open device");
+     *   }
+     * });
      */
     async open(): Promise<boolean> {
         const devices = this.getDevices();
@@ -146,9 +193,22 @@ export class NodeUSBDriver extends EventEmitter implements USBDriverBase {
                 this.iface.claim();
                 break;
             } catch (error) {
-                // thow if LIBUSB_ERROR_ACCESS
-                //console.error(error);
-                // Ignore errors and try with the next device
+                if (error instanceof LibUSBException && this.throwLibUSBException) {
+                    switch (error.errno) {
+                        case usb.usb.LIBUSB_ERROR_ACCESS:
+                            throw new Error("LIBUSB_ERROR_ACCESS: Access denied (insufficient permissions)");
+                        case usb.usb.LIBUSB_ERROR_NO_DEVICE:
+                            throw new Error("LIBUSB_ERROR_NO_DEVICE: Device has been disconnected");
+                        case usb.usb.LIBUSB_ERROR_BUSY:
+                            throw new Error("LIBUSB_ERROR_BUSY: Resource busy");
+                        default:
+                            console.error("Unknown LIBUSB error:", error);
+                            break;
+                    }
+                } else {
+                    // Ignore errors and try with the next device
+                }
+
                 if (this.device) {
                     this.device.close();
                 }
@@ -195,6 +255,11 @@ export class NodeUSBDriver extends EventEmitter implements USBDriverBase {
      * Closes the connection to the USB device and releases the interface.
      *
      * @returns {Promise<void>} Resolves when the device is closed.
+     * @example
+     * const driver = new NodeUSBDriver(1234, 5678);
+     * driver.open().then(() => {
+     *   driver.close().then(() => console.log("Device closed"));
+     * });
      */
     async close(): Promise<void> {
         await this.detachAll();
@@ -237,6 +302,9 @@ export class NodeUSBDriver extends EventEmitter implements USBDriverBase {
      *
      * @param {Uint8Array} data - The data received from the USB device.
      * @returns {Promise<void>} Resolves when the data has been processed.
+     * @example
+     * const data = new Uint8Array([0x01, 0x02, 0x03]);
+     * driver.read(data).then(() => console.log("Data processed"));
      */
     async read(data: Uint8Array): Promise<void> {
         const dataView = new DataView(data.buffer);
@@ -260,6 +328,9 @@ export class NodeUSBDriver extends EventEmitter implements USBDriverBase {
      *
      * @param {Uint8Array} data - The data to be sent to the USB device.
      * @returns {Promise<void>} Resolves when the data has been written.
+     * @example
+     * const data = new Uint8Array([0x01, 0x02, 0x03]);
+     * driver.write(data).then(() => console.log("Data sent"));
      */
     async write(data: Uint8Array): Promise<void> {
         await new Promise<void>((resolve, reject) => {
@@ -280,6 +351,8 @@ export class NodeUSBDriver extends EventEmitter implements USBDriverBase {
      * Resets the device and its channels, and sends a reset message to the system.
      *
      * @returns {Promise<void>} Resolves when the reset is completed.
+     * @example
+     * driver.reset().then(() => console.log("Device reset"));
      */
     async reset(): Promise<void> {
         await this.detachAll();
@@ -294,6 +367,11 @@ export class NodeUSBDriver extends EventEmitter implements USBDriverBase {
      * @param {BaseSensor} sensor - The sensor to attach.
      * @param {boolean} forScan - Whether the sensor is being attached for scanning.
      * @returns {Promise<boolean>} Resolves with true if the sensor was successfully attached, otherwise false.
+     * @example
+     * const sensor = new BaseSensor();
+     * driver.attach(sensor, true).then((attached) => {
+     *   if (attached) console.log("Sensor attached");
+     * });
      */
     async attach(sensor: BaseSensor, forScan: boolean): Promise<boolean> {
         if (this.usedChannels < 0) {
@@ -319,6 +397,11 @@ export class NodeUSBDriver extends EventEmitter implements USBDriverBase {
      *
      * @param {BaseSensor} sensor - The sensor to detach.
      * @returns {Promise<boolean>} Resolves with true if the sensor was successfully detached, otherwise false.
+     * @example
+     * const sensor = new BaseSensor();
+     * driver.detach(sensor).then((detached) => {
+     *   if (detached) console.log("Sensor detached");
+     * });
      */
     async detach(sensor: BaseSensor): Promise<boolean> {
         const idx = this.attachedSensors.indexOf(sensor);
