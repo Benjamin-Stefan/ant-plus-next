@@ -1,35 +1,53 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import { WebUsbStick, HeartRateSensor } from "ant-plus-next";
 
 const HeartRateExample = () => {
-    useEffect(() => {
-        const stick = new WebUsbStick();
-        const heartRateSensor = new HeartRateSensor(stick);
+    const [isConnected, setIsConnected] = useState(false);
 
-        heartRateSensor.on("hbData", (data) => {
-            console.log(`Device Id: ${data.DeviceId}, Heart Rate: ${data.ComputedHeartRate}`);
-        });
+    const handleConnect = async () => {
+        try {
+            const stick = new WebUsbStick();
+            const heartRateSensor = new HeartRateSensor(stick);
 
-        stick.on("startup", () => {
-            heartRateSensor.attachSensor(0, 0);
-        });
+            heartRateSensor.on("hbData", (data) => {
+                console.log(`Device Id: ${data.DeviceId}, Heart Rate: ${data.ComputedHeartRate}`);
+            });
 
-        if (!stick.open()) {
-            console.error("Stick not found!");
-        }
+            stick.on("startup", () => {
+                heartRateSensor.attach(0, 0);
+            });
 
-        // Cleanup function
-        return () => {
-            if (stick) {
-                stick.close(); // Schließt den Stick, wenn die Komponente unmontiert wird
+            const result = await stick.open();
+
+            if (!result) {
+                console.error("Stick not found!");
+                return;
             }
-        };
-    }, []);
+
+            setIsConnected(true); // Set the state to show the connection is successful
+
+            // Cleanup function to close the device if necessary
+            return () => {
+                if (stick) {
+                    stick.close(); // Close the stick when the component unmounts
+                }
+            };
+        } catch (error) {
+            console.error("USB connection failed", error);
+        }
+    };
 
     return (
         <div>
             <h2>Heart Rate Sensor Example</h2>
-            <p>Connecting to the ANT+ Heart Rate Sensor...</p>
+            {!isConnected ? (
+                <div>
+                    <p>Click "Connect" to connect the heart rate sensor.</p>
+                    <button onClick={handleConnect}>Connect USB Device</button>
+                </div>
+            ) : (
+                <p>Connected to the ANT+ heart rate sensor!</p>
+            )}
         </div>
     );
 };
