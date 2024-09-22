@@ -1,0 +1,1 @@
+{"version":3,"file":"speedCadenceScanState.d.ts","sourceRoot":"","sources":["../../../src/sensors/speedCadence/speedCadenceScanState.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,uBAAuB,EAAE,MAAM,8BAA8B,CAAC;AAEvE;;;;GAIG;AACH,qBAAa,qBAAsB,SAAQ,uBAAuB;IAC9D;;;OAGG;IACH,IAAI,EAAE,MAAM,GAAG,SAAS,CAAC;IAEzB;;;OAGG;IACH,SAAS,EAAE,MAAM,GAAG,SAAS,CAAC;CACjC"}

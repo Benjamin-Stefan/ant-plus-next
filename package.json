@@ -21,7 +21,7 @@
         "lint": "eslint eslint.config.mjs",
         "lint:fix": "eslint eslint.config.mjs --fix",
         "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css,md}\"",
-        "build": "npm run build:clean && npm run build:bundle",
+        "build": "npm run build:clean && npm run build:types && npm run build:bundle",
         "build:clean": "rimraf dist && mkdir dist",
         "build:typescript": "tsc",
         "build:types": "tsc --declaration --declarationMap --emitDeclarationOnly --outDir dist",

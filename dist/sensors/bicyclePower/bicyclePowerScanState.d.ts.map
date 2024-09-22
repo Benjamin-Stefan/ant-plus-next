@@ -1,0 +1,1 @@
+{"version":3,"file":"bicyclePowerScanState.d.ts","sourceRoot":"","sources":["../../../src/sensors/bicyclePower/bicyclePowerScanState.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,uBAAuB,EAAE,MAAM,8BAA8B,CAAC;AAEvE;;;GAGG;AACH,qBAAa,qBAAsB,SAAQ,uBAAuB;IAC9D;;;;OAIG;IACH,IAAI,EAAE,MAAM,GAAG,SAAS,CAAC;IAEzB;;;;OAIG;IACH,SAAS,EAAE,MAAM,GAAG,SAAS,CAAC;CACjC"}

@@ -1,0 +1,1 @@
+{"version":3,"file":"fitnessEquipmentScanState.d.ts","sourceRoot":"","sources":["../../../src/sensors/fitnessEquipment/fitnessEquipmentScanState.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,2BAA2B,EAAE,MAAM,kCAAkC,CAAC;AAE/E;;;;GAIG;AACH,qBAAa,yBAA0B,SAAQ,2BAA2B;IACtE;;;;OAIG;IACH,IAAI,EAAE,MAAM,GAAG,SAAS,CAAC;IAEzB;;;;OAIG;IACH,SAAS,EAAE,MAAM,GAAG,SAAS,CAAC;CACjC"}
