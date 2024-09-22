@@ -58,9 +58,8 @@ export class WebUSBDriver extends EventEmitter implements USBDriverBase {
     /**
      * The number of channels currently used.
      * @type {number}
-     * @private
      */
-    private usedChannels: number = 0;
+    usedChannels: number = 0;
 
     /**
      * The sensors attached to the driver.
@@ -103,6 +102,24 @@ export class WebUSBDriver extends EventEmitter implements USBDriverBase {
         this.setMaxListeners(50);
         this.abortController = new AbortController();
         this.signal = this.abortController.signal;
+    }
+
+    /**
+     * Checks if a new sensor can be attached to the driver.
+     * It verifies whether the current number of used channels is less than the maximum available channels.
+     *
+     * @returns {Promise<boolean>} Resolves with true if a new sensor can be attached, otherwise false.
+     *
+     * @example
+     * const canAttach = await this.stick.canAttach();
+     * if (canAttach) {
+     *   console.log("A new sensor can be attached.");
+     * } else {
+     *   console.log("Cannot attach sensor: Maximum number of channels reached.");
+     * }
+     */
+    async canAttach(): Promise<boolean> {
+        return Promise.resolve(this.usedChannels < this.maxChannels);
     }
 
     /**

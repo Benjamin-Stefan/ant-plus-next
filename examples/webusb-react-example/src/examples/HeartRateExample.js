@@ -13,7 +13,7 @@ const HeartRateExample = () => {
 
             setStickState(stick);
             heartRateSensor.on("hbData", (data) => {
-                console.log(`Device Id: ${data.DeviceId}, Heart Rate: ${data.ComputedHeartRate}`);
+                console.log(`DeviceId: ${data.DeviceId}, HeartRate: ${data.ComputedHeartRate}`);
 
                 setSensorData({
                     DeviceId: data.DeviceId,

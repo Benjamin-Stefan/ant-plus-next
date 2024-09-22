@@ -1,6 +1,6 @@
 "use strict";
 
-import * as Ant from "../dist/ant-plus-next.mjs";
+import * as Ant from "../dist/index.mjs";
 
 const stick = new Ant.GarminStick2();
 

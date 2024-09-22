@@ -53,11 +53,11 @@ export abstract class BaseSensor extends EventEmitter {
      */
     protected async scan(type: string, frequency: number): Promise<void> {
         if (this.channel !== undefined) {
-            throw new Error("already attached");
+            throw new Error("Already attached");
         }
 
         if (!this.stick.canScan) {
-            throw new Error("stick cannot scan");
+            throw new Error("Stick cannot scan");
         }
 
         const channel = 0;
@@ -138,7 +138,8 @@ export abstract class BaseSensor extends EventEmitter {
 
             await this.write(Messages.assignChannel(channel, type));
         } else {
-            throw new Error("cannot attach");
+            const errorMessage = (await this.stick.canAttach()) ? "Cannot attach: Device is not scanning, and an unknown error occurred during attachment." : "Cannot attach: Maximum number of channels reached, unable to attach more sensors.";
+            throw new Error(errorMessage);
         }
     }
 
@@ -158,12 +159,13 @@ export abstract class BaseSensor extends EventEmitter {
      */
     protected async attachSensor(channel: number, type: string, deviceId: number, deviceType: number, transmissionType: number, timeout: number, period: number, frequency: number) {
         if (this.channel !== undefined) {
-            throw new Error("already attached");
+            throw new Error("Already attached");
         }
 
         const attached = await this.stick.attach(this, false);
         if (!attached) {
-            throw new Error("cannot attach");
+            const errorMessage = (await this.stick.canAttach()) ? "Cannot attach: Device is not in scanning mode or an unknown error occurred." : "Cannot attach: Maximum number of channels reached, unable to attach more sensors.";
+            throw new Error(errorMessage);
         }
 
         this.channel = channel;
@@ -251,7 +253,7 @@ export abstract class BaseSensor extends EventEmitter {
         await this.write(Messages.closeChannel(this.channel));
         const detached = await this.stick.detach(this);
         if (!detached) {
-            throw new Error("error detaching");
+            throw new Error("Error on detaching");
         }
     }
 

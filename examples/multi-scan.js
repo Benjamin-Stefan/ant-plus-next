@@ -1,6 +1,6 @@
 "use strict";
 
-import * as Ant from "../dist/ant-plus-next.mjs";
+import * as Ant from "../dist/index.mjs";
 
 const stick = new Ant.GarminStick2();
 
@@ -56,6 +56,7 @@ stick.on("startup", function () {
     hrScanner.scan();
 });
 
-if (!stick.open()) {
+const result = await stick.open();
+if (!result) {
     console.log("Stick not found!");
 }

@@ -125,4 +125,33 @@ export interface USBDriverBase extends EventEmitter {
      * console.log(canScan); // true if the device can scan
      */
     canScan(): Promise<boolean>;
+
+    /**
+     * The number of channels currently in use.
+     *
+     * @type {number}
+     * @example
+     * console.log(driver.usedChannels); // Outputs the number of channels in use
+     */
+    usedChannels: number;
+
+    /**
+     * The maximum number of channels available for communication.
+     *
+     * @type {number}
+     * @example
+     * console.log(driver.maxChannels); // Outputs the maximum number of channels available
+     */
+    maxChannels: number;
+
+    /**
+     * Checks if a new sensor can be attached based on the available channels.
+     *
+     * @returns {Promise<boolean>} A promise that resolves to true if a new sensor can be attached, otherwise false.
+     *
+     * @example
+     * const canAttach = await driver.canAttach();
+     * console.log(canAttach); // true if another sensor can be attached
+     */
+    canAttach(): Promise<boolean>;
 }

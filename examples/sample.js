@@ -1,4 +1,4 @@
-import * as Ant from "../dist/ant-plus-next.mjs";
+import * as Ant from "../dist/index.mjs";
 
 async function openStick(stick, stickid) {
     var sensor1 = new Ant.HeartRateSensor(stick);
@@ -80,11 +80,8 @@ async function openStick(stick, stickid) {
         console.log(stickid, "shutdown");
     });
 
-    const controller = new AbortController();
-    const { signal } = controller;
-
     try {
-        await stick.openAsync(signal);
+        await stick.open();
         console.log(stickid, "Stick found");
 
         setTimeout(() => {
@@ -93,11 +90,6 @@ async function openStick(stick, stickid) {
     } catch (err) {
         console.error(stickid, err);
     }
-
-    setTimeout(() => {
-        controller.abort();
-        console.log(stickid, "Aborted openAsync due to timeout.");
-    }, 60000);
 }
 
 openStick(new Ant.GarminStick2(), 1);

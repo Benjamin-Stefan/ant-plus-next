@@ -84,9 +84,8 @@ export class NodeUSBDriver extends EventEmitter implements USBDriverBase {
      * Tracks how many channels are actively being used.
      *
      * @type {number}
-     * @private
      */
-    private usedChannels: number = 0;
+    usedChannels: number = 0;
 
     /**
      * List of attached sensors.
@@ -142,6 +141,24 @@ export class NodeUSBDriver extends EventEmitter implements USBDriverBase {
         this.setMaxListeners(50); // Set maximum number of listeners to 50
         usb.usb.setDebugLevel(debugOptions.usbDebugLevel || 0); // Set USB debug level
         this.throwLibUSBException = debugOptions.throwLibUSBException || false; // Set exception throwing option
+    }
+
+    /**
+     * Checks if a new sensor can be attached to the driver.
+     * It verifies whether the current number of used channels is less than the maximum available channels.
+     *
+     * @returns {Promise<boolean>} Resolves with true if a new sensor can be attached, otherwise false.
+     *
+     * @example
+     * const canAttach = await this.stick.canAttach();
+     * if (canAttach) {
+     *   console.log("A new sensor can be attached.");
+     * } else {
+     *   console.log("Cannot attach sensor: Maximum number of channels reached.");
+     * }
+     */
+    async canAttach(): Promise<boolean> {
+        return Promise.resolve(this.usedChannels < this.maxChannels);
     }
 
     /**

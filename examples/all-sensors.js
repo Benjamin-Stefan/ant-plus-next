@@ -6,18 +6,163 @@ const debug = true;
 
 const sensorConfigs = [
     {
+        name: "BicyclePower",
+        instance: new Ant.BicyclePowerSensor(stick),
+        events: [
+            {
+                event: "powerData",
+                getValue: (data) => {
+                    return {
+                        type: "BicyclePower",
+                        value: data.CalculatedPower,
+                        message: `Bicycle Power -> Id: ${data.DeviceId} - ${data.CalculatedPower}`,
+                        debugPrint: JSON.stringify(data),
+                    };
+                },
+            },
+        ],
+    },
+    {
+        name: "Cadence",
+        instance: new Ant.CadenceSensor(stick),
+        events: [
+            {
+                event: "cadenceData",
+                getValue: (data) => {
+                    return {
+                        type: "Cadence",
+                        value: data.CalculatedCadence,
+                        message: `Cadence -> Id: ${data.DeviceId} - ${data.CalculatedCadence}`,
+                        debugPrint: JSON.stringify(data),
+                    };
+                },
+            },
+        ],
+    },
+    {
+        name: "Environment",
+        instance: new Ant.EnvironmentSensor(stick),
+        events: [
+            {
+                event: "envData",
+                getValue: (data) => {
+                    return {
+                        type: "Environment",
+                        value: data.Temperature,
+                        message: `Environment -> Id: ${data.DeviceId} - ${data.Temperature}`,
+                        debugPrint: JSON.stringify(data),
+                    };
+                },
+            },
+        ],
+    },
+    {
+        name: "FitnessEquipment",
+        instance: new Ant.FitnessEquipmentSensor(stick),
+        events: [
+            {
+                event: "fitnessData",
+                getValue: (data) => {
+                    return {
+                        type: "FitnessEquipment",
+                        value: data.EquipmentType,
+                        message: `Fitness Equipment -> Id: ${data.DeviceId} - ${data.EquipmentType}`,
+                        debugPrint: JSON.stringify(data),
+                    };
+                },
+            },
+        ],
+    },
+    {
         name: "HeartRate",
-        deviceId: 39266,
         instance: new Ant.HeartRateSensor(stick),
         events: [
             {
-                event: "hbData",
+                event: "heartRateData",
                 getValue: (data) => {
                     return {
-                        type: "heartrate",
+                        type: "HeartRate",
                         value: data.ComputedHeartRate,
-                        formatedValue: data.ComputedHeartRate,
-                        message: `Heart Rate -> Id: ${data.DeviceId} - ${data.ComputedHeartRate} BPM`,
+                        message: `Heart Rate -> Id: ${data.DeviceId} - ${data.ComputedHeartRate}`,
+                        debugPrint: JSON.stringify(data),
+                    };
+                },
+            },
+        ],
+    },
+    {
+        name: "MuscleOxygen",
+        instance: new Ant.MuscleOxygenSensor(stick),
+        events: [
+            {
+                event: "oxygenData",
+                getValue: (data) => {
+                    return {
+                        type: "MuscleOxygen",
+                        value: data.TotalHemoglobinConcentration,
+                        message: `Muscle Oxygen -> Id: ${data.DeviceId} - ${data.TotalHemoglobinConcentration}`,
+                        debugPrint: JSON.stringify(data),
+                    };
+                },
+            },
+        ],
+    },
+    {
+        name: "Speed",
+        instance: new Ant.SpeedSensor(stick),
+        events: [
+            {
+                event: "speedData",
+                getValue: (data) => {
+                    return {
+                        type: "Speed",
+                        value: data.CalculatedSpeed,
+                        message: `Speed -> Id: ${data.DeviceId} - ${data.CalculatedSpeed}`,
+                        debugPrint: JSON.stringify(data),
+                    };
+                },
+            },
+        ],
+    },
+    {
+        name: "SpeedCadence",
+        instance: new Ant.SpeedCadenceSensor(stick),
+        events: [
+            {
+                event: "cadenceData",
+                getValue: (data) => {
+                    return {
+                        type: "SpeedCadence",
+                        value: data.CalculatedCadence,
+                        message: `Speed Cadence (Cadence) -> Id: ${data.DeviceId} - ${data.CalculatedCadence}`,
+                        debugPrint: JSON.stringify(data),
+                    };
+                },
+            },
+            {
+                event: "speedData",
+                getValue: (data) => {
+                    return {
+                        type: "SpeedCadence",
+                        value: data.CalculatedSpeed,
+                        message: `Speed Cadence (Speed) -> Id: ${data.DeviceId} - ${data.CalculatedSpeed}`,
+                        debugPrint: JSON.stringify(data),
+                    };
+                },
+            },
+        ],
+    },
+    {
+        name: "StrideSpeedDistance",
+        instance: new Ant.StrideSpeedDistanceSensor(stick),
+        events: [
+            {
+                event: "ssdData",
+                getValue: (data) => {
+                    return {
+                        type: "StrideSpeedDistance",
+                        value: data.CadenceInteger,
+                        message: `StrideSpeedDistance -> Id: ${data.DeviceId} - ${data.CadenceInteger}`,
                         debugPrint: JSON.stringify(data),
                     };
                 },
