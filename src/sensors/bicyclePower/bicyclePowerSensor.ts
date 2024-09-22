@@ -10,6 +10,8 @@ import { AntPlusSensor } from "../antPlusSensor.js";
 /**
  * Represents a Bicycle Power sensor.
  * This class extends the AntPlusSensor class to handle specific data related to bicycle power measurement.
+ *
+ * @category Sensors
  */
 export class BicyclePowerSensor extends AntPlusSensor {
     /**
@@ -38,8 +40,8 @@ export class BicyclePowerSensor extends AntPlusSensor {
      * const sensor = new BicyclePowerSensor();
      * sensor.attach(1, 12345); // Attaches to channel 1 with device ID 12345
      */
-    public attach(channel: number, deviceId: number): void {
-        super.attachSensor(channel, "receive", deviceId, BicyclePowerSensor.deviceType, 0, 255, 8182);
+    public async attach(channel: number, deviceId: number): Promise<void> {
+        await super.attachSensor(channel, "receive", deviceId, BicyclePowerSensor.deviceType, 0, 255, 8182);
         this.state = new BicyclePowerSensorState(deviceId);
     }
 
@@ -48,14 +50,14 @@ export class BicyclePowerSensor extends AntPlusSensor {
      *
      * @protected
      * @param {number} deviceId - The unique identifier of the sensor device.
-     * @param {Buffer} data - The raw data buffer received from the sensor.
+     * @param {DataView} data - The raw data buffer received from the sensor.
      * @returns {void}
      *
      * @example
      * const dataBuffer = getDataFromSensor(); // Assume this function gets data from a sensor
      * sensor.updateState(12345, dataBuffer);
      */
-    protected updateState(deviceId: number, data: Buffer): void {
+    protected updateState(deviceId: number, data: DataView): void {
         this.state.DeviceId = deviceId;
         updateState(this, this.state, data);
     }

@@ -1,7 +1,7 @@
 import { AntPlusBaseSensor } from "./antPlusBaseSensor.js";
 import { Constants } from "../types/constants.js";
 import { Messages } from "../utils/messages.js";
-import { USBDriver } from "../core/usbDriver.js";
+import { USBDriverBase } from "../types/usbDriverBase.js";
 
 /**
  * Abstract base class for scanning and decoding data from ANT+ sensors.
@@ -37,9 +37,9 @@ export abstract class AntPlusScanner extends AntPlusBaseSensor {
     /**
      * Constructs an instance of the AntPlusScanner class.
      *
-     * @param {USBDriver} stick - The USB driver instance used for communication with the ANT+ stick.
+     * @param {USBDriverBase} stick - The USB driver instance used for communication with the ANT+ stick.
      */
-    constructor(stick: USBDriver) {
+    constructor(stick: USBDriverBase) {
         super(stick);
         this.decodeDataCbk = this.decodeData.bind(this);
     }
@@ -55,8 +55,8 @@ export abstract class AntPlusScanner extends AntPlusBaseSensor {
      * const scanner = new AntPlusScanner();
      * scanner.scan();
      */
-    public scan() {
-        return super.scan("receive");
+    public async scan(): Promise<void> {
+        return await super.scan("receive");
     }
 
     /**
@@ -75,7 +75,7 @@ export abstract class AntPlusScanner extends AntPlusBaseSensor {
      * @protected
      * @throws {Error} Always throws an error indicating that sending is unsupported.
      */
-    protected send() {
+    protected send(): Promise<void> {
         throw new Error("send unsupported");
     }
 
@@ -83,7 +83,7 @@ export abstract class AntPlusScanner extends AntPlusBaseSensor {
      * Decodes the incoming data from the ANT+ sensors and updates the sensor state.
      *
      * @private
-     * @param {Buffer} data - The raw data buffer received from the ANT+ sensor.
+     * @param {DataView} data - The raw data buffer received from the ANT+ sensor.
      * @returns {void}
      *
      * @example
@@ -91,14 +91,22 @@ export abstract class AntPlusScanner extends AntPlusBaseSensor {
      * const dataBuffer = getDataFromSensor(); // assume this function gets data from a sensor
      * decodeData(dataBuffer);
      */
-    private decodeData(data: Buffer) {
-        if (data.length <= Messages.BUFFER_INDEX_EXT_MSG_BEGIN + 3 || !(data.readUInt8(Messages.BUFFER_INDEX_EXT_MSG_BEGIN) & 0x80)) {
-            console.log("wrong message format", data.toString("hex"));
+    // eslint-disable-next-line @typescript-eslint/require-await
+    private async decodeData(data: DataView): Promise<void> {
+        if (data.byteLength <= Messages.BUFFER_INDEX_EXT_MSG_BEGIN + 3 || !(data.getUint8(Messages.BUFFER_INDEX_EXT_MSG_BEGIN) & 0x80)) {
+            const bytesArray = new Uint8Array(data.buffer, data.byteOffset, data.byteLength);
+            console.log(
+                "wrong message format",
+                Array.from(bytesArray)
+                    .map((byte) => byte.toString(16))
+                    .join(" ")
+            );
             return;
         }
 
-        const deviceId = data.readUInt16LE(Messages.BUFFER_INDEX_EXT_MSG_BEGIN + 1);
-        const deviceType = data.readUInt8(Messages.BUFFER_INDEX_EXT_MSG_BEGIN + 3);
+        const deviceId = data.getUint16(Messages.BUFFER_INDEX_EXT_MSG_BEGIN + 1, true);
+        console.log(this.deviceId);
+        const deviceType = data.getUint8(Messages.BUFFER_INDEX_EXT_MSG_BEGIN + 3);
 
         if (deviceType !== this.deviceType()) {
             return;
@@ -106,13 +114,17 @@ export abstract class AntPlusScanner extends AntPlusBaseSensor {
 
         this.createStateIfNew(deviceId);
 
-        if (data.readUInt8(Messages.BUFFER_INDEX_EXT_MSG_BEGIN) & 0x40) {
-            if (data.readUInt8(Messages.BUFFER_INDEX_EXT_MSG_BEGIN + 5) === 0x20) {
-                this.updateRssiAndThreshold(deviceId, data.readInt8(Messages.BUFFER_INDEX_EXT_MSG_BEGIN + 6), data.readInt8(Messages.BUFFER_INDEX_EXT_MSG_BEGIN + 7));
+        // Check if the RSSI and threshold should be updated
+        if (data.getUint8(Messages.BUFFER_INDEX_EXT_MSG_BEGIN) & 0x40) {
+            if (data.getUint8(Messages.BUFFER_INDEX_EXT_MSG_BEGIN + 5) === 0x20) {
+                const rssi = data.getInt8(Messages.BUFFER_INDEX_EXT_MSG_BEGIN + 6);
+                const threshold = data.getInt8(Messages.BUFFER_INDEX_EXT_MSG_BEGIN + 7);
+                this.updateRssiAndThreshold(deviceId, rssi, threshold);
             }
         }
 
-        switch (data.readUInt8(Messages.BUFFER_INDEX_MSG_TYPE)) {
+        // Handle different message types
+        switch (data.getUint8(Messages.BUFFER_INDEX_MSG_TYPE)) {
             case Constants.MESSAGE_CHANNEL_BROADCAST_DATA:
             case Constants.MESSAGE_CHANNEL_ACKNOWLEDGED_DATA:
             case Constants.MESSAGE_CHANNEL_BURST_DATA:

@@ -1,7 +1,7 @@
 import { AntPlusBaseSensor } from "./antPlusBaseSensor.js";
 import { Constants } from "../types/constants.js";
 import { Messages } from "../utils/messages.js";
-import { USBDriver } from "../core/usbDriver.js";
+import { USBDriverBase } from "../types/usbDriverBase.js";
 
 /**
  * Abstract base class for managing a specific ANT+ sensor, extending the functionality
@@ -11,9 +11,9 @@ export abstract class AntPlusSensor extends AntPlusBaseSensor {
     /**
      * Constructs an instance of the AntPlusSensor class.
      *
-     * @param {USBDriver} stick - The USB driver instance used for communication with the ANT+ stick.
+     * @param {USBDriverBase} stick - The USB driver instance used for communication with the ANT+ stick.
      */
-    constructor(stick: USBDriver) {
+    constructor(stick: USBDriverBase) {
         super(stick);
         this.decodeDataCbk = this.decodeData.bind(this);
     }
@@ -24,7 +24,7 @@ export abstract class AntPlusSensor extends AntPlusBaseSensor {
      * @protected
      * @throws {Error} Always throws an error indicating that scanning is unsupported.
      */
-    protected scan() {
+    protected scan(): Promise<void> {
         throw new Error("scanning unsupported");
     }
 
@@ -47,15 +47,15 @@ export abstract class AntPlusSensor extends AntPlusBaseSensor {
      * const sensor = new AntPlusSensor();
      * sensor.attachSensor(1, 'heartRate', 12345, 120, 5, 60, 8070);
      */
-    protected attachSensor(channel: number, type: string, deviceId: number, deviceType: number, transmissionType: number, timeout: number, period: number) {
-        return super.attachSensor(channel, type, deviceId, deviceType, transmissionType, timeout, period);
+    protected async attachSensor(channel: number, type: string, deviceId: number, deviceType: number, transmissionType: number, timeout: number, period: number): Promise<void> {
+        return await super.attachSensor(channel, type, deviceId, deviceType, transmissionType, timeout, period);
     }
 
     /**
      * Decodes the incoming data from the ANT+ sensor and updates the sensor state.
      *
      * @private
-     * @param {Buffer} data - The raw data buffer received from the ANT+ sensor.
+     * @param {DataView} data - The raw data buffer received from the ANT+ sensor.
      * @returns {void}
      *
      * @example
@@ -63,19 +63,19 @@ export abstract class AntPlusSensor extends AntPlusBaseSensor {
      * const dataBuffer = getDataFromSensor(); // assume this function gets data from a sensor
      * decodeData(dataBuffer);
      */
-    private decodeData(data: Buffer) {
-        switch (data.readUInt8(Messages.BUFFER_INDEX_MSG_TYPE)) {
+    private async decodeData(data: DataView): Promise<void> {
+        switch (data.getUint8(Messages.BUFFER_INDEX_MSG_TYPE)) {
             case Constants.MESSAGE_CHANNEL_BROADCAST_DATA:
             case Constants.MESSAGE_CHANNEL_ACKNOWLEDGED_DATA:
             case Constants.MESSAGE_CHANNEL_BURST_DATA:
-                if (this.deviceId === 0 && this.channel) {
-                    this.write(Messages.requestMessage(this.channel, Constants.MESSAGE_CHANNEL_ID));
+                if (this.deviceId === 0 && this.channel != undefined) {
+                    await this.write(Messages.requestMessage(this.channel, Constants.MESSAGE_CHANNEL_ID));
                 }
                 this.updateState(this.deviceId, data);
                 break;
             case Constants.MESSAGE_CHANNEL_ID:
-                this.deviceId = data.readUInt16LE(Messages.BUFFER_INDEX_MSG_DATA);
-                this.transmissionType = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 3);
+                this.deviceId = data.getUint16(Messages.BUFFER_INDEX_MSG_DATA, true);
+                this.transmissionType = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 3);
                 break;
             default:
                 break;

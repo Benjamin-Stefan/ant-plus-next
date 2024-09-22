@@ -1,11 +1,11 @@
 "use strict";
 
-import * as Ant from "../dist/ant-plus-next.mjs";
+import * as Ant from "../dist/index.mjs";
 
 const stick = new Ant.GarminStick2();
 
 const hrScanner = new Ant.HeartRateScanner(stick);
-hrScanner.on("hbData", (data) => {
+hrScanner.on("heartRateData", (data) => {
     console.log(`id: ${data.DeviceId}`);
     console.dir(data);
 });
@@ -56,6 +56,7 @@ stick.on("startup", function () {
     hrScanner.scan();
 });
 
-if (!stick.open()) {
+const result = await stick.open();
+if (!result) {
     console.log("Stick not found!");
 }

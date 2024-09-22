@@ -1,6 +1,6 @@
 "use strict";
 
-import * as Ant from "../dist/ant-plus-next.mjs";
+import * as Ant from "../dist/index.mjs";
 
 let stick = new Ant.GarminStick2();
 let muscleOxygenSensor = new Ant.MuscleOxygenSensor(stick);
@@ -21,6 +21,7 @@ stick.on("startup", function () {
     muscleOxygenSensor.attach(0, 0);
 });
 
-if (!stick.open()) {
+const result = await stick.open();
+if (!result) {
     console.log("Stick not found!");
 }

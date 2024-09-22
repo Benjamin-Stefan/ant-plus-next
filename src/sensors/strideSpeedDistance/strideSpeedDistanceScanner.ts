@@ -6,6 +6,8 @@ import { StrideSpeedDistanceSensor } from "./strideSpeedDistanceSensor.js";
 /**
  * Represents a scanner for Stride-Based Speed and Distance Monitor (SDM) sensors.
  * Extends the AntPlusScanner class to handle scanning and state updates for multiple SDM sensors.
+ *
+ * @category Sensors
  */
 export class StrideSpeedDistanceScanner extends AntPlusScanner {
     /**
@@ -63,14 +65,14 @@ export class StrideSpeedDistanceScanner extends AntPlusScanner {
      *
      * @protected
      * @param {number} deviceId - The unique identifier of the sensor device.
-     * @param {Buffer} data - The raw data buffer received from the sensor.
+     * @param {DataView} data - The raw data buffer received from the sensor.
      * @returns {void}
      *
      * @example
      * const dataBuffer = getDataFromSensor(); // Assume this function gets data from a sensor
      * scanner.updateState(12345, dataBuffer); // Updates the state for device ID 12345.
      */
-    protected updateState(deviceId: number, data: Buffer): void {
+    protected updateState(deviceId: number, data: DataView): void {
         updateState(this, this.states[deviceId], data);
     }
 }

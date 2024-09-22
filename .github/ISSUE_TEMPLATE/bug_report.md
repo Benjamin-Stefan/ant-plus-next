@@ -25,8 +25,9 @@ If applicable, add screenshots to help explain your problem.
 
 **Environment (please complete the following information):**
 
--   OS: [e.g., Windows, macOS, Linux]
+-   Operating System: [e.g., Windows, macOS, Linux]
 -   Node.js version: [e.g., 18.0.0]
+-   Browser: [e.q., Chrome, Edge]
 -   Version of ant-plus-next: [e.g., 0.0.1]
 -   **ANT+ Dongle Model**: [e.g., Garmin USB2, Suunto Movestick, Dynastream ANTUSB-m]
 

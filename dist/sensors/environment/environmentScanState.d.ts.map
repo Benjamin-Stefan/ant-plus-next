@@ -1,0 +1,1 @@
+{"version":3,"file":"environmentScanState.d.ts","sourceRoot":"","sources":["../../../src/sensors/environment/environmentScanState.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,sBAAsB,EAAE,MAAM,6BAA6B,CAAC;AAErE;;;;GAIG;AACH,qBAAa,oBAAqB,SAAQ,sBAAsB;IAC5D;;;;OAIG;IACH,IAAI,EAAE,MAAM,GAAG,SAAS,CAAC;IAEzB;;;;OAIG;IACH,SAAS,EAAE,MAAM,GAAG,SAAS,CAAC;CACjC"}

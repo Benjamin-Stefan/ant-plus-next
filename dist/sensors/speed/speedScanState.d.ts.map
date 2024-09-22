@@ -1,0 +1,1 @@
+{"version":3,"file":"speedScanState.d.ts","sourceRoot":"","sources":["../../../src/sensors/speed/speedScanState.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,gBAAgB,EAAE,MAAM,uBAAuB,CAAC;AAEzD;;;;GAIG;AACH,qBAAa,cAAe,SAAQ,gBAAgB;IAChD;;;OAGG;IACH,IAAI,EAAE,MAAM,GAAG,SAAS,CAAC;IAEzB;;;OAGG;IACH,SAAS,EAAE,MAAM,GAAG,SAAS,CAAC;CACjC"}

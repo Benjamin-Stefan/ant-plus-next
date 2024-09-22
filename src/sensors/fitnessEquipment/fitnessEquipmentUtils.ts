@@ -45,31 +45,31 @@ function resetState(state: FitnessEquipmentSensorState | FitnessEquipmentScanSta
  *
  * @param {FitnessEquipmentSensor | FitnessEquipmentScanner} sensor - The sensor or scanner instance to update.
  * @param {FitnessEquipmentSensorState | FitnessEquipmentScanState} state - The current state of the sensor or scanner.
- * @param {Buffer} data - The raw data buffer received from the fitness equipment.
+ * @param {DataView} data - The raw data buffer received from the fitness equipment.
  * @returns {void}
  *
  * @example
  * updateState(sensor, state, data);
  */
-export function updateState(sensor: FitnessEquipmentSensor | FitnessEquipmentScanner, state: FitnessEquipmentSensorState | FitnessEquipmentScanState, data: Buffer): void {
-    const page = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA);
+export function updateState(sensor: FitnessEquipmentSensor | FitnessEquipmentScanner, state: FitnessEquipmentSensorState | FitnessEquipmentScanState, data: DataView): void {
+    const page = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA);
     switch (page) {
         case 0x01: {
-            const temperature = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 3);
+            const temperature = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 3);
             if (temperature !== 0xff) {
                 state.Temperature = -25 + temperature * 0.5;
             }
-            const calBF = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 1);
+            const calBF = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 1);
             if (calBF & 0x40) {
-                state.ZeroOffset = data.readUInt16LE(Messages.BUFFER_INDEX_MSG_DATA + 4);
+                state.ZeroOffset = data.getUint16(Messages.BUFFER_INDEX_MSG_DATA + 4, true);
             }
             if (calBF & 0x80) {
-                state.SpinDownTime = data.readUInt16LE(Messages.BUFFER_INDEX_MSG_DATA + 6);
+                state.SpinDownTime = data.getUint16(Messages.BUFFER_INDEX_MSG_DATA + 6, true);
             }
             break;
         }
         case 0x10: {
-            const equipmentTypeBF = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 1);
+            const equipmentTypeBF = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 1);
             switch (equipmentTypeBF & 0x1f) {
                 case 19:
                     state.EquipmentType = "Treadmill";
@@ -96,11 +96,11 @@ export function updateState(sensor: FitnessEquipmentSensor | FitnessEquipmentSca
                     state.EquipmentType = "General";
                     break;
             }
-            let elapsedTime = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 2);
-            let distance = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 3);
-            const speed = data.readUInt16LE(Messages.BUFFER_INDEX_MSG_DATA + 4);
-            const heartRate = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 6);
-            const capStateBF = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 7);
+            let elapsedTime = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 2);
+            let distance = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 3);
+            const speed = data.getUint16(Messages.BUFFER_INDEX_MSG_DATA + 4, true);
+            const heartRate = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 6);
+            const capStateBF = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 7);
             if (heartRate !== 0xff) {
                 switch (capStateBF & 0x03) {
                     case 3: {
@@ -179,10 +179,10 @@ export function updateState(sensor: FitnessEquipmentSensor | FitnessEquipmentSca
             break;
         }
         case 0x11: {
-            const cycleLen = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 3);
-            const incline = data.readInt16LE(Messages.BUFFER_INDEX_MSG_DATA + 4);
-            const resistance = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 6);
-            const capStateBF = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 7);
+            const cycleLen = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 3);
+            const incline = data.getUint16(Messages.BUFFER_INDEX_MSG_DATA + 4, true);
+            const resistance = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 6);
+            const capStateBF = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 7);
             if (cycleLen !== 0xff) {
                 state.CycleLength = cycleLen / 100;
             }
@@ -216,10 +216,10 @@ export function updateState(sensor: FitnessEquipmentSensor | FitnessEquipmentSca
             break;
         }
         case 0x12: {
-            const mets = data.readUInt16LE(Messages.BUFFER_INDEX_MSG_DATA + 2);
-            const caloricbr = data.readUInt16LE(Messages.BUFFER_INDEX_MSG_DATA + 4);
-            const calories = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 6);
-            const capStateBF = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 7);
+            const mets = data.getUint16(Messages.BUFFER_INDEX_MSG_DATA + 2, true);
+            const caloricbr = data.getUint16(Messages.BUFFER_INDEX_MSG_DATA + 4, true);
+            const calories = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 6);
+            const capStateBF = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 7);
             if (mets !== 0xffff) {
                 state.METs = mets / 100;
             }
@@ -253,10 +253,10 @@ export function updateState(sensor: FitnessEquipmentSensor | FitnessEquipmentSca
             break;
         }
         case 0x13: {
-            const cadence = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 4);
-            let negDistance = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 5);
-            let posDistance = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 6);
-            const flagStateBF = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 7);
+            const cadence = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 4);
+            let negDistance = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 5);
+            let posDistance = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 6);
+            const flagStateBF = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 7);
 
             if (cadence !== 0xff) {
                 state.Cadence = cadence;
@@ -307,11 +307,11 @@ export function updateState(sensor: FitnessEquipmentSensor | FitnessEquipmentSca
             break;
         }
         case 0x14: {
-            let posDistance = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 2);
-            let strides = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 3);
-            const cadence = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 4);
-            const power = data.readUInt16LE(Messages.BUFFER_INDEX_MSG_DATA + 5);
-            const flagStateBF = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 7);
+            let posDistance = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 2);
+            let strides = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 3);
+            const cadence = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 4);
+            const power = data.getUint16(Messages.BUFFER_INDEX_MSG_DATA + 5, true);
+            const flagStateBF = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 7);
 
             if (cadence !== 0xff) {
                 state.Cadence = cadence;
@@ -366,10 +366,10 @@ export function updateState(sensor: FitnessEquipmentSensor | FitnessEquipmentSca
             break;
         }
         case 0x16: {
-            let strokes = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 3);
-            const cadence = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 4);
-            const power = data.readUInt16LE(Messages.BUFFER_INDEX_MSG_DATA + 5);
-            const flagStateBF = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 7);
+            let strokes = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 3);
+            const cadence = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 4);
+            const power = data.getUint16(Messages.BUFFER_INDEX_MSG_DATA + 5, true);
+            const flagStateBF = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 7);
 
             if (cadence !== 0xff) {
                 state.Cadence = cadence;
@@ -414,10 +414,10 @@ export function updateState(sensor: FitnessEquipmentSensor | FitnessEquipmentSca
             break;
         }
         case 0x17: {
-            let strides = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 3);
-            const cadence = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 4);
-            const power = data.readUInt16LE(Messages.BUFFER_INDEX_MSG_DATA + 5);
-            const flagStateBF = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 7);
+            let strides = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 3);
+            const cadence = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 4);
+            const power = data.getUint16(Messages.BUFFER_INDEX_MSG_DATA + 5, true);
+            const flagStateBF = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 7);
 
             if (cadence !== 0xff) {
                 state.Cadence = cadence;
@@ -462,10 +462,10 @@ export function updateState(sensor: FitnessEquipmentSensor | FitnessEquipmentSca
             break;
         }
         case 0x18: {
-            let strides = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 3);
-            const cadence = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 4);
-            const power = data.readUInt16LE(Messages.BUFFER_INDEX_MSG_DATA + 5);
-            const flagStateBF = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 7);
+            let strides = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 3);
+            const cadence = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 4);
+            const power = data.getUint16(Messages.BUFFER_INDEX_MSG_DATA + 5, true);
+            const flagStateBF = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 7);
 
             if (cadence !== 0xff) {
                 state.Cadence = cadence;
@@ -512,12 +512,12 @@ export function updateState(sensor: FitnessEquipmentSensor | FitnessEquipmentSca
         case 0x19: {
             const oldEventCount = state._EventCount0x19 || 0;
 
-            let eventCount = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 1);
-            const cadence = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 2);
-            let accPower = data.readUInt16LE(Messages.BUFFER_INDEX_MSG_DATA + 3);
-            const power = data.readUInt16LE(Messages.BUFFER_INDEX_MSG_DATA + 5) & 0xfff;
-            const trainerStatus = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 6) >> 4;
-            const flagStateBF = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 7);
+            let eventCount = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 1);
+            const cadence = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 2);
+            let accPower = data.getUint16(Messages.BUFFER_INDEX_MSG_DATA + 3, true);
+            const power = data.getUint16(Messages.BUFFER_INDEX_MSG_DATA + 5, true) & 0xfff;
+            const trainerStatus = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 6) >> 4;
+            const flagStateBF = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 7);
 
             if (eventCount !== oldEventCount) {
                 state._EventCount0x19 = eventCount;
@@ -589,11 +589,11 @@ export function updateState(sensor: FitnessEquipmentSensor | FitnessEquipmentSca
         case 0x1a: {
             const oldEventCount = state._EventCount0x1A || 0;
 
-            let eventCount = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 1);
-            let wheelTicks = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 2);
-            let accWheelPeriod = data.readUInt16LE(Messages.BUFFER_INDEX_MSG_DATA + 3);
-            let accTorque = data.readUInt16LE(Messages.BUFFER_INDEX_MSG_DATA + 5);
-            const flagStateBF = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 7);
+            let eventCount = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 1);
+            let wheelTicks = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 2);
+            let accWheelPeriod = data.getUint16(Messages.BUFFER_INDEX_MSG_DATA + 3, true);
+            let accTorque = data.getUint16(Messages.BUFFER_INDEX_MSG_DATA + 5, true);
+            const flagStateBF = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 7);
 
             if (eventCount !== oldEventCount) {
                 state._EventCount0x1A = eventCount;
@@ -652,15 +652,15 @@ export function updateState(sensor: FitnessEquipmentSensor | FitnessEquipmentSca
             break;
         }
         case 0x50: {
-            state.HwVersion = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 3);
-            state.ManId = data.readUInt16LE(Messages.BUFFER_INDEX_MSG_DATA + 4);
-            state.ModelNum = data.readUInt16LE(Messages.BUFFER_INDEX_MSG_DATA + 6);
+            state.HwVersion = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 3);
+            state.ManId = data.getUint16(Messages.BUFFER_INDEX_MSG_DATA + 4, true);
+            state.ModelNum = data.getUint16(Messages.BUFFER_INDEX_MSG_DATA + 6, true);
             break;
         }
         case 0x51: {
-            const swRevSup = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 2);
-            const swRevMain = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 3);
-            const serial = data.readInt32LE(Messages.BUFFER_INDEX_MSG_DATA + 4);
+            const swRevSup = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 2);
+            const swRevMain = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 3);
+            const serial = data.getUint32(Messages.BUFFER_INDEX_MSG_DATA + 4, true);
 
             state.SwVersion = swRevMain;
 
@@ -675,13 +675,13 @@ export function updateState(sensor: FitnessEquipmentSensor | FitnessEquipmentSca
             break;
         }
         case 0x56: {
-            const idx = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 1);
-            const tot = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 2);
-            const chState = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 3);
-            const devId = data.readUInt16LE(Messages.BUFFER_INDEX_MSG_DATA + 4);
+            const idx = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 1);
+            const tot = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 2);
+            const chState = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 3);
+            const devId = data.getUint16(Messages.BUFFER_INDEX_MSG_DATA + 4, true);
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            const trType = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 6);
-            const devType = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 7);
+            const trType = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 6);
+            const devType = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 7);
 
             if (idx === 0) {
                 state.PairedDevices = [];

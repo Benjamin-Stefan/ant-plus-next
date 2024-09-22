@@ -10,6 +10,8 @@ import { AntPlusSensor } from "../antPlusSensor.js";
 /**
  * Represents a Bicycle Cadence sensor.
  * This class extends the AntPlusSensor class to handle specific data related to cadence measurement.
+ *
+ * @category Sensors
  */
 export class CadenceSensor extends AntPlusSensor {
     /**
@@ -45,8 +47,8 @@ export class CadenceSensor extends AntPlusSensor {
      * const sensor = new CadenceSensor();
      * sensor.attach(1, 12345); // Attaches to channel 1 with device ID 12345
      */
-    public attach(channel: number, deviceId: number): void {
-        super.attachSensor(channel, "receive", deviceId, CadenceSensor.deviceType, 0, 255, 8102);
+    public async attach(channel: number, deviceId: number): Promise<void> {
+        await super.attachSensor(channel, "receive", deviceId, CadenceSensor.deviceType, 0, 255, 8102);
         this.state = new CadenceSensorState(deviceId);
     }
 
@@ -70,14 +72,14 @@ export class CadenceSensor extends AntPlusSensor {
      *
      * @protected
      * @param {number} deviceId - The unique identifier of the sensor device.
-     * @param {Buffer} data - The raw data buffer received from the sensor.
+     * @param {DataView} data - The raw data buffer received from the sensor.
      * @returns {void}
      *
      * @example
      * const dataBuffer = getDataFromSensor(); // assume this function gets data from a sensor
      * sensor.updateState(12345, dataBuffer);
      */
-    protected updateState(deviceId: number, data: Buffer): void {
+    protected updateState(deviceId: number, data: DataView): void {
         this.state.DeviceId = deviceId;
         updateState(this, this.state, data);
     }

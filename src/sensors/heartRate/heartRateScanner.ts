@@ -6,6 +6,8 @@ import { AntPlusScanner } from "../antPlusScanner.js";
 /**
  * Represents a scanner for Heart Rate sensors.
  * Extends the AntPlusScanner class to handle scanning and state updates for multiple Heart Rate sensors.
+ *
+ * @category Sensors
  */
 export class HeartRateScanner extends AntPlusScanner {
     /**
@@ -74,14 +76,14 @@ export class HeartRateScanner extends AntPlusScanner {
      *
      * @protected
      * @param {number} deviceId - The unique identifier of the sensor device.
-     * @param {Buffer} data - The raw data buffer received from the sensor.
+     * @param {Uint8Array} data - The raw data buffer received from the sensor.
      * @returns {void}
      *
      * @example
      * const dataBuffer = getDataFromSensor(); // Assume this function gets data from a sensor
      * scanner.updateState(12345, dataBuffer); // Updates the state for device ID 12345.
      */
-    protected updateState(deviceId: number, data: Buffer): void {
+    protected updateState(deviceId: number, data: DataView): void {
         updateState(this, this.states[deviceId], this.pages[deviceId], data);
     }
 }

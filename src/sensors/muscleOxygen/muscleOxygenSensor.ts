@@ -12,6 +12,8 @@ import { Messages } from "../../utils/messages.js";
 /**
  * Represents a Muscle Oxygen sensor.
  * This class extends the AntPlusSensor class to handle specific data related to muscle oxygen measurements.
+ *
+ * @category Sensors
  */
 export class MuscleOxygenSensor extends AntPlusSensor {
     /**
@@ -40,8 +42,8 @@ export class MuscleOxygenSensor extends AntPlusSensor {
      * const sensor = new MuscleOxygenSensor();
      * sensor.attach(1, 12345); // Attaches to channel 1 with device ID 12345
      */
-    public attach(channel: number, deviceId: number) {
-        super.attachSensor(channel, "receive", deviceId, MuscleOxygenSensor.deviceType, 0, 255, 8192);
+    public async attach(channel: number, deviceId: number): Promise<void> {
+        await super.attachSensor(channel, "receive", deviceId, MuscleOxygenSensor.deviceType, 0, 255, 8192);
         this.state = new MuscleOxygenSensorState(deviceId);
     }
 
@@ -50,14 +52,14 @@ export class MuscleOxygenSensor extends AntPlusSensor {
      *
      * @protected
      * @param {number} deviceId - The unique identifier of the sensor device.
-     * @param {Buffer} data - The raw data buffer received from the sensor.
+     * @param {DataView} data - The raw data buffer received from the sensor.
      * @returns {void}
      *
      * @example
      * const dataBuffer = getDataFromSensor(); // assume this function gets data from a sensor
      * sensor.updateState(12345, dataBuffer);
      */
-    protected updateState(deviceId: number, data: Buffer) {
+    protected updateState(deviceId: number, data: DataView) {
         this.state.DeviceId = deviceId;
         updateState(this, this.state, data);
     }
@@ -73,13 +75,13 @@ export class MuscleOxygenSensor extends AntPlusSensor {
      * @example
      * sensor._sendTimeCmd(0x00, callbackFunction);
      */
-    private _sendTimeCmd(cmd: number, cbk?: SendCallback) {
+    private async _sendTimeCmd(cmd: number, cbk?: SendCallback): Promise<void> {
         const now = new Date();
         const utc = Math.round((now.getTime() - Date.UTC(1989, 11, 31, 0, 0, 0, 0)) / 1000);
         const offset = -Math.round(now.getTimezoneOffset() / 15);
         const payload = [0x10, cmd & 0xff, 0xff, offset & 0xff, (utc >> 0) & 0xff, (utc >> 8) & 0xff, (utc >> 16) & 0xff, (utc >> 24) & 0xff];
         const msg = Messages.acknowledgedData(this.channel!, payload);
-        this.send(msg, cbk);
+        await this.send(msg, cbk);
     }
 
     /**
@@ -92,8 +94,8 @@ export class MuscleOxygenSensor extends AntPlusSensor {
      * @example
      * sensor.setUTCTime(callbackFunction);
      */
-    public setUTCTime(cbk?: SendCallback) {
-        this._sendTimeCmd(0x00, cbk);
+    public async setUTCTime(cbk?: SendCallback): Promise<void> {
+        await this._sendTimeCmd(0x00, cbk);
     }
 
     /**
@@ -106,8 +108,8 @@ export class MuscleOxygenSensor extends AntPlusSensor {
      * @example
      * sensor.startSession(callbackFunction);
      */
-    public startSession(cbk?: SendCallback) {
-        this._sendTimeCmd(0x01, cbk);
+    public async startSession(cbk?: SendCallback): Promise<void> {
+        await this._sendTimeCmd(0x01, cbk);
     }
 
     /**
@@ -120,8 +122,8 @@ export class MuscleOxygenSensor extends AntPlusSensor {
      * @example
      * sensor.stopSession(callbackFunction);
      */
-    public stopSession(cbk?: SendCallback) {
-        this._sendTimeCmd(0x02, cbk);
+    public async stopSession(cbk?: SendCallback): Promise<void> {
+        await this._sendTimeCmd(0x02, cbk);
     }
 
     /**
@@ -134,7 +136,7 @@ export class MuscleOxygenSensor extends AntPlusSensor {
      * @example
      * sensor.setLap(callbackFunction);
      */
-    public setLap(cbk?: SendCallback) {
-        this._sendTimeCmd(0x03, cbk);
+    public async setLap(cbk?: SendCallback): Promise<void> {
+        await this._sendTimeCmd(0x03, cbk);
     }
 }

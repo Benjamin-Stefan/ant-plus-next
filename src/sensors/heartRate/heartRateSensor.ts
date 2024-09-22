@@ -10,6 +10,8 @@ import { AntPlusSensor } from "../antPlusSensor.js";
 /**
  * Represents a Heart Rate sensor.
  * This class extends the AntPlusSensor class to handle specific data related to heart rate monitoring.
+ *
+ * @category Sensors
  */
 export class HeartRateSensor extends AntPlusSensor {
     /**
@@ -31,8 +33,8 @@ export class HeartRateSensor extends AntPlusSensor {
      * const sensor = new HeartRateSensor();
      * sensor.attach(1, 12345); // Attaches to channel 1 with device ID 12345
      */
-    public attach(channel: number, deviceId: number) {
-        super.attachSensor(channel, "receive", deviceId, HeartRateSensor.deviceType, 0, 255, 8070);
+    public async attach(channel: number, deviceId: number): Promise<void> {
+        await super.attachSensor(channel, "receive", deviceId, HeartRateSensor.deviceType, 0, 255, 8070);
         this.state = new HeartRateSensorState(deviceId);
     }
 
@@ -59,14 +61,14 @@ export class HeartRateSensor extends AntPlusSensor {
      *
      * @protected
      * @param {number} deviceId - The unique identifier of the sensor device.
-     * @param {Buffer} data - The raw data buffer received from the sensor.
+     * @param {DataView} data - The raw data buffer received from the sensor.
      * @returns {void}
      *
      * @example
      * const dataBuffer = getDataFromSensor(); // assume this function gets data from a sensor
      * sensor.updateState(12345, dataBuffer);
      */
-    protected updateState(deviceId: number, data: Buffer) {
+    protected updateState(deviceId: number, data: DataView): void {
         this.state.DeviceId = deviceId;
         updateState(this, this.state, this.page, data);
     }

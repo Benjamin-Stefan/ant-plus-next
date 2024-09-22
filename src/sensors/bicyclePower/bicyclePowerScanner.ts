@@ -6,6 +6,8 @@ import { AntPlusScanner } from "../antPlusScanner.js";
 /**
  * Represents a scanner for Bicycle Power sensors.
  * Extends the AntPlusScanner class to handle scanning for multiple Bicycle Power sensors.
+ *
+ * @category Sensors
  */
 export class BicyclePowerScanner extends AntPlusScanner {
     /**
@@ -57,14 +59,14 @@ export class BicyclePowerScanner extends AntPlusScanner {
      *
      * @protected
      * @param {number} deviceId - The unique identifier of the sensor device.
-     * @param {Buffer} data - The raw data buffer received from the sensor.
+     * @param {DataView} data - The raw data buffer received from the sensor.
      * @returns {void}
      *
      * @example
      * const dataBuffer = getDataFromSensor(); // assume this function gets data from a sensor
      * scanner.updateState(12345, dataBuffer);
      */
-    protected updateState(deviceId: number, data: Buffer) {
+    protected updateState(deviceId: number, data: DataView) {
         updateState(this, this.states[deviceId], data);
     }
 }

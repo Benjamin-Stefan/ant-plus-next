@@ -1,11 +1,11 @@
-import * as Ant from "../dist/ant-plus-next.mjs";
+import * as Ant from "../dist/index.mjs";
 
 async function openStick(stick, stickid) {
     var sensor1 = new Ant.HeartRateSensor(stick);
 
     var dev_id = 0;
 
-    sensor1.on("hbdata", function (data) {
+    sensor1.on("heartRateData", function (data) {
         console.log(stickid, "sensor 1: ", data.DeviceId, data.ComputedHeartRate, data);
         if (data.DeviceId !== 0 && dev_id === 0) {
             dev_id = data.DeviceId;
@@ -39,7 +39,7 @@ async function openStick(stick, stickid) {
 
     var scanner = new Ant.HeartRateScanner(stick);
 
-    scanner.on("hbdata", function (data) {
+    scanner.on("heartRateData", function (data) {
         console.log(stickid, "scanner: ", data.DeviceId, data.ComputedHeartRate, data.Rssi, data);
     });
 
@@ -80,11 +80,8 @@ async function openStick(stick, stickid) {
         console.log(stickid, "shutdown");
     });
 
-    const controller = new AbortController();
-    const { signal } = controller;
-
     try {
-        await stick.openAsync(signal);
+        await stick.open();
         console.log(stickid, "Stick found");
 
         setTimeout(() => {
@@ -93,11 +90,6 @@ async function openStick(stick, stickid) {
     } catch (err) {
         console.error(stickid, err);
     }
-
-    setTimeout(() => {
-        controller.abort();
-        console.log(stickid, "Aborted openAsync due to timeout.");
-    }, 60000);
 }
 
 openStick(new Ant.GarminStick2(), 1);

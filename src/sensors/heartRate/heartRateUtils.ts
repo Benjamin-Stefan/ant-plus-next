@@ -25,7 +25,7 @@ const TOGGLE_MASK = 0x80;
  * @param {HeartRateSensor | HeartRateScanner} sensor - The sensor or scanner instance emitting the data.
  * @param {HeartRateSensorState | HeartRateScannerState} state - The current state of the sensor or scanner.
  * @param {Page} page - The page information containing the current and old page number.
- * @param {Buffer} data - The raw data buffer received from the sensor.
+ * @param {DataView} data - The raw data buffer received from the sensor.
  * @returns {void}
  *
  * @example
@@ -35,8 +35,8 @@ const TOGGLE_MASK = 0x80;
  * const dataBuffer = getDataFromSensor(); // Assume this function gets data from a sensor
  * updateState(sensor, state, page, dataBuffer);
  */
-export function updateState(sensor: HeartRateSensor | HeartRateScanner, state: HeartRateSensorState | HeartRateScannerState, page: Page, data: Buffer): void {
-    const pageNum = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA);
+export function updateState(sensor: HeartRateSensor | HeartRateScanner, state: HeartRateSensorState | HeartRateScannerState, page: Page, data: DataView): void {
+    const pageNum = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA);
     if (page.pageState === PageState.INIT_PAGE) {
         page.pageState = PageState.STD_PAGE; // change the state to STD_PAGE and allow the checking of old and new pages
     } else if (pageNum !== page.oldPage || page.pageState === PageState.EXT_PAGE) {
@@ -46,42 +46,42 @@ export function updateState(sensor: HeartRateSensor | HeartRateScanner, state: H
         ) {
             case 1:
                 // Decode the cumulative operating time
-                state.OperatingTime = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 1);
-                state.OperatingTime |= data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 2) << 8;
-                state.OperatingTime |= data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 3) << 16;
+                state.OperatingTime = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 1);
+                state.OperatingTime |= data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 2) << 8;
+                state.OperatingTime |= data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 3) << 16;
                 state.OperatingTime *= 2;
                 break;
             case 2:
                 // Decode the Manufacturer ID
-                state.ManId = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 1);
+                state.ManId = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 1);
                 // Decode the 4-byte serial number
                 state.SerialNumber = state.DeviceId;
-                state.SerialNumber |= data.readUInt16LE(Messages.BUFFER_INDEX_MSG_DATA + 2) << 16;
+                state.SerialNumber |= data.getUint16(Messages.BUFFER_INDEX_MSG_DATA + 2, true) << 16;
                 state.SerialNumber >>>= 0;
                 break;
             case 3:
                 // Decode hardware version, software version, and model number
-                state.HwVersion = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 1);
-                state.SwVersion = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 2);
-                state.ModelNum = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 3);
+                state.HwVersion = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 1);
+                state.SwVersion = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 2);
+                state.ModelNum = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 3);
                 break;
             case 4:
                 // Decode the previous heart beat measurement time
-                state.PreviousBeat = data.readUInt16LE(Messages.BUFFER_INDEX_MSG_DATA + 2);
+                state.PreviousBeat = data.getUint16(Messages.BUFFER_INDEX_MSG_DATA + 2, true);
                 break;
             case 5:
-                state.IntervalAverage = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 1);
-                state.IntervalMax = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 2);
-                state.SessionAverage = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 3);
+                state.IntervalAverage = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 1);
+                state.IntervalMax = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 2);
+                state.SessionAverage = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 3);
                 break;
             case 6:
-                state.SupportedFeatures = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 2);
-                state.EnabledFeatures = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 3);
+                state.SupportedFeatures = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 2);
+                state.EnabledFeatures = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 3);
                 break;
             case 7: {
-                const batteryLevel = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 1);
-                const batteryFrac = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 2);
-                const batteryStatus = data.readUInt8(Messages.BUFFER_INDEX_MSG_DATA + 3);
+                const batteryLevel = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 1);
+                const batteryFrac = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 2);
+                const batteryStatus = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 3);
                 if (batteryLevel !== 0xff) {
                     state.BatteryLevel = batteryLevel;
                 }
@@ -116,30 +116,29 @@ export function updateState(sensor: HeartRateSensor | HeartRateScanner, state: H
         }
     }
     // Decode the last four bytes of the HRM format, the first byte of this message is the channel number
-    DecodeDefaultHRM(state, data.slice(Messages.BUFFER_INDEX_MSG_DATA + 4));
+    DecodeDefaultHRM(state, new DataView(data.buffer.slice(Messages.BUFFER_INDEX_MSG_DATA + 4)));
     page.oldPage = pageNum;
 
-    sensor.emit("hbdata", state);
-    sensor.emit("hbData", state);
+    sensor.emit("heartRateData", state);
 }
 
 /**
  * Decodes the default Heart Rate Monitor (HRM) data from the buffer and updates the sensor state.
  *
  * @param {HeartRateSensorState | HeartRateScannerState} state - The current state of the sensor or scanner.
- * @param {Buffer} pucPayload - The buffer containing the HRM data.
+ * @param {DataView} pucPayload - The buffer containing the HRM data.
  * @returns {void}
  *
  * @example
  * const state = new HeartRateSensorState(12345);
- * const hrmData = Buffer.from([0x00, 0x01, 0x02, 0x03]); // Sample HRM data buffer
+ * const hrmData = new Uint8Array([0x00, 0x01, 0x02, 0x03]); // Sample HRM data buffer
  * DecodeDefaultHRM(state, hrmData);
  */
-function DecodeDefaultHRM(state: HeartRateSensorState | HeartRateScannerState, pucPayload: Buffer): void {
+function DecodeDefaultHRM(state: HeartRateSensorState | HeartRateScannerState, pucPayload: DataView): void {
     // Decode the measurement time data (two bytes)
-    state.BeatTime = pucPayload.readUInt16LE(0);
+    state.BeatTime = pucPayload.getUint16(0, true); // little-endian
     // Decode the measurement count data
-    state.BeatCount = pucPayload.readUInt8(2);
+    state.BeatCount = pucPayload.getUint8(2);
     // Decode the computed heart rate data
-    state.ComputedHeartRate = pucPayload.readUInt8(3);
+    state.ComputedHeartRate = pucPayload.getUint8(3);
 }

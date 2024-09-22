@@ -1,6 +1,6 @@
 "use strict";
 
-import * as Ant from "../dist/ant-plus-next.mjs";
+import * as Ant from "../dist/index.mjs";
 
 const stick = new Ant.GarminStick2();
 
@@ -24,7 +24,7 @@ const stick2 = new Ant.GarminStick2();
 
 const hrSensor = new Ant.HeartRateSensor(stick2);
 
-hrSensor.on("hbData", (data) => {
+hrSensor.on("heartRateData", (data) => {
     console.log(`id: ${data.DeviceId}`);
     console.dir(data);
 });

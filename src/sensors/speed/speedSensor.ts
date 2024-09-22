@@ -10,6 +10,8 @@ import { SpeedSensorState } from "./speedSensorState.js";
 /**
  * Represents a Bicycle Speed sensor.
  * This class extends the AntPlusSensor class to handle specific data related to speed measurement.
+ *
+ * @category Sensors
  */
 export class SpeedSensor extends AntPlusSensor {
     /**
@@ -53,8 +55,8 @@ export class SpeedSensor extends AntPlusSensor {
      * const sensor = new SpeedSensor();
      * sensor.attach(1, 12345); // Attaches to channel 1 with device ID 12345
      */
-    public attach(channel: number, deviceId: number) {
-        super.attachSensor(channel, "receive", deviceId, SpeedSensor.deviceType, 0, 255, 8118);
+    public async attach(channel: number, deviceId: number): Promise<void> {
+        await super.attachSensor(channel, "receive", deviceId, SpeedSensor.deviceType, 0, 255, 8118);
         this.state = new SpeedSensorState(deviceId);
     }
 
@@ -70,14 +72,14 @@ export class SpeedSensor extends AntPlusSensor {
      *
      * @protected
      * @param {number} deviceId - The unique identifier of the sensor device.
-     * @param {Buffer} data - The raw data buffer received from the sensor.
+     * @param {DataView} data - The raw data buffer received from the sensor.
      * @returns {void}
      *
      * @example
      * const dataBuffer = getDataFromSensor(); // assume this function gets data from a sensor
      * sensor.updateState(12345, dataBuffer);
      */
-    protected updateState(deviceId: number, data: Buffer) {
+    protected updateState(deviceId: number, data: DataView) {
         this.state.DeviceId = deviceId;
         updateState(this, this.state, data);
     }
