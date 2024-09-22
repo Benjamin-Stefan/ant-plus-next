@@ -38,23 +38,9 @@ export default {
                     ],
                 },
                 writerOpts: {
-                    headerPartial: `
-# 🚀 ant-plus-next - Changelog
-
-Welcome to the **Changelog** of **ant-plus-next**.  
-Here you will find all the significant changes, new features, and bug fixes for each version.
-
-### Links
-
-- 📂 [Repository](https://github.com/Benjamin-Stefan/ant-plus-next)  
-- 📄 [Documentation](https://github.com/Benjamin-Stefan/ant-plus-next?tab=readme-ov-file#api-documentation)  
-- 📝 [Issue Tracker](https://github.com/Benjamin-Stefan/ant-plus-next/issues)
-
----
-`,
                     mainTemplate: `
 {{#if version}}
-### Current Version: {{version}}  
+### Version: {{version}}  
 Released on: {{date}}
 
 {{/if}}

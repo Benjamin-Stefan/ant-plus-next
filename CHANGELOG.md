@@ -1,29 +1,18 @@
-### Current Version: 0.1.0  
-Released on: 2024-09-16
+### Version: 0.1.0
 
+Released on: 2024-09-16
 
 ### 🚀 Features
 
-* Add BatteryStatusBit to sensors (Cadence, HeartRate, MuscleOxygen, Speed) ([#14](https://github.com/Benjamin-Stefan/ant-plus-next/issues/14)) ([81be8afacb791e523ca3f6afbbf4564bfd1d4de2](/commit/81be8afacb791e523ca3f6afbbf4564bfd1d4de2))
+-   Add BatteryStatusBit to sensors (Cadence, HeartRate, MuscleOxygen, Speed) ([#14](https://github.com/Benjamin-Stefan/ant-plus-next/issues/14)) ([81be8afacb791e523ca3f6afbbf4564bfd1d4de2](/commit/81be8afacb791e523ca3f6afbbf4564bfd1d4de2))
 
 ### 🐛 Bug Fixes
 
-* Adjust release.config.js to enable publishing to npm and GitHub releases ([583f9ee84b22e61f5e02420d4723e452e2551f8a](/commit/583f9ee84b22e61f5e02420d4723e452e2551f8a))
-
-# 🚀 ant-plus-next - Changelog
-
-Welcome to the **Changelog** of **ant-plus-next**.  
-Here you will find all the significant changes, new features, and bug fixes for each version.
-
-### Links
-
--   📂 [Repository](https://github.com/Benjamin-Stefan/ant-plus-next)
--   📄 [Documentation](https://github.com/Benjamin-Stefan/ant-plus-next?tab=readme-ov-file#api-documentation)
--   📝 [Issue Tracker](https://github.com/Benjamin-Stefan/ant-plus-next/issues)
+-   Adjust release.config.js to enable publishing to npm and GitHub releases ([583f9ee84b22e61f5e02420d4723e452e2551f8a](/commit/583f9ee84b22e61f5e02420d4723e452e2551f8a))
 
 ---
 
-### Current Version: 0.0.2
+### Version: 0.0.2
 
 Released on: 2024-09-05
 
@@ -33,7 +22,7 @@ Released on: 2024-09-05
 
 ---
 
-### Current Version: 0.0.1
+### Version: 0.0.1
 
 Released on: 2024-09-05
 
