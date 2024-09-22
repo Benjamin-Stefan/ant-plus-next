@@ -1,3 +1,11 @@
+### Version: 0.2.0  
+Released on: 2024-09-22
+
+
+### 🚀 Features
+
+* Refactor USB drivers to support both NodeUSBDriver and WebUSBDriver ([#15](https://github.com/Benjamin-Stefan/ant-plus-next/issues/15)) ([284d6e8cf6ab5028ecfff1830e52ee9e6e4ccd6f](/commit/284d6e8cf6ab5028ecfff1830e52ee9e6e4ccd6f))
+
 ### Version: 0.1.0
 
 Released on: 2024-09-16
