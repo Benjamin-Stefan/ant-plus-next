@@ -2,3 +2,4 @@ name: "Custom CodeQL Configuration"
 
 paths-ignore:
     - "dist/**"
+    - "examples/**"
