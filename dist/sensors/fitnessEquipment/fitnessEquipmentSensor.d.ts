@@ -3,6 +3,8 @@ import { SendCallback } from "../../types/sendCallback.js";
 /**
  * Represents a Fitness Equipment sensor.
  * This class extends the AntPlusSensor class to handle specific data related to fitness equipment.
+ *
+ * @category Sensors
  */
 export declare class FitnessEquipmentSensor extends AntPlusSensor {
     /**

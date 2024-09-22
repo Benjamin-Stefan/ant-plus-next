@@ -47,7 +47,7 @@ try {
 
 #### Defined in
 
-[core/webUsbStick.ts:25](https://github.com/Benjamin-Stefan/ant-plus-next/blob/b17049a469528157a32f68083cac64e99938f880/src/core/webUsbStick.ts#L25)
+[core/webUsbStick.ts:25](https://github.com/Benjamin-Stefan/ant-plus-next/blob/f145b7898a90ecdbfec50821d10da351499b1c22/src/core/webUsbStick.ts#L25)
 
 ## Properties
 
@@ -63,7 +63,7 @@ Indicates whether the device can scan.
 
 #### Defined in
 
-[core/driver/webUSBDriver.ts:95](https://github.com/Benjamin-Stefan/ant-plus-next/blob/b17049a469528157a32f68083cac64e99938f880/src/core/driver/webUSBDriver.ts#L95)
+[core/driver/webUSBDriver.ts:95](https://github.com/Benjamin-Stefan/ant-plus-next/blob/f145b7898a90ecdbfec50821d10da351499b1c22/src/core/driver/webUSBDriver.ts#L95)
 
 ***
 
@@ -79,7 +79,7 @@ The maximum number of channels available for communication.
 
 #### Defined in
 
-[core/driver/webUSBDriver.ts:89](https://github.com/Benjamin-Stefan/ant-plus-next/blob/b17049a469528157a32f68083cac64e99938f880/src/core/driver/webUSBDriver.ts#L89)
+[core/driver/webUSBDriver.ts:89](https://github.com/Benjamin-Stefan/ant-plus-next/blob/f145b7898a90ecdbfec50821d10da351499b1c22/src/core/driver/webUSBDriver.ts#L89)
 
 ***
 
@@ -95,7 +95,7 @@ The number of channels currently used.
 
 #### Defined in
 
-[core/driver/webUSBDriver.ts:62](https://github.com/Benjamin-Stefan/ant-plus-next/blob/b17049a469528157a32f68083cac64e99938f880/src/core/driver/webUSBDriver.ts#L62)
+[core/driver/webUSBDriver.ts:62](https://github.com/Benjamin-Stefan/ant-plus-next/blob/f145b7898a90ecdbfec50821d10da351499b1c22/src/core/driver/webUSBDriver.ts#L62)
 
 ## Methods
 
@@ -127,7 +127,7 @@ Resolves with true if the sensor was successfully attached, otherwise false.
 
 #### Defined in
 
-[core/driver/webUSBDriver.ts:326](https://github.com/Benjamin-Stefan/ant-plus-next/blob/b17049a469528157a32f68083cac64e99938f880/src/core/driver/webUSBDriver.ts#L326)
+[core/driver/webUSBDriver.ts:326](https://github.com/Benjamin-Stefan/ant-plus-next/blob/f145b7898a90ecdbfec50821d10da351499b1c22/src/core/driver/webUSBDriver.ts#L326)
 
 ***
 
@@ -161,7 +161,7 @@ if (canAttach) {
 
 #### Defined in
 
-[core/driver/webUSBDriver.ts:121](https://github.com/Benjamin-Stefan/ant-plus-next/blob/b17049a469528157a32f68083cac64e99938f880/src/core/driver/webUSBDriver.ts#L121)
+[core/driver/webUSBDriver.ts:121](https://github.com/Benjamin-Stefan/ant-plus-next/blob/f145b7898a90ecdbfec50821d10da351499b1c22/src/core/driver/webUSBDriver.ts#L121)
 
 ***
 
@@ -181,7 +181,7 @@ Cancels the current read loop by aborting the signal.
 
 #### Defined in
 
-[core/driver/webUSBDriver.ts:265](https://github.com/Benjamin-Stefan/ant-plus-next/blob/b17049a469528157a32f68083cac64e99938f880/src/core/driver/webUSBDriver.ts#L265)
+[core/driver/webUSBDriver.ts:265](https://github.com/Benjamin-Stefan/ant-plus-next/blob/f145b7898a90ecdbfec50821d10da351499b1c22/src/core/driver/webUSBDriver.ts#L265)
 
 ***
 
@@ -203,7 +203,7 @@ Resolves with true if the device can scan, otherwise false.
 
 #### Defined in
 
-[core/driver/webUSBDriver.ts:130](https://github.com/Benjamin-Stefan/ant-plus-next/blob/b17049a469528157a32f68083cac64e99938f880/src/core/driver/webUSBDriver.ts#L130)
+[core/driver/webUSBDriver.ts:130](https://github.com/Benjamin-Stefan/ant-plus-next/blob/f145b7898a90ecdbfec50821d10da351499b1c22/src/core/driver/webUSBDriver.ts#L130)
 
 ***
 
@@ -225,7 +225,7 @@ Resolves when the device is closed.
 
 #### Defined in
 
-[core/driver/webUSBDriver.ts:241](https://github.com/Benjamin-Stefan/ant-plus-next/blob/b17049a469528157a32f68083cac64e99938f880/src/core/driver/webUSBDriver.ts#L241)
+[core/driver/webUSBDriver.ts:241](https://github.com/Benjamin-Stefan/ant-plus-next/blob/f145b7898a90ecdbfec50821d10da351499b1c22/src/core/driver/webUSBDriver.ts#L241)
 
 ***
 
@@ -253,7 +253,7 @@ Resolves with true if the sensor was successfully detached, otherwise false.
 
 #### Defined in
 
-[core/driver/webUSBDriver.ts:350](https://github.com/Benjamin-Stefan/ant-plus-next/blob/b17049a469528157a32f68083cac64e99938f880/src/core/driver/webUSBDriver.ts#L350)
+[core/driver/webUSBDriver.ts:350](https://github.com/Benjamin-Stefan/ant-plus-next/blob/f145b7898a90ecdbfec50821d10da351499b1c22/src/core/driver/webUSBDriver.ts#L350)
 
 ***
 
@@ -275,7 +275,7 @@ Resolves with true if a device is present, otherwise false.
 
 #### Defined in
 
-[core/driver/webUSBDriver.ts:367](https://github.com/Benjamin-Stefan/ant-plus-next/blob/b17049a469528157a32f68083cac64e99938f880/src/core/driver/webUSBDriver.ts#L367)
+[core/driver/webUSBDriver.ts:367](https://github.com/Benjamin-Stefan/ant-plus-next/blob/f145b7898a90ecdbfec50821d10da351499b1c22/src/core/driver/webUSBDriver.ts#L367)
 
 ***
 
@@ -297,7 +297,7 @@ Resolves with true if the device is scanning, otherwise false.
 
 #### Defined in
 
-[core/driver/webUSBDriver.ts:376](https://github.com/Benjamin-Stefan/ant-plus-next/blob/b17049a469528157a32f68083cac64e99938f880/src/core/driver/webUSBDriver.ts#L376)
+[core/driver/webUSBDriver.ts:376](https://github.com/Benjamin-Stefan/ant-plus-next/blob/f145b7898a90ecdbfec50821d10da351499b1c22/src/core/driver/webUSBDriver.ts#L376)
 
 ***
 
@@ -319,7 +319,7 @@ Resolves with true if the device was successfully opened, otherwise false.
 
 #### Defined in
 
-[core/driver/webUSBDriver.ts:139](https://github.com/Benjamin-Stefan/ant-plus-next/blob/b17049a469528157a32f68083cac64e99938f880/src/core/driver/webUSBDriver.ts#L139)
+[core/driver/webUSBDriver.ts:139](https://github.com/Benjamin-Stefan/ant-plus-next/blob/f145b7898a90ecdbfec50821d10da351499b1c22/src/core/driver/webUSBDriver.ts#L139)
 
 ***
 
@@ -347,7 +347,7 @@ Resolves when the data has been processed.
 
 #### Defined in
 
-[core/driver/webUSBDriver.ts:278](https://github.com/Benjamin-Stefan/ant-plus-next/blob/b17049a469528157a32f68083cac64e99938f880/src/core/driver/webUSBDriver.ts#L278)
+[core/driver/webUSBDriver.ts:278](https://github.com/Benjamin-Stefan/ant-plus-next/blob/f145b7898a90ecdbfec50821d10da351499b1c22/src/core/driver/webUSBDriver.ts#L278)
 
 ***
 
@@ -369,7 +369,7 @@ Resolves when the reset is completed.
 
 #### Defined in
 
-[core/driver/webUSBDriver.ts:312](https://github.com/Benjamin-Stefan/ant-plus-next/blob/b17049a469528157a32f68083cac64e99938f880/src/core/driver/webUSBDriver.ts#L312)
+[core/driver/webUSBDriver.ts:312](https://github.com/Benjamin-Stefan/ant-plus-next/blob/f145b7898a90ecdbfec50821d10da351499b1c22/src/core/driver/webUSBDriver.ts#L312)
 
 ***
 
@@ -397,4 +397,4 @@ Resolves when the data has been written.
 
 #### Defined in
 
-[core/driver/webUSBDriver.ts:301](https://github.com/Benjamin-Stefan/ant-plus-next/blob/b17049a469528157a32f68083cac64e99938f880/src/core/driver/webUSBDriver.ts#L301)
+[core/driver/webUSBDriver.ts:301](https://github.com/Benjamin-Stefan/ant-plus-next/blob/f145b7898a90ecdbfec50821d10da351499b1c22/src/core/driver/webUSBDriver.ts#L301)

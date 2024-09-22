@@ -2,6 +2,8 @@ import { AntPlusScanner } from "../antPlusScanner.js";
 /**
  * Represents a scanner for Heart Rate sensors.
  * Extends the AntPlusScanner class to handle scanning and state updates for multiple Heart Rate sensors.
+ *
+ * @category Sensors
  */
 export declare class HeartRateScanner extends AntPlusScanner {
     /**

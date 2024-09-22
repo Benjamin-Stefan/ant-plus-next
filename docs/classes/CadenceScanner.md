@@ -37,7 +37,7 @@ The USB driver instance used for communication with the ANT+ stick.
 
 #### Defined in
 
-[sensors/antPlusScanner.ts:42](https://github.com/Benjamin-Stefan/ant-plus-next/blob/b17049a469528157a32f68083cac64e99938f880/src/sensors/antPlusScanner.ts#L42)
+[sensors/antPlusScanner.ts:42](https://github.com/Benjamin-Stefan/ant-plus-next/blob/f145b7898a90ecdbfec50821d10da351499b1c22/src/sensors/antPlusScanner.ts#L42)
 
 ## Properties
 
@@ -50,7 +50,7 @@ Defaults to 2.199 meters (70 cm wheel).
 
 #### Defined in
 
-[sensors/cadence/cadenceScanner.ts:28](https://github.com/Benjamin-Stefan/ant-plus-next/blob/b17049a469528157a32f68083cac64e99938f880/src/sensors/cadence/cadenceScanner.ts#L28)
+[sensors/cadence/cadenceScanner.ts:28](https://github.com/Benjamin-Stefan/ant-plus-next/blob/f145b7898a90ecdbfec50821d10da351499b1c22/src/sensors/cadence/cadenceScanner.ts#L28)
 
 ## Methods
 
@@ -74,7 +74,7 @@ Will throw an error if there is an issue detaching.
 
 #### Defined in
 
-[sensors/baseSensor.ts:249](https://github.com/Benjamin-Stefan/ant-plus-next/blob/b17049a469528157a32f68083cac64e99938f880/src/sensors/baseSensor.ts#L249)
+[sensors/baseSensor.ts:249](https://github.com/Benjamin-Stefan/ant-plus-next/blob/f145b7898a90ecdbfec50821d10da351499b1c22/src/sensors/baseSensor.ts#L249)
 
 ***
 
@@ -104,7 +104,7 @@ scanner.scan();
 
 #### Defined in
 
-[sensors/antPlusScanner.ts:58](https://github.com/Benjamin-Stefan/ant-plus-next/blob/b17049a469528157a32f68083cac64e99938f880/src/sensors/antPlusScanner.ts#L58)
+[sensors/antPlusScanner.ts:58](https://github.com/Benjamin-Stefan/ant-plus-next/blob/f145b7898a90ecdbfec50821d10da351499b1c22/src/sensors/antPlusScanner.ts#L58)
 
 ***
 
@@ -132,4 +132,4 @@ scanner.setWheelCircumference(2.105); // Sets the wheel circumference to 2.105 m
 
 #### Defined in
 
-[sensors/cadence/cadenceScanner.ts:40](https://github.com/Benjamin-Stefan/ant-plus-next/blob/b17049a469528157a32f68083cac64e99938f880/src/sensors/cadence/cadenceScanner.ts#L40)
+[sensors/cadence/cadenceScanner.ts:40](https://github.com/Benjamin-Stefan/ant-plus-next/blob/f145b7898a90ecdbfec50821d10da351499b1c22/src/sensors/cadence/cadenceScanner.ts#L40)

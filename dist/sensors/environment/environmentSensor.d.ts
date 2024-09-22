@@ -2,6 +2,8 @@ import { AntPlusSensor } from "../antPlusSensor.js";
 /**
  * Represents an Environment sensor.
  * This class extends the AntPlusSensor class to handle specific data related to environmental monitoring.
+ *
+ * @category Sensors
  */
 export declare class EnvironmentSensor extends AntPlusSensor {
     /**

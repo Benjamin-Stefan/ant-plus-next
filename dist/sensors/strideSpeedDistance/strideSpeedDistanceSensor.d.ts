@@ -2,6 +2,8 @@ import { AntPlusSensor } from "../antPlusSensor.js";
 /**
  * Represents a Stride-Based Speed and Distance Monitor (SDM) sensor.
  * This class extends the AntPlusSensor class to provide specific functionality for handling SDM sensor data.
+ *
+ * @category Sensors
  */
 export declare class StrideSpeedDistanceSensor extends AntPlusSensor {
     /**

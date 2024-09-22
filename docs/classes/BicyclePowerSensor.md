@@ -37,7 +37,7 @@ The USB driver instance used for communication with the ANT+ stick.
 
 #### Defined in
 
-[sensors/antPlusSensor.ts:16](https://github.com/Benjamin-Stefan/ant-plus-next/blob/b17049a469528157a32f68083cac64e99938f880/src/sensors/antPlusSensor.ts#L16)
+[sensors/antPlusSensor.ts:16](https://github.com/Benjamin-Stefan/ant-plus-next/blob/f145b7898a90ecdbfec50821d10da351499b1c22/src/sensors/antPlusSensor.ts#L16)
 
 ## Properties
 
@@ -49,7 +49,7 @@ The device type code for Bicycle Power sensors.
 
 #### Defined in
 
-[sensors/bicyclePower/bicyclePowerSensor.ts:22](https://github.com/Benjamin-Stefan/ant-plus-next/blob/b17049a469528157a32f68083cac64e99938f880/src/sensors/bicyclePower/bicyclePowerSensor.ts#L22)
+[sensors/bicyclePower/bicyclePowerSensor.ts:22](https://github.com/Benjamin-Stefan/ant-plus-next/blob/f145b7898a90ecdbfec50821d10da351499b1c22/src/sensors/bicyclePower/bicyclePowerSensor.ts#L22)
 
 ## Methods
 
@@ -82,7 +82,7 @@ sensor.attach(1, 12345); // Attaches to channel 1 with device ID 12345
 
 #### Defined in
 
-[sensors/bicyclePower/bicyclePowerSensor.ts:43](https://github.com/Benjamin-Stefan/ant-plus-next/blob/b17049a469528157a32f68083cac64e99938f880/src/sensors/bicyclePower/bicyclePowerSensor.ts#L43)
+[sensors/bicyclePower/bicyclePowerSensor.ts:43](https://github.com/Benjamin-Stefan/ant-plus-next/blob/f145b7898a90ecdbfec50821d10da351499b1c22/src/sensors/bicyclePower/bicyclePowerSensor.ts#L43)
 
 ***
 
@@ -106,4 +106,4 @@ Will throw an error if there is an issue detaching.
 
 #### Defined in
 
-[sensors/baseSensor.ts:249](https://github.com/Benjamin-Stefan/ant-plus-next/blob/b17049a469528157a32f68083cac64e99938f880/src/sensors/baseSensor.ts#L249)
+[sensors/baseSensor.ts:249](https://github.com/Benjamin-Stefan/ant-plus-next/blob/f145b7898a90ecdbfec50821d10da351499b1c22/src/sensors/baseSensor.ts#L249)

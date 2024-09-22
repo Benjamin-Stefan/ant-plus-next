@@ -2,6 +2,8 @@ import { AntPlusScanner } from "../antPlusScanner.js";
 /**
  * Represents a scanner for Cadence sensors.
  * Extends the AntPlusScanner class to handle scanning and state updates for multiple cadence sensors.
+ *
+ * @category Sensors
  */
 export declare class CadenceScanner extends AntPlusScanner {
     /**

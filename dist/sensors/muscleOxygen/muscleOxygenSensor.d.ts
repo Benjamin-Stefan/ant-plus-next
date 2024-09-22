@@ -3,6 +3,8 @@ import { SendCallback } from "../../types/sendCallback.js";
 /**
  * Represents a Muscle Oxygen sensor.
  * This class extends the AntPlusSensor class to handle specific data related to muscle oxygen measurements.
+ *
+ * @category Sensors
  */
 export declare class MuscleOxygenSensor extends AntPlusSensor {
     /**

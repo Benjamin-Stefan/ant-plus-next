@@ -37,7 +37,7 @@ The USB driver instance used for communication with the ANT+ stick.
 
 #### Defined in
 
-[sensors/antPlusSensor.ts:16](https://github.com/Benjamin-Stefan/ant-plus-next/blob/b17049a469528157a32f68083cac64e99938f880/src/sensors/antPlusSensor.ts#L16)
+[sensors/antPlusSensor.ts:16](https://github.com/Benjamin-Stefan/ant-plus-next/blob/f145b7898a90ecdbfec50821d10da351499b1c22/src/sensors/antPlusSensor.ts#L16)
 
 ## Properties
 
@@ -49,7 +49,7 @@ The device type code for Fitness Equipment sensors.
 
 #### Defined in
 
-[sensors/fitnessEquipment/fitnessEquipmentSensor.ts:24](https://github.com/Benjamin-Stefan/ant-plus-next/blob/b17049a469528157a32f68083cac64e99938f880/src/sensors/fitnessEquipment/fitnessEquipmentSensor.ts#L24)
+[sensors/fitnessEquipment/fitnessEquipmentSensor.ts:24](https://github.com/Benjamin-Stefan/ant-plus-next/blob/f145b7898a90ecdbfec50821d10da351499b1c22/src/sensors/fitnessEquipment/fitnessEquipmentSensor.ts#L24)
 
 ## Methods
 
@@ -82,7 +82,7 @@ sensor.attach(1, 12345); // Attaches to channel 1 with device ID 12345
 
 #### Defined in
 
-[sensors/fitnessEquipment/fitnessEquipmentSensor.ts:45](https://github.com/Benjamin-Stefan/ant-plus-next/blob/b17049a469528157a32f68083cac64e99938f880/src/sensors/fitnessEquipment/fitnessEquipmentSensor.ts#L45)
+[sensors/fitnessEquipment/fitnessEquipmentSensor.ts:45](https://github.com/Benjamin-Stefan/ant-plus-next/blob/f145b7898a90ecdbfec50821d10da351499b1c22/src/sensors/fitnessEquipment/fitnessEquipmentSensor.ts#L45)
 
 ***
 
@@ -106,7 +106,7 @@ Will throw an error if there is an issue detaching.
 
 #### Defined in
 
-[sensors/baseSensor.ts:249](https://github.com/Benjamin-Stefan/ant-plus-next/blob/b17049a469528157a32f68083cac64e99938f880/src/sensors/baseSensor.ts#L249)
+[sensors/baseSensor.ts:249](https://github.com/Benjamin-Stefan/ant-plus-next/blob/f145b7898a90ecdbfec50821d10da351499b1c22/src/sensors/baseSensor.ts#L249)
 
 ***
 
@@ -138,7 +138,7 @@ sensor.setBasicResistance(50, callbackFunction);
 
 #### Defined in
 
-[sensors/fitnessEquipment/fitnessEquipmentSensor.ts:124](https://github.com/Benjamin-Stefan/ant-plus-next/blob/b17049a469528157a32f68083cac64e99938f880/src/sensors/fitnessEquipment/fitnessEquipmentSensor.ts#L124)
+[sensors/fitnessEquipment/fitnessEquipmentSensor.ts:124](https://github.com/Benjamin-Stefan/ant-plus-next/blob/f145b7898a90ecdbfec50821d10da351499b1c22/src/sensors/fitnessEquipment/fitnessEquipmentSensor.ts#L124)
 
 ***
 
@@ -170,7 +170,7 @@ sensor.setTargetPower(250, callbackFunction);
 
 #### Defined in
 
-[sensors/fitnessEquipment/fitnessEquipmentSensor.ts:142](https://github.com/Benjamin-Stefan/ant-plus-next/blob/b17049a469528157a32f68083cac64e99938f880/src/sensors/fitnessEquipment/fitnessEquipmentSensor.ts#L142)
+[sensors/fitnessEquipment/fitnessEquipmentSensor.ts:142](https://github.com/Benjamin-Stefan/ant-plus-next/blob/f145b7898a90ecdbfec50821d10da351499b1c22/src/sensors/fitnessEquipment/fitnessEquipmentSensor.ts#L142)
 
 ***
 
@@ -206,7 +206,7 @@ sensor.setTrackResistance(5, 0.005, callbackFunction);
 
 #### Defined in
 
-[sensors/fitnessEquipment/fitnessEquipmentSensor.ts:222](https://github.com/Benjamin-Stefan/ant-plus-next/blob/b17049a469528157a32f68083cac64e99938f880/src/sensors/fitnessEquipment/fitnessEquipmentSensor.ts#L222)
+[sensors/fitnessEquipment/fitnessEquipmentSensor.ts:222](https://github.com/Benjamin-Stefan/ant-plus-next/blob/f145b7898a90ecdbfec50821d10da351499b1c22/src/sensors/fitnessEquipment/fitnessEquipmentSensor.ts#L222)
 
 ***
 
@@ -250,7 +250,7 @@ sensor.setUserConfiguration(70, 10, 0.7, 3.5, callbackFunction);
 
 #### Defined in
 
-[sensors/fitnessEquipment/fitnessEquipmentSensor.ts:99](https://github.com/Benjamin-Stefan/ant-plus-next/blob/b17049a469528157a32f68083cac64e99938f880/src/sensors/fitnessEquipment/fitnessEquipmentSensor.ts#L99)
+[sensors/fitnessEquipment/fitnessEquipmentSensor.ts:99](https://github.com/Benjamin-Stefan/ant-plus-next/blob/f145b7898a90ecdbfec50821d10da351499b1c22/src/sensors/fitnessEquipment/fitnessEquipmentSensor.ts#L99)
 
 ***
 
@@ -290,4 +290,4 @@ sensor.setWindResistance(0.5, 20, 0.1, callbackFunction);
 
 #### Defined in
 
-[sensors/fitnessEquipment/fitnessEquipmentSensor.ts:181](https://github.com/Benjamin-Stefan/ant-plus-next/blob/b17049a469528157a32f68083cac64e99938f880/src/sensors/fitnessEquipment/fitnessEquipmentSensor.ts#L181)
+[sensors/fitnessEquipment/fitnessEquipmentSensor.ts:181](https://github.com/Benjamin-Stefan/ant-plus-next/blob/f145b7898a90ecdbfec50821d10da351499b1c22/src/sensors/fitnessEquipment/fitnessEquipmentSensor.ts#L181)

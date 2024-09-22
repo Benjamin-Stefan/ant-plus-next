@@ -2,6 +2,8 @@ import { AntPlusSensor } from "../antPlusSensor.js";
 /**
  * Represents a Bicycle Power sensor.
  * This class extends the AntPlusSensor class to handle specific data related to bicycle power measurement.
+ *
+ * @category Sensors
  */
 export declare class BicyclePowerSensor extends AntPlusSensor {
     /**

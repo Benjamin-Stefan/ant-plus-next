@@ -2,6 +2,8 @@ import { AntPlusScanner } from "../antPlusScanner.js";
 /**
  * Represents a scanner for Speed sensors.
  * Extends the AntPlusScanner class to handle scanning and state updates for multiple Speed sensors.
+ *
+ * @category Sensors
  */
 export declare class SpeedScanner extends AntPlusScanner {
     /**
