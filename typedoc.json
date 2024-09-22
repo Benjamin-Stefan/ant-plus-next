@@ -6,10 +6,11 @@
     "excludeExternals": true,
     "excludeNotDocumented": true,
     "includeVersion": true,
-    "readme": "README.md",
+    "readme": "none",
     "name": "ant-plus-next",
     "plugin": ["typedoc-plugin-markdown"],
     "tsconfig": "./tsconfig.json",
-    "categorizeByGroup": false,
+    "categorizeByGroup": true,
+    "categoryOrder": ["Drivers", "Sensors"],
     "theme": "default"
 }

@@ -6,6 +6,8 @@ import { AntPlusScanner } from "../antPlusScanner.js";
 /**
  * Represents a scanner for Muscle Oxygen sensors.
  * Extends the AntPlusScanner class to handle scanning and state updates for multiple Muscle Oxygen sensors.
+ *
+ * @category Sensors
  */
 export class MuscleOxygenScanner extends AntPlusScanner {
     /**

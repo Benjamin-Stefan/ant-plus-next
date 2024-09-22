@@ -5,7 +5,7 @@ import * as Ant from "../dist/index.mjs";
 const stick = new Ant.GarminStick2();
 
 const hrScanner = new Ant.HeartRateScanner(stick);
-hrScanner.on("hbData", (data) => {
+hrScanner.on("heartRateData", (data) => {
     console.log(`id: ${data.DeviceId}`);
     console.dir(data);
 });

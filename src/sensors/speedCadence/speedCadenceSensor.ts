@@ -10,6 +10,8 @@ import { SpeedCadenceSensorState } from "./speedCadenceSensorState.js";
 /**
  * Represents a Bicycle Speed and Cadence sensor.
  * This class extends the AntPlusSensor class to handle specific data related to speed and cadence.
+ *
+ * @category Sensors
  */
 export class SpeedCadenceSensor extends AntPlusSensor {
     /**

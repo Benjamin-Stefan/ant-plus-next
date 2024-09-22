@@ -12,6 +12,8 @@ import { Messages } from "../../utils/messages.js";
 /**
  * Represents a Muscle Oxygen sensor.
  * This class extends the AntPlusSensor class to handle specific data related to muscle oxygen measurements.
+ *
+ * @category Sensors
  */
 export class MuscleOxygenSensor extends AntPlusSensor {
     /**

@@ -2,7 +2,7 @@
 
 ***
 
-[ant-plus-next v0.1.0](../globals.md) / MuscleOxygenSensor
+[ant-plus-next v0.1.0](../README.md) / MuscleOxygenSensor
 
 # Class: MuscleOxygenSensor
 
@@ -37,7 +37,7 @@ The USB driver instance used for communication with the ANT+ stick.
 
 #### Defined in
 
-[sensors/antPlusSensor.ts:16](https://github.com/Benjamin-Stefan/ant-plus-next/blob/d470eb84e6da33529ea57df2a5b331a44f806a81/src/sensors/antPlusSensor.ts#L16)
+[sensors/antPlusSensor.ts:16](https://github.com/Benjamin-Stefan/ant-plus-next/blob/b17049a469528157a32f68083cac64e99938f880/src/sensors/antPlusSensor.ts#L16)
 
 ## Properties
 
@@ -49,7 +49,7 @@ The device type code for Muscle Oxygen sensors.
 
 #### Defined in
 
-[sensors/muscleOxygen/muscleOxygenSensor.ts:22](https://github.com/Benjamin-Stefan/ant-plus-next/blob/d470eb84e6da33529ea57df2a5b331a44f806a81/src/sensors/muscleOxygen/muscleOxygenSensor.ts#L22)
+[sensors/muscleOxygen/muscleOxygenSensor.ts:24](https://github.com/Benjamin-Stefan/ant-plus-next/blob/b17049a469528157a32f68083cac64e99938f880/src/sensors/muscleOxygen/muscleOxygenSensor.ts#L24)
 
 ## Methods
 
@@ -82,7 +82,7 @@ sensor.attach(1, 12345); // Attaches to channel 1 with device ID 12345
 
 #### Defined in
 
-[sensors/muscleOxygen/muscleOxygenSensor.ts:43](https://github.com/Benjamin-Stefan/ant-plus-next/blob/d470eb84e6da33529ea57df2a5b331a44f806a81/src/sensors/muscleOxygen/muscleOxygenSensor.ts#L43)
+[sensors/muscleOxygen/muscleOxygenSensor.ts:45](https://github.com/Benjamin-Stefan/ant-plus-next/blob/b17049a469528157a32f68083cac64e99938f880/src/sensors/muscleOxygen/muscleOxygenSensor.ts#L45)
 
 ***
 
@@ -106,7 +106,7 @@ Will throw an error if there is an issue detaching.
 
 #### Defined in
 
-[sensors/baseSensor.ts:249](https://github.com/Benjamin-Stefan/ant-plus-next/blob/d470eb84e6da33529ea57df2a5b331a44f806a81/src/sensors/baseSensor.ts#L249)
+[sensors/baseSensor.ts:249](https://github.com/Benjamin-Stefan/ant-plus-next/blob/b17049a469528157a32f68083cac64e99938f880/src/sensors/baseSensor.ts#L249)
 
 ***
 
@@ -134,7 +134,7 @@ sensor.setLap(callbackFunction);
 
 #### Defined in
 
-[sensors/muscleOxygen/muscleOxygenSensor.ts:137](https://github.com/Benjamin-Stefan/ant-plus-next/blob/d470eb84e6da33529ea57df2a5b331a44f806a81/src/sensors/muscleOxygen/muscleOxygenSensor.ts#L137)
+[sensors/muscleOxygen/muscleOxygenSensor.ts:139](https://github.com/Benjamin-Stefan/ant-plus-next/blob/b17049a469528157a32f68083cac64e99938f880/src/sensors/muscleOxygen/muscleOxygenSensor.ts#L139)
 
 ***
 
@@ -162,7 +162,7 @@ sensor.setUTCTime(callbackFunction);
 
 #### Defined in
 
-[sensors/muscleOxygen/muscleOxygenSensor.ts:95](https://github.com/Benjamin-Stefan/ant-plus-next/blob/d470eb84e6da33529ea57df2a5b331a44f806a81/src/sensors/muscleOxygen/muscleOxygenSensor.ts#L95)
+[sensors/muscleOxygen/muscleOxygenSensor.ts:97](https://github.com/Benjamin-Stefan/ant-plus-next/blob/b17049a469528157a32f68083cac64e99938f880/src/sensors/muscleOxygen/muscleOxygenSensor.ts#L97)
 
 ***
 
@@ -190,7 +190,7 @@ sensor.startSession(callbackFunction);
 
 #### Defined in
 
-[sensors/muscleOxygen/muscleOxygenSensor.ts:109](https://github.com/Benjamin-Stefan/ant-plus-next/blob/d470eb84e6da33529ea57df2a5b331a44f806a81/src/sensors/muscleOxygen/muscleOxygenSensor.ts#L109)
+[sensors/muscleOxygen/muscleOxygenSensor.ts:111](https://github.com/Benjamin-Stefan/ant-plus-next/blob/b17049a469528157a32f68083cac64e99938f880/src/sensors/muscleOxygen/muscleOxygenSensor.ts#L111)
 
 ***
 
@@ -218,4 +218,4 @@ sensor.stopSession(callbackFunction);
 
 #### Defined in
 
-[sensors/muscleOxygen/muscleOxygenSensor.ts:123](https://github.com/Benjamin-Stefan/ant-plus-next/blob/d470eb84e6da33529ea57df2a5b331a44f806a81/src/sensors/muscleOxygen/muscleOxygenSensor.ts#L123)
+[sensors/muscleOxygen/muscleOxygenSensor.ts:125](https://github.com/Benjamin-Stefan/ant-plus-next/blob/b17049a469528157a32f68083cac64e99938f880/src/sensors/muscleOxygen/muscleOxygenSensor.ts#L125)

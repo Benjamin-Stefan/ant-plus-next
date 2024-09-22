@@ -5,7 +5,7 @@ async function openStick(stick, stickid) {
 
     var dev_id = 0;
 
-    sensor1.on("hbdata", function (data) {
+    sensor1.on("heartRateData", function (data) {
         console.log(stickid, "sensor 1: ", data.DeviceId, data.ComputedHeartRate, data);
         if (data.DeviceId !== 0 && dev_id === 0) {
             dev_id = data.DeviceId;
@@ -39,7 +39,7 @@ async function openStick(stick, stickid) {
 
     var scanner = new Ant.HeartRateScanner(stick);
 
-    scanner.on("hbdata", function (data) {
+    scanner.on("heartRateData", function (data) {
         console.log(stickid, "scanner: ", data.DeviceId, data.ComputedHeartRate, data.Rssi, data);
     });
 

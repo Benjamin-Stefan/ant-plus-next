@@ -12,6 +12,8 @@ import { Messages } from "../../utils/messages.js";
 /**
  * Represents a Fitness Equipment sensor.
  * This class extends the AntPlusSensor class to handle specific data related to fitness equipment.
+ *
+ * @category Sensors
  */
 export class FitnessEquipmentSensor extends AntPlusSensor {
     /**

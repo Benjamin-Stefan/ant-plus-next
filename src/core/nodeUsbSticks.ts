@@ -3,6 +3,9 @@ import { NodeUSBDriver } from "./driver/nodeUSBDriver.js";
 
 /**
  * Class representing a Garmin Stick 2 USB driver, which extends the base USBDriver class.
+ *
+ * @category Drivers
+ * @extends NodeUSBDriver
  */
 export class GarminStick2 extends NodeUSBDriver {
     /**
@@ -23,6 +26,9 @@ export class GarminStick2 extends NodeUSBDriver {
 
 /**
  * Class representing a Garmin Stick 3 USB driver, which extends the base USBDriver class.
+ *
+ * @category Drivers
+ * @extends NodeUSBDriver
  */
 export class GarminStick3 extends NodeUSBDriver {
     /**

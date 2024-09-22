@@ -10,6 +10,8 @@ import { SpeedSensorState } from "./speedSensorState.js";
 /**
  * Represents a Bicycle Speed sensor.
  * This class extends the AntPlusSensor class to handle specific data related to speed measurement.
+ *
+ * @category Sensors
  */
 export class SpeedSensor extends AntPlusSensor {
     /**

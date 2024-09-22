@@ -2,7 +2,7 @@
 
 ***
 
-[ant-plus-next v0.1.0](../globals.md) / SpeedScanner
+[ant-plus-next v0.1.0](../README.md) / SpeedScanner
 
 # Class: SpeedScanner
 
@@ -37,7 +37,7 @@ The USB driver instance used for communication with the ANT+ stick.
 
 #### Defined in
 
-[sensors/antPlusScanner.ts:42](https://github.com/Benjamin-Stefan/ant-plus-next/blob/d470eb84e6da33529ea57df2a5b331a44f806a81/src/sensors/antPlusScanner.ts#L42)
+[sensors/antPlusScanner.ts:42](https://github.com/Benjamin-Stefan/ant-plus-next/blob/b17049a469528157a32f68083cac64e99938f880/src/sensors/antPlusScanner.ts#L42)
 
 ## Properties
 
@@ -55,7 +55,7 @@ The wheel circumference in meters, used to calculate speed.
 
 #### Defined in
 
-[sensors/speed/speedScanner.ts:26](https://github.com/Benjamin-Stefan/ant-plus-next/blob/d470eb84e6da33529ea57df2a5b331a44f806a81/src/sensors/speed/speedScanner.ts#L26)
+[sensors/speed/speedScanner.ts:28](https://github.com/Benjamin-Stefan/ant-plus-next/blob/b17049a469528157a32f68083cac64e99938f880/src/sensors/speed/speedScanner.ts#L28)
 
 ## Methods
 
@@ -79,7 +79,7 @@ Will throw an error if there is an issue detaching.
 
 #### Defined in
 
-[sensors/baseSensor.ts:249](https://github.com/Benjamin-Stefan/ant-plus-next/blob/d470eb84e6da33529ea57df2a5b331a44f806a81/src/sensors/baseSensor.ts#L249)
+[sensors/baseSensor.ts:249](https://github.com/Benjamin-Stefan/ant-plus-next/blob/b17049a469528157a32f68083cac64e99938f880/src/sensors/baseSensor.ts#L249)
 
 ***
 
@@ -109,7 +109,7 @@ scanner.scan();
 
 #### Defined in
 
-[sensors/antPlusScanner.ts:58](https://github.com/Benjamin-Stefan/ant-plus-next/blob/d470eb84e6da33529ea57df2a5b331a44f806a81/src/sensors/antPlusScanner.ts#L58)
+[sensors/antPlusScanner.ts:58](https://github.com/Benjamin-Stefan/ant-plus-next/blob/b17049a469528157a32f68083cac64e99938f880/src/sensors/antPlusScanner.ts#L58)
 
 ***
 
@@ -138,4 +138,4 @@ scanner.setWheelCircumference(2.105); // Sets the wheel circumference to 2.105 m
 
 #### Defined in
 
-[sensors/speed/speedScanner.ts:39](https://github.com/Benjamin-Stefan/ant-plus-next/blob/d470eb84e6da33529ea57df2a5b331a44f806a81/src/sensors/speed/speedScanner.ts#L39)
+[sensors/speed/speedScanner.ts:41](https://github.com/Benjamin-Stefan/ant-plus-next/blob/b17049a469528157a32f68083cac64e99938f880/src/sensors/speed/speedScanner.ts#L41)

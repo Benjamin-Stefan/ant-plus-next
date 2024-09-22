@@ -6,6 +6,8 @@ import { AntPlusScanner } from "../antPlusScanner.js";
 /**
  * Represents a scanner for Fitness Equipment sensors.
  * Extends the AntPlusScanner class to handle scanning and state updates for multiple fitness equipment sensors.
+ *
+ * @category Sensors
  */
 export class FitnessEquipmentScanner extends AntPlusScanner {
     /**

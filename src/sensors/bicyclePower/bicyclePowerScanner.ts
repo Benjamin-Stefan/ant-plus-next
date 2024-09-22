@@ -6,6 +6,8 @@ import { AntPlusScanner } from "../antPlusScanner.js";
 /**
  * Represents a scanner for Bicycle Power sensors.
  * Extends the AntPlusScanner class to handle scanning for multiple Bicycle Power sensors.
+ *
+ * @category Sensors
  */
 export class BicyclePowerScanner extends AntPlusScanner {
     /**

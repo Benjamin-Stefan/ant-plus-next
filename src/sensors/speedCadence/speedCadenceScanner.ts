@@ -6,6 +6,8 @@ import { SpeedCadenceSensor } from "./speedCadenceSensor.js";
 /**
  * Represents a scanner for Speed and Cadence sensors.
  * Extends the AntPlusScanner class to handle scanning and state updates for multiple Speed and Cadence sensors.
+ *
+ * @category Sensors
  */
 export class SpeedCadenceScanner extends AntPlusScanner {
     /**

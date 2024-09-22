@@ -4,6 +4,7 @@ import { WebUSBDriver } from "./driver/webUSBDriver.js";
  * WebUsbStick class extends the WebUSBDriver to represent a specific USB stick that uses the WebUSB API.
  * It checks for WebUSB API availability in the environment before initializing.
  *
+ * @category Drivers
  * @extends WebUSBDriver
  */
 export class WebUsbStick extends WebUSBDriver {

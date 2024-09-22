@@ -10,6 +10,8 @@ import { StrideSpeedDistanceSensorState } from "./strideSpeedDistanceSensorState
 /**
  * Represents a Stride-Based Speed and Distance Monitor (SDM) sensor.
  * This class extends the AntPlusSensor class to provide specific functionality for handling SDM sensor data.
+ *
+ * @category Sensors
  */
 export class StrideSpeedDistanceSensor extends AntPlusSensor {
     /**
