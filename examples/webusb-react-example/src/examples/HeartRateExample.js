@@ -2,34 +2,44 @@ import React, { useState } from "react";
 import { WebUsbStick, HeartRateSensor } from "ant-plus-next";
 
 const HeartRateExample = () => {
-    const [isConnected, setIsConnected] = useState(false);
+    const [stickState, setStickState] = useState();
+    const [isConnected, setIsConnected] = useState(stickState?.isScanning());
+    const [sensorData, setSensorData] = useState({ DeviceId: null, ComputedHeartRate: null });
 
     const handleConnect = async () => {
         try {
             const stick = new WebUsbStick();
             const heartRateSensor = new HeartRateSensor(stick);
 
+            setStickState(stick);
             heartRateSensor.on("hbData", (data) => {
                 console.log(`Device Id: ${data.DeviceId}, Heart Rate: ${data.ComputedHeartRate}`);
+
+                setSensorData({
+                    DeviceId: data.DeviceId,
+                    ComputedHeartRate: data.ComputedHeartRate,
+                });
             });
 
             stick.on("startup", () => {
+                console.log("Stick initialized successfully");
                 heartRateSensor.attach(0, 0);
+                setIsConnected(true);
             });
 
-            const result = await stick.open();
+            stick.on("shutdown", () => {
+                console.log("Stick shutdown detected");
+            });
 
-            if (!result) {
-                console.error("Stick not found!");
-                return;
-            }
+            stick.on("unhandled", (data) => {
+                console.warn("Unhandled event received:", data);
+            });
 
-            setIsConnected(true); // Set the state to show the connection is successful
+            await stick.open();
 
-            // Cleanup function to close the device if necessary
             return () => {
                 if (stick) {
-                    stick.close(); // Close the stick when the component unmounts
+                    stick.close();
                 }
             };
         } catch (error) {
@@ -37,8 +47,15 @@ const HeartRateExample = () => {
         }
     };
 
+    const handleDisconnect = async () => {
+        if (stickState) {
+            stickState.close();
+            setIsConnected(false);
+        }
+    };
+
     return (
-        <div>
+        <>
             <h2>Heart Rate Sensor Example</h2>
             {!isConnected ? (
                 <div>
@@ -46,9 +63,14 @@ const HeartRateExample = () => {
                     <button onClick={handleConnect}>Connect USB Device</button>
                 </div>
             ) : (
-                <p>Connected to the ANT+ heart rate sensor!</p>
+                <div>
+                    <p>Connected to the ANT+ heart rate sensor!</p>
+                    <button onClick={handleDisconnect}>Disconnect USB Device</button>
+                    <p>Sensor data</p>
+                    <span>{sensorData.DeviceId !== null && sensorData.ComputedHeartRate !== null ? `Device ID: ${sensorData.DeviceId}, Heart Rate: ${sensorData.ComputedHeartRate}` : "No data available"}</span>
+                </div>
             )}
-        </div>
+        </>
     );
 };
 
