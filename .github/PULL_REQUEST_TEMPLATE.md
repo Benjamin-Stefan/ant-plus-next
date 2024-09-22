@@ -20,8 +20,9 @@ Delete options that are not relevant:
 Describe the tests that you ran to verify your changes. Provide instructions so we can reproduce. Include details for your test configuration:
 
 -   Operating System: [e.g., Windows, macOS, Linux]
+-   Browser: [e.q., Chrome, Edge]
 -   Node.js Version: [e.g., 18.0.0]
--   ANT+ Dongle Models Tested: [e.g., Garmin USB2, Suunto Movestick, Dynastream ANTUSB-m]
+-   **ANT+ Dongle Model**: [e.g., Garmin USB2, Suunto Movestick, Dynastream ANTUSB-m]
 
 ## Checklist:
 
