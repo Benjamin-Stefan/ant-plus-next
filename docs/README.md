@@ -1,3 +1,7 @@
+**ant-plus-next v0.1.0** • [**Docs**](globals.md)
+
+***
+
 # ant-plus-next
 
 ![npm version](https://img.shields.io/npm/v/ant-plus-next) ![Build Status](https://img.shields.io/github/actions/workflow/status/Benjamin-Stefan/ant-plus-next/ci.yml?branch=main) ![License](https://img.shields.io/github/license/Benjamin-Stefan/ant-plus-next) ![Downloads](https://img.shields.io/npm/dm/ant-plus-next) ![Issues](https://img.shields.io/github/issues/Benjamin-Stefan/ant-plus-next)
@@ -215,7 +219,7 @@ Contributions are welcome! Please check out the [CONTRIBUTING.md](/CONTRIBUTING.
 
 ## 📜 License and Acknowledgements
 
-This project is licensed under the [MIT License](./LICENSE).
+This project is licensed under the [MIT License](_media/LICENSE).
 
 Parts of the code are based on the original project [ant-plus](https://github.com/Loghorn/ant-plus) by Alessandro Vergani (© 2015). The original project was also licensed under the MIT License.
 

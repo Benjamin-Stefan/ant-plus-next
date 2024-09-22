@@ -1,12 +1,15 @@
 {
-    "entryPoints": ["src"],
-    "entryPointStrategy": "expand",
+    "entryPoints": ["src/index.ts"],
     "out": "docs",
-    "includeVersion": true,
-    "excludeExternals": true,
     "excludePrivate": true,
     "excludeProtected": true,
-    "excludeTags": ["internal", "deprecated"],
-    "tsconfig": "tsconfig.json",
-    "readme": "README.md"
+    "excludeExternals": true,
+    "excludeNotDocumented": true,
+    "includeVersion": true,
+    "readme": "README.md",
+    "name": "ant-plus-next",
+    "plugin": ["typedoc-plugin-markdown"],
+    "tsconfig": "./tsconfig.json",
+    "categorizeByGroup": false,
+    "theme": "default"
 }
