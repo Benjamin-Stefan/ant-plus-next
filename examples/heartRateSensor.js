@@ -10,7 +10,7 @@ const sensorConfigs = [
         instance: new Ant.HeartRateSensor(stick),
         events: [
             {
-                event: "hbData",
+                event: "heartRateData",
                 getValue: (data) => {
                     return {
                         type: "heartrate",

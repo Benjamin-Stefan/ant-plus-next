@@ -119,8 +119,7 @@ export function updateState(sensor: HeartRateSensor | HeartRateScanner, state: H
     DecodeDefaultHRM(state, new DataView(data.buffer.slice(Messages.BUFFER_INDEX_MSG_DATA + 4)));
     page.oldPage = pageNum;
 
-    sensor.emit("hbdata", state);
-    sensor.emit("hbData", state);
+    sensor.emit("heartRateData", state);
 }
 
 /**
