@@ -57,6 +57,9 @@ Released on: {{date}}
 {{#if footer}}
 {{footer}}
 {{/if}}
+
+---
+
 `,
                 },
             },

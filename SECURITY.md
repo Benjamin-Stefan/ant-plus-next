@@ -10,7 +10,7 @@ Thank you for your interest in the security of our project. We take security ver
       **Fingerprint:** `4CB4 A832 F430 F258 9026 C6AA A23E 12B7 3D8C F79C`.  
       Ensure to verify the fingerprint after importing the key to confirm its authenticity.
 
-    - **GitHub Security Advisories:** You can also report vulnerabilities through [GitHub Security Advisories](https://github.com/Benjamin-Stefan/{{PROJECT_NAME}}/security/advisories). This allows us to privately discuss and address the issue within GitHub's secure environment. To report a vulnerability this way, go to the "Security" tab of our repository and click on "Report a vulnerability."
+    - **GitHub Security Advisories:** You can also report vulnerabilities through [GitHub Security Advisories](https://github.com/Benjamin-Stefan/ant-plus-next/security/advisories). This allows us to privately discuss and address the issue within GitHub's secure environment. To report a vulnerability this way, go to the "Security" tab of our repository and click on "Report a vulnerability."
 
 2. **Information to Include:** Please provide as much detail as possible:
 
@@ -31,6 +31,6 @@ Thank you for your interest in the security of our project. We take security ver
 
 ## Security Contact
 
-For any security-related questions or concerns, please contact [security@benjamin-stefan.eu](mailto:security@benjamin-stefan.eu) (PGP-encrypted emails are preferred) or use [GitHub Security Advisories](https://github.com/Benjamin-Stefan/{{PROJECT_NAME}}/security/advisories). We prefer communication in **English** or **German**.
+For any security-related questions or concerns, please contact [security@benjamin-stefan.eu](mailto:security@benjamin-stefan.eu) (PGP-encrypted emails are preferred) or use [GitHub Security Advisories](https://github.com/Benjamin-Stefan/ant-plus-next/security/advisories). We prefer communication in **English** or **German**.
 
 Thank you for your support in ensuring the security of this project!
