@@ -1,6 +1,9 @@
 # ant-plus-next
 
-![npm version](https://img.shields.io/npm/v/ant-plus-next) ![Build Status](https://img.shields.io/github/actions/workflow/status/Benjamin-Stefan/ant-plus-next/ci.yml?branch=main) ![License](https://img.shields.io/github/license/Benjamin-Stefan/ant-plus-next) ![Downloads](https://img.shields.io/npm/dm/ant-plus-next) ![Issues](https://img.shields.io/github/issues/Benjamin-Stefan/ant-plus-next)
+[![npm version](https://img.shields.io/npm/v/ant-plus-next)](https://www.npmjs.com/package/ant-plus-next)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/Benjamin-Stefan/ant-plus-next/ci.yml?branch=main)](https://github.com/Benjamin-Stefan/ant-plus-next/actions/workflows/ci.yml)
+[![License](https://img.shields.io/github/license/Benjamin-Stefan/ant-plus-next)](https://github.com/Benjamin-Stefan/ant-plus-next/blob/main/LICENSE)
+[![Issues](https://img.shields.io/github/issues/Benjamin-Stefan/ant-plus-next)](https://github.com/Benjamin-Stefan/ant-plus-next/issues)
 
 A modern Node.js module for interacting with ANT+ USB sticks and sensors. It provides a user-friendly API for heart rate monitors, speed sensors, and more, supporting both Node.js USB and WebUSB (browser) for maximum flexibility in various environments.
 
