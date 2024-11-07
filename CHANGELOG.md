@@ -1,3 +1,15 @@
+### Version: 0.3.0  
+Released on: 2024-11-07
+
+
+### 🚀 Features
+
+* add export of scanner and sensor types ([6ec990732cde3baf5093e673047100fc8c0d6c6c](/commit/6ec990732cde3baf5093e673047100fc8c0d6c6c))
+
+
+
+---
+
 ### Version: 0.2.0
 
 Released on: 2024-09-22
