@@ -1,3 +1,15 @@
+### Version: 0.3.1  
+Released on: 2024-11-08
+
+
+### 🐛 Bug Fixes
+
+* naming HeartRateScannerState to HeartRateScanState ([950aab43509743a7e9cf9cb7913c82b639c8c3ca](/commit/950aab43509743a7e9cf9cb7913c82b639c8c3ca))
+
+
+
+---
+
 ### Version: 0.3.0  
 Released on: 2024-11-07
 
