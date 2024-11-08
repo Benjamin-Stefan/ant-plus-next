@@ -1,5 +1,5 @@
 import { HeartRateScanner } from "./heartRateScanner.js";
-import { HeartRateScannerState } from "./heartRateScannerState.js";
+import { HeartRateScanState } from "./heartRateScanState.js";
 import { HeartRateSensor } from "./heartRateSensor.js";
 import { HeartRateSensorState } from "./heartRateSensorState.js";
 import { Messages } from "../../utils/messages.js";
@@ -23,7 +23,7 @@ const TOGGLE_MASK = 0x80;
  * battery status, heart rate data, and more.
  *
  * @param {HeartRateSensor | HeartRateScanner} sensor - The sensor or scanner instance emitting the data.
- * @param {HeartRateSensorState | HeartRateScannerState} state - The current state of the sensor or scanner.
+ * @param {HeartRateSensorState | HeartRateScanState} state - The current state of the sensor or scanner.
  * @param {Page} page - The page information containing the current and old page number.
  * @param {DataView} data - The raw data buffer received from the sensor.
  * @returns {void}
@@ -35,7 +35,7 @@ const TOGGLE_MASK = 0x80;
  * const dataBuffer = getDataFromSensor(); // Assume this function gets data from a sensor
  * updateState(sensor, state, page, dataBuffer);
  */
-export function updateState(sensor: HeartRateSensor | HeartRateScanner, state: HeartRateSensorState | HeartRateScannerState, page: Page, data: DataView): void {
+export function updateState(sensor: HeartRateSensor | HeartRateScanner, state: HeartRateSensorState | HeartRateScanState, page: Page, data: DataView): void {
     const pageNum = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA);
     if (page.pageState === PageState.INIT_PAGE) {
         page.pageState = PageState.STD_PAGE; // change the state to STD_PAGE and allow the checking of old and new pages
@@ -125,7 +125,7 @@ export function updateState(sensor: HeartRateSensor | HeartRateScanner, state: H
 /**
  * Decodes the default Heart Rate Monitor (HRM) data from the buffer and updates the sensor state.
  *
- * @param {HeartRateSensorState | HeartRateScannerState} state - The current state of the sensor or scanner.
+ * @param {HeartRateSensorState | HeartRateScanState} state - The current state of the sensor or scanner.
  * @param {DataView} pucPayload - The buffer containing the HRM data.
  * @returns {void}
  *
@@ -134,7 +134,7 @@ export function updateState(sensor: HeartRateSensor | HeartRateScanner, state: H
  * const hrmData = new Uint8Array([0x00, 0x01, 0x02, 0x03]); // Sample HRM data buffer
  * DecodeDefaultHRM(state, hrmData);
  */
-function DecodeDefaultHRM(state: HeartRateSensorState | HeartRateScannerState, pucPayload: DataView): void {
+function DecodeDefaultHRM(state: HeartRateSensorState | HeartRateScanState, pucPayload: DataView): void {
     // Decode the measurement time data (two bytes)
     state.BeatTime = pucPayload.getUint16(0, true); // little-endian
     // Decode the measurement count data

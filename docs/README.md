@@ -1,8 +1,8 @@
-**ant-plus-next v0.1.0** • **Docs**
+**ant-plus-next v0.3.0** • **Docs**
 
 ***
 
-# ant-plus-next v0.1.0
+# ant-plus-next v0.3.0
 
 ## Classes
 
@@ -32,3 +32,24 @@
 - [SpeedSensor](classes/SpeedSensor.md)
 - [StrideSpeedDistanceScanner](classes/StrideSpeedDistanceScanner.md)
 - [StrideSpeedDistanceSensor](classes/StrideSpeedDistanceSensor.md)
+
+### Other
+
+- [BicyclePowerScanState](classes/BicyclePowerScanState.md)
+- [BicyclePowerSensorState](classes/BicyclePowerSensorState.md)
+- [CadenceScanState](classes/CadenceScanState.md)
+- [CadenceSensorState](classes/CadenceSensorState.md)
+- [EnvironmentScanState](classes/EnvironmentScanState.md)
+- [EnvironmentSensorState](classes/EnvironmentSensorState.md)
+- [FitnessEquipmentScanState](classes/FitnessEquipmentScanState.md)
+- [FitnessEquipmentSensorState](classes/FitnessEquipmentSensorState.md)
+- [HeartRateScanState](classes/HeartRateScanState.md)
+- [HeartRateSensorState](classes/HeartRateSensorState.md)
+- [MuscleOxygenScanState](classes/MuscleOxygenScanState.md)
+- [MuscleOxygenSensorState](classes/MuscleOxygenSensorState.md)
+- [SpeedCadenceScanState](classes/SpeedCadenceScanState.md)
+- [SpeedCadenceSensorState](classes/SpeedCadenceSensorState.md)
+- [SpeedScanState](classes/SpeedScanState.md)
+- [SpeedSensorState](classes/SpeedSensorState.md)
+- [StrideSpeedDistanceScanState](classes/StrideSpeedDistanceScanState.md)
+- [StrideSpeedDistanceSensorState](classes/StrideSpeedDistanceSensorState.md)

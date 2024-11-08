@@ -1,1 +1,0 @@
-{"version":3,"file":"heartRateScannerState.d.ts","sourceRoot":"","sources":["../../../src/sensors/heartRate/heartRateScannerState.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,oBAAoB,EAAE,MAAM,2BAA2B,CAAC;AAEjE;;;;GAIG;AACH,qBAAa,qBAAsB,SAAQ,oBAAoB;IAC3D;;;OAGG;IACH,IAAI,EAAE,MAAM,GAAG,SAAS,CAAC;IAEzB;;;OAGG;IACH,SAAS,EAAE,MAAM,GAAG,SAAS,CAAC;CACjC"}

@@ -16,7 +16,7 @@ export declare class HeartRateScanner extends AntPlusScanner {
     /**
      * A dictionary to store the states of detected Heart Rate sensors by their device ID.
      * @private
-     * @type {{ [id: number]: HeartRateScannerState }}
+     * @type {{ [id: number]: HeartRateScanState }}
      */
     private states;
     /**

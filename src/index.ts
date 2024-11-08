@@ -2,7 +2,7 @@ export { GarminStick2, GarminStick3 } from "./core/nodeUsbSticks";
 export { WebUsbStick } from "./core/webUsbStick";
 
 // Common sensors that can be used in both environments (e.g., Node.js and browser).
-export { HeartRateScanner, HeartRateSensor, HeartRateScannerState, HeartRateSensorState } from "./sensors/heartRate/index.js";
+export { HeartRateScanner, HeartRateSensor, HeartRateScanState, HeartRateSensorState } from "./sensors/heartRate/index.js";
 export { StrideSpeedDistanceScanner, StrideSpeedDistanceSensor, StrideSpeedDistanceScanState, StrideSpeedDistanceSensorState } from "./sensors/strideSpeedDistance/index.js";
 export { SpeedCadenceScanner, SpeedCadenceSensor, SpeedCadenceScanState, SpeedCadenceSensorState } from "./sensors/speedCadence/index.js";
 export { SpeedScanner, SpeedSensor, SpeedScanState, SpeedSensorState } from "./sensors/speed/index.js";

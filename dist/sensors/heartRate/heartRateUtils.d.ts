@@ -1,5 +1,5 @@
 import { HeartRateScanner } from "./heartRateScanner.js";
-import { HeartRateScannerState } from "./heartRateScannerState.js";
+import { HeartRateScanState } from "./heartRateScanState.js";
 import { HeartRateSensor } from "./heartRateSensor.js";
 import { HeartRateSensorState } from "./heartRateSensorState.js";
 export declare enum PageState {
@@ -17,7 +17,7 @@ export type Page = {
  * battery status, heart rate data, and more.
  *
  * @param {HeartRateSensor | HeartRateScanner} sensor - The sensor or scanner instance emitting the data.
- * @param {HeartRateSensorState | HeartRateScannerState} state - The current state of the sensor or scanner.
+ * @param {HeartRateSensorState | HeartRateScanState} state - The current state of the sensor or scanner.
  * @param {Page} page - The page information containing the current and old page number.
  * @param {DataView} data - The raw data buffer received from the sensor.
  * @returns {void}
@@ -29,5 +29,5 @@ export type Page = {
  * const dataBuffer = getDataFromSensor(); // Assume this function gets data from a sensor
  * updateState(sensor, state, page, dataBuffer);
  */
-export declare function updateState(sensor: HeartRateSensor | HeartRateScanner, state: HeartRateSensorState | HeartRateScannerState, page: Page, data: DataView): void;
+export declare function updateState(sensor: HeartRateSensor | HeartRateScanner, state: HeartRateSensorState | HeartRateScanState, page: Page, data: DataView): void;
 //# sourceMappingURL=heartRateUtils.d.ts.map

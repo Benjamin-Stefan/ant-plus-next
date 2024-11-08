@@ -1,8 +1,8 @@
-[**ant-plus-next v0.1.0**](../README.md) • **Docs**
+[**ant-plus-next v0.3.0**](../README.md) • **Docs**
 
 ***
 
-[ant-plus-next v0.1.0](../README.md) / CadenceScanner
+[ant-plus-next v0.3.0](../README.md) / CadenceScanner
 
 # Class: CadenceScanner
 
@@ -37,7 +37,7 @@ The USB driver instance used for communication with the ANT+ stick.
 
 #### Defined in
 
-[sensors/antPlusScanner.ts:42](https://github.com/Benjamin-Stefan/ant-plus-next/blob/f145b7898a90ecdbfec50821d10da351499b1c22/src/sensors/antPlusScanner.ts#L42)
+[sensors/antPlusScanner.ts:42](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/antPlusScanner.ts#L42)
 
 ## Properties
 
@@ -50,7 +50,7 @@ Defaults to 2.199 meters (70 cm wheel).
 
 #### Defined in
 
-[sensors/cadence/cadenceScanner.ts:28](https://github.com/Benjamin-Stefan/ant-plus-next/blob/f145b7898a90ecdbfec50821d10da351499b1c22/src/sensors/cadence/cadenceScanner.ts#L28)
+[sensors/cadence/cadenceScanner.ts:28](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/cadence/cadenceScanner.ts#L28)
 
 ## Methods
 
@@ -74,7 +74,7 @@ Will throw an error if there is an issue detaching.
 
 #### Defined in
 
-[sensors/baseSensor.ts:249](https://github.com/Benjamin-Stefan/ant-plus-next/blob/f145b7898a90ecdbfec50821d10da351499b1c22/src/sensors/baseSensor.ts#L249)
+[sensors/baseSensor.ts:249](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/baseSensor.ts#L249)
 
 ***
 
@@ -104,7 +104,7 @@ scanner.scan();
 
 #### Defined in
 
-[sensors/antPlusScanner.ts:58](https://github.com/Benjamin-Stefan/ant-plus-next/blob/f145b7898a90ecdbfec50821d10da351499b1c22/src/sensors/antPlusScanner.ts#L58)
+[sensors/antPlusScanner.ts:58](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/antPlusScanner.ts#L58)
 
 ***
 
@@ -132,4 +132,4 @@ scanner.setWheelCircumference(2.105); // Sets the wheel circumference to 2.105 m
 
 #### Defined in
 
-[sensors/cadence/cadenceScanner.ts:40](https://github.com/Benjamin-Stefan/ant-plus-next/blob/f145b7898a90ecdbfec50821d10da351499b1c22/src/sensors/cadence/cadenceScanner.ts#L40)
+[sensors/cadence/cadenceScanner.ts:40](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/cadence/cadenceScanner.ts#L40)

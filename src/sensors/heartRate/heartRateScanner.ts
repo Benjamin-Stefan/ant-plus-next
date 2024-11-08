@@ -1,5 +1,5 @@
 import { Page, PageState, updateState } from "./heartRateUtils.js";
-import { HeartRateScannerState } from "./heartRateScannerState.js";
+import { HeartRateScanState } from "./heartRateScanState.js";
 import { HeartRateSensor } from "./heartRateSensor.js";
 import { AntPlusScanner } from "../antPlusScanner.js";
 
@@ -23,9 +23,9 @@ export class HeartRateScanner extends AntPlusScanner {
     /**
      * A dictionary to store the states of detected Heart Rate sensors by their device ID.
      * @private
-     * @type {{ [id: number]: HeartRateScannerState }}
+     * @type {{ [id: number]: HeartRateScanState }}
      */
-    private states: { [id: number]: HeartRateScannerState } = {};
+    private states: { [id: number]: HeartRateScanState } = {};
 
     /**
      * A dictionary to store page information for each detected Heart Rate sensor by their device ID.
@@ -46,7 +46,7 @@ export class HeartRateScanner extends AntPlusScanner {
      */
     protected createStateIfNew(deviceId: number): void {
         if (!this.states[deviceId]) {
-            this.states[deviceId] = new HeartRateScannerState(deviceId);
+            this.states[deviceId] = new HeartRateScanState(deviceId);
         }
 
         if (!this.pages[deviceId]) {

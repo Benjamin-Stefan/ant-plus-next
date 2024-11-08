@@ -1,8 +1,8 @@
-[**ant-plus-next v0.1.0**](../README.md) • **Docs**
+[**ant-plus-next v0.3.0**](../README.md) • **Docs**
 
 ***
 
-[ant-plus-next v0.1.0](../README.md) / HeartRateSensor
+[ant-plus-next v0.3.0](../README.md) / HeartRateSensor
 
 # Class: HeartRateSensor
 
@@ -37,7 +37,7 @@ The USB driver instance used for communication with the ANT+ stick.
 
 #### Defined in
 
-[sensors/antPlusSensor.ts:16](https://github.com/Benjamin-Stefan/ant-plus-next/blob/f145b7898a90ecdbfec50821d10da351499b1c22/src/sensors/antPlusSensor.ts#L16)
+[sensors/antPlusSensor.ts:16](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/antPlusSensor.ts#L16)
 
 ## Properties
 
@@ -49,7 +49,7 @@ The device type code for Heart Rate sensors.
 
 #### Defined in
 
-[sensors/heartRate/heartRateSensor.ts:22](https://github.com/Benjamin-Stefan/ant-plus-next/blob/f145b7898a90ecdbfec50821d10da351499b1c22/src/sensors/heartRate/heartRateSensor.ts#L22)
+[sensors/heartRate/heartRateSensor.ts:22](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/heartRate/heartRateSensor.ts#L22)
 
 ## Methods
 
@@ -82,7 +82,7 @@ sensor.attach(1, 12345); // Attaches to channel 1 with device ID 12345
 
 #### Defined in
 
-[sensors/heartRate/heartRateSensor.ts:36](https://github.com/Benjamin-Stefan/ant-plus-next/blob/f145b7898a90ecdbfec50821d10da351499b1c22/src/sensors/heartRate/heartRateSensor.ts#L36)
+[sensors/heartRate/heartRateSensor.ts:36](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/heartRate/heartRateSensor.ts#L36)
 
 ***
 
@@ -106,4 +106,4 @@ Will throw an error if there is an issue detaching.
 
 #### Defined in
 
-[sensors/baseSensor.ts:249](https://github.com/Benjamin-Stefan/ant-plus-next/blob/f145b7898a90ecdbfec50821d10da351499b1c22/src/sensors/baseSensor.ts#L249)
+[sensors/baseSensor.ts:249](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/baseSensor.ts#L249)
