@@ -1,8 +1,8 @@
-[**ant-plus-next v0.3.0**](../README.md) • **Docs**
+[**ant-plus-next v0.3.1**](../README.md) • **Docs**
 
 ***
 
-[ant-plus-next v0.3.0](../README.md) / MuscleOxygenScanState
+[ant-plus-next v0.3.1](../README.md) / MuscleOxygenScanState
 
 # Class: MuscleOxygenScanState
 
@@ -44,7 +44,7 @@ const sensorState = new MuscleOxygenSensorState(12345);
 
 #### Defined in
 
-[sensors/muscleOxygen/muscleOxygenSensorState.ts:14](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/muscleOxygen/muscleOxygenSensorState.ts#L14)
+[sensors/muscleOxygen/muscleOxygenSensorState.ts:14](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/muscleOxygen/muscleOxygenSensorState.ts#L14)
 
 ## Properties
 
@@ -60,7 +60,7 @@ The count of events detected by the sensor.
 
 #### Defined in
 
-[sensors/muscleOxygen/muscleOxygenSensorState.ts:22](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/muscleOxygen/muscleOxygenSensorState.ts#L22)
+[sensors/muscleOxygen/muscleOxygenSensorState.ts:22](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/muscleOxygen/muscleOxygenSensorState.ts#L22)
 
 ***
 
@@ -77,7 +77,7 @@ Can be "New", "Good", "Ok", "Low", "Critical", or "Invalid".
 
 #### Defined in
 
-[sensors/muscleOxygen/muscleOxygenSensorState.ts:117](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/muscleOxygen/muscleOxygenSensorState.ts#L117)
+[sensors/muscleOxygen/muscleOxygenSensorState.ts:117](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/muscleOxygen/muscleOxygenSensorState.ts#L117)
 
 ***
 
@@ -93,7 +93,7 @@ The battery status bit of the sensor.
 
 #### Defined in
 
-[sensors/muscleOxygen/muscleOxygenSensorState.ts:122](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/muscleOxygen/muscleOxygenSensorState.ts#L122)
+[sensors/muscleOxygen/muscleOxygenSensorState.ts:122](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/muscleOxygen/muscleOxygenSensorState.ts#L122)
 
 ***
 
@@ -109,7 +109,7 @@ The battery voltage of the sensor.
 
 #### Defined in
 
-[sensors/muscleOxygen/muscleOxygenSensorState.ts:110](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/muscleOxygen/muscleOxygenSensorState.ts#L110)
+[sensors/muscleOxygen/muscleOxygenSensorState.ts:110](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/muscleOxygen/muscleOxygenSensorState.ts#L110)
 
 ***
 
@@ -126,7 +126,7 @@ Can be a numeric value, "AmbientLightTooHigh", or "Invalid".
 
 #### Defined in
 
-[sensors/muscleOxygen/muscleOxygenSensorState.ts:68](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/muscleOxygen/muscleOxygenSensorState.ts#L68)
+[sensors/muscleOxygen/muscleOxygenSensorState.ts:68](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/muscleOxygen/muscleOxygenSensorState.ts#L68)
 
 ***
 
@@ -142,7 +142,7 @@ The unique identifier of the sensor device.
 
 #### Defined in
 
-[sensors/muscleOxygen/muscleOxygenSensorState.ts:28](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/muscleOxygen/muscleOxygenSensorState.ts#L28)
+[sensors/muscleOxygen/muscleOxygenSensorState.ts:28](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/muscleOxygen/muscleOxygenSensorState.ts#L28)
 
 ***
 
@@ -158,7 +158,7 @@ The hardware version of the sensor.
 
 #### Defined in
 
-[sensors/muscleOxygen/muscleOxygenSensorState.ts:74](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/muscleOxygen/muscleOxygenSensorState.ts#L74)
+[sensors/muscleOxygen/muscleOxygenSensorState.ts:74](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/muscleOxygen/muscleOxygenSensorState.ts#L74)
 
 ***
 
@@ -174,7 +174,7 @@ The manufacturer ID of the sensor.
 
 #### Defined in
 
-[sensors/muscleOxygen/muscleOxygenSensorState.ts:80](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/muscleOxygen/muscleOxygenSensorState.ts#L80)
+[sensors/muscleOxygen/muscleOxygenSensorState.ts:80](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/muscleOxygen/muscleOxygenSensorState.ts#L80)
 
 ***
 
@@ -191,7 +191,7 @@ Possible values: 0.25, 0.5, 1, or 2 seconds.
 
 #### Defined in
 
-[sensors/muscleOxygen/muscleOxygenSensorState.ts:47](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/muscleOxygen/muscleOxygenSensorState.ts#L47)
+[sensors/muscleOxygen/muscleOxygenSensorState.ts:47](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/muscleOxygen/muscleOxygenSensorState.ts#L47)
 
 ***
 
@@ -207,7 +207,7 @@ The model number of the sensor.
 
 #### Defined in
 
-[sensors/muscleOxygen/muscleOxygenSensorState.ts:86](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/muscleOxygen/muscleOxygenSensorState.ts#L86)
+[sensors/muscleOxygen/muscleOxygenSensorState.ts:86](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/muscleOxygen/muscleOxygenSensorState.ts#L86)
 
 ***
 
@@ -223,7 +223,7 @@ The cumulative operating time of the sensor in seconds.
 
 #### Defined in
 
-[sensors/muscleOxygen/muscleOxygenSensorState.ts:104](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/muscleOxygen/muscleOxygenSensorState.ts#L104)
+[sensors/muscleOxygen/muscleOxygenSensorState.ts:104](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/muscleOxygen/muscleOxygenSensorState.ts#L104)
 
 ***
 
@@ -240,7 +240,7 @@ Can be a numeric value, "AmbientLightTooHigh", or "Invalid".
 
 #### Defined in
 
-[sensors/muscleOxygen/muscleOxygenSensorState.ts:61](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/muscleOxygen/muscleOxygenSensorState.ts#L61)
+[sensors/muscleOxygen/muscleOxygenSensorState.ts:61](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/muscleOxygen/muscleOxygenSensorState.ts#L61)
 
 ***
 
@@ -252,7 +252,7 @@ The received signal strength indicator (RSSI) of the sensor signal.
 
 #### Defined in
 
-[sensors/muscleOxygen/muscleOxygenScanState.ts:13](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/muscleOxygen/muscleOxygenScanState.ts#L13)
+[sensors/muscleOxygen/muscleOxygenScanState.ts:13](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/muscleOxygen/muscleOxygenScanState.ts#L13)
 
 ***
 
@@ -268,7 +268,7 @@ The serial number of the sensor.
 
 #### Defined in
 
-[sensors/muscleOxygen/muscleOxygenSensorState.ts:98](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/muscleOxygen/muscleOxygenSensorState.ts#L98)
+[sensors/muscleOxygen/muscleOxygenSensorState.ts:98](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/muscleOxygen/muscleOxygenSensorState.ts#L98)
 
 ***
 
@@ -284,7 +284,7 @@ Indicates whether ANT-FS is supported by the sensor.
 
 #### Defined in
 
-[sensors/muscleOxygen/muscleOxygenSensorState.ts:40](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/muscleOxygen/muscleOxygenSensorState.ts#L40)
+[sensors/muscleOxygen/muscleOxygenSensorState.ts:40](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/muscleOxygen/muscleOxygenSensorState.ts#L40)
 
 ***
 
@@ -300,7 +300,7 @@ The software version of the sensor.
 
 #### Defined in
 
-[sensors/muscleOxygen/muscleOxygenSensorState.ts:92](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/muscleOxygen/muscleOxygenSensorState.ts#L92)
+[sensors/muscleOxygen/muscleOxygenSensorState.ts:92](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/muscleOxygen/muscleOxygenSensorState.ts#L92)
 
 ***
 
@@ -312,7 +312,7 @@ The signal threshold value for the sensor.
 
 #### Defined in
 
-[sensors/muscleOxygen/muscleOxygenScanState.ts:19](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/muscleOxygen/muscleOxygenScanState.ts#L19)
+[sensors/muscleOxygen/muscleOxygenScanState.ts:19](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/muscleOxygen/muscleOxygenScanState.ts#L19)
 
 ***
 
@@ -329,7 +329,7 @@ Can be a numeric value, "AmbientLightTooHigh", or "Invalid".
 
 #### Defined in
 
-[sensors/muscleOxygen/muscleOxygenSensorState.ts:54](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/muscleOxygen/muscleOxygenSensorState.ts#L54)
+[sensors/muscleOxygen/muscleOxygenSensorState.ts:54](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/muscleOxygen/muscleOxygenSensorState.ts#L54)
 
 ***
 
@@ -345,4 +345,4 @@ Indicates whether UTC time is required by the sensor.
 
 #### Defined in
 
-[sensors/muscleOxygen/muscleOxygenSensorState.ts:34](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/muscleOxygen/muscleOxygenSensorState.ts#L34)
+[sensors/muscleOxygen/muscleOxygenSensorState.ts:34](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/muscleOxygen/muscleOxygenSensorState.ts#L34)

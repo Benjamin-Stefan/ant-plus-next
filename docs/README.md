@@ -1,8 +1,8 @@
-**ant-plus-next v0.3.0** • **Docs**
+**ant-plus-next v0.3.1** • **Docs**
 
 ***
 
-# ant-plus-next v0.3.0
+# ant-plus-next v0.3.1
 
 ## Classes
 
@@ -35,6 +35,7 @@
 
 ### Other
 
+- [BaseSensor](classes/BaseSensor.md)
 - [BicyclePowerScanState](classes/BicyclePowerScanState.md)
 - [BicyclePowerSensorState](classes/BicyclePowerSensorState.md)
 - [CadenceScanState](classes/CadenceScanState.md)
@@ -53,3 +54,13 @@
 - [SpeedSensorState](classes/SpeedSensorState.md)
 - [StrideSpeedDistanceScanState](classes/StrideSpeedDistanceScanState.md)
 - [StrideSpeedDistanceSensorState](classes/StrideSpeedDistanceSensorState.md)
+
+## Interfaces
+
+- [DebugOptions](interfaces/DebugOptions.md)
+- [USBDriverBase](interfaces/USBDriverBase.md)
+
+## Type Aliases
+
+- [PairedDevice](type-aliases/PairedDevice.md)
+- [SendCallback](type-aliases/SendCallback.md)

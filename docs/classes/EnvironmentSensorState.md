@@ -1,8 +1,8 @@
-[**ant-plus-next v0.3.0**](../README.md) • **Docs**
+[**ant-plus-next v0.3.1**](../README.md) • **Docs**
 
 ***
 
-[ant-plus-next v0.3.0](../README.md) / EnvironmentSensorState
+[ant-plus-next v0.3.1](../README.md) / EnvironmentSensorState
 
 # Class: EnvironmentSensorState
 
@@ -40,7 +40,7 @@ const sensorState = new EnvironmentSensorState(12345);
 
 #### Defined in
 
-[sensors/environment/environmentSensorState.ts:15](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/environment/environmentSensorState.ts#L15)
+[sensors/environment/environmentSensorState.ts:15](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/environment/environmentSensorState.ts#L15)
 
 ## Properties
 
@@ -52,7 +52,7 @@ The unique identifier of the sensor device.
 
 #### Defined in
 
-[sensors/environment/environmentSensorState.ts:23](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/environment/environmentSensorState.ts#L23)
+[sensors/environment/environmentSensorState.ts:23](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/environment/environmentSensorState.ts#L23)
 
 ***
 
@@ -64,7 +64,7 @@ The event count recorded by the sensor.
 
 #### Defined in
 
-[sensors/environment/environmentSensorState.ts:29](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/environment/environmentSensorState.ts#L29)
+[sensors/environment/environmentSensorState.ts:29](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/environment/environmentSensorState.ts#L29)
 
 ***
 
@@ -76,4 +76,4 @@ The temperature measured by the sensor, in degrees Celsius.
 
 #### Defined in
 
-[sensors/environment/environmentSensorState.ts:35](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/environment/environmentSensorState.ts#L35)
+[sensors/environment/environmentSensorState.ts:35](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/environment/environmentSensorState.ts#L35)

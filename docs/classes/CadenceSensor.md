@@ -1,8 +1,8 @@
-[**ant-plus-next v0.3.0**](../README.md) • **Docs**
+[**ant-plus-next v0.3.1**](../README.md) • **Docs**
 
 ***
 
-[ant-plus-next v0.3.0](../README.md) / CadenceSensor
+[ant-plus-next v0.3.1](../README.md) / CadenceSensor
 
 # Class: CadenceSensor
 
@@ -23,7 +23,7 @@ Constructs an instance of the AntPlusSensor class.
 
 #### Parameters
 
-• **stick**: `USBDriverBase`
+• **stick**: [`USBDriverBase`](../interfaces/USBDriverBase.md)
 
 The USB driver instance used for communication with the ANT+ stick.
 
@@ -37,7 +37,7 @@ The USB driver instance used for communication with the ANT+ stick.
 
 #### Defined in
 
-[sensors/antPlusSensor.ts:16](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/antPlusSensor.ts#L16)
+[sensors/antPlusSensor.ts:16](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/antPlusSensor.ts#L16)
 
 ## Properties
 
@@ -55,7 +55,7 @@ The wheel circumference in meters, used to calculate speed.
 
 #### Defined in
 
-[sensors/cadence/cadenceSensor.ts:29](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/cadence/cadenceSensor.ts#L29)
+[sensors/cadence/cadenceSensor.ts:29](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/cadence/cadenceSensor.ts#L29)
 
 ***
 
@@ -67,7 +67,7 @@ The device type code for Bicycle Cadence sensors.
 
 #### Defined in
 
-[sensors/cadence/cadenceSensor.ts:22](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/cadence/cadenceSensor.ts#L22)
+[sensors/cadence/cadenceSensor.ts:22](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/cadence/cadenceSensor.ts#L22)
 
 ## Methods
 
@@ -100,7 +100,7 @@ sensor.attach(1, 12345); // Attaches to channel 1 with device ID 12345
 
 #### Defined in
 
-[sensors/cadence/cadenceSensor.ts:50](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/cadence/cadenceSensor.ts#L50)
+[sensors/cadence/cadenceSensor.ts:50](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/cadence/cadenceSensor.ts#L50)
 
 ***
 
@@ -124,7 +124,7 @@ Will throw an error if there is an issue detaching.
 
 #### Defined in
 
-[sensors/baseSensor.ts:249](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/baseSensor.ts#L249)
+[sensors/baseSensor.ts:249](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/baseSensor.ts#L249)
 
 ***
 
@@ -153,4 +153,4 @@ sensor.setWheelCircumference(2.105); // Sets the wheel circumference to 2.105 me
 
 #### Defined in
 
-[sensors/cadence/cadenceSensor.ts:66](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/cadence/cadenceSensor.ts#L66)
+[sensors/cadence/cadenceSensor.ts:66](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/cadence/cadenceSensor.ts#L66)

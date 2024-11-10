@@ -1,8 +1,8 @@
-[**ant-plus-next v0.3.0**](../README.md) • **Docs**
+[**ant-plus-next v0.3.1**](../README.md) • **Docs**
 
 ***
 
-[ant-plus-next v0.3.0](../README.md) / StrideSpeedDistanceScanState
+[ant-plus-next v0.3.1](../README.md) / StrideSpeedDistanceScanState
 
 # Class: StrideSpeedDistanceScanState
 
@@ -44,7 +44,7 @@ const sensorState = new StrideSpeedDistanceSensorState(12345);
 
 #### Defined in
 
-[sensors/strideSpeedDistance/strideSpeedDistanceSensorState.ts:14](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/strideSpeedDistance/strideSpeedDistanceSensorState.ts#L14)
+[sensors/strideSpeedDistance/strideSpeedDistanceSensorState.ts:14](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/strideSpeedDistance/strideSpeedDistanceSensorState.ts#L14)
 
 ## Properties
 
@@ -60,7 +60,7 @@ The fractional part of the cadence in strides per minute.
 
 #### Defined in
 
-[sensors/strideSpeedDistance/strideSpeedDistanceSensorState.ts:82](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/strideSpeedDistance/strideSpeedDistanceSensorState.ts#L82)
+[sensors/strideSpeedDistance/strideSpeedDistanceSensorState.ts:82](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/strideSpeedDistance/strideSpeedDistanceSensorState.ts#L82)
 
 ***
 
@@ -76,7 +76,7 @@ The integer part of the cadence in strides per minute.
 
 #### Defined in
 
-[sensors/strideSpeedDistance/strideSpeedDistanceSensorState.ts:76](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/strideSpeedDistance/strideSpeedDistanceSensorState.ts#L76)
+[sensors/strideSpeedDistance/strideSpeedDistanceSensorState.ts:76](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/strideSpeedDistance/strideSpeedDistanceSensorState.ts#L76)
 
 ***
 
@@ -92,7 +92,7 @@ The total calories burned, if available.
 
 #### Defined in
 
-[sensors/strideSpeedDistance/strideSpeedDistanceSensorState.ts:94](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/strideSpeedDistance/strideSpeedDistanceSensorState.ts#L94)
+[sensors/strideSpeedDistance/strideSpeedDistanceSensorState.ts:94](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/strideSpeedDistance/strideSpeedDistanceSensorState.ts#L94)
 
 ***
 
@@ -108,7 +108,7 @@ The unique identifier of the sensor device.
 
 #### Defined in
 
-[sensors/strideSpeedDistance/strideSpeedDistanceSensorState.ts:22](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/strideSpeedDistance/strideSpeedDistanceSensorState.ts#L22)
+[sensors/strideSpeedDistance/strideSpeedDistanceSensorState.ts:22](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/strideSpeedDistance/strideSpeedDistanceSensorState.ts#L22)
 
 ***
 
@@ -124,7 +124,7 @@ The fractional part of the total distance traveled in meters.
 
 #### Defined in
 
-[sensors/strideSpeedDistance/strideSpeedDistanceSensorState.ts:46](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/strideSpeedDistance/strideSpeedDistanceSensorState.ts#L46)
+[sensors/strideSpeedDistance/strideSpeedDistanceSensorState.ts:46](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/strideSpeedDistance/strideSpeedDistanceSensorState.ts#L46)
 
 ***
 
@@ -140,7 +140,7 @@ The integer part of the total distance traveled in meters.
 
 #### Defined in
 
-[sensors/strideSpeedDistance/strideSpeedDistanceSensorState.ts:40](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/strideSpeedDistance/strideSpeedDistanceSensorState.ts#L40)
+[sensors/strideSpeedDistance/strideSpeedDistanceSensorState.ts:40](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/strideSpeedDistance/strideSpeedDistanceSensorState.ts#L40)
 
 ***
 
@@ -152,7 +152,7 @@ The received signal strength indicator (RSSI) of the sensor signal.
 
 #### Defined in
 
-[sensors/strideSpeedDistance/strideSpeedDistanceScanState.ts:13](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/strideSpeedDistance/strideSpeedDistanceScanState.ts#L13)
+[sensors/strideSpeedDistance/strideSpeedDistanceScanState.ts:13](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/strideSpeedDistance/strideSpeedDistanceScanState.ts#L13)
 
 ***
 
@@ -168,7 +168,7 @@ The fractional part of the speed in meters per second.
 
 #### Defined in
 
-[sensors/strideSpeedDistance/strideSpeedDistanceSensorState.ts:58](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/strideSpeedDistance/strideSpeedDistanceSensorState.ts#L58)
+[sensors/strideSpeedDistance/strideSpeedDistanceSensorState.ts:58](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/strideSpeedDistance/strideSpeedDistanceSensorState.ts#L58)
 
 ***
 
@@ -184,7 +184,7 @@ The integer part of the speed in meters per second.
 
 #### Defined in
 
-[sensors/strideSpeedDistance/strideSpeedDistanceSensorState.ts:52](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/strideSpeedDistance/strideSpeedDistanceSensorState.ts#L52)
+[sensors/strideSpeedDistance/strideSpeedDistanceSensorState.ts:52](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/strideSpeedDistance/strideSpeedDistanceSensorState.ts#L52)
 
 ***
 
@@ -200,7 +200,7 @@ The status of the sensor, represented by a numeric value.
 
 #### Defined in
 
-[sensors/strideSpeedDistance/strideSpeedDistanceSensorState.ts:88](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/strideSpeedDistance/strideSpeedDistanceSensorState.ts#L88)
+[sensors/strideSpeedDistance/strideSpeedDistanceSensorState.ts:88](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/strideSpeedDistance/strideSpeedDistanceSensorState.ts#L88)
 
 ***
 
@@ -216,7 +216,7 @@ The total number of strides counted.
 
 #### Defined in
 
-[sensors/strideSpeedDistance/strideSpeedDistanceSensorState.ts:64](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/strideSpeedDistance/strideSpeedDistanceSensorState.ts#L64)
+[sensors/strideSpeedDistance/strideSpeedDistanceSensorState.ts:64](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/strideSpeedDistance/strideSpeedDistanceSensorState.ts#L64)
 
 ***
 
@@ -228,7 +228,7 @@ The signal threshold value.
 
 #### Defined in
 
-[sensors/strideSpeedDistance/strideSpeedDistanceScanState.ts:19](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/strideSpeedDistance/strideSpeedDistanceScanState.ts#L19)
+[sensors/strideSpeedDistance/strideSpeedDistanceScanState.ts:19](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/strideSpeedDistance/strideSpeedDistanceScanState.ts#L19)
 
 ***
 
@@ -244,7 +244,7 @@ The fractional part of the elapsed time in seconds.
 
 #### Defined in
 
-[sensors/strideSpeedDistance/strideSpeedDistanceSensorState.ts:28](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/strideSpeedDistance/strideSpeedDistanceSensorState.ts#L28)
+[sensors/strideSpeedDistance/strideSpeedDistanceSensorState.ts:28](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/strideSpeedDistance/strideSpeedDistanceSensorState.ts#L28)
 
 ***
 
@@ -260,7 +260,7 @@ The integer part of the elapsed time in seconds.
 
 #### Defined in
 
-[sensors/strideSpeedDistance/strideSpeedDistanceSensorState.ts:34](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/strideSpeedDistance/strideSpeedDistanceSensorState.ts#L34)
+[sensors/strideSpeedDistance/strideSpeedDistanceSensorState.ts:34](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/strideSpeedDistance/strideSpeedDistanceSensorState.ts#L34)
 
 ***
 
@@ -276,4 +276,4 @@ The latency in milliseconds between updates.
 
 #### Defined in
 
-[sensors/strideSpeedDistance/strideSpeedDistanceSensorState.ts:70](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/strideSpeedDistance/strideSpeedDistanceSensorState.ts#L70)
+[sensors/strideSpeedDistance/strideSpeedDistanceSensorState.ts:70](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/strideSpeedDistance/strideSpeedDistanceSensorState.ts#L70)

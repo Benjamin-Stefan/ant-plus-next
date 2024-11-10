@@ -1,8 +1,8 @@
-[**ant-plus-next v0.3.0**](../README.md) • **Docs**
+[**ant-plus-next v0.3.1**](../README.md) • **Docs**
 
 ***
 
-[ant-plus-next v0.3.0](../README.md) / FitnessEquipmentSensor
+[ant-plus-next v0.3.1](../README.md) / FitnessEquipmentSensor
 
 # Class: FitnessEquipmentSensor
 
@@ -23,7 +23,7 @@ Constructs an instance of the AntPlusSensor class.
 
 #### Parameters
 
-• **stick**: `USBDriverBase`
+• **stick**: [`USBDriverBase`](../interfaces/USBDriverBase.md)
 
 The USB driver instance used for communication with the ANT+ stick.
 
@@ -37,7 +37,7 @@ The USB driver instance used for communication with the ANT+ stick.
 
 #### Defined in
 
-[sensors/antPlusSensor.ts:16](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/antPlusSensor.ts#L16)
+[sensors/antPlusSensor.ts:16](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/antPlusSensor.ts#L16)
 
 ## Properties
 
@@ -49,7 +49,7 @@ The device type code for Fitness Equipment sensors.
 
 #### Defined in
 
-[sensors/fitnessEquipment/fitnessEquipmentSensor.ts:24](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/fitnessEquipment/fitnessEquipmentSensor.ts#L24)
+[sensors/fitnessEquipment/fitnessEquipmentSensor.ts:24](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/fitnessEquipment/fitnessEquipmentSensor.ts#L24)
 
 ## Methods
 
@@ -82,7 +82,7 @@ sensor.attach(1, 12345); // Attaches to channel 1 with device ID 12345
 
 #### Defined in
 
-[sensors/fitnessEquipment/fitnessEquipmentSensor.ts:45](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/fitnessEquipment/fitnessEquipmentSensor.ts#L45)
+[sensors/fitnessEquipment/fitnessEquipmentSensor.ts:45](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/fitnessEquipment/fitnessEquipmentSensor.ts#L45)
 
 ***
 
@@ -106,7 +106,7 @@ Will throw an error if there is an issue detaching.
 
 #### Defined in
 
-[sensors/baseSensor.ts:249](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/baseSensor.ts#L249)
+[sensors/baseSensor.ts:249](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/baseSensor.ts#L249)
 
 ***
 
@@ -122,7 +122,7 @@ Sets the basic resistance level on the fitness equipment.
 
 The resistance level to set (0 to 100).
 
-• **cbk?**: `SendCallback`
+• **cbk?**: [`SendCallback`](../type-aliases/SendCallback.md)
 
 Optional callback function to handle the send response.
 
@@ -138,7 +138,7 @@ sensor.setBasicResistance(50, callbackFunction);
 
 #### Defined in
 
-[sensors/fitnessEquipment/fitnessEquipmentSensor.ts:124](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/fitnessEquipment/fitnessEquipmentSensor.ts#L124)
+[sensors/fitnessEquipment/fitnessEquipmentSensor.ts:124](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/fitnessEquipment/fitnessEquipmentSensor.ts#L124)
 
 ***
 
@@ -154,7 +154,7 @@ Sets the target power level on the fitness equipment.
 
 The target power level in watts.
 
-• **cbk?**: `SendCallback`
+• **cbk?**: [`SendCallback`](../type-aliases/SendCallback.md)
 
 Optional callback function to handle the send response.
 
@@ -170,7 +170,7 @@ sensor.setTargetPower(250, callbackFunction);
 
 #### Defined in
 
-[sensors/fitnessEquipment/fitnessEquipmentSensor.ts:142](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/fitnessEquipment/fitnessEquipmentSensor.ts#L142)
+[sensors/fitnessEquipment/fitnessEquipmentSensor.ts:142](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/fitnessEquipment/fitnessEquipmentSensor.ts#L142)
 
 ***
 
@@ -182,7 +182,7 @@ Sets the track resistance on the fitness equipment.
 
 #### Parameters
 
-• **slopeOrCallback?**: `number` \| `SendCallback`
+• **slopeOrCallback?**: `number` \| [`SendCallback`](../type-aliases/SendCallback.md)
 
 The track slope percentage or a callback function.
 
@@ -190,7 +190,7 @@ The track slope percentage or a callback function.
 
 The rolling resistance coefficient.
 
-• **cbk?**: `SendCallback`
+• **cbk?**: [`SendCallback`](../type-aliases/SendCallback.md)
 
 Optional callback function to handle the send response.
 
@@ -206,7 +206,7 @@ sensor.setTrackResistance(5, 0.005, callbackFunction);
 
 #### Defined in
 
-[sensors/fitnessEquipment/fitnessEquipmentSensor.ts:222](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/fitnessEquipment/fitnessEquipmentSensor.ts#L222)
+[sensors/fitnessEquipment/fitnessEquipmentSensor.ts:222](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/fitnessEquipment/fitnessEquipmentSensor.ts#L222)
 
 ***
 
@@ -218,7 +218,7 @@ Sets the user configuration for the sensor.
 
 #### Parameters
 
-• **userWeightOrCallback?**: `number` \| `SendCallback`
+• **userWeightOrCallback?**: `number` \| [`SendCallback`](../type-aliases/SendCallback.md)
 
 The user's weight in kilograms or a callback function.
 
@@ -234,7 +234,7 @@ The diameter of the wheel in meters.
 
 The gear ratio.
 
-• **cbk?**: `SendCallback`
+• **cbk?**: [`SendCallback`](../type-aliases/SendCallback.md)
 
 Optional callback function to handle the send response.
 
@@ -250,7 +250,7 @@ sensor.setUserConfiguration(70, 10, 0.7, 3.5, callbackFunction);
 
 #### Defined in
 
-[sensors/fitnessEquipment/fitnessEquipmentSensor.ts:99](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/fitnessEquipment/fitnessEquipmentSensor.ts#L99)
+[sensors/fitnessEquipment/fitnessEquipmentSensor.ts:99](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/fitnessEquipment/fitnessEquipmentSensor.ts#L99)
 
 ***
 
@@ -262,7 +262,7 @@ Sets the wind resistance on the fitness equipment.
 
 #### Parameters
 
-• **windCoeffOrCallback?**: `number` \| `SendCallback`
+• **windCoeffOrCallback?**: `number` \| [`SendCallback`](../type-aliases/SendCallback.md)
 
 The wind resistance coefficient or a callback function.
 
@@ -274,7 +274,7 @@ The wind speed in km/h.
 
 The drafting factor (0 to 1).
 
-• **cbk?**: `SendCallback`
+• **cbk?**: [`SendCallback`](../type-aliases/SendCallback.md)
 
 Optional callback function to handle the send response.
 
@@ -290,4 +290,4 @@ sensor.setWindResistance(0.5, 20, 0.1, callbackFunction);
 
 #### Defined in
 
-[sensors/fitnessEquipment/fitnessEquipmentSensor.ts:181](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/fitnessEquipment/fitnessEquipmentSensor.ts#L181)
+[sensors/fitnessEquipment/fitnessEquipmentSensor.ts:181](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/fitnessEquipment/fitnessEquipmentSensor.ts#L181)

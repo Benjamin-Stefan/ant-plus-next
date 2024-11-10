@@ -1,8 +1,8 @@
-[**ant-plus-next v0.3.0**](../README.md) • **Docs**
+[**ant-plus-next v0.3.1**](../README.md) • **Docs**
 
 ***
 
-[ant-plus-next v0.3.0](../README.md) / SpeedCadenceScanState
+[ant-plus-next v0.3.1](../README.md) / SpeedCadenceScanState
 
 # Class: SpeedCadenceScanState
 
@@ -44,7 +44,7 @@ const sensorState = new SpeedCadenceSensorState(12345);
 
 #### Defined in
 
-[sensors/speedCadence/speedCadenceSensorState.ts:14](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/speedCadence/speedCadenceSensorState.ts#L14)
+[sensors/speedCadence/speedCadenceSensorState.ts:14](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/speedCadence/speedCadenceSensorState.ts#L14)
 
 ## Properties
 
@@ -60,7 +60,7 @@ The time of the last cadence event in seconds, measured as a fractional part.
 
 #### Defined in
 
-[sensors/speedCadence/speedCadenceSensorState.ts:28](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/speedCadence/speedCadenceSensorState.ts#L28)
+[sensors/speedCadence/speedCadenceSensorState.ts:28](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/speedCadence/speedCadenceSensorState.ts#L28)
 
 ***
 
@@ -76,7 +76,7 @@ The calculated cadence in revolutions per minute (RPM).
 
 #### Defined in
 
-[sensors/speedCadence/speedCadenceSensorState.ts:52](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/speedCadence/speedCadenceSensorState.ts#L52)
+[sensors/speedCadence/speedCadenceSensorState.ts:52](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/speedCadence/speedCadenceSensorState.ts#L52)
 
 ***
 
@@ -92,7 +92,7 @@ The calculated distance traveled in meters.
 
 #### Defined in
 
-[sensors/speedCadence/speedCadenceSensorState.ts:58](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/speedCadence/speedCadenceSensorState.ts#L58)
+[sensors/speedCadence/speedCadenceSensorState.ts:58](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/speedCadence/speedCadenceSensorState.ts#L58)
 
 ***
 
@@ -108,7 +108,7 @@ The calculated speed in meters per second (m/s).
 
 #### Defined in
 
-[sensors/speedCadence/speedCadenceSensorState.ts:64](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/speedCadence/speedCadenceSensorState.ts#L64)
+[sensors/speedCadence/speedCadenceSensorState.ts:64](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/speedCadence/speedCadenceSensorState.ts#L64)
 
 ***
 
@@ -124,7 +124,7 @@ The cumulative count of cadence revolutions since the sensor started.
 
 #### Defined in
 
-[sensors/speedCadence/speedCadenceSensorState.ts:34](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/speedCadence/speedCadenceSensorState.ts#L34)
+[sensors/speedCadence/speedCadenceSensorState.ts:34](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/speedCadence/speedCadenceSensorState.ts#L34)
 
 ***
 
@@ -140,7 +140,7 @@ The cumulative count of speed revolutions since the sensor started.
 
 #### Defined in
 
-[sensors/speedCadence/speedCadenceSensorState.ts:46](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/speedCadence/speedCadenceSensorState.ts#L46)
+[sensors/speedCadence/speedCadenceSensorState.ts:46](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/speedCadence/speedCadenceSensorState.ts#L46)
 
 ***
 
@@ -156,7 +156,7 @@ The unique identifier of the sensor device.
 
 #### Defined in
 
-[sensors/speedCadence/speedCadenceSensorState.ts:22](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/speedCadence/speedCadenceSensorState.ts#L22)
+[sensors/speedCadence/speedCadenceSensorState.ts:22](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/speedCadence/speedCadenceSensorState.ts#L22)
 
 ***
 
@@ -168,7 +168,7 @@ The received signal strength indicator (RSSI) of the sensor signal.
 
 #### Defined in
 
-[sensors/speedCadence/speedCadenceScanState.ts:13](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/speedCadence/speedCadenceScanState.ts#L13)
+[sensors/speedCadence/speedCadenceScanState.ts:13](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/speedCadence/speedCadenceScanState.ts#L13)
 
 ***
 
@@ -184,7 +184,7 @@ The time of the last speed event in seconds, measured as a fractional part.
 
 #### Defined in
 
-[sensors/speedCadence/speedCadenceSensorState.ts:40](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/speedCadence/speedCadenceSensorState.ts#L40)
+[sensors/speedCadence/speedCadenceSensorState.ts:40](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/speedCadence/speedCadenceSensorState.ts#L40)
 
 ***
 
@@ -196,4 +196,4 @@ The signal threshold value.
 
 #### Defined in
 
-[sensors/speedCadence/speedCadenceScanState.ts:19](https://github.com/Benjamin-Stefan/ant-plus-next/blob/284d5c599fd81345e0426b3f5a9e656ec481f9ca/src/sensors/speedCadence/speedCadenceScanState.ts#L19)
+[sensors/speedCadence/speedCadenceScanState.ts:19](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/speedCadence/speedCadenceScanState.ts#L19)
