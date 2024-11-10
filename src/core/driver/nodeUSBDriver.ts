@@ -210,8 +210,9 @@ export class NodeUSBDriver extends EventEmitter implements USBDriverBase {
                 this.iface.claim();
                 break;
             } catch (error) {
-                if (error instanceof LibUSBException && this.throwLibUSBException) {
-                    switch (error.errno) {
+                if (error && this.throwLibUSBException) {
+                    const errno = (error as LibUSBException).errno;
+                    switch (errno) {
                         case usb.usb.LIBUSB_ERROR_ACCESS:
                             throw new Error("LIBUSB_ERROR_ACCESS: Access denied (insufficient permissions)");
                         case usb.usb.LIBUSB_ERROR_NO_DEVICE:
