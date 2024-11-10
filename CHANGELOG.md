@@ -1,3 +1,15 @@
+### Version: 0.3.2  
+Released on: 2024-11-10
+
+
+### 🐛 Bug Fixes
+
+* handle exception in stick.open() ([#35](https://github.com/Benjamin-Stefan/ant-plus-next/issues/35)) ([571804f6bc9931723c58b2282a4be54adf04dca0](/commit/571804f6bc9931723c58b2282a4be54adf04dca0))
+
+
+
+---
+
 ### Version: 0.3.1  
 Released on: 2024-11-08
 
