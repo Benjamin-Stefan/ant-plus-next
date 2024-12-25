@@ -1,8 +1,8 @@
-[**ant-plus-next v0.3.1**](../README.md) • **Docs**
+[**ant-plus-next v0.3.2**](../README.md)
 
 ***
 
-[ant-plus-next v0.3.1](../README.md) / SendCallback
+[ant-plus-next](../README.md) / SendCallback
 
 # Type Alias: SendCallback()
 
@@ -13,7 +13,9 @@ This callback is invoked after an attempt to send data, indicating whether the o
 
 ## Parameters
 
-• **result**: `boolean`
+### result
+
+`boolean`
 
 A boolean value indicating the outcome of the send operation.
                           `true` if the operation was successful; `false` otherwise.
@@ -36,4 +38,4 @@ const handleSendResult: SendCallback = (result) => {
 
 ## Defined in
 
-[types/sendCallback.ts:18](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/types/sendCallback.ts#L18)
+[types/sendCallback.ts:18](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/types/sendCallback.ts#L18)

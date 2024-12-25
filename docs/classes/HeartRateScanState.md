@@ -1,8 +1,8 @@
-[**ant-plus-next v0.3.1**](../README.md) • **Docs**
+[**ant-plus-next v0.3.2**](../README.md)
 
 ***
 
-[ant-plus-next v0.3.1](../README.md) / HeartRateScanState
+[ant-plus-next](../README.md) / HeartRateScanState
 
 # Class: HeartRateScanState
 
@@ -24,7 +24,9 @@ Creates an instance of the HeartRateSensorState.
 
 #### Parameters
 
-• **deviceId**: `number`
+##### deviceId
+
+`number`
 
 The unique identifier of the sensor device.
 
@@ -44,7 +46,7 @@ const sensorState = new HeartRateSensorState(12345);
 
 #### Defined in
 
-[sensors/heartRate/heartRateSensorState.ts:14](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/heartRate/heartRateSensorState.ts#L14)
+[sensors/heartRate/heartRateSensorState.ts:14](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/heartRate/heartRateSensorState.ts#L14)
 
 ## Properties
 
@@ -60,7 +62,7 @@ The battery level of the sensor.
 
 #### Defined in
 
-[sensors/heartRate/heartRateSensorState.ts:118](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/heartRate/heartRateSensorState.ts#L118)
+[sensors/heartRate/heartRateSensorState.ts:118](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/heartRate/heartRateSensorState.ts#L118)
 
 ***
 
@@ -77,7 +79,7 @@ Can be "New", "Good", "Ok", "Low", "Critical", or "Invalid".
 
 #### Defined in
 
-[sensors/heartRate/heartRateSensorState.ts:131](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/heartRate/heartRateSensorState.ts#L131)
+[sensors/heartRate/heartRateSensorState.ts:131](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/heartRate/heartRateSensorState.ts#L131)
 
 ***
 
@@ -93,7 +95,7 @@ The battery status bit of the sensor.
 
 #### Defined in
 
-[sensors/heartRate/heartRateSensorState.ts:136](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/heartRate/heartRateSensorState.ts#L136)
+[sensors/heartRate/heartRateSensorState.ts:136](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/heartRate/heartRateSensorState.ts#L136)
 
 ***
 
@@ -109,7 +111,7 @@ The battery voltage of the sensor.
 
 #### Defined in
 
-[sensors/heartRate/heartRateSensorState.ts:124](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/heartRate/heartRateSensorState.ts#L124)
+[sensors/heartRate/heartRateSensorState.ts:124](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/heartRate/heartRateSensorState.ts#L124)
 
 ***
 
@@ -125,7 +127,7 @@ The cumulative count of beat events since the sensor started.
 
 #### Defined in
 
-[sensors/heartRate/heartRateSensorState.ts:34](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/heartRate/heartRateSensorState.ts#L34)
+[sensors/heartRate/heartRateSensorState.ts:34](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/heartRate/heartRateSensorState.ts#L34)
 
 ***
 
@@ -141,7 +143,7 @@ The time of the last beat event in milliseconds.
 
 #### Defined in
 
-[sensors/heartRate/heartRateSensorState.ts:28](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/heartRate/heartRateSensorState.ts#L28)
+[sensors/heartRate/heartRateSensorState.ts:28](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/heartRate/heartRateSensorState.ts#L28)
 
 ***
 
@@ -157,7 +159,7 @@ The computed heart rate in beats per minute (BPM).
 
 #### Defined in
 
-[sensors/heartRate/heartRateSensorState.ts:40](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/heartRate/heartRateSensorState.ts#L40)
+[sensors/heartRate/heartRateSensorState.ts:40](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/heartRate/heartRateSensorState.ts#L40)
 
 ***
 
@@ -169,11 +171,11 @@ The unique identifier of the sensor device.
 
 #### Inherited from
 
-[`HeartRateSensorState`](HeartRateSensorState.md).[`DeviceId`](HeartRateSensorState.md#deviceid)
+[`HeartRateSensorState`](HeartRateSensorState.md).[`DeviceId`](HeartRateSensorState.md#deviceid-1)
 
 #### Defined in
 
-[sensors/heartRate/heartRateSensorState.ts:22](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/heartRate/heartRateSensorState.ts#L22)
+[sensors/heartRate/heartRateSensorState.ts:22](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/heartRate/heartRateSensorState.ts#L22)
 
 ***
 
@@ -189,7 +191,7 @@ The enabled features of the sensor.
 
 #### Defined in
 
-[sensors/heartRate/heartRateSensorState.ts:112](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/heartRate/heartRateSensorState.ts#L112)
+[sensors/heartRate/heartRateSensorState.ts:112](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/heartRate/heartRateSensorState.ts#L112)
 
 ***
 
@@ -205,7 +207,7 @@ The hardware version of the sensor.
 
 #### Defined in
 
-[sensors/heartRate/heartRateSensorState.ts:64](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/heartRate/heartRateSensorState.ts#L64)
+[sensors/heartRate/heartRateSensorState.ts:64](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/heartRate/heartRateSensorState.ts#L64)
 
 ***
 
@@ -221,7 +223,7 @@ The average heart rate over a certain interval.
 
 #### Defined in
 
-[sensors/heartRate/heartRateSensorState.ts:88](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/heartRate/heartRateSensorState.ts#L88)
+[sensors/heartRate/heartRateSensorState.ts:88](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/heartRate/heartRateSensorState.ts#L88)
 
 ***
 
@@ -237,7 +239,7 @@ The maximum heart rate over a certain interval.
 
 #### Defined in
 
-[sensors/heartRate/heartRateSensorState.ts:94](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/heartRate/heartRateSensorState.ts#L94)
+[sensors/heartRate/heartRateSensorState.ts:94](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/heartRate/heartRateSensorState.ts#L94)
 
 ***
 
@@ -253,7 +255,7 @@ The manufacturer ID of the sensor.
 
 #### Defined in
 
-[sensors/heartRate/heartRateSensorState.ts:52](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/heartRate/heartRateSensorState.ts#L52)
+[sensors/heartRate/heartRateSensorState.ts:52](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/heartRate/heartRateSensorState.ts#L52)
 
 ***
 
@@ -269,7 +271,7 @@ The model number of the sensor.
 
 #### Defined in
 
-[sensors/heartRate/heartRateSensorState.ts:76](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/heartRate/heartRateSensorState.ts#L76)
+[sensors/heartRate/heartRateSensorState.ts:76](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/heartRate/heartRateSensorState.ts#L76)
 
 ***
 
@@ -285,7 +287,7 @@ The cumulative operating time of the sensor in seconds.
 
 #### Defined in
 
-[sensors/heartRate/heartRateSensorState.ts:46](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/heartRate/heartRateSensorState.ts#L46)
+[sensors/heartRate/heartRateSensorState.ts:46](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/heartRate/heartRateSensorState.ts#L46)
 
 ***
 
@@ -301,7 +303,7 @@ The time of the previous beat measurement.
 
 #### Defined in
 
-[sensors/heartRate/heartRateSensorState.ts:82](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/heartRate/heartRateSensorState.ts#L82)
+[sensors/heartRate/heartRateSensorState.ts:82](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/heartRate/heartRateSensorState.ts#L82)
 
 ***
 
@@ -313,7 +315,7 @@ The received signal strength indicator (RSSI) of the sensor signal.
 
 #### Defined in
 
-[sensors/heartRate/heartRateScanState.ts:13](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/heartRate/heartRateScanState.ts#L13)
+[sensors/heartRate/heartRateScanState.ts:13](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/heartRate/heartRateScanState.ts#L13)
 
 ***
 
@@ -329,7 +331,7 @@ The serial number of the sensor.
 
 #### Defined in
 
-[sensors/heartRate/heartRateSensorState.ts:58](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/heartRate/heartRateSensorState.ts#L58)
+[sensors/heartRate/heartRateSensorState.ts:58](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/heartRate/heartRateSensorState.ts#L58)
 
 ***
 
@@ -345,7 +347,7 @@ The average heart rate over the current session.
 
 #### Defined in
 
-[sensors/heartRate/heartRateSensorState.ts:100](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/heartRate/heartRateSensorState.ts#L100)
+[sensors/heartRate/heartRateSensorState.ts:100](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/heartRate/heartRateSensorState.ts#L100)
 
 ***
 
@@ -361,7 +363,7 @@ The supported features of the sensor.
 
 #### Defined in
 
-[sensors/heartRate/heartRateSensorState.ts:106](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/heartRate/heartRateSensorState.ts#L106)
+[sensors/heartRate/heartRateSensorState.ts:106](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/heartRate/heartRateSensorState.ts#L106)
 
 ***
 
@@ -377,7 +379,7 @@ The software version of the sensor.
 
 #### Defined in
 
-[sensors/heartRate/heartRateSensorState.ts:70](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/heartRate/heartRateSensorState.ts#L70)
+[sensors/heartRate/heartRateSensorState.ts:70](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/heartRate/heartRateSensorState.ts#L70)
 
 ***
 
@@ -389,4 +391,4 @@ The signal threshold value for the sensor.
 
 #### Defined in
 
-[sensors/heartRate/heartRateScanState.ts:19](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/heartRate/heartRateScanState.ts#L19)
+[sensors/heartRate/heartRateScanState.ts:19](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/heartRate/heartRateScanState.ts#L19)

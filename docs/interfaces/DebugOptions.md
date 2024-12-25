@@ -1,8 +1,8 @@
-[**ant-plus-next v0.3.1**](../README.md) • **Docs**
+[**ant-plus-next v0.3.2**](../README.md)
 
 ***
 
-[ant-plus-next v0.3.1](../README.md) / DebugOptions
+[ant-plus-next](../README.md) / DebugOptions
 
 # Interface: DebugOptions
 

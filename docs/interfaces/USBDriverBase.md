@@ -1,8 +1,8 @@
-[**ant-plus-next v0.3.1**](../README.md) • **Docs**
+[**ant-plus-next v0.3.2**](../README.md)
 
 ***
 
-[ant-plus-next v0.3.1](../README.md) / USBDriverBase
+[ant-plus-next](../README.md) / USBDriverBase
 
 # Interface: USBDriverBase
 
@@ -30,7 +30,7 @@ console.log(driver.maxChannels); // Outputs the maximum number of channels avail
 
 #### Defined in
 
-[types/usbDriverBase.ts:145](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/types/usbDriverBase.ts#L145)
+[types/usbDriverBase.ts:145](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/types/usbDriverBase.ts#L145)
 
 ***
 
@@ -48,7 +48,7 @@ console.log(driver.usedChannels); // Outputs the number of channels in use
 
 #### Defined in
 
-[types/usbDriverBase.ts:136](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/types/usbDriverBase.ts#L136)
+[types/usbDriverBase.ts:136](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/types/usbDriverBase.ts#L136)
 
 ## Methods
 
@@ -60,11 +60,15 @@ Attaches a sensor to the USB driver and assigns it a channel.
 
 #### Parameters
 
-• **sensor**: [`BaseSensor`](../classes/BaseSensor.md)
+##### sensor
+
+[`BaseSensor`](../classes/BaseSensor.md)
 
 The sensor to attach.
 
-• **forScan**: `boolean`
+##### forScan
+
+`boolean`
 
 Whether the sensor is being attached for scanning.
 
@@ -84,7 +88,7 @@ console.log(attached); // true if successfully attached
 
 #### Defined in
 
-[types/usbDriverBase.ts:82](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/types/usbDriverBase.ts#L82)
+[types/usbDriverBase.ts:82](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/types/usbDriverBase.ts#L82)
 
 ***
 
@@ -109,7 +113,7 @@ console.log(canAttach); // true if another sensor can be attached
 
 #### Defined in
 
-[types/usbDriverBase.ts:156](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/types/usbDriverBase.ts#L156)
+[types/usbDriverBase.ts:156](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/types/usbDriverBase.ts#L156)
 
 ***
 
@@ -134,7 +138,7 @@ console.log(canScan); // true if the device can scan
 
 #### Defined in
 
-[types/usbDriverBase.ts:127](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/types/usbDriverBase.ts#L127)
+[types/usbDriverBase.ts:127](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/types/usbDriverBase.ts#L127)
 
 ***
 
@@ -159,7 +163,7 @@ console.log("Device closed.");
 
 #### Defined in
 
-[types/usbDriverBase.ts:33](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/types/usbDriverBase.ts#L33)
+[types/usbDriverBase.ts:33](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/types/usbDriverBase.ts#L33)
 
 ***
 
@@ -171,7 +175,9 @@ Detaches a sensor from the USB driver.
 
 #### Parameters
 
-• **sensor**: [`BaseSensor`](../classes/BaseSensor.md)
+##### sensor
+
+[`BaseSensor`](../classes/BaseSensor.md)
 
 The sensor to detach.
 
@@ -190,7 +196,7 @@ console.log(detached); // true if successfully detached
 
 #### Defined in
 
-[types/usbDriverBase.ts:94](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/types/usbDriverBase.ts#L94)
+[types/usbDriverBase.ts:94](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/types/usbDriverBase.ts#L94)
 
 ***
 
@@ -215,7 +221,7 @@ console.log(isPresent); // true if the device is present
 
 #### Defined in
 
-[types/usbDriverBase.ts:105](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/types/usbDriverBase.ts#L105)
+[types/usbDriverBase.ts:105](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/types/usbDriverBase.ts#L105)
 
 ***
 
@@ -240,7 +246,7 @@ console.log(isScanning); // true if the device is scanning
 
 #### Defined in
 
-[types/usbDriverBase.ts:116](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/types/usbDriverBase.ts#L116)
+[types/usbDriverBase.ts:116](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/types/usbDriverBase.ts#L116)
 
 ***
 
@@ -266,7 +272,7 @@ console.log(isOpen); // true if successfully opened, false otherwise
 
 #### Defined in
 
-[types/usbDriverBase.ts:22](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/types/usbDriverBase.ts#L22)
+[types/usbDriverBase.ts:22](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/types/usbDriverBase.ts#L22)
 
 ***
 
@@ -278,7 +284,9 @@ Reads data from the USB device.
 
 #### Parameters
 
-• **data**: `Uint8Array`
+##### data
+
+`Uint8Array`\<`ArrayBufferLike`\>
 
 The data received from the USB device.
 
@@ -297,7 +305,7 @@ await driver.read(data);
 
 #### Defined in
 
-[types/usbDriverBase.ts:45](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/types/usbDriverBase.ts#L45)
+[types/usbDriverBase.ts:45](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/types/usbDriverBase.ts#L45)
 
 ***
 
@@ -322,7 +330,7 @@ console.log("Device reset.");
 
 #### Defined in
 
-[types/usbDriverBase.ts:68](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/types/usbDriverBase.ts#L68)
+[types/usbDriverBase.ts:68](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/types/usbDriverBase.ts#L68)
 
 ***
 
@@ -334,7 +342,9 @@ Writes data to the USB device.
 
 #### Parameters
 
-• **data**: `Uint8Array`
+##### data
+
+`Uint8Array`\<`ArrayBufferLike`\>
 
 The data to send to the USB device.
 
@@ -353,4 +363,4 @@ await driver.write(data);
 
 #### Defined in
 
-[types/usbDriverBase.ts:57](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/types/usbDriverBase.ts#L57)
+[types/usbDriverBase.ts:57](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/types/usbDriverBase.ts#L57)

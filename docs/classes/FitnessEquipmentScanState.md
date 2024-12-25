@@ -1,8 +1,8 @@
-[**ant-plus-next v0.3.1**](../README.md) • **Docs**
+[**ant-plus-next v0.3.2**](../README.md)
 
 ***
 
-[ant-plus-next v0.3.1](../README.md) / FitnessEquipmentScanState
+[ant-plus-next](../README.md) / FitnessEquipmentScanState
 
 # Class: FitnessEquipmentScanState
 
@@ -24,7 +24,9 @@ Creates an instance of the FitnessEquipmentSensorState.
 
 #### Parameters
 
-• **deviceId**: `number`
+##### deviceId
+
+`number`
 
 The unique identifier of the sensor device.
 
@@ -44,7 +46,7 @@ const sensorState = new FitnessEquipmentSensorState(12345);
 
 #### Defined in
 
-[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:16](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L16)
+[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:16](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L16)
 
 ## Properties
 
@@ -60,7 +62,7 @@ The event count for page 0x19.
 
 #### Defined in
 
-[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:24](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L24)
+[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:24](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L24)
 
 ***
 
@@ -76,7 +78,7 @@ The event count for page 0x1A.
 
 #### Defined in
 
-[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:30](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L30)
+[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:30](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L30)
 
 ***
 
@@ -92,7 +94,7 @@ The total accumulated power output, in watts.
 
 #### Defined in
 
-[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:177](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L177)
+[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:177](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L177)
 
 ***
 
@@ -108,7 +110,7 @@ The distance ascended, in meters.
 
 #### Defined in
 
-[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:147](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L147)
+[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:147](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L147)
 
 ***
 
@@ -124,7 +126,7 @@ The average power output, in watts.
 
 #### Defined in
 
-[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:189](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L189)
+[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:189](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L189)
 
 ***
 
@@ -140,7 +142,7 @@ The current cadence, in revolutions per minute (RPM).
 
 #### Defined in
 
-[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:171](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L171)
+[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:171](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L171)
 
 ***
 
@@ -156,7 +158,7 @@ The caloric burn rate, in kilocalories per hour.
 
 #### Defined in
 
-[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:135](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L135)
+[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:135](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L135)
 
 ***
 
@@ -172,7 +174,7 @@ The total calories burned.
 
 #### Defined in
 
-[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:141](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L141)
+[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:141](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L141)
 
 ***
 
@@ -188,7 +190,7 @@ The cycle length of the equipment, in meters.
 
 #### Defined in
 
-[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:111](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L111)
+[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:111](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L111)
 
 ***
 
@@ -204,7 +206,7 @@ The distance descended, in meters.
 
 #### Defined in
 
-[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:153](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L153)
+[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:153](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L153)
 
 ***
 
@@ -216,11 +218,11 @@ The unique identifier of the sensor device.
 
 #### Inherited from
 
-[`FitnessEquipmentSensorState`](FitnessEquipmentSensorState.md).[`DeviceId`](FitnessEquipmentSensorState.md#deviceid)
+[`FitnessEquipmentSensorState`](FitnessEquipmentSensorState.md).[`DeviceId`](FitnessEquipmentSensorState.md#deviceid-1)
 
 #### Defined in
 
-[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:36](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L36)
+[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:36](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L36)
 
 ***
 
@@ -236,7 +238,7 @@ The total distance traveled, in meters.
 
 #### Defined in
 
-[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:73](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L73)
+[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:73](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L73)
 
 ***
 
@@ -252,7 +254,7 @@ The total elapsed time, in seconds.
 
 #### Defined in
 
-[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:67](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L67)
+[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:67](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L67)
 
 ***
 
@@ -269,7 +271,7 @@ Can be "Treadmill", "Elliptical", "Reserved", "Rower", "Climber", "NordicSkier",
 
 #### Defined in
 
-[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:61](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L61)
+[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:61](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L61)
 
 ***
 
@@ -285,7 +287,7 @@ The current heart rate, in beats per minute (BPM).
 
 #### Defined in
 
-[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:91](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L91)
+[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:91](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L91)
 
 ***
 
@@ -302,7 +304,7 @@ Can be "HandContact", "EM", or "ANT+".
 
 #### Defined in
 
-[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:98](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L98)
+[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:98](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L98)
 
 ***
 
@@ -318,7 +320,7 @@ The hardware version of the sensor.
 
 #### Defined in
 
-[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:226](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L226)
+[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:226](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L226)
 
 ***
 
@@ -334,7 +336,7 @@ The incline of the equipment, in percentage.
 
 #### Defined in
 
-[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:117](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L117)
+[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:117](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L117)
 
 ***
 
@@ -350,7 +352,7 @@ The instantaneous power output, in watts.
 
 #### Defined in
 
-[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:183](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L183)
+[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:183](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L183)
 
 ***
 
@@ -366,7 +368,7 @@ The manufacturer ID of the sensor.
 
 #### Defined in
 
-[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:232](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L232)
+[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:232](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L232)
 
 ***
 
@@ -382,7 +384,7 @@ The metabolic equivalent (MET) value.
 
 #### Defined in
 
-[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:129](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L129)
+[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:129](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L129)
 
 ***
 
@@ -398,7 +400,7 @@ The model number of the sensor.
 
 #### Defined in
 
-[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:238](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L238)
+[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:238](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L238)
 
 ***
 
@@ -414,7 +416,7 @@ The list of paired devices associated with the sensor.
 
 #### Defined in
 
-[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:256](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L256)
+[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:256](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L256)
 
 ***
 
@@ -430,7 +432,7 @@ The real speed of the equipment, in meters per second.
 
 #### Defined in
 
-[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:79](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L79)
+[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:79](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L79)
 
 ***
 
@@ -446,7 +448,7 @@ The resistance level of the equipment.
 
 #### Defined in
 
-[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:123](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L123)
+[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:123](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L123)
 
 ***
 
@@ -459,7 +461,7 @@ Indicates the strength of the received signal from the fitness equipment sensor.
 
 #### Defined in
 
-[sensors/fitnessEquipment/fitnessEquipmentScanState.ts:14](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/fitnessEquipment/fitnessEquipmentScanState.ts#L14)
+[sensors/fitnessEquipment/fitnessEquipmentScanState.ts:14](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/fitnessEquipment/fitnessEquipmentScanState.ts#L14)
 
 ***
 
@@ -475,7 +477,7 @@ The serial number of the sensor.
 
 #### Defined in
 
-[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:250](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L250)
+[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:250](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L250)
 
 ***
 
@@ -491,7 +493,7 @@ The spin-down time for the sensor, in seconds.
 
 #### Defined in
 
-[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:54](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L54)
+[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:54](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L54)
 
 ***
 
@@ -508,7 +510,7 @@ Can be "OFF", "READY", "IN_USE", or "FINISHED".
 
 #### Defined in
 
-[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:105](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L105)
+[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:105](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L105)
 
 ***
 
@@ -524,7 +526,7 @@ The total number of strides taken.
 
 #### Defined in
 
-[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:159](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L159)
+[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:159](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L159)
 
 ***
 
@@ -540,7 +542,7 @@ The total number of strokes taken.
 
 #### Defined in
 
-[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:165](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L165)
+[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:165](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L165)
 
 ***
 
@@ -556,7 +558,7 @@ The software version of the sensor.
 
 #### Defined in
 
-[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:244](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L244)
+[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:244](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L244)
 
 ***
 
@@ -573,7 +575,7 @@ Can be "OnTarget", "LowSpeed", or "HighSpeed".
 
 #### Defined in
 
-[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:202](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L202)
+[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:202](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L202)
 
 ***
 
@@ -589,7 +591,7 @@ The temperature measured by the sensor, in degrees Celsius.
 
 #### Defined in
 
-[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:42](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L42)
+[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:42](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L42)
 
 ***
 
@@ -602,7 +604,7 @@ Represents the minimum signal strength required for a reliable connection.
 
 #### Defined in
 
-[sensors/fitnessEquipment/fitnessEquipmentScanState.ts:21](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/fitnessEquipment/fitnessEquipmentScanState.ts#L21)
+[sensors/fitnessEquipment/fitnessEquipmentScanState.ts:21](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/fitnessEquipment/fitnessEquipmentScanState.ts#L21)
 
 ***
 
@@ -618,7 +620,7 @@ The torque value, in newton-meters.
 
 #### Defined in
 
-[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:220](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L220)
+[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:220](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L220)
 
 ***
 
@@ -634,7 +636,7 @@ The trainer status, typically indicating the current mode or condition of the tr
 
 #### Defined in
 
-[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:195](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L195)
+[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:195](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L195)
 
 ***
 
@@ -650,7 +652,7 @@ The virtual speed of the equipment, in meters per second.
 
 #### Defined in
 
-[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:85](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L85)
+[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:85](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L85)
 
 ***
 
@@ -666,7 +668,7 @@ The wheel period, in seconds.
 
 #### Defined in
 
-[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:214](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L214)
+[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:214](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L214)
 
 ***
 
@@ -682,7 +684,7 @@ The total number of wheel ticks.
 
 #### Defined in
 
-[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:208](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L208)
+[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:208](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L208)
 
 ***
 
@@ -698,4 +700,4 @@ The zero offset calibration value for the sensor.
 
 #### Defined in
 
-[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:48](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L48)
+[sensors/fitnessEquipment/fitnessEquipmentSensorState.ts:48](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/fitnessEquipment/fitnessEquipmentSensorState.ts#L48)

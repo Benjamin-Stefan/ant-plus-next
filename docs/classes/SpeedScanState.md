@@ -1,8 +1,8 @@
-[**ant-plus-next v0.3.1**](../README.md) • **Docs**
+[**ant-plus-next v0.3.2**](../README.md)
 
 ***
 
-[ant-plus-next v0.3.1](../README.md) / SpeedScanState
+[ant-plus-next](../README.md) / SpeedScanState
 
 # Class: SpeedScanState
 
@@ -24,7 +24,9 @@ Creates an instance of the SpeedSensorState.
 
 #### Parameters
 
-• **deviceId**: `number`
+##### deviceId
+
+`number`
 
 The unique identifier of the sensor device.
 
@@ -44,7 +46,7 @@ const sensorState = new SpeedSensorState(12345);
 
 #### Defined in
 
-[sensors/speed/speedSensorState.ts:14](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/speed/speedSensorState.ts#L14)
+[sensors/speed/speedSensorState.ts:14](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/speed/speedSensorState.ts#L14)
 
 ## Properties
 
@@ -61,7 +63,7 @@ Can be "New", "Good", "Ok", "Low", "Critical", or "Invalid".
 
 #### Defined in
 
-[sensors/speed/speedSensorState.ts:95](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/speed/speedSensorState.ts#L95)
+[sensors/speed/speedSensorState.ts:95](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/speed/speedSensorState.ts#L95)
 
 ***
 
@@ -77,7 +79,7 @@ The battery status bit of the sensor.
 
 #### Defined in
 
-[sensors/speed/speedSensorState.ts:100](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/speed/speedSensorState.ts#L100)
+[sensors/speed/speedSensorState.ts:100](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/speed/speedSensorState.ts#L100)
 
 ***
 
@@ -93,7 +95,7 @@ The battery voltage of the sensor.
 
 #### Defined in
 
-[sensors/speed/speedSensorState.ts:88](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/speed/speedSensorState.ts#L88)
+[sensors/speed/speedSensorState.ts:88](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/speed/speedSensorState.ts#L88)
 
 ***
 
@@ -109,7 +111,7 @@ The calculated distance traveled in meters.
 
 #### Defined in
 
-[sensors/speed/speedSensorState.ts:40](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/speed/speedSensorState.ts#L40)
+[sensors/speed/speedSensorState.ts:40](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/speed/speedSensorState.ts#L40)
 
 ***
 
@@ -125,7 +127,7 @@ The calculated speed in meters per second (m/s).
 
 #### Defined in
 
-[sensors/speed/speedSensorState.ts:46](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/speed/speedSensorState.ts#L46)
+[sensors/speed/speedSensorState.ts:46](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/speed/speedSensorState.ts#L46)
 
 ***
 
@@ -141,7 +143,7 @@ The cumulative count of speed revolutions since the sensor started.
 
 #### Defined in
 
-[sensors/speed/speedSensorState.ts:34](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/speed/speedSensorState.ts#L34)
+[sensors/speed/speedSensorState.ts:34](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/speed/speedSensorState.ts#L34)
 
 ***
 
@@ -153,11 +155,11 @@ The unique identifier of the sensor device.
 
 #### Inherited from
 
-[`SpeedSensorState`](SpeedSensorState.md).[`DeviceId`](SpeedSensorState.md#deviceid)
+[`SpeedSensorState`](SpeedSensorState.md).[`DeviceId`](SpeedSensorState.md#deviceid-1)
 
 #### Defined in
 
-[sensors/speed/speedSensorState.ts:22](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/speed/speedSensorState.ts#L22)
+[sensors/speed/speedSensorState.ts:22](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/speed/speedSensorState.ts#L22)
 
 ***
 
@@ -173,7 +175,7 @@ The hardware version of the sensor.
 
 #### Defined in
 
-[sensors/speed/speedSensorState.ts:70](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/speed/speedSensorState.ts#L70)
+[sensors/speed/speedSensorState.ts:70](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/speed/speedSensorState.ts#L70)
 
 ***
 
@@ -189,7 +191,7 @@ The manufacturer ID of the sensor.
 
 #### Defined in
 
-[sensors/speed/speedSensorState.ts:58](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/speed/speedSensorState.ts#L58)
+[sensors/speed/speedSensorState.ts:58](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/speed/speedSensorState.ts#L58)
 
 ***
 
@@ -205,7 +207,7 @@ The model number of the sensor.
 
 #### Defined in
 
-[sensors/speed/speedSensorState.ts:82](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/speed/speedSensorState.ts#L82)
+[sensors/speed/speedSensorState.ts:82](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/speed/speedSensorState.ts#L82)
 
 ***
 
@@ -221,7 +223,7 @@ Indicates whether the sensor detects motion.
 
 #### Defined in
 
-[sensors/speed/speedSensorState.ts:106](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/speed/speedSensorState.ts#L106)
+[sensors/speed/speedSensorState.ts:106](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/speed/speedSensorState.ts#L106)
 
 ***
 
@@ -237,7 +239,7 @@ The cumulative operating time of the sensor in seconds.
 
 #### Defined in
 
-[sensors/speed/speedSensorState.ts:52](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/speed/speedSensorState.ts#L52)
+[sensors/speed/speedSensorState.ts:52](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/speed/speedSensorState.ts#L52)
 
 ***
 
@@ -249,7 +251,7 @@ The received signal strength indicator (RSSI) of the sensor signal.
 
 #### Defined in
 
-[sensors/speed/speedScanState.ts:13](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/speed/speedScanState.ts#L13)
+[sensors/speed/speedScanState.ts:13](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/speed/speedScanState.ts#L13)
 
 ***
 
@@ -265,7 +267,7 @@ The serial number of the sensor.
 
 #### Defined in
 
-[sensors/speed/speedSensorState.ts:64](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/speed/speedSensorState.ts#L64)
+[sensors/speed/speedSensorState.ts:64](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/speed/speedSensorState.ts#L64)
 
 ***
 
@@ -281,7 +283,7 @@ The time of the last speed event in seconds, measured as a fractional part.
 
 #### Defined in
 
-[sensors/speed/speedSensorState.ts:28](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/speed/speedSensorState.ts#L28)
+[sensors/speed/speedSensorState.ts:28](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/speed/speedSensorState.ts#L28)
 
 ***
 
@@ -297,7 +299,7 @@ The software version of the sensor.
 
 #### Defined in
 
-[sensors/speed/speedSensorState.ts:76](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/speed/speedSensorState.ts#L76)
+[sensors/speed/speedSensorState.ts:76](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/speed/speedSensorState.ts#L76)
 
 ***
 
@@ -309,4 +311,4 @@ The signal threshold value for the sensor.
 
 #### Defined in
 
-[sensors/speed/speedScanState.ts:19](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/speed/speedScanState.ts#L19)
+[sensors/speed/speedScanState.ts:19](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/speed/speedScanState.ts#L19)

@@ -1,8 +1,8 @@
-[**ant-plus-next v0.3.1**](../README.md) • **Docs**
+[**ant-plus-next v0.3.2**](../README.md)
 
 ***
 
-[ant-plus-next v0.3.1](../README.md) / BicyclePowerScanner
+[ant-plus-next](../README.md) / BicyclePowerScanner
 
 # Class: BicyclePowerScanner
 
@@ -23,7 +23,9 @@ Constructs an instance of the AntPlusScanner class.
 
 #### Parameters
 
-• **stick**: [`USBDriverBase`](../interfaces/USBDriverBase.md)
+##### stick
+
+[`USBDriverBase`](../interfaces/USBDriverBase.md)
 
 The USB driver instance used for communication with the ANT+ stick.
 
@@ -37,7 +39,7 @@ The USB driver instance used for communication with the ANT+ stick.
 
 #### Defined in
 
-[sensors/antPlusScanner.ts:42](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/antPlusScanner.ts#L42)
+[sensors/antPlusScanner.ts:42](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/antPlusScanner.ts#L42)
 
 ## Methods
 
@@ -61,7 +63,7 @@ Will throw an error if there is an issue detaching.
 
 #### Defined in
 
-[sensors/baseSensor.ts:249](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/baseSensor.ts#L249)
+[sensors/baseSensor.ts:249](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/baseSensor.ts#L249)
 
 ***
 
@@ -91,4 +93,4 @@ scanner.scan();
 
 #### Defined in
 
-[sensors/antPlusScanner.ts:58](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/antPlusScanner.ts#L58)
+[sensors/antPlusScanner.ts:58](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/antPlusScanner.ts#L58)

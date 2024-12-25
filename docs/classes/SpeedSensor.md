@@ -1,8 +1,8 @@
-[**ant-plus-next v0.3.1**](../README.md) • **Docs**
+[**ant-plus-next v0.3.2**](../README.md)
 
 ***
 
-[ant-plus-next v0.3.1](../README.md) / SpeedSensor
+[ant-plus-next](../README.md) / SpeedSensor
 
 # Class: SpeedSensor
 
@@ -23,7 +23,9 @@ Constructs an instance of the AntPlusSensor class.
 
 #### Parameters
 
-• **stick**: [`USBDriverBase`](../interfaces/USBDriverBase.md)
+##### stick
+
+[`USBDriverBase`](../interfaces/USBDriverBase.md)
 
 The USB driver instance used for communication with the ANT+ stick.
 
@@ -37,7 +39,7 @@ The USB driver instance used for communication with the ANT+ stick.
 
 #### Defined in
 
-[sensors/antPlusSensor.ts:16](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/antPlusSensor.ts#L16)
+[sensors/antPlusSensor.ts:16](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/antPlusSensor.ts#L16)
 
 ## Properties
 
@@ -55,7 +57,7 @@ The wheel circumference in meters, used to calculate speed.
 
 #### Defined in
 
-[sensors/speed/speedSensor.ts:29](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/speed/speedSensor.ts#L29)
+[sensors/speed/speedSensor.ts:29](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/speed/speedSensor.ts#L29)
 
 ***
 
@@ -67,7 +69,7 @@ The device type code for Bicycle Speed sensors.
 
 #### Defined in
 
-[sensors/speed/speedSensor.ts:22](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/speed/speedSensor.ts#L22)
+[sensors/speed/speedSensor.ts:22](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/speed/speedSensor.ts#L22)
 
 ## Methods
 
@@ -79,11 +81,15 @@ Attaches the sensor to a specified ANT+ channel and initializes its state.
 
 #### Parameters
 
-• **channel**: `number`
+##### channel
+
+`number`
 
 The ANT+ channel number used for communication with the sensor.
 
-• **deviceId**: `number`
+##### deviceId
+
+`number`
 
 The unique identifier of the sensor device.
 
@@ -100,7 +106,7 @@ sensor.attach(1, 12345); // Attaches to channel 1 with device ID 12345
 
 #### Defined in
 
-[sensors/speed/speedSensor.ts:58](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/speed/speedSensor.ts#L58)
+[sensors/speed/speedSensor.ts:58](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/speed/speedSensor.ts#L58)
 
 ***
 
@@ -124,7 +130,7 @@ Will throw an error if there is an issue detaching.
 
 #### Defined in
 
-[sensors/baseSensor.ts:249](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/baseSensor.ts#L249)
+[sensors/baseSensor.ts:249](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/baseSensor.ts#L249)
 
 ***
 
@@ -136,7 +142,9 @@ Sets the wheel circumference for speed calculation.
 
 #### Parameters
 
-• **wheelCircumference**: `number`
+##### wheelCircumference
+
+`number`
 
 The wheel circumference in meters.
 
@@ -153,4 +161,4 @@ sensor.setWheelCircumference(2.105); // Sets the wheel circumference to 2.105 me
 
 #### Defined in
 
-[sensors/speed/speedSensor.ts:42](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/speed/speedSensor.ts#L42)
+[sensors/speed/speedSensor.ts:42](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/speed/speedSensor.ts#L42)

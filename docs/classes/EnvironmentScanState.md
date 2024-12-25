@@ -1,8 +1,8 @@
-[**ant-plus-next v0.3.1**](../README.md) • **Docs**
+[**ant-plus-next v0.3.2**](../README.md)
 
 ***
 
-[ant-plus-next v0.3.1](../README.md) / EnvironmentScanState
+[ant-plus-next](../README.md) / EnvironmentScanState
 
 # Class: EnvironmentScanState
 
@@ -24,7 +24,9 @@ Creates an instance of the EnvironmentSensorState.
 
 #### Parameters
 
-• **deviceId**: `number`
+##### deviceId
+
+`number`
 
 The unique identifier of the sensor device.
 
@@ -44,7 +46,7 @@ const sensorState = new EnvironmentSensorState(12345);
 
 #### Defined in
 
-[sensors/environment/environmentSensorState.ts:15](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/environment/environmentSensorState.ts#L15)
+[sensors/environment/environmentSensorState.ts:15](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/environment/environmentSensorState.ts#L15)
 
 ## Properties
 
@@ -56,11 +58,11 @@ The unique identifier of the sensor device.
 
 #### Inherited from
 
-[`EnvironmentSensorState`](EnvironmentSensorState.md).[`DeviceId`](EnvironmentSensorState.md#deviceid)
+[`EnvironmentSensorState`](EnvironmentSensorState.md).[`DeviceId`](EnvironmentSensorState.md#deviceid-1)
 
 #### Defined in
 
-[sensors/environment/environmentSensorState.ts:23](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/environment/environmentSensorState.ts#L23)
+[sensors/environment/environmentSensorState.ts:23](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/environment/environmentSensorState.ts#L23)
 
 ***
 
@@ -76,7 +78,7 @@ The event count recorded by the sensor.
 
 #### Defined in
 
-[sensors/environment/environmentSensorState.ts:29](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/environment/environmentSensorState.ts#L29)
+[sensors/environment/environmentSensorState.ts:29](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/environment/environmentSensorState.ts#L29)
 
 ***
 
@@ -89,7 +91,7 @@ Indicates the strength of the received signal from the environment sensor.
 
 #### Defined in
 
-[sensors/environment/environmentScanState.ts:14](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/environment/environmentScanState.ts#L14)
+[sensors/environment/environmentScanState.ts:14](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/environment/environmentScanState.ts#L14)
 
 ***
 
@@ -105,7 +107,7 @@ The temperature measured by the sensor, in degrees Celsius.
 
 #### Defined in
 
-[sensors/environment/environmentSensorState.ts:35](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/environment/environmentSensorState.ts#L35)
+[sensors/environment/environmentSensorState.ts:35](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/environment/environmentSensorState.ts#L35)
 
 ***
 
@@ -118,4 +120,4 @@ Represents the minimum signal strength required for a reliable connection.
 
 #### Defined in
 
-[sensors/environment/environmentScanState.ts:21](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/environment/environmentScanState.ts#L21)
+[sensors/environment/environmentScanState.ts:21](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/environment/environmentScanState.ts#L21)

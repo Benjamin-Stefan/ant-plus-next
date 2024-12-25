@@ -1,8 +1,8 @@
-[**ant-plus-next v0.3.1**](../README.md) • **Docs**
+[**ant-plus-next v0.3.2**](../README.md)
 
 ***
 
-[ant-plus-next v0.3.1](../README.md) / CadenceScanState
+[ant-plus-next](../README.md) / CadenceScanState
 
 # Class: CadenceScanState
 
@@ -24,7 +24,9 @@ Creates an instance of the CadenceSensorState.
 
 #### Parameters
 
-• **deviceId**: `number`
+##### deviceId
+
+`number`
 
 The unique identifier of the sensor device.
 
@@ -44,7 +46,7 @@ const sensorState = new CadenceSensorState(12345);
 
 #### Defined in
 
-[sensors/cadence/cadenceSensorState.ts:15](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/cadence/cadenceSensorState.ts#L15)
+[sensors/cadence/cadenceSensorState.ts:15](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/cadence/cadenceSensorState.ts#L15)
 
 ## Properties
 
@@ -61,7 +63,7 @@ Can be one of the following: "New", "Good", "Ok", "Low", "Critical", "Invalid".
 
 #### Defined in
 
-[sensors/cadence/cadenceSensorState.ts:90](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/cadence/cadenceSensorState.ts#L90)
+[sensors/cadence/cadenceSensorState.ts:90](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/cadence/cadenceSensorState.ts#L90)
 
 ***
 
@@ -77,7 +79,7 @@ The battery status bit of the sensor.
 
 #### Defined in
 
-[sensors/cadence/cadenceSensorState.ts:95](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/cadence/cadenceSensorState.ts#L95)
+[sensors/cadence/cadenceSensorState.ts:95](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/cadence/cadenceSensorState.ts#L95)
 
 ***
 
@@ -93,7 +95,7 @@ The battery voltage of the sensor.
 
 #### Defined in
 
-[sensors/cadence/cadenceSensorState.ts:83](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/cadence/cadenceSensorState.ts#L83)
+[sensors/cadence/cadenceSensorState.ts:83](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/cadence/cadenceSensorState.ts#L83)
 
 ***
 
@@ -109,7 +111,7 @@ The time of the last cadence event, in seconds.
 
 #### Defined in
 
-[sensors/cadence/cadenceSensorState.ts:29](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/cadence/cadenceSensorState.ts#L29)
+[sensors/cadence/cadenceSensorState.ts:29](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/cadence/cadenceSensorState.ts#L29)
 
 ***
 
@@ -125,7 +127,7 @@ The calculated cadence in revolutions per minute (RPM).
 
 #### Defined in
 
-[sensors/cadence/cadenceSensorState.ts:41](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/cadence/cadenceSensorState.ts#L41)
+[sensors/cadence/cadenceSensorState.ts:41](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/cadence/cadenceSensorState.ts#L41)
 
 ***
 
@@ -141,7 +143,7 @@ The cumulative number of cadence revolutions counted by the sensor.
 
 #### Defined in
 
-[sensors/cadence/cadenceSensorState.ts:35](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/cadence/cadenceSensorState.ts#L35)
+[sensors/cadence/cadenceSensorState.ts:35](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/cadence/cadenceSensorState.ts#L35)
 
 ***
 
@@ -153,11 +155,11 @@ The unique identifier of the sensor device.
 
 #### Inherited from
 
-[`CadenceSensorState`](CadenceSensorState.md).[`DeviceId`](CadenceSensorState.md#deviceid)
+[`CadenceSensorState`](CadenceSensorState.md).[`DeviceId`](CadenceSensorState.md#deviceid-1)
 
 #### Defined in
 
-[sensors/cadence/cadenceSensorState.ts:23](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/cadence/cadenceSensorState.ts#L23)
+[sensors/cadence/cadenceSensorState.ts:23](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/cadence/cadenceSensorState.ts#L23)
 
 ***
 
@@ -173,7 +175,7 @@ The hardware version of the sensor.
 
 #### Defined in
 
-[sensors/cadence/cadenceSensorState.ts:65](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/cadence/cadenceSensorState.ts#L65)
+[sensors/cadence/cadenceSensorState.ts:65](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/cadence/cadenceSensorState.ts#L65)
 
 ***
 
@@ -189,7 +191,7 @@ The manufacturer ID of the sensor.
 
 #### Defined in
 
-[sensors/cadence/cadenceSensorState.ts:53](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/cadence/cadenceSensorState.ts#L53)
+[sensors/cadence/cadenceSensorState.ts:53](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/cadence/cadenceSensorState.ts#L53)
 
 ***
 
@@ -205,7 +207,7 @@ The model number of the sensor.
 
 #### Defined in
 
-[sensors/cadence/cadenceSensorState.ts:77](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/cadence/cadenceSensorState.ts#L77)
+[sensors/cadence/cadenceSensorState.ts:77](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/cadence/cadenceSensorState.ts#L77)
 
 ***
 
@@ -221,7 +223,7 @@ Indicates whether the sensor is in motion.
 
 #### Defined in
 
-[sensors/cadence/cadenceSensorState.ts:101](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/cadence/cadenceSensorState.ts#L101)
+[sensors/cadence/cadenceSensorState.ts:101](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/cadence/cadenceSensorState.ts#L101)
 
 ***
 
@@ -237,7 +239,7 @@ The cumulative operating time of the sensor in seconds.
 
 #### Defined in
 
-[sensors/cadence/cadenceSensorState.ts:47](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/cadence/cadenceSensorState.ts#L47)
+[sensors/cadence/cadenceSensorState.ts:47](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/cadence/cadenceSensorState.ts#L47)
 
 ***
 
@@ -250,7 +252,7 @@ Indicates the strength of the received signal from the cadence sensor.
 
 #### Defined in
 
-[sensors/cadence/cadenceScanState.ts:14](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/cadence/cadenceScanState.ts#L14)
+[sensors/cadence/cadenceScanState.ts:14](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/cadence/cadenceScanState.ts#L14)
 
 ***
 
@@ -266,7 +268,7 @@ The serial number of the sensor.
 
 #### Defined in
 
-[sensors/cadence/cadenceSensorState.ts:59](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/cadence/cadenceSensorState.ts#L59)
+[sensors/cadence/cadenceSensorState.ts:59](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/cadence/cadenceSensorState.ts#L59)
 
 ***
 
@@ -282,7 +284,7 @@ The software version of the sensor.
 
 #### Defined in
 
-[sensors/cadence/cadenceSensorState.ts:71](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/cadence/cadenceSensorState.ts#L71)
+[sensors/cadence/cadenceSensorState.ts:71](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/cadence/cadenceSensorState.ts#L71)
 
 ***
 
@@ -295,4 +297,4 @@ Represents the minimum signal strength required for a reliable connection.
 
 #### Defined in
 
-[sensors/cadence/cadenceScanState.ts:21](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/cadence/cadenceScanState.ts#L21)
+[sensors/cadence/cadenceScanState.ts:21](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/cadence/cadenceScanState.ts#L21)

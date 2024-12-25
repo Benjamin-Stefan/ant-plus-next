@@ -1,8 +1,8 @@
-[**ant-plus-next v0.3.1**](../README.md) • **Docs**
+[**ant-plus-next v0.3.2**](../README.md)
 
 ***
 
-[ant-plus-next v0.3.1](../README.md) / HeartRateSensor
+[ant-plus-next](../README.md) / HeartRateSensor
 
 # Class: HeartRateSensor
 
@@ -23,7 +23,9 @@ Constructs an instance of the AntPlusSensor class.
 
 #### Parameters
 
-• **stick**: [`USBDriverBase`](../interfaces/USBDriverBase.md)
+##### stick
+
+[`USBDriverBase`](../interfaces/USBDriverBase.md)
 
 The USB driver instance used for communication with the ANT+ stick.
 
@@ -37,7 +39,7 @@ The USB driver instance used for communication with the ANT+ stick.
 
 #### Defined in
 
-[sensors/antPlusSensor.ts:16](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/antPlusSensor.ts#L16)
+[sensors/antPlusSensor.ts:16](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/antPlusSensor.ts#L16)
 
 ## Properties
 
@@ -49,7 +51,7 @@ The device type code for Heart Rate sensors.
 
 #### Defined in
 
-[sensors/heartRate/heartRateSensor.ts:22](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/heartRate/heartRateSensor.ts#L22)
+[sensors/heartRate/heartRateSensor.ts:22](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/heartRate/heartRateSensor.ts#L22)
 
 ## Methods
 
@@ -61,11 +63,15 @@ Attaches the sensor to a specified ANT+ channel and initializes its state.
 
 #### Parameters
 
-• **channel**: `number`
+##### channel
+
+`number`
 
 The ANT+ channel number used for communication with the sensor.
 
-• **deviceId**: `number`
+##### deviceId
+
+`number`
 
 The unique identifier of the sensor device.
 
@@ -82,7 +88,7 @@ sensor.attach(1, 12345); // Attaches to channel 1 with device ID 12345
 
 #### Defined in
 
-[sensors/heartRate/heartRateSensor.ts:36](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/heartRate/heartRateSensor.ts#L36)
+[sensors/heartRate/heartRateSensor.ts:36](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/heartRate/heartRateSensor.ts#L36)
 
 ***
 
@@ -106,4 +112,4 @@ Will throw an error if there is an issue detaching.
 
 #### Defined in
 
-[sensors/baseSensor.ts:249](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/baseSensor.ts#L249)
+[sensors/baseSensor.ts:249](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/baseSensor.ts#L249)

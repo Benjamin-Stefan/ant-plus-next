@@ -1,8 +1,8 @@
-**ant-plus-next v0.3.1** • **Docs**
+**ant-plus-next v0.3.2**
 
 ***
 
-# ant-plus-next v0.3.1
+# ant-plus-next v0.3.2
 
 ## Classes
 

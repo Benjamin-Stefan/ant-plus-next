@@ -1,8 +1,8 @@
-[**ant-plus-next v0.3.1**](../README.md) • **Docs**
+[**ant-plus-next v0.3.2**](../README.md)
 
 ***
 
-[ant-plus-next v0.3.1](../README.md) / GarminStick2
+[ant-plus-next](../README.md) / GarminStick2
 
 # Class: GarminStick2
 
@@ -22,7 +22,9 @@ Creates an instance of GarminStick2.
 
 #### Parameters
 
-• **debugOptions?**: [`DebugOptions`](../interfaces/DebugOptions.md) = `{}`
+##### debugOptions?
+
+[`DebugOptions`](../interfaces/DebugOptions.md) = `{}`
 
 Optional debug options for USB operations.
 
@@ -43,7 +45,7 @@ garminStick.open(); // Opens the connection to the Garmin Stick 2 device.
 
 #### Defined in
 
-[core/nodeUsbSticks.ts:22](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/core/nodeUsbSticks.ts#L22)
+[core/nodeUsbSticks.ts:22](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/core/nodeUsbSticks.ts#L22)
 
 ## Properties
 
@@ -60,7 +62,7 @@ Represents whether the USB device has scanning capabilities.
 
 #### Defined in
 
-[core/driver/nodeUSBDriver.ts:113](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/core/driver/nodeUSBDriver.ts#L113)
+[core/driver/nodeUSBDriver.ts:113](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/core/driver/nodeUSBDriver.ts#L113)
 
 ***
 
@@ -77,7 +79,7 @@ Defines the total number of channels the device can handle.
 
 #### Defined in
 
-[core/driver/nodeUSBDriver.ts:105](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/core/driver/nodeUSBDriver.ts#L105)
+[core/driver/nodeUSBDriver.ts:105](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/core/driver/nodeUSBDriver.ts#L105)
 
 ***
 
@@ -94,7 +96,7 @@ Default value is set to `false`.
 
 #### Defined in
 
-[core/driver/nodeUSBDriver.ts:121](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/core/driver/nodeUSBDriver.ts#L121)
+[core/driver/nodeUSBDriver.ts:121](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/core/driver/nodeUSBDriver.ts#L121)
 
 ***
 
@@ -111,7 +113,7 @@ Tracks how many channels are actively being used.
 
 #### Defined in
 
-[core/driver/nodeUSBDriver.ts:88](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/core/driver/nodeUSBDriver.ts#L88)
+[core/driver/nodeUSBDriver.ts:88](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/core/driver/nodeUSBDriver.ts#L88)
 
 ## Methods
 
@@ -123,11 +125,15 @@ Attaches a sensor to the driver and assigns it a channel.
 
 #### Parameters
 
-• **sensor**: [`BaseSensor`](BaseSensor.md)
+##### sensor
+
+[`BaseSensor`](BaseSensor.md)
 
 The sensor to attach.
 
-• **forScan**: `boolean`
+##### forScan
+
+`boolean`
 
 Whether the sensor is being attached for scanning.
 
@@ -152,7 +158,7 @@ driver.attach(sensor, true).then((attached) => {
 
 #### Defined in
 
-[core/driver/nodeUSBDriver.ts:395](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/core/driver/nodeUSBDriver.ts#L395)
+[core/driver/nodeUSBDriver.ts:394](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/core/driver/nodeUSBDriver.ts#L394)
 
 ***
 
@@ -186,7 +192,7 @@ if (canAttach) {
 
 #### Defined in
 
-[core/driver/nodeUSBDriver.ts:160](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/core/driver/nodeUSBDriver.ts#L160)
+[core/driver/nodeUSBDriver.ts:160](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/core/driver/nodeUSBDriver.ts#L160)
 
 ***
 
@@ -208,7 +214,7 @@ Resolves with true if the device can scan, otherwise false.
 
 #### Defined in
 
-[core/driver/nodeUSBDriver.ts:169](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/core/driver/nodeUSBDriver.ts#L169)
+[core/driver/nodeUSBDriver.ts:169](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/core/driver/nodeUSBDriver.ts#L169)
 
 ***
 
@@ -239,7 +245,7 @@ driver.open().then(() => {
 
 #### Defined in
 
-[core/driver/nodeUSBDriver.ts:283](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/core/driver/nodeUSBDriver.ts#L283)
+[core/driver/nodeUSBDriver.ts:282](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/core/driver/nodeUSBDriver.ts#L282)
 
 ***
 
@@ -251,7 +257,9 @@ Detaches a sensor from the driver.
 
 #### Parameters
 
-• **sensor**: [`BaseSensor`](BaseSensor.md)
+##### sensor
+
+[`BaseSensor`](BaseSensor.md)
 
 The sensor to detach.
 
@@ -276,7 +284,7 @@ driver.detach(sensor).then((detached) => {
 
 #### Defined in
 
-[core/driver/nodeUSBDriver.ts:425](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/core/driver/nodeUSBDriver.ts#L425)
+[core/driver/nodeUSBDriver.ts:424](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/core/driver/nodeUSBDriver.ts#L424)
 
 ***
 
@@ -298,7 +306,7 @@ Resolves with true if a device is present, otherwise false.
 
 #### Defined in
 
-[core/driver/nodeUSBDriver.ts:442](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/core/driver/nodeUSBDriver.ts#L442)
+[core/driver/nodeUSBDriver.ts:441](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/core/driver/nodeUSBDriver.ts#L441)
 
 ***
 
@@ -320,7 +328,7 @@ Resolves with true if the driver is scanning, otherwise false.
 
 #### Defined in
 
-[core/driver/nodeUSBDriver.ts:451](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/core/driver/nodeUSBDriver.ts#L451)
+[core/driver/nodeUSBDriver.ts:450](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/core/driver/nodeUSBDriver.ts#L450)
 
 ***
 
@@ -355,7 +363,7 @@ driver.open().then((result) => {
 
 #### Defined in
 
-[core/driver/nodeUSBDriver.ts:187](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/core/driver/nodeUSBDriver.ts#L187)
+[core/driver/nodeUSBDriver.ts:187](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/core/driver/nodeUSBDriver.ts#L187)
 
 ***
 
@@ -367,7 +375,9 @@ Reads data from the USB device and processes it.
 
 #### Parameters
 
-• **data**: `Uint8Array`
+##### data
+
+`Uint8Array`\<`ArrayBufferLike`\>
 
 The data received from the USB device.
 
@@ -390,7 +400,7 @@ driver.read(data).then(() => console.log("Data processed"));
 
 #### Defined in
 
-[core/driver/nodeUSBDriver.ts:328](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/core/driver/nodeUSBDriver.ts#L328)
+[core/driver/nodeUSBDriver.ts:327](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/core/driver/nodeUSBDriver.ts#L327)
 
 ***
 
@@ -418,7 +428,7 @@ driver.reset().then(() => console.log("Device reset"));
 
 #### Defined in
 
-[core/driver/nodeUSBDriver.ts:376](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/core/driver/nodeUSBDriver.ts#L376)
+[core/driver/nodeUSBDriver.ts:375](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/core/driver/nodeUSBDriver.ts#L375)
 
 ***
 
@@ -430,7 +440,9 @@ Writes data to the USB device.
 
 #### Parameters
 
-• **data**: `Uint8Array`
+##### data
+
+`Uint8Array`\<`ArrayBufferLike`\>
 
 The data to be sent to the USB device.
 
@@ -453,4 +465,4 @@ driver.write(data).then(() => console.log("Data sent"));
 
 #### Defined in
 
-[core/driver/nodeUSBDriver.ts:354](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/core/driver/nodeUSBDriver.ts#L354)
+[core/driver/nodeUSBDriver.ts:353](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/core/driver/nodeUSBDriver.ts#L353)

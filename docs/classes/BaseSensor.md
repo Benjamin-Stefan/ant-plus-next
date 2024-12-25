@@ -1,8 +1,8 @@
-[**ant-plus-next v0.3.1**](../README.md) • **Docs**
+[**ant-plus-next v0.3.2**](../README.md)
 
 ***
 
-[ant-plus-next v0.3.1](../README.md) / BaseSensor
+[ant-plus-next](../README.md) / BaseSensor
 
 # Class: `abstract` BaseSensor
 
@@ -23,7 +23,9 @@ Creates an instance of BaseSensor.
 
 #### Parameters
 
-• **stick**: [`USBDriverBase`](../interfaces/USBDriverBase.md)
+##### stick
+
+[`USBDriverBase`](../interfaces/USBDriverBase.md)
 
 The USB driver used for communication with the sensor.
 
@@ -37,7 +39,7 @@ The USB driver used for communication with the sensor.
 
 #### Defined in
 
-[sensors/baseSensor.ts:37](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/baseSensor.ts#L37)
+[sensors/baseSensor.ts:37](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/baseSensor.ts#L37)
 
 ## Methods
 
@@ -57,4 +59,4 @@ Will throw an error if there is an issue detaching.
 
 #### Defined in
 
-[sensors/baseSensor.ts:249](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/baseSensor.ts#L249)
+[sensors/baseSensor.ts:249](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/baseSensor.ts#L249)

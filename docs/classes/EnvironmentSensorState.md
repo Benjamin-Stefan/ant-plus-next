@@ -1,8 +1,8 @@
-[**ant-plus-next v0.3.1**](../README.md) • **Docs**
+[**ant-plus-next v0.3.2**](../README.md)
 
 ***
 
-[ant-plus-next v0.3.1](../README.md) / EnvironmentSensorState
+[ant-plus-next](../README.md) / EnvironmentSensorState
 
 # Class: EnvironmentSensorState
 
@@ -24,7 +24,9 @@ Creates an instance of the EnvironmentSensorState.
 
 #### Parameters
 
-• **deviceId**: `number`
+##### deviceId
+
+`number`
 
 The unique identifier of the sensor device.
 
@@ -40,7 +42,7 @@ const sensorState = new EnvironmentSensorState(12345);
 
 #### Defined in
 
-[sensors/environment/environmentSensorState.ts:15](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/environment/environmentSensorState.ts#L15)
+[sensors/environment/environmentSensorState.ts:15](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/environment/environmentSensorState.ts#L15)
 
 ## Properties
 
@@ -52,7 +54,7 @@ The unique identifier of the sensor device.
 
 #### Defined in
 
-[sensors/environment/environmentSensorState.ts:23](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/environment/environmentSensorState.ts#L23)
+[sensors/environment/environmentSensorState.ts:23](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/environment/environmentSensorState.ts#L23)
 
 ***
 
@@ -64,7 +66,7 @@ The event count recorded by the sensor.
 
 #### Defined in
 
-[sensors/environment/environmentSensorState.ts:29](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/environment/environmentSensorState.ts#L29)
+[sensors/environment/environmentSensorState.ts:29](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/environment/environmentSensorState.ts#L29)
 
 ***
 
@@ -76,4 +78,4 @@ The temperature measured by the sensor, in degrees Celsius.
 
 #### Defined in
 
-[sensors/environment/environmentSensorState.ts:35](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/environment/environmentSensorState.ts#L35)
+[sensors/environment/environmentSensorState.ts:35](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/environment/environmentSensorState.ts#L35)

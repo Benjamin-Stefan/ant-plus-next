@@ -1,8 +1,8 @@
-[**ant-plus-next v0.3.1**](../README.md) • **Docs**
+[**ant-plus-next v0.3.2**](../README.md)
 
 ***
 
-[ant-plus-next v0.3.1](../README.md) / PairedDevice
+[ant-plus-next](../README.md) / PairedDevice
 
 # Type Alias: PairedDevice
 
@@ -42,4 +42,4 @@ console.log(device.paired); // Output: true
 
 ## Defined in
 
-[types/pairedDevice.ts:23](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/types/pairedDevice.ts#L23)
+[types/pairedDevice.ts:23](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/types/pairedDevice.ts#L23)

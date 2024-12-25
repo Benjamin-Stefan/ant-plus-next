@@ -1,8 +1,8 @@
-[**ant-plus-next v0.3.1**](../README.md) • **Docs**
+[**ant-plus-next v0.3.2**](../README.md)
 
 ***
 
-[ant-plus-next v0.3.1](../README.md) / BicyclePowerScanState
+[ant-plus-next](../README.md) / BicyclePowerScanState
 
 # Class: BicyclePowerScanState
 
@@ -23,7 +23,9 @@ Creates an instance of BicyclePowerSensorState.
 
 #### Parameters
 
-• **deviceId**: `number`
+##### deviceId
+
+`number`
 
 The unique identifier of the sensor device.
 
@@ -37,7 +39,7 @@ The unique identifier of the sensor device.
 
 #### Defined in
 
-[sensors/bicyclePower/bicyclePowerSensorState.ts:11](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/bicyclePower/bicyclePowerSensorState.ts#L11)
+[sensors/bicyclePower/bicyclePowerSensorState.ts:11](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/bicyclePower/bicyclePowerSensorState.ts#L11)
 
 ## Properties
 
@@ -54,7 +56,7 @@ Represents the total power output accumulated over time.
 
 #### Defined in
 
-[sensors/bicyclePower/bicyclePowerSensorState.ts:54](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/bicyclePower/bicyclePowerSensorState.ts#L54)
+[sensors/bicyclePower/bicyclePowerSensorState.ts:54](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/bicyclePower/bicyclePowerSensorState.ts#L54)
 
 ***
 
@@ -71,7 +73,7 @@ Represents the number of pedal revolutions per minute.
 
 #### Defined in
 
-[sensors/bicyclePower/bicyclePowerSensorState.ts:47](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/bicyclePower/bicyclePowerSensorState.ts#L47)
+[sensors/bicyclePower/bicyclePowerSensorState.ts:47](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/bicyclePower/bicyclePowerSensorState.ts#L47)
 
 ***
 
@@ -88,7 +90,7 @@ Represents the calculated cadence based on sensor data.
 
 #### Defined in
 
-[sensors/bicyclePower/bicyclePowerSensorState.ts:103](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/bicyclePower/bicyclePowerSensorState.ts#L103)
+[sensors/bicyclePower/bicyclePowerSensorState.ts:103](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/bicyclePower/bicyclePowerSensorState.ts#L103)
 
 ***
 
@@ -105,7 +107,7 @@ Represents the power calculated from torque and cadence data.
 
 #### Defined in
 
-[sensors/bicyclePower/bicyclePowerSensorState.ts:117](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/bicyclePower/bicyclePowerSensorState.ts#L117)
+[sensors/bicyclePower/bicyclePowerSensorState.ts:117](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/bicyclePower/bicyclePowerSensorState.ts#L117)
 
 ***
 
@@ -122,7 +124,7 @@ Represents the torque calculated from sensor data.
 
 #### Defined in
 
-[sensors/bicyclePower/bicyclePowerSensorState.ts:110](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/bicyclePower/bicyclePowerSensorState.ts#L110)
+[sensors/bicyclePower/bicyclePowerSensorState.ts:110](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/bicyclePower/bicyclePowerSensorState.ts#L110)
 
 ***
 
@@ -134,11 +136,11 @@ The unique identifier of the sensor device.
 
 #### Inherited from
 
-[`BicyclePowerSensorState`](BicyclePowerSensorState.md).[`DeviceId`](BicyclePowerSensorState.md#deviceid)
+[`BicyclePowerSensorState`](BicyclePowerSensorState.md).[`DeviceId`](BicyclePowerSensorState.md#deviceid-1)
 
 #### Defined in
 
-[sensors/bicyclePower/bicyclePowerSensorState.ts:19](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/bicyclePower/bicyclePowerSensorState.ts#L19)
+[sensors/bicyclePower/bicyclePowerSensorState.ts:19](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/bicyclePower/bicyclePowerSensorState.ts#L19)
 
 ***
 
@@ -155,7 +157,7 @@ Represents the number of events recorded by the sensor.
 
 #### Defined in
 
-[sensors/bicyclePower/bicyclePowerSensorState.ts:75](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/bicyclePower/bicyclePowerSensorState.ts#L75)
+[sensors/bicyclePower/bicyclePowerSensorState.ts:75](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/bicyclePower/bicyclePowerSensorState.ts#L75)
 
 ***
 
@@ -172,7 +174,7 @@ If available, represents the contribution of the left pedal to the total power.
 
 #### Defined in
 
-[sensors/bicyclePower/bicyclePowerSensorState.ts:40](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/bicyclePower/bicyclePowerSensorState.ts#L40)
+[sensors/bicyclePower/bicyclePowerSensorState.ts:40](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/bicyclePower/bicyclePowerSensorState.ts#L40)
 
 ***
 
@@ -194,7 +196,7 @@ The offset value used for torque calculations.
 
 #### Defined in
 
-[sensors/bicyclePower/bicyclePowerSensorState.ts:68](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/bicyclePower/bicyclePowerSensorState.ts#L68)
+[sensors/bicyclePower/bicyclePowerSensorState.ts:68](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/bicyclePower/bicyclePowerSensorState.ts#L68)
 
 ***
 
@@ -211,7 +213,7 @@ Represents the percentage of power produced by the pedal strokes.
 
 #### Defined in
 
-[sensors/bicyclePower/bicyclePowerSensorState.ts:26](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/bicyclePower/bicyclePowerSensorState.ts#L26)
+[sensors/bicyclePower/bicyclePowerSensorState.ts:26](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/bicyclePower/bicyclePowerSensorState.ts#L26)
 
 ***
 
@@ -228,7 +230,7 @@ Represents the instantaneous power output of the cyclist.
 
 #### Defined in
 
-[sensors/bicyclePower/bicyclePowerSensorState.ts:61](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/bicyclePower/bicyclePowerSensorState.ts#L61)
+[sensors/bicyclePower/bicyclePowerSensorState.ts:61](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/bicyclePower/bicyclePowerSensorState.ts#L61)
 
 ***
 
@@ -245,7 +247,7 @@ If available, represents the contribution of the right pedal to the total power.
 
 #### Defined in
 
-[sensors/bicyclePower/bicyclePowerSensorState.ts:33](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/bicyclePower/bicyclePowerSensorState.ts#L33)
+[sensors/bicyclePower/bicyclePowerSensorState.ts:33](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/bicyclePower/bicyclePowerSensorState.ts#L33)
 
 ***
 
@@ -258,7 +260,7 @@ Represents the strength of the received signal from the sensor.
 
 #### Defined in
 
-[sensors/bicyclePower/bicyclePowerScanState.ts:13](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/bicyclePower/bicyclePowerScanState.ts#L13)
+[sensors/bicyclePower/bicyclePowerScanState.ts:13](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/bicyclePower/bicyclePowerScanState.ts#L13)
 
 ***
 
@@ -275,7 +277,7 @@ Represents the slope or gradient used in the torque computation.
 
 #### Defined in
 
-[sensors/bicyclePower/bicyclePowerSensorState.ts:89](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/bicyclePower/bicyclePowerSensorState.ts#L89)
+[sensors/bicyclePower/bicyclePowerSensorState.ts:89](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/bicyclePower/bicyclePowerSensorState.ts#L89)
 
 ***
 
@@ -288,7 +290,7 @@ Represents the minimum acceptable signal strength for communication.
 
 #### Defined in
 
-[sensors/bicyclePower/bicyclePowerScanState.ts:20](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/bicyclePower/bicyclePowerScanState.ts#L20)
+[sensors/bicyclePower/bicyclePowerScanState.ts:20](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/bicyclePower/bicyclePowerScanState.ts#L20)
 
 ***
 
@@ -305,7 +307,7 @@ Represents the time at which the last event was recorded.
 
 #### Defined in
 
-[sensors/bicyclePower/bicyclePowerSensorState.ts:82](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/bicyclePower/bicyclePowerSensorState.ts#L82)
+[sensors/bicyclePower/bicyclePowerSensorState.ts:82](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/bicyclePower/bicyclePowerSensorState.ts#L82)
 
 ***
 
@@ -322,4 +324,4 @@ Represents the time at which the last torque measurement was recorded.
 
 #### Defined in
 
-[sensors/bicyclePower/bicyclePowerSensorState.ts:96](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c9567bc41ed33c15275cf583dde1cd362dcbccff/src/sensors/bicyclePower/bicyclePowerSensorState.ts#L96)
+[sensors/bicyclePower/bicyclePowerSensorState.ts:96](https://github.com/Benjamin-Stefan/ant-plus-next/blob/c98e5e404c47b4703ad614bf119e7be885968f1a/src/sensors/bicyclePower/bicyclePowerSensorState.ts#L96)
