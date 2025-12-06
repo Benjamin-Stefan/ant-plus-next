@@ -1,3 +1,19 @@
+### Version: 0.4.0  
+Released on: 2025-12-06
+
+
+### 🚀 Features
+
+* migrate React example from CRA to Vite ([#87](https://github.com/Benjamin-Stefan/ant-plus-next/issues/87)) ([37ea7d70f6761de6472cdee128ddde17080fe404](/commit/37ea7d70f6761de6472cdee128ddde17080fe404))
+
+### 📚 Documentation
+
+* regenerate documentation ([2e5c517482bf0183d1b97868870f4e0dc05b50c9](/commit/2e5c517482bf0183d1b97868870f4e0dc05b50c9))
+
+
+
+---
+
 ### Version: 0.3.2  
 Released on: 2024-11-10
 
