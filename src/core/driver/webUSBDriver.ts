@@ -300,7 +300,7 @@ export class WebUSBDriver extends EventEmitter implements USBDriverBase {
      */
     public async write(data: Uint8Array): Promise<void> {
         if (this.device && this.outEndpoint) {
-            await this.device.transferOut(this.outEndpoint.endpointNumber, data);
+            await this.device.transferOut(this.outEndpoint.endpointNumber, data as Uint8Array<ArrayBuffer>);
         }
     }
 
