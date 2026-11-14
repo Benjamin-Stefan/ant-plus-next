@@ -325,7 +325,7 @@ export class NodeUSBDriver extends EventEmitter implements USBDriverBase {
      * driver.read(data).then(() => console.log("Data processed"));
      */
     async read(data: Uint8Array): Promise<void> {
-        const dataView = new DataView(data.buffer);
+        const dataView = new DataView(data.buffer, data.byteOffset, data.byteLength);
         const messageId = dataView.getUint8(2);
 
         if (messageId === Constants.MESSAGE_STARTUP) {
@@ -352,16 +352,18 @@ export class NodeUSBDriver extends EventEmitter implements USBDriverBase {
      */
     async write(data: Uint8Array): Promise<void> {
         await new Promise<void>((resolve, reject) => {
-            if (this.outEndpoint) {
-                this.outEndpoint.transfer(Buffer.from(data), (error) => {
-                    if (error) {
-                        console.error("ERROR SEND: ", error);
-                        reject(error);
-                    } else {
-                        resolve();
-                    }
-                });
+            if (!this.outEndpoint) {
+                reject(new Error("Device is not open."));
+                return;
             }
+            this.outEndpoint.transfer(Buffer.from(data), (error) => {
+                if (error) {
+                    console.error("ERROR SEND: ", error);
+                    reject(error);
+                } else {
+                    resolve();
+                }
+            });
         });
     }
 
@@ -469,8 +471,7 @@ export class NodeUSBDriver extends EventEmitter implements USBDriverBase {
      * @returns {Promise<void>} Resolves when all sensors are detached.
      */
     private async detachAll(): Promise<void> {
-        const copy = this.attachedSensors;
-        for (const sensor of copy) {
+        for (const sensor of this.attachedSensors.slice()) {
             await sensor.detach();
         }
     }
@@ -492,7 +493,7 @@ export class NodeUSBDriver extends EventEmitter implements USBDriverBase {
             this.leftover = undefined;
         }
 
-        const dataView = new DataView(data.buffer);
+        const dataView = new DataView(data.buffer, data.byteOffset, data.byteLength);
 
         if (dataView.getUint8(0) !== 0xa4) {
             throw new Error("SYNC missing");

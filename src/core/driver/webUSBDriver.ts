@@ -161,7 +161,13 @@ export class WebUSBDriver extends EventEmitter implements USBDriverBase {
             }
 
             await this.reset();
-            await this.readLoop();
+
+            // A previous close() aborts the controller for good, so every open needs a fresh one.
+            this.abortController = new AbortController();
+            this.signal = this.abortController.signal;
+
+            // The read loop runs for the lifetime of the connection, so it must not be awaited here.
+            void this.readLoop();
 
             return true;
         } catch (error) {
@@ -172,65 +178,66 @@ export class WebUSBDriver extends EventEmitter implements USBDriverBase {
     }
 
     /**
-     * Continuously reads data from the USB device.
-     * Recursively calls itself after each read until aborted.
+     * Continuously reads data from the USB device until the read loop is aborted.
+     * A read error that is not caused by an abort closes the connection.
      *
      * @private
-     * @returns {Promise<void>} Resolves when the read loop is completed or aborted.
+     * @returns {Promise<void>} Resolves when the read loop is aborted or the connection was closed after an error.
      */
     private async readLoop(): Promise<void> {
-        if (this.signal.aborted || !this.inEndpoint) {
-            return;
-        }
+        const signal = this.signal;
 
-        try {
-            const result = await this.device?.transferIn(this.inEndpoint.endpointNumber, this.inEndpoint.packetSize);
-            if (!result || !result.data) {
-                return this.readLoop();
-            }
-
-            let buffer = new Uint8Array(result.data.buffer);
-
-            if (this.leftover) {
-                buffer = this.concatUint8Arrays(this.leftover, buffer);
-                this.leftover = undefined;
-            }
-
-            const dataView = new DataView(buffer.buffer);
-
-            if (dataView.getUint8(0) !== 0xa4) {
-                console.error("SYNC missing");
-                return this.readLoop();
-            }
-
-            let beginBlock = 0;
-            const len = buffer.length;
-
-            while (beginBlock < len) {
-                if (beginBlock + 1 === len) {
-                    this.leftover = buffer.slice(beginBlock);
-                    break;
+        while (!signal.aborted && this.device && this.inEndpoint) {
+            try {
+                const result = await this.device.transferIn(this.inEndpoint.endpointNumber, this.inEndpoint.packetSize);
+                if (!result.data) {
+                    continue;
                 }
 
-                const blockLen = dataView.getUint8(beginBlock + 1);
-                const endBlock = beginBlock + blockLen + 4;
+                let buffer = new Uint8Array(result.data.buffer, result.data.byteOffset, result.data.byteLength);
 
-                if (endBlock > len) {
-                    this.leftover = buffer.slice(beginBlock);
-                    break;
+                if (this.leftover) {
+                    buffer = this.concatUint8Arrays(this.leftover, buffer);
+                    this.leftover = undefined;
                 }
 
-                const readData = buffer.slice(beginBlock, endBlock);
-                await this.read(readData);
-                beginBlock = endBlock;
-            }
-        } catch (error) {
-            if (!this.signal.aborted) {
-                throw error;
+                const dataView = new DataView(buffer.buffer, buffer.byteOffset, buffer.byteLength);
+
+                if (dataView.getUint8(0) !== 0xa4) {
+                    console.error("SYNC missing");
+                    continue;
+                }
+
+                let beginBlock = 0;
+                const len = buffer.length;
+
+                while (beginBlock < len) {
+                    if (beginBlock + 1 === len) {
+                        this.leftover = buffer.slice(beginBlock);
+                        break;
+                    }
+
+                    const blockLen = dataView.getUint8(beginBlock + 1);
+                    const endBlock = beginBlock + blockLen + 4;
+
+                    if (endBlock > len) {
+                        this.leftover = buffer.slice(beginBlock);
+                        break;
+                    }
+
+                    const readData = buffer.slice(beginBlock, endBlock);
+                    await this.read(readData);
+                    beginBlock = endBlock;
+                }
+            } catch (error) {
+                if (signal.aborted) {
+                    return;
+                }
+                console.error("Error in read loop, closing device:", error);
+                await this.close().catch((closeError) => console.error("Error closing device:", closeError));
+                return;
             }
         }
-
-        return this.readLoop();
     }
 
     /**
@@ -276,7 +283,7 @@ export class WebUSBDriver extends EventEmitter implements USBDriverBase {
      * @returns {Promise<void>} Resolves when the data has been processed.
      */
     public async read(data: Uint8Array): Promise<void> {
-        const dataView = new DataView(data.buffer);
+        const dataView = new DataView(data.buffer, data.byteOffset, data.byteLength);
         const messageId = dataView.getUint8(2);
 
         if (messageId === Constants.MESSAGE_STARTUP) {

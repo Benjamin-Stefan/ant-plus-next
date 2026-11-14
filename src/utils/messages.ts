@@ -171,7 +171,7 @@ export class Messages {
     static getChecksum(message: number[]): number {
         let checksum = 0;
         message.forEach((byte) => {
-            checksum = (checksum ^ byte) % 0xff;
+            checksum ^= byte;
         });
 
         return checksum;
