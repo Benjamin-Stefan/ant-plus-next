@@ -17,8 +17,8 @@
         "usb": false
     },
     "scripts": {
-        "lint": "eslint eslint.config.mjs",
-        "lint:fix": "eslint eslint.config.mjs --fix",
+        "lint": "eslint src",
+        "lint:fix": "eslint src --fix",
         "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css,md}\"",
         "build": "npm run build:clean && npm run build:types && npm run build:bundle",
         "build:clean": "rimraf dist && mkdir dist",
