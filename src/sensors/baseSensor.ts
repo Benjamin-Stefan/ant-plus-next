@@ -56,7 +56,7 @@ export abstract class BaseSensor extends EventEmitter {
             throw new Error("Already attached");
         }
 
-        if (!this.stick.canScan) {
+        if (!(await this.stick.canScan())) {
             throw new Error("Stick cannot scan");
         }
 
@@ -273,7 +273,7 @@ export abstract class BaseSensor extends EventEmitter {
      * @param {Uint8Array} data - The data buffer containing the event message.
      */
     private async handleEventMessages(data: Uint8Array): Promise<void> {
-        const dataView = new DataView(data.buffer);
+        const dataView = new DataView(data.buffer, data.byteOffset, data.byteLength);
         const messageId = dataView.getUint8(Messages.BUFFER_INDEX_MSG_TYPE);
         const channel = dataView.getUint8(Messages.BUFFER_INDEX_CHANNEL_NUM);
 
@@ -284,14 +284,8 @@ export abstract class BaseSensor extends EventEmitter {
                     code: dataView.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 1),
                 };
 
-                const handled = this.statusCbk && this.statusCbk(status);
+                const handled = this.statusCbk ? await this.statusCbk(status) : false;
                 if (!handled) {
-                    console.log(
-                        "Unhandled event: " +
-                            Array.from(data)
-                                .map((byte) => byte.toString(16))
-                                .join(" ")
-                    );
                     this.emit("eventData", {
                         message: dataView.getUint8(Messages.BUFFER_INDEX_MSG_DATA),
                         code: dataView.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 1),

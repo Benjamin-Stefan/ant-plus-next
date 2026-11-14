@@ -523,7 +523,7 @@ export function updateState(sensor: FitnessEquipmentSensor | FitnessEquipmentSca
                 state._EventCount0x19 = eventCount;
                 if (oldEventCount > eventCount) {
                     //Hit rollover value
-                    eventCount += 255;
+                    eventCount += 256;
                 }
             }
 
@@ -599,7 +599,7 @@ export function updateState(sensor: FitnessEquipmentSensor | FitnessEquipmentSca
                 state._EventCount0x1A = eventCount;
                 if (oldEventCount > eventCount) {
                     //Hit rollover value
-                    eventCount += 255;
+                    eventCount += 256;
                 }
             }
 

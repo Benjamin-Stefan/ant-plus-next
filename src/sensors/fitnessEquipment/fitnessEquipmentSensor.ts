@@ -140,7 +140,7 @@ export class FitnessEquipmentSensor extends AntPlusSensor {
      * sensor.setTargetPower(250, callbackFunction);
      */
     public async setTargetPower(power: number, cbk?: SendCallback): Promise<void> {
-        const p = Math.max(0, Math.min(4000, Math.round(power * 4)));
+        const p = Math.max(0, Math.min(16000, Math.round(power * 4))); // 0.25 W units, spec range 0-4000 W
         const payload = [0x31, 0xff, 0xff, 0xff, 0xff, 0xff, p & 0xff, (p >> 8) & 0xff];
         const msg = Messages.acknowledgedData(this.channel!, payload);
         await this.send(msg, cbk);

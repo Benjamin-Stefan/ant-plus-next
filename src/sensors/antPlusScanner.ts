@@ -105,7 +105,6 @@ export abstract class AntPlusScanner extends AntPlusBaseSensor {
         }
 
         const deviceId = data.getUint16(Messages.BUFFER_INDEX_EXT_MSG_BEGIN + 1, true);
-        console.log(this.deviceId);
         const deviceType = data.getUint8(Messages.BUFFER_INDEX_EXT_MSG_BEGIN + 3);
 
         if (deviceType !== this.deviceType()) {
