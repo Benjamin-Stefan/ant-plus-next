@@ -37,7 +37,7 @@ export function updateState(sensor: MuscleOxygenSensor | MuscleOxygenScanner, st
                 state._EventCount = eventCount;
                 if (oldEventCount > eventCount) {
                     // Hit rollover value
-                    eventCount += 255;
+                    eventCount += 256;
                 }
             }
 
@@ -123,8 +123,8 @@ export function updateState(sensor: MuscleOxygenSensor | MuscleOxygenScanner, st
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
             const batteryId = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 2);
             const operatingTime = data.getUint32(Messages.BUFFER_INDEX_MSG_DATA + 3, true) & 0xffffff;
-            const batteryFrac = data.getUint32(Messages.BUFFER_INDEX_MSG_DATA + 6, true);
-            const batteryStatus = data.getUint32(Messages.BUFFER_INDEX_MSG_DATA + 7, true);
+            const batteryFrac = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 6);
+            const batteryStatus = data.getUint8(Messages.BUFFER_INDEX_MSG_DATA + 7);
 
             state.OperatingTime = operatingTime * ((batteryStatus & 0x80) === 0x80 ? 2 : 16);
             state.BatteryVoltage = (batteryStatus & 0x0f) + batteryFrac / 256;

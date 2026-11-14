@@ -67,7 +67,7 @@ export function updateState(sensor: BicyclePowerSensor | BicyclePowerScanner, st
                 state.EventCount = eventCount;
                 if (oldEventCount > eventCount) {
                     // Hit rollover value
-                    eventCount += 255;
+                    eventCount += 256;
                 }
 
                 state.TimeStamp = timeStamp;

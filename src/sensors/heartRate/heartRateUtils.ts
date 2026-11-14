@@ -116,7 +116,7 @@ export function updateState(sensor: HeartRateSensor | HeartRateScanner, state: H
         }
     }
     // Decode the last four bytes of the HRM format, the first byte of this message is the channel number
-    DecodeDefaultHRM(state, new DataView(data.buffer.slice(Messages.BUFFER_INDEX_MSG_DATA + 4)));
+    DecodeDefaultHRM(state, new DataView(data.buffer, data.byteOffset + Messages.BUFFER_INDEX_MSG_DATA + 4, 4));
     page.oldPage = pageNum;
 
     sensor.emit("heartRateData", state);
