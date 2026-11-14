@@ -1,28 +1,28 @@
 version: 2
+# Low-maintenance setup: at most one grouped PR per ecosystem and quarter.
+# Major version upgrades are not proposed; do them manually when the
+# project is actively developed again. Security updates are unaffected
+# by the schedule and arrive as one grouped PR when an advisory appears.
 updates:
     # npm dependencies
     - package-ecosystem: "npm"
       directory: "/"
       schedule:
-          interval: "weekly"
-          day: "saturday"
-          time: "06:00"
-          timezone: "Europe/Berlin"
-      open-pull-requests-limit: 5
+          interval: "quarterly"
+      open-pull-requests-limit: 2
       commit-message:
-          prefix: "chore(deps)"
-          prefix-development: "chore(deps-dev)"
+          prefix: "chore"
           include: "scope"
       labels:
           - "dependencies"
+      ignore:
+          - dependency-name: "*"
+            update-types: ["version-update:semver-major"]
       groups:
-          production-dependencies:
-              dependency-type: "production"
-              update-types:
-                  - "minor"
-                  - "patch"
-          dev-dependencies:
-              dependency-type: "development"
+          npm-dependencies:
+              applies-to: version-updates
+              patterns:
+                  - "*"
           security-updates:
               applies-to: security-updates
               patterns:
@@ -32,13 +32,14 @@ updates:
     - package-ecosystem: "github-actions"
       directory: "/"
       schedule:
-          interval: "weekly"
-          day: "saturday"
-          time: "06:00"
-          timezone: "Europe/Berlin"
-      open-pull-requests-limit: 5
+          interval: "quarterly"
+      open-pull-requests-limit: 1
       commit-message:
           prefix: "chore(ci)"
       labels:
           - "github-actions"
           - "dependencies"
+      groups:
+          github-actions:
+              patterns:
+                  - "*"
